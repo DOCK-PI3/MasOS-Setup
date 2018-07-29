@@ -82,7 +82,7 @@ function disable_plymouth_splashscreen() {
 }
 
 function default_splashscreen() {
-    echo "$md_inst/retropie-default.png" >/etc/splashscreen.list
+    echo "$md_inst/masos-default.png" >/etc/splashscreen.list
 }
 
 function enable_splashscreen() {
@@ -113,7 +113,7 @@ function remove_splashscreen() {
 
 function choose_path_splashscreen() {
     local options=(
-        1 "RetroPie splashscreens"
+        1 "MasOS splashscreens"
         2 "Own/Extra splashscreens (from $datadir/splashscreens)"
     )
     local cmd=(dialog --backtitle "$__backtitle" --menu "Choose an option." 22 86 16)
@@ -173,7 +173,7 @@ function choose_splashscreen() {
 
 function randomize_splashscreen() {
     options=(
-        1 "Randomize RetroPie splashscreens"
+        1 "Randomize MasOS splashscreens"
         2 "Randomize own splashscreens (from $datadir/splashscreens)"
         3 "Randomize all splashscreens"
         4 "Randomize /etc/splashscreen.list"
@@ -275,11 +275,11 @@ function gui_splashscreen() {
             options+=(2 "Enable splashscreen on boot (Disabled)")
         fi
         options+=(
-            4 "Use default splashscreen"
+            4 "Use default MasOS splashscreen"
             5 "Manually edit splashscreen list"
             6 "Append splashscreen to list (for multiple entries)"
             7 "Preview splashscreens"
-            8 "Update RetroPie splashscreens"
+            8 "Update MasOS splashscreens"
             9 "Download RetroPie-Extra splashscreens"
         )
         local choice=$("${cmd[@]}" "${options[@]}" 2>&1 >/dev/tty)
@@ -308,7 +308,7 @@ function gui_splashscreen() {
                     ;;
                 4)
                     default_splashscreen
-                    printMsgs "dialog" "Splashscreen set to RetroPie default."
+                    printMsgs "dialog" "Splashscreen set to MasOS default."
                     ;;
                 5)
                     editFile /etc/splashscreen.list
