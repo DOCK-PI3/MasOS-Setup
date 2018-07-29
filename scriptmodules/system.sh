@@ -6,7 +6,7 @@
 # sistema trabajan unos pocos desarroladores independientes de diversas partes del planeta.
 #
 # MasOS El sistema operativo exclusivo para la comunidad MyArcadeSpain ... de ahí su nombre.!
-#
+#creado con retropie script setup
 
 function setup_env() {
 
