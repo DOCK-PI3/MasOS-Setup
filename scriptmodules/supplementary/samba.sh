@@ -47,7 +47,7 @@ function restart_samba() {
 function install_shares_samba() {
     cp /etc/samba/smb.conf /etc/samba/smb.conf.bak
     add_share_samba "roms" "$romdir"
-    add_share_samba "bios" "$home/RetroPie/BIOS"
+    add_share_samba "bios" "$home/MasOS/BIOS"
     add_share_samba "configs" "$configdir"
     add_share_samba "splashscreens" "$datadir/splashscreens"
     restart_samba
@@ -64,8 +64,8 @@ function gui_samba() {
     while true; do
         local cmd=(dialog --backtitle "$__backtitle" --menu "Choose an option" 22 76 16)
         local options=(
-            1 "Install RetroPie Samba shares"
-            2 "Remove RetroPie Samba shares"
+            1 "Install MasOS Samba shares"
+            2 "Remove MasOS Samba shares"
             3 "Manually edit /etc/samba/smb.conf"
             4 "Restart Samba service"
             5 "Remove Samba + configuration"

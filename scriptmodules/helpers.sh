@@ -287,9 +287,9 @@ function getDepends() {
             fi
         done
         if [[ ${#failed[@]} -eq 0 ]]; then
-            printMsgs "console" "Successfully installed package(s): ${packages[*]}."
+            printMsgs "console" "Completada la instalacion del paquete(s): ${packages[*]}."
         else
-            md_ret_errors+=("Could not install package(s): ${failed[*]}.")
+            md_ret_errors+=("Instalacion fallida(s): ${failed[*]}.")
             return 1
         fi
     fi
@@ -312,7 +312,7 @@ function rpSwap() {
             local size=$((needed - memory))
             mkdir -p "$__swapdir/"
             if [[ $size -ge 0 ]]; then
-                echo "Adding $size MB of additional swap"
+                echo "Agrega $size MB para swap adicional"
                 fallocate -l ${size}M "$swapfile"
                 chmod 600 "$swapfile"
                 mkswap "$swapfile"
@@ -369,7 +369,6 @@ function setupDirectories() {
     mkUserDir "$biosdir"
     mkUserDir "$configdir"
     mkUserDir "$configdir/all"
-
     # make sure we have inifuncs.sh in place and that it is up to date
     mkdir -p "$rootdir/lib"
     local helper_libs=(inifuncs.sh archivefuncs.sh)
@@ -382,7 +381,7 @@ function setupDirectories() {
     # create template for autoconf.cfg and make sure it is owned by $user
     local config="$configdir/all/autoconf.cfg"
     if [[ ! -f "$config" ]]; then
-        echo "# this file can be used to enable/disable retropie autoconfiguration features" >"$config"
+        echo "# this file can be used to enable/disable MasOS autoconfiguration features" >"$config"
     fi
     chown $user:$user "$config"
 }

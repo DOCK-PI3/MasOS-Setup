@@ -10,7 +10,7 @@
 #
 
 rp_module_id="retropiemenu"
-rp_module_desc="RetroPie configuration menu for EmulationStation"
+rp_module_desc="MasOS configuration menu for EmulationStation"
 rp_module_section="core"
 
 function _update_hook_retropiemenu() {
@@ -67,7 +67,7 @@ function configure_retropiemenu()
         'Raspi-Config'
         'Retroarch'
         'RetroArch Net Play'
-        'RetroPie Setup'
+        'MasOS Setup'
         'Run Command Configuration'
         'Show IP'
         'Splash Screens'
@@ -83,14 +83,14 @@ function configure_retropiemenu()
         'Change user password, boot options, internationalization, camera, add your pi to Rastrack, overclock, overscan, memory split, SSH and more.'
         'Launches the RetroArch GUI so you can change RetroArch options. Note: Changes will not be saved unless you have enabled the "Save Configuration On Exit" option.'
         'Set up RetroArch Netplay options, choose host or client, port, host IP, delay frames, and your nickname.'
-        'Install RetroPie from binary or source, install experimental packages, additional drivers, edit samba shares, custom scraper, as well as other RetroPie-related configurations.'
+        'Install MasOS from binary or source, install experimental packages, additional drivers, edit samba shares, custom scraper, as well as other RetroPie-related configurations.'
         'Change what appears on the runcommand screen. Enable or disable the menu, enable or disable box art, and change CPU configuration.'
         'Displays your current IP address, as well as other information provided by the command, "ip addr show."'
-        'Enable or disable the splashscreen on RetroPie boot. Choose a splashscreen, download new splashscreens, and return splashscreen to default.'
+        'Enable or disable the splashscreen on MasOS and  RetroPie boot. Choose a splashscreen, download new splashscreens, and return splashscreen to default.'
         'Connect to or disconnect from a wifi network and configure wifi settings.'
     )
 
-    setESSystem "RetroPie" "retropie" "$rpdir" ".rp .sh" "sudo $scriptdir/retropie_packages.sh retropiemenu launch %ROM% </dev/tty >/dev/tty" "" "retropie"
+    setESSystem "RetroPie" "retropie" "$rpdir" ".rp .sh" "sudo $scriptdir/masos_pkgs.sh retropiemenu launch %ROM% </dev/tty >/dev/tty" "" "retropie"
 
     local file
     local name

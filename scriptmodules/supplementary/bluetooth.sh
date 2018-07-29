@@ -351,7 +351,7 @@ Description=Connect Bluetooth
 
 [Service]
 Type=$type
-ExecStart=/bin/bash "$scriptdir/retropie_packages.sh" bluetooth boot
+ExecStart=/bin/bash "$scriptdir/masos_pkgs.sh" bluetooth boot
 
 [Install]
 WantedBy=multi-user.target

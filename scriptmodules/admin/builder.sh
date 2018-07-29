@@ -1,12 +1,12 @@
 #!/usr/bin/env bash
 
-# This file is part of The RetroPie Project
+# This file is part of The MasOS Project
 #
-# The RetroPie Project is the legal property of its developers, whose names are
+# The MasOS Project is the legal property of its developers, whose names are
 # too numerous to list here. Please refer to the COPYRIGHT.md file distributed with this source.
 #
 # See the LICENSE.md file at the top-level directory of this distribution and
-# at https://raw.githubusercontent.com/RetroPie/RetroPie-Setup/master/LICENSE.md
+# at https://raw.githubusercontent.com/MasOS/MasOS-Setup/master/LICENSE.md
 #
 
 rp_module_id="builder"
@@ -80,7 +80,7 @@ function chroot_build_builder() {
         [[ "$use_distcc" -eq 1 ]] && rp_callModule crosscomp switch_distcc "$dist"
         if [[ ! -d "$md_build/$dist" ]]; then
             rp_callModule image create_chroot "$dist" "$md_build/$dist"
-            git clone "$HOME/RetroPie-Setup" "$md_build/$dist/home/pi/RetroPie-Setup"
+            git clone "$HOME/MasOS-Setup" "$md_build/$dist/home/pi/MasOS-Setup"
             cat > "$md_build/$dist/home/pi/install.sh" <<_EOF_
 #!/bin/bash
 cd
@@ -93,7 +93,7 @@ fi
 _EOF_
             rp_callModule image chroot "$md_build/$dist" bash /home/pi/install.sh
         else
-            git -C "$md_build/$dist/home/pi/RetroPie-Setup" pull
+            git -C "$md_build/$dist/home/pi/MasOS-Setup" pull
         fi
 
         for sys in rpi1 rpi2; do
@@ -102,9 +102,9 @@ _EOF_
                 PATH="/usr/lib/distcc:$PATH" \
                 MAKEFLAGS="-j4 PATH=/usr/lib/distcc:$PATH" \
                 __platform="$sys" \
-                /home/pi/RetroPie-Setup/retropie_packages.sh builder "$@"
+                /home/pi/MasOS-Setup/masos_pkgs.sh builder "$@"
         done
 
-        rsync -av "$md_build/$dist/home/pi/RetroPie-Setup/tmp/archives/" "$HOME/RetroPie-Setup/tmp/archives/"
+        rsync -av "$md_build/$dist/home/pi/MasOS-Setup/tmp/archives/" "$HOME/MasOS-Setup/tmp/archives/"
     done
 }

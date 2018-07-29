@@ -59,7 +59,7 @@ function configure_limelight() {
     # Create limelight config script
     cat > "$romdir/limelight/limelightconfig.sh" << _EOF_
 #!/bin/bash
-sudo $scriptdir/retropie_packages.sh limelight configure
+sudo $scriptdir/masos_pkgs.sh limelight configure
 _EOF_
 
     # Install limelight simple theme

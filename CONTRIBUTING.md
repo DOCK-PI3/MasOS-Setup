@@ -8,4 +8,4 @@ it ships with, please use the RetroPie forum - https://retropie.org.uk/forum/
 ## Pull Requests
 
 Contributions to the project are welcome - please check out our Styleguide before submitting changes
-https://github.com/RetroPie/RetroPie-Setup/wiki/Shell-Style-Guide
+https://
