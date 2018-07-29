@@ -4,11 +4,11 @@ MasOS-Setup
 General Usage
 -------------
 
-Shell script to setup the Raspberry Pi, Vero4K, ODroid-C1 or a PC running Ubuntu with many emulators and games, using EmulationStation as the graphical front end. Bootable pre-made images for the Raspberry Pi are available for those that want a ready to go system, downloadable from the releases section of GitHub or via our website at https://inforetro.wixsite.com/myarcade 
+Script de Shell para configurar Raspberry Pi, Vero4K, ODroid-C1 o una PC con Ubuntu con muchos emuladores y juegos, MasOS usando EmulationStation como interfaz gráfica. Las imágenes preinstaladas de inicio para Raspberry Pi están disponibles para aquellos que desean un sistema listo para usar, descargables desde la sección de lanzamientos de GitHub o desde nuestro sitio web en https://inforetro.wixsite.com/myarcade 
 
-This script is designed for use on Raspbian on the Rasperry Pi, OSMC on the Vero4K or Ubuntu on the ODroid-C1 or a PC.
+Este script está diseñado para su uso en Raspbian en el Rasperry Pi, OSMC en el Vero4K o Ubuntu en el ODroid-C1 o una PC.
 
-To run the MasOS Setup Script make sure that your APT repositories are up-to-date and that Git is installed:
+Para ejecutar el script de configuración de MasOS, asegúrese de que sus repositorios APT estén actualizados y de que Git esté instalado:
 
 ```shell
 sudo apt-get update
@@ -16,14 +16,13 @@ sudo apt-get dist-upgrade
 sudo apt-get install git
 ```
 
-Then you can download the latest MasOS setup script with
+Luego puede descargar la última secuencia de comandos de configuración de MasOS
 
 ```shell
 cd
 git clone --depth=1 https://github.com/DOCK-PI3/MasOS-Setup.git
 ```
 
-The script is executed with 
 Este script se ejecuta en la terminal
 
 ```shell
@@ -32,22 +31,23 @@ cd MasOS-Setup
 sudo ./masos_setup.sh
 ```
 
-When you first run the script it may install some additional packages that are needed.
+Cuando ejecuta el script por primera vez, puede instalar algunos paquetes adicionales que sean necesarios
 
-Binaries and Sources
+
+Binarios y fuentes
 --------------------
 
-On the Raspberry Pi, MasOS Setup offers the possibility to install from binaries or source. For other supported platforms only a source install is available. Installing from binary is recommended on a Raspberry Pi as building everything from source can take a long time.
+En la Raspberry Pi, la configuración de MasOS ofrece la posibilidad de instalar desde binarios o fuente. Para otras plataformas compatibles, solo está disponible una instalación de origen. Se recomienda instalar desde binario en una Raspberry Pi, ya que construir todo desde la fuente puede llevar mucho tiempo.
 
-For more information visit the blog at https://inforetro.wixsite.com/myarcade or the repository at https://github.com/DOCK-PI3/MasOS-Setup .
+Para obtener más información, visite el blog en https://inforetro.wixsite.com/myarcade o el repositorio en https://github.com/DOCK-PI3/MasOS-Setup.
 
 Wiki
 ----
 
-You can find useful information about several components or for several frequently asked questions in the [wiki](https://github.com/DOCK-PI3/MasOS-Setup/wiki) of the MasOS Script. If you think that there is something missing, you are invited to add it to the wiki.
+Puede encontrar información útil sobre varios componentes o para varias preguntas frecuentes en la wiki de MasOS Script. Si crees que falta algo, estás invitado a agregarlo al wiki.
 
 
-Thanks
+GRACIAS!
 ------
 
-This script just simplifies the usage of the great works of many other people that enjoy the spirit of retrogaming. Many thanks go to them!
+Esta secuencia de comandos simplemente simplifica el uso de las grandes obras de muchas otras personas que disfrutan del espíritu de retrogaming. ¡Muchas gracias a todos ellos!
