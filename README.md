@@ -4,7 +4,7 @@ MasOS-Setup
 General Usage
 -------------
 
-Shell script to setup the Raspberry Pi, Vero4K, ODroid-C1 or a PC running Ubuntu with many emulators and games, using EmulationStation as the graphical front end. Bootable pre-made images for the Raspberry Pi are available for those that want a ready to go system, downloadable from the releases section of GitHub or via our website at https://retropie.org.uk
+Shell script to setup the Raspberry Pi, Vero4K, ODroid-C1 or a PC running Ubuntu with many emulators and games, using EmulationStation as the graphical front end. Bootable pre-made images for the Raspberry Pi are available for those that want a ready to go system, downloadable from the releases section of GitHub or via our website at https://inforetro.wixsite.com/myarcade 
 
 This script is designed for use on Raspbian on the Rasperry Pi, OSMC on the Vero4K or Ubuntu on the ODroid-C1 or a PC.
 
