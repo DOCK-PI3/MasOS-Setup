@@ -52,7 +52,7 @@ RemainAfterExit=yes
 WantedBy=sysinit.target
 _EOF_
 
-    gitPullOrClone "$md_inst" https://github.com/RetroPie/retropie-splashscreens.git
+    gitPullOrClone "$md_inst" https://github.com/DOCK-PI3/masos-splashscreens.git
 
     cp "$md_data/asplashscreen.sh" "$md_inst"
 
