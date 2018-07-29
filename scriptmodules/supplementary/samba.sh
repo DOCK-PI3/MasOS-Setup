@@ -50,7 +50,7 @@ function install_shares_samba() {
     add_share_samba "bios" "$home/MasOS/BIOS"
     add_share_samba "configs" "$configdir"
     add_share_samba "splashscreens" "$datadir/splashscreens"
-	add_share_samba "esthemes" "/etc/emulationstaion/themes"
+	add_share_samba "themes" "/etc/emulationstaion/themes"
     restart_samba
 }
 
