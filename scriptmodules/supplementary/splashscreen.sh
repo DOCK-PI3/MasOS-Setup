@@ -1,11 +1,12 @@
 #!/usr/bin/env bash
 
-# This file is part of The RetroPie Project
+# This file is part of The MasOS Project
 #
-# The RetroPie Project is the legal property of its developers, whose names are
+# The MasOS Project is the legal property of its developers, whose names are
 # too numerous to list here. Please refer to the COPYRIGHT.md file distributed with this source.
 #
 # See the LICENSE.md file at the top-level directory of this distribution and
+
 # at https://raw.githubusercontent.com/RetroPie/RetroPie-Setup/master/LICENSE.md
 #
 
@@ -15,7 +16,7 @@ rp_module_section="main"
 rp_module_flags="noinstclean !x86 !osmc !xbian !mali !kms"
 
 function _update_hook_splashscreen() {
-    # make sure splashscreen is always up to date if updating just RetroPie-Setup
+    # make sure splashscreen is always up to date if updating just MasOS
     if rp_isInstalled "$md_idx"; then
         install_bin_splashscreen
         configure_splashscreen
@@ -52,7 +53,7 @@ RemainAfterExit=yes
 WantedBy=sysinit.target
 _EOF_
 
-    gitPullOrClone "$md_inst" https://github.com/DOCK-PI3/masos-splashscreens.git
+    gitPullOrClone "$md_inst" https://github.com/DOCK-PI3/masos-splashscreens
 
     cp "$md_data/asplashscreen.sh" "$md_inst"
 
