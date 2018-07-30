@@ -44,8 +44,8 @@ function restart_samba() {
     service samba restart
 }
 
-# new samba shares by mabedeep: agregando rutas directas de themes y ovelays
-masosthemes="/etc/emulationstation/themes"
+# new samba shares by mabedeep: agregando rutas directas de ES y ovelays
+masosemulationstation="/etc/emulationstation"
 masosoverlays="/opt/masos/configs/all/retroarch/overlay"
 #fin -----------------------------------------------------------
 
@@ -55,10 +55,10 @@ function install_shares_samba() {
     add_share_samba "bios" "$home/MasOS/BIOS"
     add_share_samba "configs" "$configdir"
     add_share_samba "splashscreens" "$datadir/splashscreens"
-	add_share_samba "themes" "$masosthemes"
+	add_share_samba "emulationstation" "$masosemulationstation"
 	add_share_samba "overlays" "$masosoverlays"
-# Agregar permisos para usuario pi en directorio ES themes
-	sudo chown -R pi:pi /etc/emulationstation/themes
+# Agregar permisos para usuario pi en directorio ES
+	sudo chown -R pi:pi /etc/emulationstation
     restart_samba
 }
 
