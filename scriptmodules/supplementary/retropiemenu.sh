@@ -7,7 +7,7 @@
 #
 # See the LICENSE.md file at the top-level directory of this distribution and
 # at https://raw.githubusercontent.com/RetroPie/RetroPie-Setup/master/LICENSE.md
-#
+# Menu de retropie usado en MasOS....
 
 rp_module_id="retropiemenu"
 rp_module_desc="MasOS configuration menu for EmulationStation"
@@ -61,7 +61,7 @@ function configure_retropiemenu()
     local names=(
         'Audio'
         'Bluetooth'
-        'Configuration Editor'
+        'Editar Config'
         'ES Themes'
         'File Manager'
         'Raspi-Config'
@@ -69,9 +69,9 @@ function configure_retropiemenu()
         'RetroArch Net Play'
         'MasOS Setup'
         'Run Command Configuration'
-        'Show IP'
-        'Splash Screens'
-        'WiFi'
+        'Mostrar IP'
+        'Configurar Splash Screens'
+        'WiFi agregar o editar config'
     )
 
     local descs=(
