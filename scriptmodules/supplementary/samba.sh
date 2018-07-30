@@ -65,7 +65,7 @@ function install_shares_samba() {
 
 function remove_shares_samba() {
     local name
-    for name in roms bios configs splashscreens themes overlays; do
+    for name in roms bios configs splashscreens emulationstation overlays; do
         remove_share_samba "$name"
     done
 }
