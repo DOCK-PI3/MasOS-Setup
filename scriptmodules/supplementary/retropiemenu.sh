@@ -69,25 +69,25 @@ function configure_retropiemenu()
         'RetroArch Net Play'
         'MasOS Setup'
         'Run Command Configuration'
-        'Mostrar IP'
+        'Mostrar tu IP'
         'Configurar Splash Screens'
         'WiFi agregar o editar config'
     )
 
     local descs=(
-        'Configure audio settings. Choose default of auto, 3.5mm jack, or HDMI. Mixer controls, and apply default settings.'
-        'Register and connect to bluetooth devices. Unregister and remove devices, and display registered and connected devices.'
-        'Change common RetroArch options, and manually edit RetroArch configs, global configs, and non-RetroArch configs.'
-        'Install, uninstall, or update EmulationStation themes. Most themes can be previewed at https://github.com/retropie/ RetroPie-Setup/wiki/themes.'
-        'Basic ascii file manager for linux allowing you to browse, copy, delete, and move files.'
-        'Change user password, boot options, internationalization, camera, add your pi to Rastrack, overclock, overscan, memory split, SSH and more.'
-        'Launches the RetroArch GUI so you can change RetroArch options. Note: Changes will not be saved unless you have enabled the "Save Configuration On Exit" option.'
-        'Set up RetroArch Netplay options, choose host or client, port, host IP, delay frames, and your nickname.'
-        'Install MasOS from binary or source, install experimental packages, additional drivers, edit samba shares, custom scraper, as well as other RetroPie-related configurations.'
+        'Configuraciones de audio Elija predeterminado de auto, jack de 3.5 mm o HDMI. Controles del mezclador y aplicar configuraciones predeterminadas.'
+        'Regístrese y conéctese a dispositivos bluetooth. Anule el registro y elimine los dispositivos y visualice los dispositivos registrados y conectados.'
+        'Cambie las opciones comunes de RetroArch y edite manualmente las configuraciones de RetroArch, las configuraciones globales y las configuraciones que no son de RetroArch.'
+        'Install, uninstall, or update EmulationStation themes. Most themes can be previewed at ..... coming soon!.'
+        'Administrador de archivos básico de ASCII para Linux que le permite navegar, copiar, eliminar y mover archivos.'
+        'Cambie la contraseña del usuario, las opciones de arranque, la internacionalización, la cámara, agregue su pi a Rastrack, overclock, overscan, división de memoria, SSH y más.'
+        'Inicia la GUI de RetroArch para que pueda cambiar las opciones de RetroArch. Nota: Los cambios no se guardarán a menos que haya habilitado la opción "Guardar configuración al salir".'
+        'Configure las opciones de RetroArch Netplay, elija host o cliente, puerto, IP de host, marcos de demora y su apodo.'
+        'Instale MasOS desde binario o fuente, instale paquetes experimentales, controladores adicionales, edite recursos compartidos de samba, raspador personalizado, así como otras configuraciones relacionadas con MasOS.'
         'Change what appears on the runcommand screen. Enable or disable the menu, enable or disable box art, and change CPU configuration.'
-        'Displays your current IP address, as well as other information provided by the command, "ip addr show."'
-        'Enable or disable the splashscreen on MasOS and  RetroPie boot. Choose a splashscreen, download new splashscreens, and return splashscreen to default.'
-        'Connect to or disconnect from a wifi network and configure wifi settings.'
+        'Muestra su dirección IP actual, así como otra información proporcionada por el comando, "ip addr show."'
+        'Habilite o deshabilite la pantalla secundaria en el inicio de MasOS. Elija una pantalla secundaria, descargue nuevas pantallas emergentes y regrese la pantalla secundaria a la predeterminada.'
+        'Conéctese o desconecte de una red wifi y configure wifi.'
     )
 
     setESSystem "RetroPie" "retropie" "$rpdir" ".rp .sh" "sudo $scriptdir/masos_pkgs.sh retropiemenu launch %ROM% </dev/tty >/dev/tty" "" "retropie"
