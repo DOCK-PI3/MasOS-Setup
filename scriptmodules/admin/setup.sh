@@ -87,10 +87,10 @@ function updatescript_setup()
 {
     clear
     chown -R $user:$user "$scriptdir"
-    printHeading "Fetching latest version of the RetroPie Setup Script."
+    printHeading "Fetching latest version of the MasOS Setup Script."
     pushd "$scriptdir" >/dev/null
     if [[ ! -d ".git" ]]; then
-        printMsgs "dialog" "Cannot find directory '.git'. Please clone the RetroPie Setup script via 'git clone https://github.com/RetroPie/RetroPie-Setup.git'"
+        printMsgs "dialog" "Cannot find directory '.git'. Please clone the MasOS Setup script via 'git clone https://github.com/DOCK-PI3/MasOS-Setup.git'"
         popd >/dev/null
         return 1
     fi
@@ -102,7 +102,7 @@ function updatescript_setup()
     fi
     popd >/dev/null
 
-    printMsgs "dialog" "Fetched the latest version of the RetroPie Setup script."
+    printMsgs "dialog" "Fetched the latest version of the MasOS Setup script."
     return 0
 }
 
@@ -127,7 +127,7 @@ function post_update_setup() {
     } &> >(tee >(gzip --stdout >"$logfilename"))
     rps_printInfo "$logfilename"
 
-    printMsgs "dialog" "NOTICE: The MasOS-Setup script and pre-made MasOS SD card images are available to download for free from https://retropie.org.uk.\n\nThe pre-built MasOS image includes software that has non commercial licences. Selling MasOS images or including RetroPie with your commercial product is not allowed.\n\nNo copyrighted games are included with MacOS.\n\nIf you have been sold this software, you can let us know about it by emailing dock.pi3@gmail.com."
+    printMsgs "dialog" "NOTICE: The MasOS-Setup script and pre-made MasOS SD card images are available to download for free from https://inforetro.wixsite.com/myarcade.\n\nThe pre-built MasOS image includes software that has non commercial licences. Selling MasOS images or including MasOS with your commercial product is not allowed.\n\nNo copyrighted games are included with MacOS.\n\nIf you have been sold this software, you can let us know about it by emailing dock.pi3@gmail.com."
 
     # return to set return function
     "${return_func[@]}"
@@ -214,7 +214,7 @@ function package_setup() {
                 ;;
             X)
                 local text="Are you sure you want to remove $md_id?"
-                [[ "${__mod_section[$idx]}" == "core" ]] && text+="\n\nWARNING - core packages are needed for MasOS and Retropie to function!"
+                [[ "${__mod_section[$idx]}" == "core" ]] && text+="\n\nWARNING - core packages are needed for MasOS to function!"
                 dialog --defaultno --yesno "$text" 22 76 2>&1 >/dev/tty || continue
                 rps_logInit
                 {

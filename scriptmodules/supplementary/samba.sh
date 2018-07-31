@@ -58,7 +58,7 @@ function install_shares_samba() {
 	add_share_samba "emulationstation" "$masosemulationstation"
 	add_share_samba "overlays" "$masosoverlays"
 # Agregar permisos para usuario pi en directorio ES
-	sudo chown -R pi:pi /etc/emulationstation
+	sudo chown -R $user:$user /etc/emulationstation
     restart_samba
 }
 
@@ -74,11 +74,11 @@ function gui_samba() {
     while true; do
         local cmd=(dialog --backtitle "$__backtitle" --menu "Choose an option" 22 76 16)
         local options=(
-            1 "Install MasOS Samba shares"
-            2 "Remove MasOS Samba shares"
-            3 "Manually edit /etc/samba/smb.conf"
-            4 "Restart Samba service"
-            5 "Remove Samba + configuration"
+            1 "Instalar MasOS Samba shares"
+            2 "Eliminar MasOS Samba shares"
+            3 "Edicion manual /etc/samba/smb.conf"
+            4 "Reiniciar Samba service"
+            5 "Eliminar Samba + configuration"
         )
         local choice=$("${cmd[@]}" "${options[@]}" 2>&1 >/dev/tty)
         if [[ -n "$choice" ]]; then
@@ -86,11 +86,11 @@ function gui_samba() {
                 1)
                     rp_callModule "$md_id" depends
                     rp_callModule "$md_id" install_shares
-                    printMsgs "dialog" "Installed and enabled shares"
+                    printMsgs "dialog" "Instala y activa samba shares"
                     ;;
                 2)
                     rp_callModule "$md_id" remove_shares
-                    printMsgs "dialog" "Removed shares"
+                    printMsgs "dialog" "Eliminar samba shares"
                     ;;
                 3)
                     editFile /etc/samba/smb.conf
@@ -100,7 +100,7 @@ function gui_samba() {
                     ;;
                 5)
                     rp_callModule "$md_id" depends remove
-                    printMsgs "dialog" "Removed Samba service"
+                    printMsgs "dialog" "Eliminar Samba service"
                     ;;
             esac
         else

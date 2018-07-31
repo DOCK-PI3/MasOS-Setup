@@ -1,16 +1,16 @@
 #!/usr/bin/env bash
 
-# This file is part of The RetroPie Project
+# This file is part of The MasOS Project
 #
-# The RetroPie Project is the legal property of its developers, whose names are
+# The MasOS Project is the legal property of its developers, whose names are
 # too numerous to list here. Please refer to the COPYRIGHT.md file distributed with this source.
 #
 # See the LICENSE.md file at the top-level directory of this distribution and
 # at https://raw.githubusercontent.com/RetroPie/RetroPie-Setup/master/LICENSE.md
-#
+# Script modificado por mabedeep para crear isos de MasOS.
 
 rp_module_id="image"
-rp_module_desc="Create/Manage RetroPie images"
+rp_module_desc="Create/Manage MasOS images"
 rp_module_section=""
 rp_module_flags="!arm"
 
@@ -82,8 +82,8 @@ function install_rp_image() {
     [[ -z "$chroot" ]] && chroot="$md_build/chroot"
 
     # hostname to retropie
-    echo "retropie" >"$chroot/etc/hostname"
-    sed -i "s/raspberrypi/retropie/" "$chroot/etc/hosts"
+    echo "masos" >"$chroot/etc/hostname"
+    sed -i "s/raspberrypi/masos/" "$chroot/etc/hosts"
 
     # quieter boot / disable plymouth (as without the splash parameter it
     # causes all boot messages to be displayed and interferes with people
@@ -100,8 +100,8 @@ function install_rp_image() {
 cd
 sudo apt-get update
 sudo apt-get -y install git dialog xmlstarlet joystick
-git clone https://github.com/RetroPie/RetroPie-Setup.git
-cd RetroPie-Setup
+git clone https://github.com/DOCK-PI3/MasOS-Setup.git
+cd MasOS-Setup
 modules=(
     'raspbiantools apt_upgrade'
     'setup basic_install'
@@ -117,7 +117,7 @@ modules=(
 )
 for module in "\${modules[@]}"; do
     # rpi1 platform would use QEMU_CPU set to arm1176, but it seems buggy currently (lots of segfaults)
-    sudo QEMU_CPU=cortex-a15 __platform=$platform __nodialog=1 ./retropie_packages.sh \$module
+    sudo QEMU_CPU=cortex-a15 __platform=$platform __nodialog=1 ./masos_pkgs.sh \$module
 done
 
 rm -rf tmp
@@ -287,9 +287,9 @@ function platform_image() {
 
     local image
     if [[ "$platform" == "rpi1" ]]; then
-        image="$dest/retropie-${__version}-rpi1_zero"
+        image="$dest/masos-${__version}-rpi1_zero"
     else
-        image="$dest/retropie-${__version}-rpi2_rpi3"
+        image="$dest/masos-${__version}-rpi2_rpi3"
     fi
 
     rp_callModule image create_chroot "$dist"
