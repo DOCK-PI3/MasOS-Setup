@@ -26,7 +26,7 @@ function depends_launchingimages() {
 }
 
 function install_bin_launchingimages() {
-    gitPullOrClone "$md_inst" "https://github.com/meleu/generate-launching-images.git"
+    gitPullOrClone "$md_inst" "https://github.com/DOCK-PI3/generate-launching-images.git"
 }
 
 function _show_images_launchingimages() {
