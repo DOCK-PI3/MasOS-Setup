@@ -47,6 +47,7 @@ function restart_samba() {
 # new samba shares by mabedeep: agregando rutas directas de ES y ovelays
 masosemulationstation="/etc/emulationstation"
 masosoverlays="/opt/masos/configs/all/retroarch/overlay"
+masosbezelsconf="/opt/masos/configs/all/retroarch/config"
 #fin -----------------------------------------------------------
 
 function install_shares_samba() {
@@ -57,6 +58,7 @@ function install_shares_samba() {
     add_share_samba "splashscreens" "$datadir/splashscreens"
 	add_share_samba "emulationstation" "$masosemulationstation"
 	add_share_samba "overlays" "$masosoverlays"
+	add_share_samba "configuracion-bezels" "$masosbezelsconf" 
 # Agregar permisos para usuario pi en directorio ES
 	sudo chown -R $user:$user /etc/emulationstation
     restart_samba
@@ -65,7 +67,7 @@ function install_shares_samba() {
 
 function remove_shares_samba() {
     local name
-    for name in roms bios configs splashscreens emulationstation overlays; do
+    for name in roms bios configs splashscreens emulationstation configuracion-bezels overlays; do
         remove_share_samba "$name"
     done
 }
