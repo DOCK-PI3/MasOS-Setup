@@ -1,13 +1,13 @@
 #!/usr/bin/env bash
 
-# This file is part of The RetroPie Project
+# This file is part of The MasOS Project
 #
-# The RetroPie Project is the legal property of its developers, whose names are
+# The MasOS Project is the legal property of its developers, whose names are
 # too numerous to list here. Please refer to the COPYRIGHT.md file distributed with this source.
 #
 # See the LICENSE.md file at the top-level directory of this distribution and
-# at https://raw.githubusercontent.com/RetroPie/RetroPie-Setup/master/LICENSE.md
-#
+# at https://github.com/DOCK-PI3/MasOS-Setup/blob/master/LICENSE.md
+# https://github.com/DOCK-PI3/MasOS-Setup/blob/master/COPYRIGHT.md
 
 rp_module_id="retropie-manager"
 rp_module_desc="Web Based Manager for MasOS and Rtropie files configs based on the Recalbox Manager"
@@ -22,7 +22,7 @@ function depends_retropie-manager() {
 }
 
 function sources_retropie-manager() {
-    gitPullOrClone "$md_inst" "https://github.com/botolo78/RetroPie-Manager.git"
+    gitPullOrClone "$md_inst" "https://github.com/DOCK-PI3/MasOS-Manager.git"
 }
 
 function install_retropie-manager() {
@@ -41,25 +41,25 @@ function enable_retropie-manager() {
 
     if _is_enabled_retropie-manager; then
         dialog \
-          --yesno "RetroPie-Manager is already enabled for MasOS in /etc/rc.local with the following config.\n\n$(grep "rpmanager\.sh" /etc/rc.local)\n\nDo you want to update it?" \
+          --yesno "MasOS-Manager ya está habilitado para MasOS en /etc/rc.local con la siguiente configuración. \ N \ n $ (grep "rpmanager \ .sh" /etc/rc.local)\n\n¿Deseas actualizarlo?" \
           22 76 2>&1 >/dev/tty || return
     fi
 
     sed -i "/rpmanager\.sh.*--start/d" /etc/rc.local
     sed -i "s|^exit 0$|${config}\\nexit 0|" /etc/rc.local
-    printMsgs "dialog" "RetroPie-Manager enabled in /etc/rc.local\n\nIt will be started on next boot."
+    printMsgs "dialog" "MasOS-Manager habilitado en /etc/rc.local\n\nSe iniciará en el próximo inicio."
 }
 
 function disable_retropie-manager() {
     if _is_enabled_retropie-manager; then
         dialog \
-          --yesno "Are you sure you want to disable MasOS-Manager on boot?" \
+          --yesno "¿Estás seguro de que deseas inhabilitar MasOS-Manager en el arranque?" \
           22 76 2>&1 >/dev/tty || return
 
         sed -i "/rpmanager\.sh.*--start/d" /etc/rc.local
-        printMsgs "dialog" "MasOS-Manager configuration in /etc/rc.local has been removed."
+        printMsgs "dialog" "La configuración de MasOS-Manager en /etc/rc.local ha sido eliminada."
     else
-        printMsgs "dialog" "MasOS-Manager was already disabled in /etc/rc.local."
+        printMsgs "dialog" "MasOS-Manager ya estaba desactivado en /etc/rc.local."
     fi
 }
 
@@ -70,10 +70,10 @@ function remove_retropie-manager() {
 function gui_retropie-manager() {
     local cmd=()
     local options=(
-        1 "Start MasOS-Manager now"
-        2 "Stop MasOS-Manager now"
-        3 "Enable MasOS-Manager on Boot"
-        4 "Disable MasOS-Manager on Boot"
+        1 "Iniciar MasOS-Manager ahora"
+        2 "Detener MasOS-Manager ahora"
+        3 "Habilitar MasOS-Manager en el arranque"
+        4 "Deshabilitar MasOS-Manager en el arranque"
     )
     local choice
     local rpmanager_status

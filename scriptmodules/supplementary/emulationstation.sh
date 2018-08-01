@@ -136,7 +136,7 @@ function depends_emulationstation() {
 function sources_emulationstation() {
     local repo="$1"
     local branch="$2"
-    [[ -z "$repo" ]] && repo="https://github.com/RetroPie/EmulationStation"
+    [[ -z "$repo" ]] && repo="https://github.com/DOCK-PI3/EmulationStation"
     [[ -z "$branch" ]] && branch="stable"
     gitPullOrClone "$md_build" "$repo" "$branch"
 }
@@ -229,19 +229,19 @@ _EOF_
 
     if isPlatform "x11"; then
         mkdir -p /usr/local/share/{icons,applications}
-        cp "$scriptdir/scriptmodules/$md_type/emulationstation/retropie.svg" "/usr/local/share/icons/"
-        cat > /usr/local/share/applications/retropie.desktop << _EOF_
+        cp "$scriptdir/scriptmodules/$md_type/emulationstation/masOS.svg" "/usr/local/share/icons/"
+        cat > /usr/local/share/applications/masos.desktop << _EOF_
 [Desktop Entry]
 Type=Application
 Exec=gnome-terminal --full-screen --hide-menubar -e emulationstation
 Hidden=false
 NoDisplay=false
 X-GNOME-Autostart-enabled=true
-Name[de_DE]=RetroPie
-Name=rpie
-Comment[de_DE]=RetroPie
-Comment=retropie
-Icon=/usr/local/share/icons/retropie.svg
+Name[de_DE]=MasOS
+Name=Masos
+Comment[de_DE]=MasOS
+Comment=masos
+Icon=/usr/local/share/icons/masOS.svg
 Categories=Game
 _EOF_
     fi
@@ -255,7 +255,7 @@ function clear_input_emulationstation() {
 function remove_emulationstation() {
     rm -f "/usr/bin/emulationstation"
     if isPlatform "x11"; then
-        rm -rfv "/usr/local/share/icons/retropie.svg" "/usr/local/share/applications/retropie.desktop"
+        rm -rfv "/usr/local/share/icons/masOS.svg" "/usr/local/share/applications/masos.desktop"
     fi
 }
 
@@ -330,9 +330,9 @@ function gui_emulationstation() {
 
         case "$choice" in
             1)
-                if dialog --defaultno --yesno "Are you sure you want to reset the Emulation Station controller configuration ? This will wipe all controller configs for ES and it will prompt to reconfigure on next start" 22 76 2>&1 >/dev/tty; then
+                if dialog --defaultno --yesno "¿Seguro que quieres restablecer la configuración del controlador de la emulationstation? Esto borrará todas las configuraciones del controlador para ES y le pedirá que lo reconfigure en el siguiente inicio" 22 76 2>&1 >/dev/tty; then
                     clear_input_emulationstation
-                    printMsgs "dialog" "$(_get_input_cfg_emulationstation) has been reset to default values."
+                    printMsgs "dialog" "$(_get_input_cfg_emulationstation) ha sido restablecido a los valores predeterminados."
                 fi
                 ;;
             2)
@@ -345,7 +345,7 @@ function gui_emulationstation() {
                 local ra_swap="false"
                 getAutoConf "es_swap_a_b" && ra_swap="true"
                 iniSet "menu_swap_ok_cancel_buttons" "$ra_swap" "$configdir/all/retroarch.cfg"
-                printMsgs "dialog" "You will need to reconfigure you controller in Emulation Station for the changes to take effect."
+                printMsgs "dialog" "Tendrá que configurar su controlador en Emulationstation para que los cambios surtan efecto."
                 ;;
         esac
     done
