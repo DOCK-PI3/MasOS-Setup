@@ -1,21 +1,21 @@
 #!/bin/bash
 
-# This file is part of The RetroPie Project
+# This file is part of The MasOS Project
 #
-# The RetroPie Project is the legal property of its developers, whose names are
+# The MasOS Project is the legal property of its developers, whose names are
 # too numerous to list here. Please refer to the COPYRIGHT.md file distributed with this source.
 #
 # See the LICENSE.md file at the top-level directory of this distribution and
-# at https://raw.githubusercontent.com/RetroPie/RetroPie-Setup/master/LICENSE.md
+# at https://github.com/DOCK-PI3/MasOS-Setup/blob/master/LICENSE.md
 #
 
 ## config / defaults
 user="USERTOBECHOSEN"
 
 home="$(eval echo ~$user)"
-retropie_path="$home/RetroPie"
+masos_path="$home/MasOS"
 
-usb_path="$UM_MOUNTPOINT/retropie-mount"
+usb_path="$UM_MOUNTPOINT/masos-mount"
 
 ## internals
 hook_name=${0##*/}
@@ -50,9 +50,9 @@ if [[ ! -d "$usb_path" ]]; then
 fi
 
 if [[ -z "$(ls -A "$usb_path")" ]]; then
-    log info "Copying existing $retropie_path to $usb_path ..."
-    log_cmd rsync -rtu "$retropie_path/" "$usb_path/"
+    log info "Copying existing $masos_path to $usb_path ..."
+    log_cmd rsync -rtu "$masos_path/" "$usb_path/"
 fi
 
-log info "Mounting $usb_path over $retropie_path ..."
-log_cmd mount -o bind "$usb_path" "$retropie_path"
+log info "Mounting $usb_path over $masos_path ..."
+log_cmd mount -o bind "$usb_path" "$masos_path"
