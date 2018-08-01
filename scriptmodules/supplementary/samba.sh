@@ -59,8 +59,9 @@ function install_shares_samba() {
 	add_share_samba "emulationstation" "$masosemulationstation"
 	add_share_samba "overlays" "$masosoverlays"
 	add_share_samba "configuracion-bezels" "$masosbezelsconf" 
-# Agregar permisos para usuario pi en directorio ES
+# Agregar permisos para usuario pi en directorios nuevos
 	sudo chown -R $user:$user /etc/emulationstation
+	sudo chown -R $user:$user /opt/masos/configs/all/retroarch/config
     restart_samba
 }
 
