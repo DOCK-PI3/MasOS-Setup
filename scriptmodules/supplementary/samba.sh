@@ -58,7 +58,7 @@ function install_shares_samba() {
     add_share_samba "splashscreens" "$datadir/splashscreens"
 	add_share_samba "emulationstation" "$masosemulationstation"
 	add_share_samba "overlays" "$masosoverlays"
-	add_share_samba "configuracion-bezels" "$masosbezelsconf" 
+	add_share_samba "configbezels" "$masosbezelsconf" 
 # Agregar permisos para usuario pi en directorios nuevos
 	sudo chown -R $user:$user /etc/emulationstation
 	sudo chown -R $user:$user /opt/masos/configs/all/retroarch/config
@@ -68,7 +68,7 @@ function install_shares_samba() {
 
 function remove_shares_samba() {
     local name
-    for name in roms bios configs splashscreens emulationstation configuracion-bezels overlays; do
+    for name in roms bios configs splashscreens emulationstation overlays configbezels; do
         remove_share_samba "$name"
     done
 }
