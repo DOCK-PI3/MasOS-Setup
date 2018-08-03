@@ -29,6 +29,7 @@ function install_retropie-manager() {
     cd "$md_inst"
     chown -R $user:$user "$md_inst"
     sudo -u $user make install
+	sudo chmod -R +x /opt/masos/supplementary/retropie-manager
 }
 
 function _is_enabled_retropie-manager() {
