@@ -214,7 +214,7 @@ function package_setup() {
                 ;;
             X)
                 local text="Estas seguro de que desea eliminar $md_id?"
-                [[ "${__mod_section[$idx]}" == "core" ]] && text+="\n\n ADVERTENCIA: ¡se necesitan paquetes de nucleo para que funcione MasOS!"
+                [[ "${__mod_section[$idx]}" == "core" ]] && text+="\n\n ADVERTENCIA: ¡se necesitan paquetes del core -nucleo- para que funcione MasOS!"
                 dialog --defaultno --yesno "$text" 22 76 2>&1 >/dev/tty || continue
                 rps_logInit
                 {
