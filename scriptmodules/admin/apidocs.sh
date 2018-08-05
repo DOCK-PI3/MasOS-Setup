@@ -28,7 +28,7 @@ function build_apidocs() {
 
     iniConfig " = " '' "$config"
 
-    iniSet "PROJECT_NAME" "RetroPie-Setup"
+    iniSet "PROJECT_NAME" "MasOS-Setup"
     iniSet "PROJECT_NUMBER" "$__version"
 
     iniSet "EXTENSION_MAPPING" "sh=C"
@@ -51,5 +51,5 @@ function install_apidocs() {
 }
 
 function upload_apidocs() {
-    rsync -av --delete "$__tmpdir/apidocs/" "retropie@$__binary_host:api/"
+    rsync -av --delete "$__tmpdir/apidocs/" "masos@$__binary_host:api/"
 }
