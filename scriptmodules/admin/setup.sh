@@ -174,7 +174,7 @@ function package_setup() {
             options+=(H "Package Help")
         fi
 
-        cmd=(dialog --backtitle "$__backtitle" --cancel-label "Back" --menu "Choose an option for ${__mod_id[$idx]} ($status)" 22 76 16)
+        cmd=(dialog --backtitle "$__backtitle" --cancel-label "Back" --menu "Escoge una opcion para ${__mod_id[$idx]} ($status)" 22 76 16)
         choice=$("${cmd[@]}" "${options[@]}" 2>&1 >/dev/tty)
 
         local logfilename
@@ -266,7 +266,7 @@ function section_gui_setup() {
             options+=("$idx" "${__mod_id[$idx]} $installed" "$idx ${__mod_desc[$idx]}"$'\n\n'"${__mod_help[$idx]}")
         done
 
-        local cmd=(dialog --backtitle "$__backtitle" --cancel-label "Back" --item-help --help-button --default-item "$default" --menu "Choose an option" 22 76 16)
+        local cmd=(dialog --backtitle "$__backtitle" --cancel-label "Back" --item-help --help-button --default-item "$default" --menu "Escoge una opcion" 22 76 16)
 
         local choice=$("${cmd[@]}" "${options[@]}" 2>&1 >/dev/tty)
         [[ -z "$choice" ]] && break
@@ -347,7 +347,7 @@ function config_gui_setup() {
             fi
         done
 
-        local cmd=(dialog --backtitle "$__backtitle" --cancel-label "Back" --item-help --help-button --default-item "$default" --menu "Choose an option" 22 76 16)
+        local cmd=(dialog --backtitle "$__backtitle" --cancel-label "Back" --item-help --help-button --default-item "$default" --menu "Escoge una opcion" 22 76 16)
 
         local choice=$("${cmd[@]}" "${options[@]}" 2>&1 >/dev/tty)
         [[ -z "$choice" ]] && break
@@ -394,8 +394,8 @@ function update_packages_setup() {
 
 function update_packages_gui_setup() {
     local update="$1"
-    if [[ "$update" != "update" ]]; then
-        dialog --defaultno --yesno "Are you sure you want to update installed packages?" 22 76 2>&1 >/dev/tty || return 1
+    if [[ "$update" != "actualizar" ]]; then
+        dialog --defaultno --yesno "¿Seguro que quieres actualizar los paquetes instalados?" 22 76 2>&1 >/dev/tty || return 1
         updatescript_setup
         # restart at post_update and then call "update_packages_gui_setup update" afterwards
         joy2keyStop
@@ -403,7 +403,7 @@ function update_packages_gui_setup() {
     fi
 
     local update_os=0
-    dialog --yesno "Would you like to update the underlying OS packages (eg kernel etc) ?" 22 76 2>&1 >/dev/tty && update_os=1
+    dialog --yesno "¿Desea actualizar los paquetes subyacentes del sistema operativo? (eg kernel etc) ?" 22 76 2>&1 >/dev/tty && update_os=1
 
     clear
 
@@ -419,7 +419,7 @@ function update_packages_gui_setup() {
     } &> >(tee >(gzip --stdout >"$logfilename"))
 
     rps_printInfo "$logfilename"
-    printMsgs "dialog" "Installed packages have been updated."
+    printMsgs "dialog" "Los paquetes instalados se han actualizado."
     gui_setup
 }
 
@@ -460,16 +460,16 @@ function packages_gui_setup() {
 
 function uninstall_setup()
 {
-    dialog --defaultno --yesno "Are you sure you want to uninstall MasOS?" 22 76 2>&1 >/dev/tty || return 0
-    dialog --defaultno --yesno "Are you REALLY sure you want to uninstall MasOS?\n\n$rootdir will be removed - this includes configuration files for all MasOS components." 22 76 2>&1 >/dev/tty || return 0
+    dialog --defaultno --yesno "¿Seguro que quieres desinstalar MasOS?" 22 76 2>&1 >/dev/tty || return 0
+    dialog --defaultno --yesno "¿Estas REALMENTE seguro de que deseas desinstalar MasOS? \N\n $rootdir se eliminara, esto incluye archivos de configuracion para todos componentes." 22 76 2>&1 >/dev/tty || return 0
     clear
-    printHeading "Uninstalling MasOS"
+    printHeading "Desinstalando MasOS"
     for idx in "${__mod_idx[@]}"; do
         rp_isInstalled "$idx" && rp_callModule $idx remove
     done
     rm -rfv "$rootdir"
-    dialog --defaultno --yesno "Do you want to remove all the files from $datadir - this includes all your installed ROMs, BIOS files and custom splashscreens." 22 76 2>&1 >/dev/tty && rm -rfv "$datadir"
-    if dialog --defaultno --yesno "Do you want to remove all the system packages that MasOS depends on? \n\nWARNING: this will remove packages like SDL even if they were installed before you installed RetroPie - it will also remove any package configurations - such as those in /etc/samba for Samba.\n\nIf unsure choose No (selected by default)." 22 76 2>&1 >/dev/tty; then
+    dialog --defaultno --yesno "¿Desea eliminar todos los archivos de $datadir ? Esto incluye todas las ROM instaladas, los archivos de la BIOS y las pantallas personalizadas. " 22 76 2>&1 >/dev/tty && rm -rfv "$datadir"
+    if dialog --defaultno --yesno "¿Desea eliminar todos los paquetes de sistema de los que depende MasOS? \n\nADVERTENCIA: esto eliminara paquetes como SDL incluso si se instalaron antes de instalar MasOS - tambien eliminara cualquier configuracion de paquete - como los de /etc/ samba para Samba. \n\ nSi no esta seguro, elija No (seleccionado por defecto)." 22 76 2>&1 >/dev/tty; then
         clear
         # remove all dependencies
         for idx in "${__mod_idx[@]}"; do
@@ -495,24 +495,24 @@ function gui_setup() {
 
         cmd=(dialog --backtitle "$__backtitle" --title "MasOS-Setup Script" --cancel-label "Exit" --item-help --help-button --default-item "$default" --menu "Version: $__version\nLast Commit: $commit" 22 76 16)
         options=(
-            I "Basic install" "I This will install all packages from Core and Main which gives a basic MasOS install. Further packages can then be installed later from the Optional and Experimental sections. If binaries are available they will be used, alternatively packages will be built from source - which will take longer."
+            I "Instalacion basica" "Esto instalara todos los paquetes de Core y Main, lo que da una instalacion basica de MasOS. Posteriormente, se pueden instalar mas paquetes desde las secciones Opcional y Experimental. Si hay binarios disponibles, se usaran, o los paquetes se construiran desde la fuente, lo que llevara mas tiempo."
 
-            U "Update" "U Updates MasOS-Setup and all currently installed packages. Will also allow to update OS packages. If binaries are available they will be used, otherwise packages will be built from source."
+            U "Update" "U Actualiza MasOS-Setup y todos los paquetes instalados actualmente. También permitira actualizar paquetes de sistema operativo. Si hay binarios disponibles, se usaran; de lo contrario, los paquetes se compilaran a partir de la fuente."
 
-            P "Manage packages"
-            "P Install/Remove and Configure the various components of MasOS, including emulators, ports, and controller drivers."
+            P "Administrar paquetes"
+            "P Instalar / Quitar y configurar los diversos componentes de MasOS, incluidos emuladores, ports y controladores."
 
-            C "Configuration / tools"
-            "C Configuration and Tools. Any packages you have installed that have additional configuration options will also appear here."
+            C "Configuracion / herramientas"
+            "C Configuracion y herramientas. Cualquier paquete que haya instalado que tenga opciones de configuracion adicionales tambien aparecera aqui."
 
-            S "Update MasOS-Setup script"
-            "S Update this MasOS-Setup script. This will update this main management script only, but will not update any software packages. To update packages use the 'Update' option from the main menu, which will also update the MasOS-Setup script."
+            S "Actualizar secuencia de comandos de instalacion de MacOS"
+            "S Actualice este script de configuracion de MasOS. Esto actualizara esta secuencia de comandos de administracion principal solamente, pero no actualizara ningun paquete de software. Para actualizar los paquetes, use la opción 'Actualizar' del menu principal, que tambien actualizara el script de configuracion de MasOS."
 
-            X "Uninstall MasOS"
-            "X Uninstall MasOS completely."
+            X "Desinstalar MasOS"
+            "X Desinstalar completamente MasOS."
 
-            R "Perform reboot"
-            "R Reboot your machine."
+            R "Realice el reinicio"
+            "R Reinicia tu máquina."
         )
 
         choice=$("${cmd[@]}" "${options[@]}" 2>&1 >/dev/tty)
@@ -569,7 +569,7 @@ function gui_setup() {
                 rps_printInfo "$logfilename"
                 ;;
             R)
-                dialog --defaultno --yesno "¿Estás seguro de que quieres reiniciar? \ N \ nTen en cuenta que si reinicias cuando se está ejecutando Emulation Station, perderás los cambios en los metadatos." 22 76 2>&1 >/dev/tty || continue
+                dialog --defaultno --yesno "¿Estás seguro de que quieres reiniciar? \N\nTen en cuenta que si reinicias cuando se está ejecutando Emulation Station, perderás los cambios en los metadatos." 22 76 2>&1 >/dev/tty || continue
                 reboot_setup
                 ;;
         esac
