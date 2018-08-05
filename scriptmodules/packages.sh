@@ -21,10 +21,10 @@ __mod_flags=()
 declare -A __sections
 __sections[core]="core"
 __sections[main]="main"
-__sections[opt]="optional"
+__sections[opt]="opcional"
 __sections[exp]="experimental"
 __sections[driver]="driver"
-__sections[config]="configuration"
+__sections[config]="configuracion"
 
 function rp_listFunctions() {
     local idx
