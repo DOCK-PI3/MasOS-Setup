@@ -56,7 +56,7 @@ function section_builder() {
 }
 
 function upload_builder() {
-    rsync -av --progress --delay-updates "$__tmpdir/archives/" "retropie@$__binary_host:files/binaries/"
+    rsync -av --progress --delay-updates "$__tmpdir/archives/" "masos@$__binary_host:files/binaries/"
 }
 
 function clean_archives_builder() {

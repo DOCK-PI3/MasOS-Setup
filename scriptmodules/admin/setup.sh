@@ -18,7 +18,7 @@ function rps_logInit() {
         if mkdir -p "$__logdir"; then
             chown $user:$user "$__logdir"
         else
-            fatalError "Couldn't make directory $__logdir"
+            fatalError "No se pudo hacer el directorio $__logdir"
         fi
     fi
     local now=$(date +'%Y-%m-%d_%H%M%S')
@@ -529,7 +529,7 @@ function gui_setup() {
 
         case "$choice" in
             I)
-                dialog --defaultno --yesno "Are you sure you want to do a basic install?\n\nThis will install all packages from the 'Core' and 'Main' package sections." 22 76 2>&1 >/dev/tty || continue
+                dialog --defaultno --yesno "¿Estás seguro de que quieres hacer una instalación básica? \n\n Esto instalará todos los paquetes del 'Core' y 'Main'." 22 76 2>&1 >/dev/tty || continue
                 clear
                 local logfilename
                 __ERRMSGS=()
@@ -552,7 +552,7 @@ function gui_setup() {
                 config_gui_setup
                 ;;
             S)
-                dialog --defaultno --yesno "Are you sure you want to update the MasOS-Setup script ?" 22 76 2>&1 >/dev/tty || continue
+                dialog --defaultno --yesno "¿Seguro que quieres actualizar el script de configuración de MasOS?" 22 76 2>&1 >/dev/tty || continue
                 if updatescript_setup; then
                     joy2keyStop
                     exec "$scriptdir/masos_pkgs.sh" setup post_update gui_setup
@@ -569,7 +569,7 @@ function gui_setup() {
                 rps_printInfo "$logfilename"
                 ;;
             R)
-                dialog --defaultno --yesno "Are you sure you want to reboot?\n\nNote that if you reboot when Emulation Station is running, you will lose any metadata changes." 22 76 2>&1 >/dev/tty || continue
+                dialog --defaultno --yesno "¿Estás seguro de que quieres reiniciar? \ N \ nTen en cuenta que si reinicias cuando se está ejecutando Emulation Station, perderás los cambios en los metadatos." 22 76 2>&1 >/dev/tty || continue
                 reboot_setup
                 ;;
         esac
