@@ -551,7 +551,6 @@ function gui_setup() {
 			apt-get update
 			apt-get upgrade -y
 			clear
-			then
             joy2keyStop
 				exec "$scriptdir/masos_pkgs.sh" setup post_update gui_setup
                 fi
@@ -568,7 +567,6 @@ function gui_setup() {
 			rm -R MasOS-Setup/
 			git clone --depth=1 https://github.com/DOCK-PI3/MasOS-Setup.git
 			chmod -R +x MasOS-Setup/
-			then
             joy2keyStop
                 exec "$scriptdir/masos_pkgs.sh" setup post_update gui_setup
                 fi
