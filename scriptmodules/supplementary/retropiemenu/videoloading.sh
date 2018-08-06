@@ -28,8 +28,8 @@ function main_menu() {
         choice=$(dialog --backtitle "$BACKTITLE" --title " MAIN MENU " \
             --ok-label OK --cancel-label Exit \
             --menu "What action would you like to perform?" 25 75 20 \
-            1 "Disable videoloadingscreens" \
-            2 "Enable videoloadingscreens" \
+            1 "Desactivar videoloadingscreens" \
+            2 "Activar videoloadingscreens" \
             2>&1 > /dev/tty)
 
         case "$choice" in
