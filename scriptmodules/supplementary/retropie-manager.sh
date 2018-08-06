@@ -10,7 +10,7 @@
 # https://github.com/DOCK-PI3/MasOS-Setup/blob/master/COPYRIGHT.md
 
 rp_module_id="retropie-manager"
-rp_module_desc="Web Based Manager for MasOS and Rtropie files configs based on the Recalbox Manager"
+rp_module_desc="Web Based Manager for MasOS files configs based on the Retropie/Recalbox Manager"
 rp_module_help="Open your browser and go to http://your_masos_ip:8000/"
 rp_module_licence="MIT https://raw.githubusercontent.com/botolo78/RetroPie-Manager/retropie/ORIGINAL%20LICENCE.txt"
 rp_module_section="exp"
@@ -42,7 +42,7 @@ function enable_retropie-manager() {
 
     if _is_enabled_retropie-manager; then
         dialog \
-          --yesno "MasOS-Manager ya está habilitado para MasOS en /etc/rc.local con la siguiente configuración. \ N \ n $ (grep "rpmanager \ .sh" /etc/rc.local)\n\n¿Deseas actualizarlo?" \
+          --yesno "MasOS-Manager ya está habilitado para MasOS en /etc/rc.local con la siguiente configuración. \n\n $ (grep "rpmanager \ .sh" /etc/rc.local)\n\n¿Deseas actualizarlo?" \
           22 76 2>&1 >/dev/tty || return
     fi
 
