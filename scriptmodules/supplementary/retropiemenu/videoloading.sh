@@ -3,7 +3,7 @@
 infobox= ""
 infobox="${infobox}_______________________________________________________\n\n"
 infobox="${infobox}\n"
-infobox="${infobox}MasOS Video Loading Screen Script\n\n"
+infobox="${infobox}RetroPie Video Loading Screen Script\n\n"
 infobox="${infobox}\n"
 infobox="${infobox}Video loading screen has already been installed on this base image.\n"
 infobox="${infobox}\n"
@@ -15,8 +15,8 @@ infobox="${infobox}\n"
 infobox="${infobox}**Enable**\nwhen you run the enable option, the videoloadingscreens_disable folder is renamed to videoloadingscreens\n"
 infobox="${infobox}\n"
 
-dialog --backtitle "MasOS Video Loading Screen Script" \
---title "MasOS Video Loading Screen Script (by Régalad & WDG)" \
+dialog --backtitle "RetroPie Video Loading Screen Script" \
+--title "RetroPie Video Loading Screen Script (by Régalad & WDG)" \
 --msgbox "${infobox}" 35 110
 
 
@@ -43,22 +43,22 @@ function main_menu() {
 
 function disable_videoloadingscreens() {
 dialog --infobox "...processing..." 3 20 ; sleep 2
-disable_dir="/home/pi/MasOS/videoloadingscreens_disable"
-enable_dir="/home/pi/MasOS/videoloadingscreens"
+disable_dir="/home/pi/RetroPie/videoloadingscreens_disable"
+enable_dir="/home/pi/RetroPie/videoloadingscreens"
 
 if [[ -d "$enable_dir" ]]; then
- mv /home/pi/MasOS/videoloadingscreens /home/pi/MasOS/videoloadingscreens_disable
+ mv /home/pi/RetroPie/videoloadingscreens /home/pi/RetroPie/videoloadingscreens_disable
 fi
 
 }
 
 function enable_videoloadingscreens() {
 dialog --infobox "...processing..." 3 20 ; sleep 2
-disable_dir="/home/pi/MasOS/videoloadingscreens_disable"
-enable_dir="/home/pi/MasOS/videoloadingscreens"
+disable_dir="/home/pi/RetroPie/videoloadingscreens_disable"
+enable_dir="/home/pi/RetroPie/videoloadingscreens"
 
 if [[ -d "$disable_dir" ]]; then
- mv /home/pi/MasOS/videoloadingscreens_disable /home/pi/MasOS/videoloadingscreens
+ mv /home/pi/RetroPie/videoloadingscreens_disable /home/pi/RetroPie/videoloadingscreens
 fi
 
 }
