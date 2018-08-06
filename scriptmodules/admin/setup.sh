@@ -497,7 +497,7 @@ function gui_setup() {
         options=(
             I "MasOS Instalacion basica" "Esto instalara todos los paquetes de Core y Main, lo que da una instalacion basica de MasOS. Posteriormente, se pueden instalar mas paquetes desde las secciones Opcional y Experimental. Si hay binarios disponibles, se usaran, o los paquetes se construiran desde la fuente, lo que llevara mas tiempo."
 
-            U "MasOS actualizar lista de paquetes y Sistema completo" "U Actualiza MasOS-Setup y todos los paquetes instalados actualmente. También permitira actualizar paquetes de sistema operativo. Si hay binarios disponibles, se usaran; de lo contrario, los paquetes se compilaran a partir de la fuente."
+            U "MasOS actualizar paquetes y Sistema completo" "U Actualiza MasOS-Setup y todos los paquetes instalados actualmente. También permitira actualizar paquetes de sistema operativo. Si hay binarios disponibles, se usaran; de lo contrario, los paquetes se compilaran a partir de la fuente."
 
             P "Administrar paquetes"
             "P Instalar / Quitar y configurar los diversos componentes de MasOS, incluidos emuladores, ports y controladores."
@@ -543,6 +543,7 @@ function gui_setup() {
                 rps_printInfo "$logfilename"
                 ;;
             U)
+			    dialog --defaultno --yesno "¿Seguro que quieres actualizar el sistema MasOS por completo?" 22 76 2>&1 >/dev/tty || continue
 			cd # Script de actualizacion para MasOS Setup - ;-)
 			sudo rm -R MasOS-Setup/
 			git clone --depth=1 https://github.com/DOCK-PI3/MasOS-Setup.git
