@@ -553,7 +553,6 @@ function gui_setup() {
 			clear
             joy2keyStop
 				exec "$scriptdir/masos_pkgs.sh" setup post_update gui_setup
-                fi
                 ;;
             P)
                 packages_gui_setup
@@ -569,7 +568,6 @@ function gui_setup() {
 			chmod -R +x MasOS-Setup/
             joy2keyStop
                 exec "$scriptdir/masos_pkgs.sh" setup post_update gui_setup
-                fi
                 ;;
             X)
                 local logfilename
