@@ -505,8 +505,8 @@ function gui_setup() {
             C "Configuracion / herramientas"
             "C Configuracion y herramientas. Cualquier paquete que haya instalado que tenga opciones de configuracion adicionales tambien aparecera aqui."
 
-            S "Actualizar secuencia de comandos de instalacion de MacOS"
-            "S Actualice este script de configuracion de MasOS. Esto actualizara esta secuencia de comandos de administracion principal solamente, pero no actualizara ningun paquete de software. Para actualizar los paquetes, use la opción 'Actualizar' del menu principal, que tambien actualizara el script de configuracion de MasOS."
+            S "Actualizar secuencia de comandos de instalacion MasOS-Setup script"
+            "S Nota:Si le aparece algún error no lo tenga en cuenta,el script se actualiza igualmente,antes de actualizar se puede ver bien en Last comit: o en version:. Esto actualizara MasOS-Setup script solamente, pero no actualizara ningun paquete de software. Para actualizar los paquetes, use la opción 'Actualizar' del menu principal, que tambien actualizara el script de configuracion de MasOS."
 
             X "Desinstalar MasOS"
             "X Desinstalar completamente MasOS."
