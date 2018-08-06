@@ -476,7 +476,7 @@ function uninstall_setup()
             rp_isInstalled "$idx" && rp_callModule "$idx" depends remove
         done
     fi
-    printMsgs "dialog" "MasOS has been uninstalled."
+    printMsgs "dialog" "MasOS fue desistalado."
 }
 
 function reboot_setup()
@@ -574,7 +574,7 @@ function gui_setup() {
                 rps_printInfo "$logfilename"
                 ;;
             R)
-                dialog --defaultno --yesno "¿Estás seguro de que quieres reiniciar? \N\nTen en cuenta que si reinicias cuando se está ejecutando Emulation Station, perderás los cambios en los metadatos." 22 76 2>&1 >/dev/tty || continue
+                dialog --defaultno --yesno "¿Estás seguro de que quieres reiniciar? \N\n Ten en cuenta que si reinicias cuando se está ejecutando Emulation Station, perderás los cambios en los metadatos." 22 76 2>&1 >/dev/tty || continue
                 reboot_setup
                 ;;
         esac
