@@ -545,7 +545,6 @@ function gui_setup() {
             U)
 			    dialog --defaultno --yesno "¿Seguro que quieres actualizar el sistema MasOS por completo?" 22 76 2>&1 >/dev/tty || continue
 			cd # Script de actualizacion para MasOS Setup - ;-)
-			exit
 			sudo rm -R MasOS-Setup/
 			git clone --depth=1 https://github.com/DOCK-PI3/MasOS-Setup.git
 			sudo chmod -R +x MasOS-Setup/
@@ -564,7 +563,6 @@ function gui_setup() {
             S)
                 dialog --defaultno --yesno "¿Seguro que quieres actualizar el script de configuración de MasOS?" 22 76 2>&1 >/dev/tty || continue
 			cd # Script de actualizacion para MasOS Setup - ;-)
-			exit
 			sudo rm -R MasOS-Setup/
 			git clone --depth=1 https://github.com/DOCK-PI3/MasOS-Setup.git
 			sudo chmod -R +x MasOS-Setup/
