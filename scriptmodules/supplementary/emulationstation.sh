@@ -202,7 +202,7 @@ if [[ \$(id -u) -eq 0 ]]; then
 fi
 
 if [[ -d "/sys/module/vc4" ]]; then
-    echo -e "ERROR: You have the experimental desktop GL driver enabled. This is NOT compatible with RetroPie, and Emulation Station as well as emulators will fail to launch.\\n\\nPlease disable the experimental desktop GL driver from the raspi-config 'Advanced Options' menu."
+    echo -e "ERROR: You have the experimental desktop GL driver enabled. This is NOT compatible with MasOS, and Emulation Station as well as emulators will fail to launch.\\n\\nPlease disable the experimental desktop GL driver from the raspi-config 'Advanced Options' menu."
     exit 1
 fi
 
@@ -221,7 +221,7 @@ clear
 tput civis
 "$md_inst/emulationstation.sh" "\$@"
 if [[ $? -eq 139 ]]; then
-    dialog --cr-wrap --no-collapse --msgbox "Emulation Station crashed!\n\nIf this is your first boot of RetroPie - make sure you are using the correct image for your system.\n\\nCheck your rom file/folder permissions and if running on a Raspberry Pi, make sure your gpu_split is set high enough and/or switch back to using carbon theme.\n\nFor more help please use the RetroPie forum." 20 60 >/dev/tty
+    dialog --cr-wrap --no-collapse --msgbox "Emulation Station crashed!\n\nIf this is your first boot of MasOS - make sure you are using the correct image for your system.\n\\nCheck your rom file/folder permissions and if running on a Raspberry Pi, make sure your gpu_split is set high enough and/or switch back to using carbon theme.\n\nFor more help please use the MasOS forum." 20 60 >/dev/tty
 fi
 tput cnorm
 _EOF_
