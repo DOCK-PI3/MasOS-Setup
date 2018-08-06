@@ -545,14 +545,16 @@ function gui_setup() {
             U)
 			    dialog --defaultno --yesno "¿Seguro que quieres actualizar el sistema MasOS por completo?" 22 76 2>&1 >/dev/tty || continue
 			cd # Script de actualizacion para MasOS Setup - ;-)
-			sudo rm -R MasOS-Setup/
+			rm -R MasOS-Setup/
 			git clone --depth=1 https://github.com/DOCK-PI3/MasOS-Setup.git
-			sudo chmod -R +x MasOS-Setup/
-			sudo apt-get update
-			sudo apt-get upgrade -y
+			chmod -R +x MasOS-Setup/
+			apt-get update
+			apt-get upgrade -y
 			clear
-			cd MasOS-Setup
-			sudo ./masos_setup.sh
+			then
+            joy2keyStop
+				exec "$scriptdir/masos_pkgs.sh" setup post_update gui_setup
+                fi
                 ;;
             P)
                 packages_gui_setup
@@ -563,11 +565,13 @@ function gui_setup() {
             S)
                 dialog --defaultno --yesno "¿Seguro que quieres actualizar el script de configuración de MasOS?" 22 76 2>&1 >/dev/tty || continue
 			cd # Script de actualizacion para MasOS Setup - ;-)
-			sudo rm -R MasOS-Setup/
+			rm -R MasOS-Setup/
 			git clone --depth=1 https://github.com/DOCK-PI3/MasOS-Setup.git
-			sudo chmod -R +x MasOS-Setup/
-			cd MasOS-Setup
-			sudo ./masos_setup.sh
+			chmod -R +x MasOS-Setup/
+			then
+            joy2keyStop
+                exec "$scriptdir/masos_pkgs.sh" setup post_update gui_setup
+                fi
                 ;;
             X)
                 local logfilename
