@@ -461,7 +461,7 @@ function packages_gui_setup() {
 function uninstall_setup()
 {
     dialog --defaultno --yesno "¿Seguro que quieres desinstalar MasOS?" 22 76 2>&1 >/dev/tty || return 0
-    dialog --defaultno --yesno "¿Estas REALMENTE seguro de que deseas desinstalar MasOS? \N\n $rootdir se eliminara, esto incluye archivos de configuracion para todos componentes." 22 76 2>&1 >/dev/tty || return 0
+    dialog --defaultno --yesno "¿Estas REALMENTE seguro de que deseas desinstalar MasOS?\n\n$rootdir se eliminara, esto incluye archivos de configuracion para todos componentes." 22 76 2>&1 >/dev/tty || return 0
     clear
     printHeading "Desinstalando MasOS"
     for idx in "${__mod_idx[@]}"; do
@@ -469,7 +469,7 @@ function uninstall_setup()
     done
     rm -rfv "$rootdir"
     dialog --defaultno --yesno "¿Desea eliminar todos los archivos de $datadir ? Esto incluye todas las ROM instaladas, los archivos de la BIOS y las pantallas personalizadas. " 22 76 2>&1 >/dev/tty && rm -rfv "$datadir"
-    if dialog --defaultno --yesno "¿Desea eliminar todos los paquetes de sistema de los que depende MasOS? \n\nADVERTENCIA: esto eliminara paquetes como SDL incluso si se instalaron antes de instalar MasOS - tambien eliminara cualquier configuracion de paquete - como los de /etc/ samba para Samba. \n\ nSi no esta seguro, elija No (seleccionado por defecto)." 22 76 2>&1 >/dev/tty; then
+    if dialog --defaultno --yesno "¿Desea eliminar todos los paquetes de sistema de los que depende MasOS?\n\nADVERTENCIA: esto eliminara paquetes como SDL incluso si se instalaron antes de instalar MasOS - tambien eliminara cualquier configuracion de paquete - como los de /etc/ samba para Samba. \n\ nSi no esta seguro, elija No (seleccionado por defecto)." 22 76 2>&1 >/dev/tty; then
         clear
         # remove all dependencies
         for idx in "${__mod_idx[@]}"; do
@@ -495,7 +495,7 @@ function gui_setup() {
 
         cmd=(dialog --backtitle "$__backtitle" --title "MasOS-Setup Script" --cancel-label "Exit" --item-help --help-button --default-item "$default" --menu "Version: $__version\nLast Commit: $commit" 22 76 16)
         options=(
-            I "MasOS Instalacion basica" "Esto instalara todos los paquetes de Core y Main, lo que da una instalacion basica de MasOS. Posteriormente, se pueden instalar mas paquetes desde las secciones Opcional y Experimental. Si hay binarios disponibles, se usaran, o los paquetes se construiran desde la fuente, lo que llevara mas tiempo."
+            I "MasOS Instalacion basica" "Esto instalara todos los paquetes de Core y Main, lo que da una instalacion basica de MasOS.\nPosteriormente, se pueden instalar mas paquetes desde las secciones Opcional y Experimental. Si hay binarios disponibles, se usaran, o los paquetes se construiran desde la fuente, lo que llevara mas tiempo."
 
             U "MasOS actualizar paquetes y Sistema completo" "U Actualiza MasOS-Setup y todos los paquetes instalados actualmente. También permitira actualizar paquetes de sistema operativo. Si hay binarios disponibles, se usaran; de lo contrario, los paquetes se compilaran a partir de la fuente."
 
@@ -506,7 +506,7 @@ function gui_setup() {
             "C Configuracion y herramientas. Cualquier paquete que haya instalado que tenga opciones de configuracion adicionales tambien aparecera aqui."
 
             S "Actualizar MasOS-Setup script"
-            "S Nota:Si le aparece algún error no lo tenga en cuenta,el script se actualiza igualmente,antes de actualizar se puede ver bien en Last comit: o en version:. Esto actualizara MasOS-Setup script solamente, pero no actualizara ningun paquete de software. Para actualizar los paquetes, use la opción 'Actualizar' del menu principal, que tambien actualizara el script de configuracion de MasOS."
+            "S Nota:Si le aparece algún error no lo tenga en cuenta,el script se actualiza igualmente,antes de actualizar se puede ver bien en Last comit: o en version:.\nEsto actualizara MasOS-Setup script solamente, pero no actualizara ningun paquete de software. Para actualizar los paquetes, use la opción 'Actualizar' del menu principal, que tambien actualizara el script de configuracion de MasOS."
 
             X "Desinstalar MasOS"
             "X Desinstalar completamente MasOS."
@@ -529,7 +529,7 @@ function gui_setup() {
 
         case "$choice" in
             I)
-                dialog --defaultno --yesno "¿Estás seguro de que quieres hacer una instalación básica? \n\n Esto instalará todos los paquetes del 'Core' y 'Main'." 22 76 2>&1 >/dev/tty || continue
+                dialog --defaultno --yesno "¿Estás seguro de que quieres hacer una instalación básica?\n\nEsto instalará todos los paquetes del 'Core' y 'Main'." 22 76 2>&1 >/dev/tty || continue
                 clear
                 local logfilename
                 __ERRMSGS=()
@@ -582,7 +582,7 @@ function gui_setup() {
                 rps_printInfo "$logfilename"
                 ;;
             R)
-                dialog --defaultno --yesno "¿Estás seguro de que quieres reiniciar? \N\n Ten en cuenta que si reinicias cuando se está ejecutando Emulation Station, perderás los cambios en los metadatos." 22 76 2>&1 >/dev/tty || continue
+                dialog --defaultno --yesno "¿Estás seguro de que quieres reiniciar?\n\nTen en cuenta que si reinicias cuando se está ejecutando Emulation Station, perderás los cambios en los metadatos." 22 76 2>&1 >/dev/tty || continue
                 reboot_setup
                 ;;
         esac
