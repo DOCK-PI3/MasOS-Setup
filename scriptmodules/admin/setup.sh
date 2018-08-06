@@ -543,7 +543,12 @@ function gui_setup() {
                 rps_printInfo "$logfilename"
                 ;;
             U)
-                update_packages_gui_setup
+			cd # Script de actualizacion para MasOS Setup - ;-)
+			sudo rm -R MasOS-Setup/
+			git clone --depth=1 https://github.com/DOCK-PI3/MasOS-Setup.git
+			sudo chmod -R +x MasOS-Setup/
+			cd MasOS-Setup
+			sudo ./masos_setup.sh
                 ;;
             P)
                 packages_gui_setup
