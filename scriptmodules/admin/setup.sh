@@ -495,9 +495,9 @@ function gui_setup() {
 
         cmd=(dialog --backtitle "$__backtitle" --title "MasOS-Setup Script" --cancel-label "Exit" --item-help --help-button --default-item "$default" --menu "Version: $__version\nLast Commit: $commit" 22 76 16)
         options=(
-            I "Instalacion basica" "Esto instalara todos los paquetes de Core y Main, lo que da una instalacion basica de MasOS. Posteriormente, se pueden instalar mas paquetes desde las secciones Opcional y Experimental. Si hay binarios disponibles, se usaran, o los paquetes se construiran desde la fuente, lo que llevara mas tiempo."
+            I "MasOS Instalacion basica" "Esto instalara todos los paquetes de Core y Main, lo que da una instalacion basica de MasOS. Posteriormente, se pueden instalar mas paquetes desde las secciones Opcional y Experimental. Si hay binarios disponibles, se usaran, o los paquetes se construiran desde la fuente, lo que llevara mas tiempo."
 
-            U "Update" "U Actualiza MasOS-Setup y todos los paquetes instalados actualmente. También permitira actualizar paquetes de sistema operativo. Si hay binarios disponibles, se usaran; de lo contrario, los paquetes se compilaran a partir de la fuente."
+            U "MasOS actualizar lista de paquetes y Sistema completo" "U Actualiza MasOS-Setup y todos los paquetes instalados actualmente. También permitira actualizar paquetes de sistema operativo. Si hay binarios disponibles, se usaran; de lo contrario, los paquetes se compilaran a partir de la fuente."
 
             P "Administrar paquetes"
             "P Instalar / Quitar y configurar los diversos componentes de MasOS, incluidos emuladores, ports y controladores."
@@ -505,7 +505,7 @@ function gui_setup() {
             C "Configuracion / herramientas"
             "C Configuracion y herramientas. Cualquier paquete que haya instalado que tenga opciones de configuracion adicionales tambien aparecera aqui."
 
-            S "Actualizar secuencia de comandos de instalacion MasOS-Setup script"
+            S "Actualizar MasOS-Setup script"
             "S Nota:Si le aparece algún error no lo tenga en cuenta,el script se actualiza igualmente,antes de actualizar se puede ver bien en Last comit: o en version:. Esto actualizara MasOS-Setup script solamente, pero no actualizara ningun paquete de software. Para actualizar los paquetes, use la opción 'Actualizar' del menu principal, que tambien actualizara el script de configuracion de MasOS."
 
             X "Desinstalar MasOS"
@@ -547,6 +547,9 @@ function gui_setup() {
 			sudo rm -R MasOS-Setup/
 			git clone --depth=1 https://github.com/DOCK-PI3/MasOS-Setup.git
 			sudo chmod -R +x MasOS-Setup/
+			sudo apt-get update
+			sudo apt-get upgrade -y
+			clear
 			cd MasOS-Setup
 			sudo ./masos_setup.sh
                 ;;
@@ -558,10 +561,12 @@ function gui_setup() {
                 ;;
             S)
                 dialog --defaultno --yesno "¿Seguro que quieres actualizar el script de configuración de MasOS?" 22 76 2>&1 >/dev/tty || continue
-                if updatescript_setup; then
-                    joy2keyStop
-                    exec "$scriptdir/masos_pkgs.sh" setup post_update gui_setup
-                fi
+			cd # Script de actualizacion para MasOS Setup - ;-)
+			sudo rm -R MasOS-Setup/
+			git clone --depth=1 https://github.com/DOCK-PI3/MasOS-Setup.git
+			sudo chmod -R +x MasOS-Setup/
+			cd MasOS-Setup
+			sudo ./masos_setup.sh
                 ;;
             X)
                 local logfilename
