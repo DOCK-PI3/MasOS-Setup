@@ -107,7 +107,7 @@ function _set_system_launchingimages() {
 }
 
 function _set_extension_launchingimages() {
-    _dialog_menu_launchingimages "Choose the file extension of the final launching image." png jpg \
+    _dialog_menu_launchingimages "Choose the file extension of the final launching image." png jpg\
     || echo "$extension"
 }
 
@@ -123,7 +123,7 @@ function _set_loading_text_launchingimages() {
         --backtitle "$__backtitle" \
         --inputbox "Enter the \"NOW LOADING\" text (or leave blank to no text):" \
         0 70 \
-        "NOW LOADING" \
+        "CARGANDO..." \
         2>&1 >/dev/tty \
     || echo "$loading_text"
 }
