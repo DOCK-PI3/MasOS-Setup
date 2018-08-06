@@ -8,7 +8,7 @@
 # MasOS El sistema operativo exclusivo para la comunidad MyArcadeSpain ... de ahí su nombre.!
 #
 
-__version="4.4.2"
+__version="1.0 BETA"
 
 [[ "$__debug" -eq 1 ]] && set -x
 
