@@ -1,6 +1,5 @@
 #!/bin/bash
-infobox= ""
-infobox="${infobox}\n"
+
 infobox="${infobox}_______________________________________________________\n\n"
 infobox="${infobox}\n"
 infobox="${infobox}MasOS Script para actualizar todos los paquetes del sistema incluido el MasOS-Setup script. \n\n"
@@ -10,7 +9,7 @@ infobox="${infobox}\n"
 
 dialog --backtitle "MasOS Script actualizador del sistema" \
 --title "MasOS Script actualizador del sistema (by mabedeep)" \
---msgbox "${infobox}" 85 110
+--msgbox "${infobox}" 35 110
 
 
 
@@ -35,13 +34,12 @@ function main_menu() {
 
 
 function masossetup_update() {
-dialog --infobox "...Actualizando script MasOS-Setup..." 3 20 ; sleep 3
+dialog --infobox " Actualizando script MasOS-Setup..." 3 20 ; sleep 3
 cd # funcion para actualizacion para MasOS Setup - ;-)
 	rm -R MasOS-Setup/
 		git clone --depth=1 https://github.com/DOCK-PI3/MasOS-Setup.git
 	chmod -R +x MasOS-Setup/
 clear
-	done
 }
 
 function masosystem_upgrade() {
@@ -54,7 +52,6 @@ cd # funcion para actualizacion del sistema completo MasOS ,tambien se actualiza
 		apt-get upgrade -y
 	clear
 shutdown -r now
-	done
 }
 
 main_menu
