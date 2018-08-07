@@ -39,18 +39,18 @@ function main_menu() {
 function masossetup_update() {
 dialog --infobox " Actualizando script MasOS-Setup..." 3 20 ; sleep 3
 cd # funcion para actualizacion para MasOS Setup - ;-)
-	rm -R MasOS-Setup/
+	sudo rm -R MasOS-Setup/
 		git clone --depth=1 https://github.com/DOCK-PI3/MasOS-Setup.git
-	chmod -R +x MasOS-Setup/
+	sudo chmod -R +x MasOS-Setup/
 clear
 }
 
 function masosystem_upgrade() {
-dialog --infobox "...Despues de actualizar el sistema este se reiniciara automaticamente..." 3 20 ; sleep 3
+dialog --infobox "...Despues de actualizar el sistema se reiniciara automaticamente..." 3 20 ; sleep 3
 cd # funcion para actualizacion del sistema completo MasOS ,tambien se actualiza MasOS-Setup script- ;-)
-	rm -R MasOS-Setup/
+	sudo rm -R MasOS-Setup/
 		git clone --depth=1 https://github.com/DOCK-PI3/MasOS-Setup.git
-			chmod -R +x MasOS-Setup/
+			sudo chmod -R +x MasOS-Setup/
 			apt-get update
 		apt-get upgrade -y
 	clear
