@@ -1,5 +1,7 @@
-#!/bin/bash
-
+#!/bin/
+rp_module_id="bashvideoloading"
+rp_module_desc="Video mientras carga la rom en MasOS"
+rp_module_section=""
 infobox= ""
 infobox="${infobox}_______________________________________________________\n\n"
 infobox="${infobox}\n"

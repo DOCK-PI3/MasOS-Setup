@@ -1,5 +1,7 @@
 #!/bin/bash
-
+rp_module_id="bezelproject"
+rp_module_desc="BezelPrject en MasOS"
+rp_module_section=""
 #IFS=';'
 
 # Welcome

@@ -1,4 +1,7 @@
 #!/bin/bash
+rp_module_id="backgroundmusic"
+rp_module_desc="musica de fondo en MasOS"
+rp_module_section=""
 
 infobox= ""
 infobox="${infobox}_______________________________________________________\n\n"
