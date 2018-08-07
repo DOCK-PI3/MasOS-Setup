@@ -22,7 +22,7 @@ function main_menu() {
     while true; do
         choice=$(dialog --backtitle "$BACKTITLE" --title " MAIN MENU " \
             --ok-label OK --cancel-label Exit \
-            --menu "¿Qué acción te gustaría realizar?" 25 75 20 \
+            --menu "Que accion te gustaria realizar?" 25 75 20 \
             1 "Actualizar MasOS-Setup script" \
             2 "Actualizar sistema MasOS completo" \
             2>&1 > /dev/tty)
@@ -46,7 +46,7 @@ clear
 }
 
 function masosystem_upgrade() {
-dialog --infobox "...Despues de actualizar el sistema este se reiniciara automaticamente..." 3 20 ; sleep 5
+dialog --infobox "...Despues de actualizar el sistema este se reiniciara automaticamente..." 3 20 ; sleep 3
 cd # funcion para actualizacion del sistema completo MasOS ,tambien se actualiza MasOS-Setup script- ;-)
 	rm -R MasOS-Setup/
 		git clone --depth=1 https://github.com/DOCK-PI3/MasOS-Setup.git
