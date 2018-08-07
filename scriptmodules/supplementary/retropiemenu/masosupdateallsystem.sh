@@ -1,10 +1,7 @@
 #!/bin/bash
 rp_module_id="masosupdateallsystem"
 rp_module_desc="Actualizador para el sistema MasOS"
-rp_module_section="main"
-
-infobox= ""
-infobox="${infobox}\n"
+rp_module_section=""
 infobox="${infobox}_______________________________________________________\n\n"
 infobox="${infobox}\n"
 infobox="${infobox}MasOS Script para actualizar todos los paquetes del sistema incluido el MasOS-Setup script. \n\n"
@@ -14,7 +11,7 @@ infobox="${infobox}\n"
 
 dialog --backtitle "MasOS Script actualizador del sistema" \
 --title "MasOS Script actualizador del sistema (by mabedeep)" \
---msgbox "${infobox}" 85 110
+--msgbox "${infobox}" 35 110
 
 
 
@@ -22,9 +19,9 @@ function main_menu() {
     local choice
 
     while true; do
-        choice=$(dialog --backtitle "$BACKTITLE" --title " MAIN MENU " \
+        choice=$(dialog --backtitle "$BACKTITLE" --title " MENU PRINCIPAL " \
             --ok-label OK --cancel-label Exit \
-            --menu "¿Que accion te gustaria realizar?" 25 75 20 \
+            --menu "¿Qué acción te gustaría realizar?" 25 75 20 \
             1 "Actualizar MasOS-Setup script" \
             2 "Actualizar sistema MasOS completo" \
             2>&1 > /dev/tty)
@@ -39,11 +36,12 @@ function main_menu() {
 
 
 function masossetup_update() {
-dialog --infobox "...Actualizando script MasOS-Setup..." 3 20 ; sleep 3
+dialog --infobox " Actualizando script MasOS-Setup..." 3 20 ; sleep 3
 cd # funcion para actualizacion para MasOS Setup - ;-)
 	rm -R MasOS-Setup/
 		git clone --depth=1 https://github.com/DOCK-PI3/MasOS-Setup.git
 	chmod -R +x MasOS-Setup/
+clear
 }
 
 function masosystem_upgrade() {
@@ -54,6 +52,7 @@ cd # funcion para actualizacion del sistema completo MasOS ,tambien se actualiza
 			chmod -R +x MasOS-Setup/
 			apt-get update
 		apt-get upgrade -y
+	clear
 shutdown -r now
 }
 
