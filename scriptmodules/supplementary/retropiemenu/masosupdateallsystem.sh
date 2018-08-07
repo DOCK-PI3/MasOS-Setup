@@ -54,7 +54,7 @@ cd # funcion para actualizacion del sistema completo MasOS ,tambien se actualiza
 			sudo apt-get update
 		sudo apt-get upgrade -y
 	clear
-shutdown -r now
+sudo shutdown -r now
 }
 
 main_menu
