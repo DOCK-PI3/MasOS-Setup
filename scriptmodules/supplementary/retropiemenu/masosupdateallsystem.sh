@@ -1,7 +1,7 @@
 #!/bin/bash
 rp_module_id="masosupdateallsystem"
 rp_module_desc="Actualizador para el sistema MasOS"
-rp_module_section="config"
+rp_module_section=""
 infobox="${infobox}_______________________________________________________\n\n"
 infobox="${infobox}\n"
 infobox="${infobox}MasOS Script para actualizar todos los paquetes del sistema incluido el MasOS-Setup script. \n\n"
@@ -19,7 +19,7 @@ function main_menu() {
     local choice
 
     while true; do
-        choice=$(dialog --backtitle "$BACKTITLE" --title " MENU PRINCIPAL " \
+        choice=$(dialog --backtitle "$BACKTITLE" --title " MAIN MENU " \
             --ok-label OK --cancel-label Exit \
             --menu "¿Qué acción te gustaría realizar?" 25 75 20 \
             1 "Actualizar MasOS-Setup script" \
