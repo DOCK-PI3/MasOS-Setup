@@ -1,4 +1,8 @@
 #!/bin/bash
+rp_module_id="masosupdateallsystem"
+rp_module_desc="Actualizador para el sistema MasOS"
+rp_module_section="main"
+
 infobox= ""
 infobox="${infobox}\n"
 infobox="${infobox}_______________________________________________________\n\n"
@@ -18,9 +22,9 @@ function main_menu() {
     local choice
 
     while true; do
-        choice=$(dialog --backtitle "$BACKTITLE" --title " MENU PRINCIPAL " \
+        choice=$(dialog --backtitle "$BACKTITLE" --title " MAIN MENU " \
             --ok-label OK --cancel-label Exit \
-            --menu "¿Qué acción te gustaría realizar?" 25 75 20 \
+            --menu "¿Que accion te gustaria realizar?" 25 75 20 \
             1 "Actualizar MasOS-Setup script" \
             2 "Actualizar sistema MasOS completo" \
             2>&1 > /dev/tty)
@@ -40,8 +44,6 @@ cd # funcion para actualizacion para MasOS Setup - ;-)
 	rm -R MasOS-Setup/
 		git clone --depth=1 https://github.com/DOCK-PI3/MasOS-Setup.git
 	chmod -R +x MasOS-Setup/
-clear
-	done
 }
 
 function masosystem_upgrade() {
@@ -52,9 +54,7 @@ cd # funcion para actualizacion del sistema completo MasOS ,tambien se actualiza
 			chmod -R +x MasOS-Setup/
 			apt-get update
 		apt-get upgrade -y
-	clear
 shutdown -r now
-	done
 }
 
 main_menu
