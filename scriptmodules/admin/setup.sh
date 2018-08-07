@@ -526,10 +526,6 @@ function gui_setup() {
             I)
                 dialog --defaultno --yesno "¿Estás seguro de que quieres hacer una instalación básica?\n\nEsto instalará todos los paquetes del 'Core' y 'Main'." 22 76 2>&1 >/dev/tty || continue
                 clear
-				cp /home/pi/MasOS-Setup/scriptmodules/supplementary/retropiemenu/*.sh /home/pi/RetroPie/retropiemenu/
-				chmod -R +x /home/pi/RetroPie/retropiemenu/*.sh
-				mkdir /home/pi/MasOS/videoloadingscreens
-				mkdir /home/pi/MasOS/roms/music
                 local logfilename
                 __ERRMSGS=()
                 __INFMSGS=()
@@ -540,6 +536,10 @@ function gui_setup() {
                     rps_logEnd
                 } &> >(tee >(gzip --stdout >"$logfilename"))
                 rps_printInfo "$logfilename"
+				cp /home/pi/MasOS-Setup/scriptmodules/supplementary/retropiemenu/*.sh /home/pi/RetroPie/retropiemenu/
+				chmod -R +x /home/pi/RetroPie/retropiemenu/*.sh
+				mkdir /home/pi/MasOS/videoloadingscreens
+				mkdir /home/pi/MasOS/roms/music
                 ;;
             P)
                 packages_gui_setup
