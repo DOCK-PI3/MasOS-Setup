@@ -533,10 +533,14 @@ function gui_setup() {
                 {
                     rps_logStart
                     basic_install_setup
+				# Creacion de directorios con los permisos que hacen falta para que funcione todo ok - By mabedeep
 				cp -R /home/pi/MasOS-Setup/scriptmodules/supplementary/retropiemenu/*.sh /home/pi/RetroPie/retropiemenu/
 				chmod -R +x /home/pi/RetroPie/retropiemenu/*.sh
 				mkdir /home/pi/MasOS/videoloadingscreens
 				mkdir /home/pi/MasOS/roms/music
+				sudo chown -R pi:pi /home/pi/MasOS/videoloadingscreens
+				sudo chown -R pi:pi /home/pi/MasOS/roms/*
+				# ---------------- FIN DEL CODIGO ------------ #
                     rps_logEnd
                 } &> >(tee >(gzip --stdout >"$logfilename"))
                 rps_printInfo "$logfilename"
