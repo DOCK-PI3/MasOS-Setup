@@ -51,8 +51,8 @@ cd # funcion para actualizacion del sistema completo MasOS ,tambien se actualiza
 	sudo rm -R MasOS-Setup/
 		git clone --depth=1 https://github.com/DOCK-PI3/MasOS-Setup.git
 			sudo chmod -R +x MasOS-Setup/
-			apt-get update
-		apt-get upgrade -y
+			sudo apt-get update
+		sudo apt-get upgrade -y
 	clear
 shutdown -r now
 }
