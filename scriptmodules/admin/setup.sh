@@ -533,13 +533,13 @@ function gui_setup() {
                 {
                     rps_logStart
                     basic_install_setup
-                    rps_logEnd
-                } &> >(tee >(gzip --stdout >"$logfilename"))
-                rps_printInfo "$logfilename"
-				cp /home/pi/MasOS-Setup/scriptmodules/supplementary/retropiemenu/*.sh /home/pi/RetroPie/retropiemenu/
+				cp -R /home/pi/MasOS-Setup/scriptmodules/supplementary/retropiemenu/*.sh /home/pi/RetroPie/retropiemenu/
 				chmod -R +x /home/pi/RetroPie/retropiemenu/*.sh
 				mkdir /home/pi/MasOS/videoloadingscreens
 				mkdir /home/pi/MasOS/roms/music
+                    rps_logEnd
+                } &> >(tee >(gzip --stdout >"$logfilename"))
+                rps_printInfo "$logfilename"
                 ;;
             P)
                 packages_gui_setup
