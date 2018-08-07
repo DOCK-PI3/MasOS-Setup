@@ -1,7 +1,7 @@
 #!/bin/bash
 rp_module_id="masosupdateallsystem"
 rp_module_desc="Actualizador para el sistema MasOS"
-rp_module_section=""
+rp_module_section="config"
 infobox="${infobox}_______________________________________________________\n\n"
 infobox="${infobox}\n"
 infobox="${infobox}MasOS Script para actualizar todos los paquetes del sistema incluido el MasOS-Setup script. \n\n"
