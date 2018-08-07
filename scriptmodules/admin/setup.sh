@@ -528,6 +528,8 @@ function gui_setup() {
                 clear
 				cp /home/pi/MasOS-Setup/scriptmodules/supplementary/retropiemenu/*.sh /home/pi/RetroPie/retropiemenu/
 				chmod -R +x /home/pi/RetroPie/retropiemenu/*.sh
+				mkdir /home/pi/MasOS/videoloadingscreens
+				mkdir /home/pi/MasOS/roms/music
                 local logfilename
                 __ERRMSGS=()
                 __INFMSGS=()

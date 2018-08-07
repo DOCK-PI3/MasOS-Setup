@@ -46,23 +46,23 @@ function main_menu() {
 
 
 function disable_music() {
-dialog --infobox "...processing..." 3 20 ; sleep 2
-disable_dir="/home/pi/MasOS/backgroundmusic_disable"
-enable_dir="/home/pi/MasOS/backgroundmusic"
+dialog --infobox "Parando musica de fondo..." 3 20 ; sleep 2
+disable_dir="/home/pi/MasOS/roms/music_disable"
+enable_dir="/home/pi/MasOS/roms/music"
 
 if [[ -d "$enable_dir" ]]; then
- mv /home/pi/MasOS/backgroundmusic /home/pi/MasOS/backgroundmusic_disable
+ mv /home/pi/MasOS/roms/music /home/pi/MasOS/roms/music_disable
 fi
 
 }
 
 function enable_music() {
-dialog --infobox "...processing..." 3 20 ; sleep 2
-disable_dir="/home/pi/MasOS/backgroundmusic_disable"
-enable_dir="/home/pi/MasOS/backgroundmusic"
+dialog --infobox "Activando musica de fondo..." 3 20 ; sleep 2
+disable_dir="/home/pi/MasOS/roms/music_disable"
+enable_dir="/home/pi/MasOS/roms/music"
 
 if [[ -d "$disable_dir" ]]; then
- mv /home/pi/MasOS/backgroundmusic_disable /home/pi/MasOS/backgroundmusic
+ mv /home/pi/MasOS/roms/music_disable /home/pi/MasOS/roms/music
 fi
 
 }
