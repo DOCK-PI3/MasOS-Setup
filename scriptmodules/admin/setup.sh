@@ -65,7 +65,7 @@ function depends_setup() {
     fi
 
     if isPlatform "rpi" && isPlatform "mesa"; then
-        printMsgs "dialog" "ERROR: Tiene habilitado el controlador experimental GL de escritorio. Esto NO es compatible con MasOS, y la Emulation Station y los emuladores no se ejecutaran. \N\nDeshabilite el controlador experimental GL de escritorio desde el menu 'Opciones avanzadas' de raspi-config."
+        printMsgs "dialog" "ERROR: Tiene habilitado el controlador experimental GL de escritorio. Esto NO es compatible con MasOS, y la Emulation Station y los emuladores no se ejecutaran.\n\nDeshabilite el controlador experimental GL de escritorio desde el menu 'Opciones avanzadas' de raspi-config."
         exit 1
     fi
 
@@ -74,7 +74,7 @@ function depends_setup() {
         local group
         for group in input video; do
             if ! hasFlag "$(groups $user)" "$group"; then
-                dialog --yesno "Su usuario '$usuario' no es miembro del grupo de sistemas '$group'. \N\n Es necesario para que MasOS funcione correctamente. ¿Puedo agregar '$usuario' al grupo '$group'? \N\ nTendra que reiniciar para que estos cambios surtan efecto." 22 76 2>&1 >/dev/tty && usermod -a -G "$group" "$user"
+                dialog --yesno "Su usuario '$usuario' no es miembro del grupo de sistemas '$group'. \n\n Es necesario para que MasOS funcione correctamente. ¿Puedo agregar '$usuario' al grupo '$group'?\n\nTendra que reiniciar para que estos cambios surtan efecto." 22 76 2>&1 >/dev/tty && usermod -a -G "$group" "$user"
             fi
         done
     fi
@@ -534,12 +534,12 @@ function gui_setup() {
                     rps_logStart
                     basic_install_setup
 				# Creacion de directorios con los permisos que hacen falta para que funcione todo ok - By mabedeep
-				cp -R /home/pi/MasOS-Setup/scriptmodules/supplementary/retropiemenu/*.sh /home/pi/RetroPie/retropiemenu/
-				chmod -R +x /home/pi/RetroPie/retropiemenu/*.sh
-				mkdir /home/pi/MasOS/videoloadingscreens
-				mkdir /home/pi/MasOS/roms/music
-				sudo chown -R pi:pi /home/pi/MasOS/videoloadingscreens
-				sudo chown -R pi:pi /home/pi/MasOS/roms/*
+				sudo cp -R /home/$user/MasOS-Setup/scriptmodules/supplementary/retropiemenu/*.sh /home/$user/RetroPie/retropiemenu/
+				sudo chmod -R +x /home/$user/RetroPie/retropiemenu/*.sh
+				sudo mkdir /home/$user/MasOS/videoloadingscreens
+				sudo mkdir /home/$user/MasOS/roms/music
+				sudo chown -R $user:$user /home/$user/MasOS/videoloadingscreens
+				sudo chown -R $user:$user /home/$user/MasOS/roms/*
 				# ---------------- FIN DEL CODIGO ------------ #
                     rps_logEnd
                 } &> >(tee >(gzip --stdout >"$logfilename"))
