@@ -427,6 +427,14 @@ function basic_install_setup() {
     local idx
     for idx in $(rp_getSectionIds core) $(rp_getSectionIds main); do
         rp_installModule "$idx"
+			# Creacion de directorios con los permisos que hacen falta para que funcione todo ok - By mabedeep
+				sudo cp -R /home/$user/MasOS-Setup/scriptmodules/supplementary/retropiemenu/*.sh /home/$user/RetroPie/retropiemenu/
+				sudo chmod -R +x /home/$user/RetroPie/retropiemenu/*.sh
+				sudo mkdir /home/$user/MasOS/videoloadingscreens
+				sudo mkdir /home/$user/MasOS/roms/music
+				sudo chown -R $user:$user /home/$user/MasOS/videoloadingscreens
+				sudo chown -R $user:$user /home/$user/MasOS/roms/*
+			# ---------------- FIN DEL CODIGO ------------ #
     done
 }
 
@@ -533,14 +541,6 @@ function gui_setup() {
                 {
                     rps_logStart
                     basic_install_setup
-				# Creacion de directorios con los permisos que hacen falta para que funcione todo ok - By mabedeep
-				sudo cp -R /home/$user/MasOS-Setup/scriptmodules/supplementary/retropiemenu/*.sh /home/$user/RetroPie/retropiemenu/
-				sudo chmod -R +x /home/$user/RetroPie/retropiemenu/*.sh
-				sudo mkdir /home/$user/MasOS/videoloadingscreens
-				sudo mkdir /home/$user/MasOS/roms/music
-				sudo chown -R $user:$user /home/$user/MasOS/videoloadingscreens
-				sudo chown -R $user:$user /home/$user/MasOS/roms/*
-				# ---------------- FIN DEL CODIGO ------------ #
                     rps_logEnd
                 } &> >(tee >(gzip --stdout >"$logfilename"))
                 rps_printInfo "$logfilename"

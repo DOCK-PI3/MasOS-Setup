@@ -44,9 +44,9 @@ function configure_retropiemenu()
     # add the gameslist / icons
     local files=(
         'audiosettings'
-        'backgroundmusic'
-		'bezelproject'
-		'bezels'
+        # 'backgroundmusic'
+		# 'bezelproject'
+		# 'bezels'
 		'bluetooth'
         'configedit'
         'esthemes'
@@ -58,16 +58,16 @@ function configure_retropiemenu()
         'runcommand'
         'showip'
         'splashscreen'
-		'videoloading'
+		# 'videoloading'
         'wifi'
-		'masosupdateallsystem'
+		# 'masosupdateallsystem'
     )
 
     local names=(
         'Audio'
-		'Musica de Fondo'
-		'Project Bezels'
-		'Bezels'
+		# 'Musica de Fondo'
+		# 'Project Bezels'
+		# 'Bezels'
         'Bluetooth'
         'Editar Config'
         'ES Themes'
@@ -79,16 +79,16 @@ function configure_retropiemenu()
         'Run Command Configuration'
         'Mostrar tu IP'
         'Configurar Splash Screens'
-		'Videoloadind script'
+		# 'Videoloadind script'
         'WiFi agregar o editar config'
-		'Actualizar Sistema MasOS'
+		# 'Actualizar Sistema MasOS'
     )
 
     local descs=(
         'Configuraciones de audio Elija predeterminado de auto, jack de 3.5 mm o HDMI. Controles del mezclador y aplicar configuraciones predeterminadas.'
-        'Musica de Fondo en MasOS'
-		'Project Bezels ,cientos de bezels configurados y instalados con un simple clic.'
-		'Bezels - Activa o desactiva rapidamente los bezels que tengas activos'
+        # 'Musica de Fondo en MasOS'
+		# 'Project Bezels ,cientos de bezels configurados y instalados con un simple clic.'
+		# 'Bezels - Activa o desactiva rapidamente los bezels que tengas activos'
 		'Regístrese y conéctese a dispositivos bluetooth. Anule el registro y elimine los dispositivos y visualice los dispositivos registrados y conectados.'
         'Cambie las opciones comunes de RetroArch y edite manualmente las configuraciones de RetroArch, las configuraciones globales y las configuraciones que no son de RetroArch.'
         'Install, uninstall, or update EmulationStation themes. Most themes can be previewed at ..... coming soon!.'
@@ -100,9 +100,9 @@ function configure_retropiemenu()
         'Change what appears on the runcommand screen. Enable or disable the menu, enable or disable box art, and change CPU configuration.'
         'Muestra su dirección IP actual, así como otra información proporcionada por el comando, "ip addr show."'
         'Habilite o deshabilite la pantalla secundaria en el inicio de MasOS. Elija una pantalla secundaria, descargue nuevas pantallas emergentes y regrese la pantalla secundaria a la predeterminada.'
-        'Reproducier video mientras carga la rom.'
+        # 'Reproducier video mientras carga la rom.'
 		'Conéctese o desconecte de una red wifi y configure wifi.'
-		'En este maravilloso script creado por mabedeep puede actualizar el sistema operativo completo incluido el script MasOS-Setup o este ultimo solo individualmente.'
+		# 'En este maravilloso script creado por mabedeep puede actualizar el sistema operativo completo incluido el script MasOS-Setup o este ultimo solo individualmente.'
     )
 
     setESSystem "RetroPie" "retropie" "$rpdir" ".rp .sh" "sudo $scriptdir/masos_pkgs.sh retropiemenu launch %ROM% </dev/tty >/dev/tty" "" "retropie"
