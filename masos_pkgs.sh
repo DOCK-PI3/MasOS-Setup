@@ -6,13 +6,13 @@
 # sistema trabajan unos pocos desarroladores independientes de diversas partes del planeta.
 #
 # MasOS El sistema operativo exclusivo para la comunidad MyArcadeSpain ... de ahí su nombre.!
-#
+#fork de retropie
 
 __version="1.0 BETA"
 
 [[ "$__debug" -eq 1 ]] && set -x
 
-# main retropie install location
+# main masos install location
 rootdir="/opt/masos"
 
 # if __user is set, try and install for that user, else use SUDO_USER
