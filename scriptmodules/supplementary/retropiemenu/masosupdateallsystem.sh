@@ -1,5 +1,5 @@
 #!/bin/
-rp_module_id="masosupdateallsystem"
+rp_module_id=""
 rp_module_desc="Actualizador para el sistema MasOS"
 rp_module_section=""
 infobox= ""
