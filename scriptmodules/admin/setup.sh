@@ -429,7 +429,7 @@ function basic_install_setup() {
 		rp_installModule "$idx"
 			# Creacion de directorios con los permisos que hacen falta para que funcione todo ok - By mabedeep
 				sudo cp /home/$user/MasOS-Setup/scriptmodules/supplementary/retropiemenu/.livewire.py /home/$user
-				sudo rm -R /home/$user/MasOS-Setup/scriptmodules/supplementary/retropiemenu/.livewire.py
+				# sudo rm -R /home/$user/MasOS-Setup/scriptmodules/supplementary/retropiemenu/.livewire.py
 				sudo cp /home/$user/MasOS-Setup/scriptmodules/supplementary/retropiemenu/gamelist.xml /opt/masos/configs/all/emulationstation/gamelists/retropie
 				sudo rm -R /home/$user/MasOS-Setup/scriptmodules/supplementary/retropiemenu/gamelist.xml
 				sudo cp -R /home/$user/MasOS-Setup/scriptmodules/supplementary/retropiemenu /home/$user/RetroPie
