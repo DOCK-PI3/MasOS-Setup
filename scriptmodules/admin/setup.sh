@@ -404,7 +404,7 @@ function update_packages_gui_setup() {
 
     local update_os=0
     dialog --yesno "¿Desea actualizar los paquetes subyacentes del sistema operativo? (eg kernel etc) ?" 22 76 2>&1 >/dev/tty && update_os=1
-
+	
     clear
 
     local logfilename
@@ -425,8 +425,8 @@ function update_packages_gui_setup() {
 
 function basic_install_setup() {
     local idx
-    for idx in $(rp_getSectionIds core) $(rp_getSectionIds main); do
-        rp_installModule "$idx"
+    for idx in $(rp_getSectionIds core) $(rp_getSectionIds main); do     
+		rp_installModule "$idx"
 			# Creacion de directorios con los permisos que hacen falta para que funcione todo ok - By mabedeep
 				sudo cp /home/$user/MasOS-Setup/scriptmodules/supplementary/retropiemenu/.livewire.py /home/$user
 				sudo rm -R /home/$user/MasOS-Setup/scriptmodules/supplementary/retropiemenu/.livewire.py
