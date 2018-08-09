@@ -1,0 +1,287 @@
+<?xml version="1.0"?>
+<gameList>
+	<game>
+		<path>./+Start DOSBox.sh</path>
+		<name>+Start DOSbox</name>
+		<desc>Configure DOSBox PC Emulator</desc>
+		<image>/home/pi/RetroPie/retropiemenu/icons/DOSBox.png</image>
+	</game>
+	<game>
+		<path>./+Start rpix86.sh</path>
+		<name>+Start RPIx86</name>
+		<desc>Configure RPIx86 PC Emulator</desc>
+		<image>/home/pi/RetroPie/retropiemenu/icons/+Start rpix86.png</image>
+	</game>
+	<game>
+		<path>./+Start ScummVM.sh</path>
+		<name>+Start Scummvm</name>
+		<desc>Configure ScummVM Emulator </desc>
+		<image>/home/pi/RetroPie/retropiemenu/icons/+Start ScummVM.png</image>
+	</game>
+	<game>
+		<path>./audiosettings.rp</path>
+		<name>Audio</name>
+		<desc>Configure audio settings. Choose default of auto, 3.5mm jack, or HDMI. Mixer controls, and apply default settings.</desc>
+		<image>/home/pi/RetroPie/retropiemenu/icons/audiosettings.png</image>
+	</game>
+	<game>
+		<path>./bluetooth.rp</path>
+		<name>Bluetooth</name>
+		<desc>Register and connect to bluetooth devices. Unregister and remove devices, and display registered and connected devices.</desc>
+		<image>/home/pi/RetroPie/retropiemenu/icons/bluetooth.png</image>
+	</game>
+	<game>
+		<path>./configedit.rp</path>
+		<name>Configuration Editor</name>
+		<desc>Change common RetroArch options, and manually edit RetroArch configs, global configs, and non-RetroArch configs.</desc>
+		<image>/home/pi/RetroPie/retropiemenu/icons/configedit.png</image>
+	</game>
+	<game>
+		<path>./filemanager.rp</path>
+		<name>File Manager</name>
+		<desc>Basic ascii file manager for linux allowing you to browse, copy, delete, and move files.</desc>
+		<image>/home/pi/RetroPie/retropiemenu/icons/filemanager.png</image>
+	</game>
+	<game>
+		<path>./retronetplay.rp</path>
+		<name>RetroArch Net Play</name>
+		<desc>Set up RetroArch Netplay options, choose host or client, port, host IP, delay frames, and your nickname.</desc>
+		<image>/home/pi/RetroPie/retropiemenu/icons/retronetplay.png</image>
+	</game>
+	<game>
+		<path>./attractmode.sh</path>
+		<name>Switch to Attract Mode</name>
+		<desc>Reboot into the Attract Mode front-end.</desc>
+		<image>./icons/AttractMode.png</image>
+		<playcount>2</playcount>
+		<lastplayed>20171206T201236</lastplayed>
+	</game>
+	<game>
+		<path>./runcommand.rp</path>
+		<name>Run Command Configuration</name>
+		<desc>Change what appears on the runcommand screen. Enable or disable the menu, enable or disable box art, and change CPU configuration.</desc>
+		<image>/home/pi/RetroPie/retropiemenu/icons/runcommand.png</image>
+		<playcount>1</playcount>
+		<lastplayed>20171207T151707</lastplayed>
+	</game>
+	<game>
+		<path>./escollections.sh</path>
+		<name>ES Collections</name>
+		<desc>This script will dynamically create the custom collections game list file.
+
+WARNING: This script only works if your ROMS are named according to the EmuMovies/HyperSpin/LaunchBox naming standard.
+
+When ran, it will scan your various roms folder looking for the games that belong to the collection chosen.  The script will create or update the Emulation Station custom gamelist file that is used by the collections menu items to show the games for it.
+
+You do not have to add the custom collection prior to running the script.
+
+Run the script and generate the collection of your choice then restart Emulation Station.
+
+After restarting, enable the new collection via the GUI.
+
+Press Start to bring up the menu
+Choose GAME COLLECTION SETTINGS
+Choose CUSTOM GAME COLLECTIONS
+
+Enable the new collection and exit back out to the main menu.  The new collection should now appear on the main menu.
+	</desc>
+		<image>./icons/escollections.png</image>
+		<playcount>7</playcount>
+		<lastplayed>20180108T142118</lastplayed>
+	</game>
+	<game>
+		<path>./removemedia.sh</path>
+		<name>Media Removal Utility</name>
+		<desc>This utility will remove any media files (boxart, cartart, snap, wheel) that exists that does not hvae a matching rom file.
+
+This utility will only work if you are using the following folder structure.
+
+boxart  - boxart images
+cartart - cartart image
+snap    - video snaps
+wheel   - marquee or wheel images
+
+You can select individual systems to remove excess media files.</desc>
+		<image>./icons/removemedia.png</image>
+		<playcount>9</playcount>
+		<lastplayed>20180123T121507</lastplayed>
+	</game>
+	<game>
+		<path>./launchingscreens.sh</path>
+		<name>Launching Screens</name>
+		<desc>This script will enable or disable the use of launching screens.
+
+Launching screensets are located here:
+/home/pi/RetroPie/LaunchingScreens
+
+Each set of launching screens you have located there must be in their own parent folder, with the individual emulator system folders containing the launching.png files underneath.
+</desc>
+		<image>./icons/launchingscreens.png</image>
+		<playcount>26</playcount>
+		<lastplayed>20180131T205253</lastplayed>
+	</game>
+	<game>
+		<path>./masosupdateallsystem.sh</path>
+		<name>MasOS ACTUALIZADOR</name>
+		<desc>Actualiza el setup instalador de MasOS o todo el sistema.
+
+Antes de ejecutar una actualizacion del sistema se recomienda encarecidamente que hagan un backup .img de su sistema actual.
+
+Con este script puede actualizar su sistema completo sin introducir nada de codigos.
+
+Con la actualizacion del sistema su aparato se reiniciara automaticamente al terminar...</desc>
+		<image>/home/pi/RetroPie/retropiemenu/icons/masosupdateallsystem.png</image>
+	</game>
+	<game>
+		<path>./moonlight.sh</path>
+		<name>Steam Moonlight config</name>
+		<desc>Configure steam Moonlight</desc>
+		<image>/home/pi/RetroPie/retropiemenu/icons/steam.png</image>
+	</game>
+	<game>
+		<path>./reference.sh</path>
+		<name>RetroPie Reference</name>
+		<desc>This is a quick reference for RetroPie information including Emulation Station, Attract Mode, RetroArch, and emulator ROM information.
+
+You can quickly see emulator ROM information such as file locations, BIOS information, and rom filename extensions.
+
+For the most up-to-date information, visit the official RetroPie wiki page.</desc>
+		<image>/home/pi/RetroPie/retropiemenu/icons/reference.png</image>
+	</game>
+	<game>
+		<path>./esthemes.rp</path>
+		<name>ES Themes</name>
+		<desc>Install, uninstall, or update EmulationStation themes. Most themes can be previewed at https://github.com/retropie/ RetroPie-Setup/wiki/themes.</desc>
+		<image>./icons/esthemes.png</image>
+		<playcount>6</playcount>
+		<lastplayed>20180421T195000</lastplayed>
+	</game>
+	<game>
+		<path>./raspiconfig.rp</path>
+		<name>Raspi-Config</name>
+		<desc>Change user password, boot options, internationalization, camera, add your pi to Rastrack, overclock, overscan, memory split, SSH and more.</desc>
+		<image>./icons/raspiconfig.png</image>
+		<playcount>1</playcount>
+		<lastplayed>20180423T092927</lastplayed>
+	</game>
+	<game>
+		<path>./overclock.sh</path>
+		<name>Overclock MasOS</name>
+		<desc>Overclock settings for RPI3 and RPI3B+.</desc>
+		<image>./icons/overclock.png</image>
+		<playcount>17</playcount>
+		<lastplayed>20180423T093333</lastplayed>
+	</game>
+	<game>
+		<path>./Expand to External Drive Disable.sh</path>
+		<name>Expand to External Drive Disable</name>
+		<image>./icons/Expand to External Drive Disable.png</image>
+		<playcount>1</playcount>
+		<lastplayed>20180426T224425</lastplayed>
+	</game>
+	<game>
+		<path>./Expand to External Drive Enable.sh</path>
+		<name>Expand to External Drive Enable</name>
+		<image>./icons/Expand to External Drive Enable.png</image>
+		<playcount>1</playcount>
+		<lastplayed>20180426T224444</lastplayed>
+	</game>
+	<game>
+		<path>./Shaders.sh</path>
+		<name>Shaders</name>
+		<desc>Retroach shaders.</desc>
+		<image>./icons/Shaders.png</image>
+		<playcount>8</playcount>
+		<lastplayed>20180430T143005</lastplayed>
+	</game>
+	<game>
+		<path>./retroarch.rp</path>
+		<name>Retroarch</name>
+		<desc>Launches the RetroArch GUI so you can change RetroArch options. Note: Changes will not be saved unless you have enabled the "Save Configuration On Exit" option.</desc>
+		<image>./icons/retroarch.png</image>
+		<playcount>1</playcount>
+		<lastplayed>20180502T085504</lastplayed>
+	</game>
+	<game>
+		<path>./bezels.sh</path>
+		<name>Retroarch Bezels</name>
+		<desc>This script will enable or disable the use of bezel overlays for Retroarch based emulators.
+
+Bezel overlays and config files are here:
+/opt/masos/configs/all/retroarch/overlay
+
+Retroarch config files are here:
+/opt/masos/configs/(emulator)/retroarch.cfg
+
+This script will update the retroarch config files to use the designated named bezel config file.
+</desc>
+		<image>./icons/bezels.png</image>
+		<playcount>32</playcount>
+		<lastplayed>20180506T211042</lastplayed>
+	</game>
+	<game>
+		<path>./videoloading.sh</path>
+		<name>RetroPie Video Loading screen</name>
+		<desc>Enable or Disable video loading screen.</desc>
+		<image>./icons/videoloading.png</image>
+		<playcount>1</playcount>
+		<lastplayed />
+	</game>
+	<game>
+		<path>./bezelproject.sh</path>
+		<name>Bezel Project</name>
+		<desc>Download and manage games bezels.</desc>
+		<image>./icons/bezelproject.png</image>
+		<playcount>2</playcount>
+		<lastplayed>20180511T135740</lastplayed>
+	</game>
+	<game>
+		<path>./rpsetup.rp</path>
+		<name>RetroPie Setup</name>
+		<desc>Install RetroPie from binary or source, install experimental packages, additional drivers, edit samba shares, custom scraper, as well as other RetroPie-related configurations.</desc>
+		<image>./icons/rpsetup.png</image>
+		<playcount>21</playcount>
+		<lastplayed>20180516T154834</lastplayed>
+	</game>
+	<game>
+		<path>./wifi.rp</path>
+		<name>WiFi</name>
+		<desc>Connect to or disconnect from a wifi network and configure wifi settings.</desc>
+		<image>./icons/wifi.png</image>
+		<playcount>3</playcount>
+		<lastplayed>20180625T230632</lastplayed>
+	</game>
+	<game>
+		<path>./splashscreen.rp</path>
+		<name>Splash Screens</name>
+		<desc>Enable or disable the splashscreen on RetroPie boot. Choose a splashscreen, download new splashscreens, and return splashscreen to default.</desc>
+		<image>./icons/splashscreen.png</image>
+		<playcount>4</playcount>
+		<lastplayed>20180626T080229</lastplayed>
+	</game>
+	<game>
+		<path>./systeminfo.sh</path>
+		<name>systeminfo</name>
+		<image>./icons/systeminfo.png</image>
+		<playcount>4</playcount>
+		<lastplayed>20180809T093814</lastplayed>
+	</game>
+	<game>
+		<path>./backgroundmusic.sh</path>
+		<name>Background Music</name>
+		<desc>The mpg123 music script has been installed in this build to play MP3/WAV files during menu navigation in both Emulation Station and Attract Mode.
+
+A special folder in /roms has been created called music.  This folder is used to place your MP3/WAV files into.  Once done, restart the system and they will begin automatically playing.
+
+Once you launch a game, the music will stop.  Upon exiting out of a game, the music will begin playing again.</desc>
+		<image>./icons/backgroundmusic.png</image>
+		<playcount>11</playcount>
+		<lastplayed>20180809T095051</lastplayed>
+	</game>
+	<game>
+		<path>./Eazy Hax Toolkit/Install Background Music.sh</path>
+		<name>Install Background Music</name>
+		<playcount>3</playcount>
+		<lastplayed>20180809T095308</lastplayed>
+	</game>
+</gameList>

@@ -12,7 +12,7 @@ infobox="${infobox}\n"
 
 dialog --backtitle "MasOS Script actualizador del sistema" \
 --title "MasOS Script actualizador del sistema (by mabedeep)" \
---msgbox "${infobox}" 25 110
+--msgbox "${infobox}" 35 110
 
 
 
