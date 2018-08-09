@@ -98,5 +98,5 @@ sudo mkdir /home/$user/MasOS/videoloadingscreens
 sudo mkdir /home/$user/MasOS/roms/music
 sudo chown -R $user:$user /home/$user/MasOS
 # ---------------- FIN DEL CODIGO ------------ #
-
+}
 main_menu

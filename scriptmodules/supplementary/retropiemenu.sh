@@ -77,7 +77,7 @@ function configure_retropiemenu()
         'RetroArch Net Play'
         'MasOS Setup'
         'Run Command Configuration'
-        'Mostrar tu IP'
+        # 'Mostrar tu IP'
         'Configurar Splash Screens'
 		# 'Videoloadind script'
         'WiFi agregar o editar config'
@@ -102,7 +102,6 @@ function configure_retropiemenu()
         'Habilite o deshabilite la pantalla secundaria en el inicio de MasOS. Elija una pantalla secundaria, descargue nuevas pantallas emergentes y regrese la pantalla secundaria a la predeterminada.'
         # 'Reproducier video mientras carga la rom.'
 		'Conéctese o desconecte de una red wifi y configure wifi.'
-		# 'En este maravilloso script creado por mabedeep puede actualizar el sistema operativo completo incluido el script MasOS-Setup o este ultimo solo individualmente.'
     )
 
     setESSystem "RetroPie" "retropie" "$rpdir" ".rp .sh" "sudo $scriptdir/masos_pkgs.sh retropiemenu launch %ROM% </dev/tty >/dev/tty" "" "retropie"

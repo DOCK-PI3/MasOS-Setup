@@ -1,6 +1,6 @@
 <?xml version="1.0"?>
 <gameList>
-<!-- 	<game>
+	<game>
 		<path>./+Start DOSBox.sh</path>
 		<name>+Start DOSbox</name>
 		<desc>Configure DOSBox PC Emulator</desc>
@@ -17,7 +17,7 @@
 		<name>+Start Scummvm</name>
 		<desc>Configure ScummVM Emulator </desc>
 		<image>/home/pi/RetroPie/retropiemenu/icons/+Start ScummVM.png</image>
-	</game> -->
+	</game>
 	<game>
 		<path>./audiosettings.rp</path>
 		<name>Audio</name>
@@ -121,18 +121,6 @@ Each set of launching screens you have located there must be in their own parent
 		<lastplayed>20180131T205253</lastplayed>
 	</game>
 	<game>
-		<path>./masosupdateallsystem.sh</path>
-		<name>MasOS ACTUALIZADOR</name>
-		<desc>Actualiza el setup instalador de MasOS o todo el sistema.
-
-Antes de ejecutar una actualizacion del sistema se recomienda encarecidamente que hagan un backup .img de su sistema actual.
-
-Con este script puede actualizar su sistema completo sin introducir nada de codigos.
-
-Con la actualizacion del sistema su aparato se reiniciara automaticamente al terminar...</desc>
-		<image>/home/pi/RetroPie/retropiemenu/icons/masosupdateallsystem.png</image>
-	</game>
-	<game>
 		<path>./moonlight.sh</path>
 		<name>Steam Moonlight config</name>
 		<desc>Configure steam Moonlight</desc>
@@ -145,13 +133,13 @@ Con la actualizacion del sistema su aparato se reiniciara automaticamente al ter
 
 You can quickly see emulator ROM information such as file locations, BIOS information, and rom filename extensions.
 
-For the most up-to-date information, visit the official MasOS wiki page.</desc>
+For the most up-to-date information, visit the official RetroPie wiki page.</desc>
 		<image>/home/pi/RetroPie/retropiemenu/icons/reference.png</image>
 	</game>
 	<game>
 		<path>./esthemes.rp</path>
 		<name>ES Themes</name>
-		<desc>Install, uninstall, or update EmulationStation themes. Most themes can be previewed at https://github.com/Moriggy .</desc>
+		<desc>Install, uninstall, or update EmulationStation themes. Most themes can be previewed at https://github.com/retropie/ RetroPie-Setup/wiki/themes.</desc>
 		<image>./icons/esthemes.png</image>
 		<playcount>6</playcount>
 		<lastplayed>20180421T195000</lastplayed>
@@ -221,7 +209,7 @@ This script will update the retroarch config files to use the designated named b
 	</game>
 	<game>
 		<path>./videoloading.sh</path>
-		<name>RetroPie Video Loading screen</name>
+		<name>MasOS VideoLoadingscreen</name>
 		<desc>Enable or Disable video loading screen.</desc>
 		<image>./icons/videoloading.png</image>
 		<playcount>1</playcount>
@@ -235,14 +223,6 @@ This script will update the retroarch config files to use the designated named b
 		<playcount>2</playcount>
 		<lastplayed>20180511T135740</lastplayed>
 	</game>
-<!-- 	<game>
-		<path>./rpsetup.rp</path>
-		<name>RetroPie Setup</name>
-		<desc>Install RetroPie from binary or source, install experimental packages, additional drivers, edit samba shares, custom scraper, as well as other RetroPie-related configurations.</desc>
-		<image>./icons/rpsetup.png</image>
-		<playcount>21</playcount>
-		<lastplayed>20180516T154834</lastplayed>
-	</game> -->
 	<game>
 		<path>./wifi.rp</path>
 		<name>WiFi</name>
@@ -254,7 +234,7 @@ This script will update the retroarch config files to use the designated named b
 	<game>
 		<path>./splashscreen.rp</path>
 		<name>Splash Screens</name>
-		<desc>Enable or disable the splashscreen on RetroPie boot. Choose a splashscreen, download new splashscreens, and return splashscreen to default.</desc>
+		<desc>Enable or disable the splashscreen on MasOS boot. Choose a splashscreen, download new splashscreens, and return splashscreen to default.</desc>
 		<image>./icons/splashscreen.png</image>
 		<playcount>4</playcount>
 		<lastplayed>20180626T080229</lastplayed>
@@ -283,5 +263,27 @@ Once you launch a game, the music will stop.  Upon exiting out of a game, the mu
 		<name>Install Background Music</name>
 		<playcount>3</playcount>
 		<lastplayed>20180809T095308</lastplayed>
+	</game>
+	<game>
+		<path>./masosupdateallsystem.sh</path>
+		<name>MasOS ACTUALIZADOR</name>
+		<desc>Actualiza el setup instalador de MasOS o todo el sistema.
+
+Antes de ejecutar una actualizacion del sistema se recomienda encarecidamente que hagan un backup .img de su sistema actual.
+
+Con este script puede actualizar su sistema completo sin introducir nada de codigos.
+
+Con la actualizacion del sistema su aparato se reiniciara automaticamente al terminar...</desc>
+		<image>./icons/masosupdateallsystem.png</image>
+		<playcount>1</playcount>
+		<lastplayed>20180809T235634</lastplayed>
+	</game>
+	<game>
+		<path>./rpsetup.rp</path>
+		<name>MasOS Setup</name>
+		<desc>Install MasOS from binary or source, install experimental packages, additional drivers, edit samba shares, custom scraper, as well as other MasOS-related configurations.</desc>
+		<image>./icons/rpsetup.png</image>
+		<playcount>22</playcount>
+		<lastplayed>20180809T235525</lastplayed>
 	</game>
 </gameList>
