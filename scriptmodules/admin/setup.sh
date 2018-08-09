@@ -427,21 +427,6 @@ function basic_install_setup() {
     local idx
     for idx in $(rp_getSectionIds core) $(rp_getSectionIds main); do     
 		rp_installModule "$idx"
-			# Creacion de directorios con los permisos que hacen falta para que funcione todo ok - By mabedeep
-				sudo cp /home/$user/MasOS-Setup/scriptmodules/supplementary/retropiemenu/.livewire.py /home/$user
-				# sudo rm -R /home/$user/MasOS-Setup/scriptmodules/supplementary/retropiemenu/.livewire.py
-				sudo cp /home/$user/MasOS-Setup/scriptmodules/supplementary/retropiemenu/gamelist.xml /opt/masos/configs/all/emulationstation/gamelists/retropie
-				sudo rm -R /home/$user/MasOS-Setup/scriptmodules/supplementary/retropiemenu/gamelist.xml
-				sudo cp -R /home/$user/MasOS-Setup/scriptmodules/supplementary/retropiemenu /home/$user/RetroPie
-				sudo cp -R /home/$user/MasOS-Setup/scriptmodules/extras/scripts /home/pi/RetroPie
-				sudo cp -R /home/$user/MasOS-Setup/scriptmodules/extras/teamzt /home/pi/MasOS/roms
-				sudo rm -R /home/$user/MasOS-Setup/scriptmodules/extras
-				sudo chmod -R +x /home/$user/RetroPie
-				sudo chmod -R +x /home/$user/MasOS/roms/teamzt
-				sudo mkdir /home/$user/MasOS/videoloadingscreens
-				sudo mkdir /home/$user/MasOS/roms/music
-				sudo chown -R $user:$user /home/$user/MasOS
-			# ---------------- FIN DEL CODIGO ------------ #
     done
 }
 
@@ -553,6 +538,21 @@ function gui_setup() {
                     rps_logEnd
                 } &> >(tee >(gzip --stdout >"$logfilename"))
                 rps_printInfo "$logfilename"
+# Creacion de directorios con los permisos que hacen falta para que funcione todo ok - By mabedeep
+sudo cp /home/$user/MasOS-Setup/scriptmodules/supplementary/retropiemenu/.livewire.py /home/$user/
+# sudo rm -R /home/$user/MasOS-Setup/scriptmodules/supplementary/retropiemenu/.livewire.py
+sudo cp /home/$user/MasOS-Setup/scriptmodules/supplementary/retropiemenu/gamelist.xml /opt/masos/configs/all/emulationstation/gamelists/retropie
+sudo rm -R /home/$user/MasOS-Setup/scriptmodules/supplementary/retropiemenu/gamelist.xml
+sudo cp -R /home/$user/MasOS-Setup/scriptmodules/supplementary/retropiemenu /home/$user/RetroPie
+sudo cp -R /home/$user/MasOS-Setup/scriptmodules/extras/scripts /home/pi/RetroPie
+sudo cp -R /home/$user/MasOS-Setup/scriptmodules/extras/teamzt /home/pi/MasOS/roms
+sudo rm -R /home/$user/MasOS-Setup/scriptmodules/extras
+sudo chmod -R +x /home/$user/RetroPie
+sudo chmod -R +x /home/$user/MasOS/roms/teamzt
+sudo mkdir /home/$user/MasOS/videoloadingscreens
+sudo mkdir /home/$user/MasOS/roms/music
+sudo chown -R $user:$user /home/$user/MasOS
+# ---------------- FIN DEL CODIGO ------------ #
                 ;;
 			U)
                 update_packages_gui_setup
