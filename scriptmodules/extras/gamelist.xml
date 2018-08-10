@@ -1,24 +1,6 @@
 <?xml version="1.0"?>
 <gameList>
 	<game>
-		<path>./+Start DOSBox.sh</path>
-		<name>+Start DOSbox</name>
-		<desc>Configure DOSBox PC Emulator</desc>
-		<image>/home/pi/RetroPie/retropiemenu/icons/DOSBox.png</image>
-	</game>
-	<game>
-		<path>./+Start rpix86.sh</path>
-		<name>+Start RPIx86</name>
-		<desc>Configure RPIx86 PC Emulator</desc>
-		<image>/home/pi/RetroPie/retropiemenu/icons/+Start rpix86.png</image>
-	</game>
-	<game>
-		<path>./+Start ScummVM.sh</path>
-		<name>+Start Scummvm</name>
-		<desc>Configure ScummVM Emulator </desc>
-		<image>/home/pi/RetroPie/retropiemenu/icons/+Start ScummVM.png</image>
-	</game>
-	<game>
 		<path>./audiosettings.rp</path>
 		<name>Audio</name>
 		<desc>Configure audio settings. Choose default of auto, 3.5mm jack, or HDMI. Mixer controls, and apply default settings.</desc>
@@ -125,16 +107,6 @@ Each set of launching screens you have located there must be in their own parent
 		<name>Steam Moonlight config</name>
 		<desc>Configure steam Moonlight</desc>
 		<image>/home/pi/RetroPie/retropiemenu/icons/steam.png</image>
-	</game>
-	<game>
-		<path>./reference.sh</path>
-		<name>MasOS Reference</name>
-		<desc>This is a quick reference for MasOS information including Emulation Station, Attract Mode, RetroArch, and emulator ROM information.
-
-You can quickly see emulator ROM information such as file locations, BIOS information, and rom filename extensions.
-
-For the most up-to-date information, visit the official RetroPie wiki page.</desc>
-		<image>/home/pi/RetroPie/retropiemenu/icons/reference.png</image>
 	</game>
 	<game>
 		<path>./esthemes.rp</path>
