@@ -6,6 +6,14 @@
 		<desc>Configure audio settings. Choose default of auto, 3.5mm jack, or HDMI. Mixer controls, and apply default settings.</desc>
 		<image>/home/pi/RetroPie/retropiemenu/icons/audiosettings.png</image>
 	</game>
+		<game>
+		<path>./attractmode.sh</path>
+		<name>Switch to Attract Mode</name>
+		<desc>Reboot into the Attract Mode front-end.</desc>
+		<image>./icons/AttractMode.png</image>
+		<playcount>2</playcount>
+		<lastplayed>20171206T201236</lastplayed>
+	</game>
 	<game>
 		<path>./bluetooth.rp</path>
 		<name>Bluetooth</name>
@@ -29,14 +37,6 @@
 		<name>RetroArch Net Play</name>
 		<desc>Set up RetroArch Netplay options, choose host or client, port, host IP, delay frames, and your nickname.</desc>
 		<image>/home/pi/RetroPie/retropiemenu/icons/retronetplay.png</image>
-	</game>
-	<game>
-		<path>./attractmode.sh</path>
-		<name>Switch to Attract Mode</name>
-		<desc>Reboot into the Attract Mode front-end.</desc>
-		<image>./icons/AttractMode.png</image>
-		<playcount>2</playcount>
-		<lastplayed>20171206T201236</lastplayed>
 	</game>
 	<game>
 		<path>./runcommand.rp</path>
@@ -237,15 +237,15 @@ Once you launch a game, the music will stop.  Upon exiting out of a game, the mu
 		<lastplayed>20180809T095308</lastplayed>
 	</game>
 	<game>
-		<path>./masosupdateallsystem.sh</path>
-		<name>MasOS ACTUALIZADOR</name>
-		<desc>Actualiza el setup instalador de MasOS o todo el sistema.
+		<path>./masosextrasall.sh</path>
+		<name>MasOS EXTRAs menu ES</name>
+		<desc>Muchas opciones mas para este menu con solo un clic.
 
-Antes de ejecutar una actualizacion del sistema se recomienda encarecidamente que hagan un backup .img de su sistema actual.
+Utilidades ,herramientas ,descargas de arts y mucho mas.
 
-Con este script puede actualizar su sistema completo sin introducir nada de codigos.
+Tambien puede actualizar el MasOS-Script sin introducir nada de codigos.
 
-Con la actualizacion del sistema su aparato se reiniciara automaticamente al terminar...</desc>
+Con la actualizacion termine su aparato se reiniciara automaticamente...</desc>
 		<image>./icons/masosupdateallsystem.png</image>
 		<playcount>1</playcount>
 		<lastplayed>20180809T235634</lastplayed>

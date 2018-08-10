@@ -27,27 +27,26 @@ function main_menu() {
             --ok-label OK --cancel-label Exit \
             --menu "Que accion te gustaria realizar?" 25 75 20 \
             1 "Actualizar MasOS-Setup script" \
-			2 "Reparar menu iconos emulationstaion" \
+			2 "MasOS EXTRAS para el menu de emulationstaion" \
             2>&1 > /dev/tty)
 
         case "$choice" in
             1) masossetup_update  ;;
-			2) masosmenu_repair  ;;
+			2) masosmenu_extras  ;;
             *)  break ;;
         esac
     done
 }
 #########################################################################
-# funcion actualizacion para MasOS Setup script y sistema completo  ;-) #
+# funcion actualizacion para MasOS Setup script  ;-) #
 function masossetup_update() {                                          #
-dialog --infobox "...Actualizando script MasOS-Setup..." 30 75 ; sleep 3
+dialog --infobox "...Actualizando script MasOS-Setup..." 30 55 ; sleep 3
 cd 
 	sudo rm -R MasOS-Setup/
 		git clone --depth=1 https://github.com/DOCK-PI3/MasOS-Setup.git
 	sudo chmod -R +x MasOS-Setup/
-dialog --infobox " MasOS-Setup script se actualizo correctamente!...\n\nEn 10seg se reinicia el sistema..espere por favor!" 60 75 ; sleep 10
-sudo reboot
-clear
+dialog --infobox " MasOS-Setup script se actualizo correctamente!...\n\nEn 5seg se reinicia el sistema..espere por favor!" 60 75 ; sleep 5
+sudo shutdown -r now
 }
 
 # function masosystem_upgrade() {                                                                                       
@@ -84,8 +83,8 @@ clear
 
 #########################################################################
 # Funcion EXTRAs Menu ES para MasOS ;-) #
-function masosmenu_repair() {                                          #
-dialog --infobox " MasOS opciones Extras para el menu de ES..." 30 75 ; sleep 5
+function masosmenu_extras() {                                          #
+dialog --infobox " MasOS opciones Extras para el menu de ES..." 30 55 ; sleep 5
 sudo cp /home/$user/MasOS-Setup/scriptmodules/extras/gamelist.xml /opt/masos/configs/all/emulationstation/gamelists/retropie/
 # sudo rm -R /home/$user/MasOS-Setup/scriptmodules/supplementary/retropiemenu/gamelist.xml
 sudo cp -R /home/$user/MasOS-Setup/scriptmodules/supplementary/retropiemenu/* /home/$user/RetroPie/retropiemenu/
@@ -98,7 +97,8 @@ sudo chmod -R +x /opt/
 sudo mkdir /home/$user/MasOS/videoloadingscreens
 sudo mkdir /home/$user/MasOS/roms/music
 sudo chown -R $user:$user /home/$user/MasOS
-dialog --infobox " Las opciones Extras estan instaladas,reiniciando el sistema en 10seg ..." 30 75 ; sleep 5
+dialog --infobox " Las opciones Extras estan instaladas,reiniciando el sistema en 10seg ..." 30 55 ; sleep 10
+sudo shutdown -r now
 # sudo chown -R $user:$user /opt/masos/configs
 # ---------------- FIN DEL CODIGO ------------ #
 }
