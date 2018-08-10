@@ -562,7 +562,9 @@ function gui_setup() {
                 ;;
             R)
                 dialog --defaultno --yesno "¿Estás seguro de que quieres reiniciar?\n\nTen en cuenta que si reinicias cuando se está ejecutando Emulation Station, perderás los cambios en los metadatos." 22 76 2>&1 >/dev/tty || continue
-                reboot_setup
+                sudo cp -R /home/$user/MasOS-Setup/scriptmodules/supplementary/retropiemenu/masosupdateallsystem.sh /home/$user/RetroPie/retropiemenu/
+                sudo chmod +x /home/$user/RetroPie/retropiemenu/masosupdateallsystem.sh
+				reboot_setup
                 ;;
         esac
     done
