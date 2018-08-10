@@ -92,7 +92,7 @@ function install_bgm() {
         sleep 3
         fi
         wget https://raw.githubusercontent.com/Shakz76/Eazy-Hax-RetroPie-Toolkit/master/cfg/Toggle%20Background%20Music.sh -O /home/pi/RetroPie/retropiemenu/Toggle\ Background\ Music.sh
-        cd $HOME && wget https://raw.githubusercontent.com/Shakz76/Eazy-Hax-RetroPie-Toolkit/master/cfg/.livewire.py -O /home/pi/.livewire.py
+        cd $HOME && cp /home/$user/MasOS-Setup/scriptmodules/supplementary/retropiemenu/.livewire.py -O /home/pi/.livewire.py
         sudo perl -i.bak -pe '$_ = qq[(sudo python /home/pi/.livewire.py) &\n$_] if $_ eq qq[exit 0\n]'  /etc/rc.local
         if [ ! -d "$HOME/MasOS/roms/music" ]; then
                 echo -e "\n\n\n    Music directory is missing. Downloading some starter music for you.\n\n\n"
