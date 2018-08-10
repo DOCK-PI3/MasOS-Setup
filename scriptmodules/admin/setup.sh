@@ -469,7 +469,7 @@ function uninstall_setup()
     done
     rm -rfv "$rootdir"
     dialog --defaultno --yesno "¿Desea eliminar todos los archivos de $datadir ? Esto incluye todas las ROM instaladas, los archivos de la BIOS y las pantallas personalizadas. " 22 76 2>&1 >/dev/tty && rm -rfv "$datadir"
-    if dialog --defaultno --yesno "¿Desea eliminar todos los paquetes de sistema de los que depende MasOS?\n\nADVERTENCIA: esto eliminara paquetes como SDL incluso si se instalaron antes de instalar MasOS - tambien eliminara cualquier configuracion de paquete - como los de /etc/ samba para Samba. \n\ nSi no esta seguro, elija No (seleccionado por defecto)." 22 76 2>&1 >/dev/tty; then
+    if dialog --defaultno --yesno "¿Desea eliminar todos los paquetes de sistema de los que depende MasOS?\n\nADVERTENCIA: esto eliminara paquetes como SDL incluso si se instalaron antes de instalar MasOS - tambien eliminara cualquier configuracion de paquete - como los de /etc/ samba para Samba. \n\nSi no esta seguro, elija No (seleccionado por defecto)." 22 76 2>&1 >/dev/tty; then
         clear
         # remove all dependencies
         for idx in "${__mod_idx[@]}"; do
@@ -505,8 +505,8 @@ function gui_setup() {
             C "Configuracion / herramientas"
             "C Configuracion y herramientas. Configure samba y cualquier paquete que haya instalado que tenga opciones de configuracion adicionales tambien aparecera aqui."
 
-            X "Desinstalar MasOS"
-            "X Desinstalar completamente MasOS."
+            # X "Desinstalar MasOS"
+            # "X Desinstalar completamente MasOS."
 
             R "Realice un reinicio"
             "R Reinicia tu máquina, reinicie su maquina para que las medificaciones tengan efecto."
@@ -541,9 +541,9 @@ function gui_setup() {
                 } &> >(tee >(gzip --stdout >"$logfilename"))
                 rps_printInfo "$logfilename"
                 ;;
-			# U)
-                # update_packages_gui_setup
-                # ;;
+			U)
+                update_packages_gui_setup
+                ;;
             P)
                 packages_gui_setup
                 ;;

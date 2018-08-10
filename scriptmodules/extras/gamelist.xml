@@ -195,25 +195,30 @@ This script will update the retroarch config files to use the designated named b
 		<playcount>2</playcount>
 		<lastplayed>20180511T135740</lastplayed>
 	</game>
-	<game>
+<!-- 	<game>
 		<path>./wifi.rp</path>
 		<name>WiFi</name>
 		<desc>Connect to or disconnect from a wifi network and configure wifi settings.</desc>
 		<image>./icons/wifi.png</image>
 		<playcount>3</playcount>
 		<lastplayed>20180625T230632</lastplayed>
-	</game>
-	<game>
+	</game> -->
+<!-- 	<game>
 		<path>./splashscreen.rp</path>
 		<name>Splash Screens</name>
 		<desc>Enable or disable the splashscreen on MasOS boot. Choose a splashscreen, download new splashscreens, and return splashscreen to default.</desc>
 		<image>./icons/splashscreen.png</image>
 		<playcount>4</playcount>
 		<lastplayed>20180626T080229</lastplayed>
-	</game>
+	</game> -->
 	<game>
 		<path>./systeminfo.sh</path>
-		<name>systeminfo</name>
+		<name>MasOS Info</name>
+		<desc>Aqui puede ver informacion sobre el sistema importante para usted,como por ejemplo....
+		
+		
+La IP actual de su dispositivo, temperaturas de CPU - GPU ,ademas puede ver informacion sobre sus discos de almacenamiento.
+</desc>
 		<image>./icons/systeminfo.png</image>
 		<playcount>4</playcount>
 		<lastplayed>20180809T093814</lastplayed>

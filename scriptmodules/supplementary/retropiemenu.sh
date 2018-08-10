@@ -56,7 +56,7 @@ function configure_retropiemenu()
         'retronetplay'
         'rpsetup'
         'runcommand'
-        'showip'
+        # 'showip'
         'splashscreen'
 		# 'videoloading'
         'wifi'
@@ -81,7 +81,6 @@ function configure_retropiemenu()
         'Configurar Splash Screens'
 		# 'Videoloadind script'
         'WiFi agregar o editar config'
-		# 'Actualizar Sistema MasOS'
     )
 
     local descs=(
@@ -98,7 +97,7 @@ function configure_retropiemenu()
         'Configure las opciones de RetroArch Netplay, elija host o cliente, puerto, IP de host, marcos de demora y su apodo.'
         'Instale MasOS desde binario o fuente, instale paquetes experimentales, controladores adicionales, edite recursos compartidos de samba, raspador personalizado, así como otras configuraciones relacionadas con MasOS.'
         'Change what appears on the runcommand screen. Enable or disable the menu, enable or disable box art, and change CPU configuration.'
-        'Muestra su dirección IP actual, así como otra información proporcionada por el comando, "ip addr show."'
+        # 'Muestra su dirección IP actual, así como otra información proporcionada por el comando, "ip addr show."'
         'Habilite o deshabilite la pantalla secundaria en el inicio de MasOS. Elija una pantalla secundaria, descargue nuevas pantallas emergentes y regrese la pantalla secundaria a la predeterminada.'
         # 'Reproducier video mientras carga la rom.'
 		'Conéctese o desconecte de una red wifi y configure wifi.'
