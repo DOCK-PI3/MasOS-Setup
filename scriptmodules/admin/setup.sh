@@ -497,19 +497,19 @@ function gui_setup() {
         options=(
             I "MasOS Instalacion basica" "Esto instalara todos los paquetes de Core y Main, lo que da una instalacion basica de MasOS.\nPosteriormente, se pueden instalar mas paquetes desde las secciones Opcional y Experimental. Si hay binarios disponibles, se usaran, o los paquetes se construiran desde la fuente, lo que llevara mas tiempo."
 
-			U "Update" "U Actualiza MasOS-Setup y todos los paquetes instalados actualmente. También permitira actualizar paquetes de sistema operativo. Si hay binarios disponibles, se usaran; de lo contrario, los paquetes se compilaran a partir de la fuente."
+			# U "Update" "U Actualiza MasOS-Setup y todos los paquetes instalados actualmente. También permitira actualizar paquetes de sistema operativo. Si hay binarios disponibles, se usaran; de lo contrario, los paquetes se compilaran a partir de la fuente."
 			
             P "Administrar paquetes"
             "P Instalar / Quitar y configurar los diversos componentes de MasOS, incluidos emuladores, ports y controladores."
 
             C "Configuracion / herramientas"
-            "C Configuracion y herramientas. Cualquier paquete que haya instalado que tenga opciones de configuracion adicionales tambien aparecera aqui."
+            "C Configuracion y herramientas. Configure samba y cualquier paquete que haya instalado que tenga opciones de configuracion adicionales tambien aparecera aqui."
 
             X "Desinstalar MasOS"
             "X Desinstalar completamente MasOS."
 
             R "Realice un reinicio"
-            "R Reinicia tu máquina."
+            "R Reinicia tu máquina, reinicie su maquina para que las medificaciones tengan efecto."
         )
 
         choice=$("${cmd[@]}" "${options[@]}" 2>&1 >/dev/tty)
@@ -541,9 +541,9 @@ function gui_setup() {
                 } &> >(tee >(gzip --stdout >"$logfilename"))
                 rps_printInfo "$logfilename"
                 ;;
-			U)
-                update_packages_gui_setup
-                ;;
+			# U)
+                # update_packages_gui_setup
+                # ;;
             P)
                 packages_gui_setup
                 ;;
