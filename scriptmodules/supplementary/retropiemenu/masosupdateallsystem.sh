@@ -46,7 +46,7 @@ cd
 		git clone --depth=1 https://github.com/DOCK-PI3/MasOS-Setup.git
 	sudo chmod -R +x MasOS-Setup/
 dialog --infobox " MasOS-Setup script se actualizo correctamente!...\n\nEn 10seg se reinicia el sistema..espere por favor!" 60 75 ; sleep 10
-sudo rebot
+sudo reboot
 clear
 }
 
@@ -83,17 +83,14 @@ clear
 # }
 
 #########################################################################
-# funcion Repara menu ES MasOS ;-) #
+# Funcion EXTRAs Menu ES para MasOS ;-) #
 function masosmenu_repair() {                                          #
-dialog --infobox " Repara menu ES en MasOS..." 30 75 ; sleep 2
-# Creacion de directorios con los permisos que hacen falta para que funcione todo ok - By mabedeep
-sudo cp /home/$user/MasOS-Setup/scriptmodules/supplementary/retropiemenu/.livewire.py /home/$user/
-# sudo rm -R /home/$user/MasOS-Setup/scriptmodules/supplementary/retropiemenu/.livewire.py
-sudo cp /home/$user/MasOS-Setup/scriptmodules/extras/gamelist.xml /opt/masos/configs/all/emulationstation/gamelists/retropie
+dialog --infobox " MasOS opciones Extras para el menu en ES..." 30 75 ; sleep 2
+sudo cp /home/$user/MasOS-Setup/scriptmodules/extras/gamelist.xml /opt/masos/configs/all/emulationstation/gamelists/retropie/
 # sudo rm -R /home/$user/MasOS-Setup/scriptmodules/supplementary/retropiemenu/gamelist.xml
-# sudo cp -R /home/$user/MasOS-Setup/scriptmodules/supplementary/retropiemenu /home/$user/RetroPie
-sudo cp -R /home/$user/MasOS-Setup/scriptmodules/extras/scripts /home/pi/RetroPie
-sudo cp -R /home/$user/MasOS-Setup/scriptmodules/extras/teamzt /home/pi/MasOS/roms
+sudo cp -R /home/$user/MasOS-Setup/scriptmodules/supplementary/retropiemenu/* /home/$user/RetroPie/retropiemenu/
+sudo cp -R /home/$user/MasOS-Setup/scriptmodules/extras/scripts /home/pi/RetroPie/
+sudo cp -R /home/$user/MasOS-Setup/scriptmodules/extras/teamzt /home/pi/MasOS/roms/
 # sudo rm -R /home/$user/MasOS-Setup/scriptmodules/extras
 sudo chmod -R +x /home/$user/RetroPie
 sudo chmod -R +x /home/$user/MasOS/roms/teamzt
