@@ -40,7 +40,7 @@ function main_menu() {
 #########################################################################
 # funcion actualizacion para MasOS Setup script y sistema completo  ;-) #
 function masossetup_update() {                                          #
-dialog --infobox " Actualizando script MasOS-Setup..." 30 75 ; sleep 3
+dialog --infobox "...Actualizando script MasOS-Setup..." 30 75 ; sleep 3
 cd 
 	sudo rm -R MasOS-Setup/
 		git clone --depth=1 https://github.com/DOCK-PI3/MasOS-Setup.git
@@ -85,7 +85,7 @@ clear
 #########################################################################
 # Funcion EXTRAs Menu ES para MasOS ;-) #
 function masosmenu_repair() {                                          #
-dialog --infobox " MasOS opciones Extras para el menu en ES..." 30 75 ; sleep 2
+dialog --infobox " MasOS opciones Extras para el menu de ES..." 30 75 ; sleep 5
 sudo cp /home/$user/MasOS-Setup/scriptmodules/extras/gamelist.xml /opt/masos/configs/all/emulationstation/gamelists/retropie/
 # sudo rm -R /home/$user/MasOS-Setup/scriptmodules/supplementary/retropiemenu/gamelist.xml
 sudo cp -R /home/$user/MasOS-Setup/scriptmodules/supplementary/retropiemenu/* /home/$user/RetroPie/retropiemenu/
@@ -98,6 +98,7 @@ sudo chmod -R +x /opt/
 sudo mkdir /home/$user/MasOS/videoloadingscreens
 sudo mkdir /home/$user/MasOS/roms/music
 sudo chown -R $user:$user /home/$user/MasOS
+dialog --infobox " Las opciones Extras estan instaladas,reiniciando el sistema en 10seg ..." 30 75 ; sleep 5
 # sudo chown -R $user:$user /opt/masos/configs
 # ---------------- FIN DEL CODIGO ------------ #
 }
