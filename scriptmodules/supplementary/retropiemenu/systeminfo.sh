@@ -22,19 +22,19 @@ fi
 infobox= ""
 infobox="${infobox}\n$(date)\n"
 infobox="${infobox}_______________________________________________________\n\n"
-infobox="${infobox}Temperature\n\n"
+infobox="${infobox}Temperatura\n\n"
 infobox="${infobox}CPU: ${cpuTempC} C/${cpuTempF} F\n"
 infobox="${infobox}GPU: ${gpuTempC} C/${gpuTempF} F\n"
 infobox="${infobox}\n"
 sdcard1=`df -h |head -2 |grep -v G|awk '{print $2, $3, $4}'`
 sdcard2=`df -h |head -2 |grep -v Size|awk '{print $2, $3, $4}'`
-infobox="${infobox}SD Card Information\n\n"
+infobox="${infobox}SD Card Informacion\n\n"
 infobox="${infobox}${sdcard1}\n"
 infobox="${infobox}${sdcard2}\n"
 infobox="${infobox}\n"
-infobox="${infobox}IP Address Information\n\n"
+infobox="${infobox}Su IP actual\n\n"
 infobox="${infobox}$(ip route get 8.8.8.8 2>/dev/null | awk '{print $NF; exit}')\n"
 
 dialog --backtitle "System Information" \
---title "RetroPie System Information" \
+--title "MasOS System Information" \
 --msgbox "${infobox}" 25 60
