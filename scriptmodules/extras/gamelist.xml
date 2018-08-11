@@ -191,18 +191,6 @@ La IP actual de su dispositivo, temperaturas de CPU - GPU ,ademas puede ver info
 		<lastplayed>20180809T093814</lastplayed>
 	</game>
 	<game>
-		<path>./backgroundmusic.sh</path>
-		<name>Background Music</name>
-		<desc>The mpg123 music script has been installed in this build to play MP3/WAV files during menu navigation in both Emulation Station and Attract Mode.
-
-A special folder in /roms has been created called music.  This folder is used to place your MP3/WAV files into.  Once done, restart the system and they will begin automatically playing.
-
-Once you launch a game, the music will stop.  Upon exiting out of a game, the music will begin playing again.</desc>
-		<image>./icons/backgroundmusic.png</image>
-		<playcount>11</playcount>
-		<lastplayed>20180809T095051</lastplayed>
-	</game>
-	<game>
 		<path>./Eazy Hax Toolkit/Install Background Music.sh</path>
 		<name>Install Background Music</name>
 		<playcount>3</playcount>
