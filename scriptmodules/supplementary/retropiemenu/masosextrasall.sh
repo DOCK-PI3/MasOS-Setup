@@ -42,11 +42,11 @@ function main_menu() {
 function masossetup_update() {                                          #
 dialog --infobox "...Actualizando script MasOS-Setup..." 30 55 ; sleep 3
 cd 
-	sudo rm -R MasOS-Setup/
+	sudo rm -R /home/pi/MasOS-Setup/
 		git clone --depth=1 https://github.com/DOCK-PI3/MasOS-Setup.git
-	sudo chmod -R +x MasOS-Setup/
+	sudo chmod -R +x /home/pi/MasOS-Setup/
 dialog --infobox " MasOS-Setup script se actualizo correctamente!...\n\nEn 5seg se reinicia el sistema..espere por favor!" 60 75 ; sleep 5
-# sudo shutdown -r now
+# sudo shutdown -r now 
 }
 
 # function masosystem_upgrade() {                                                                                       
@@ -56,11 +56,11 @@ dialog --infobox " MasOS-Setup script se actualizo correctamente!...\n\nEn 5seg 
 # #######################################################################################################################
 # ############################## by mabedeep ############################################################################
 # cd
-# sudo mkdir /home/$user/backup-temp 
-# sudo mkdir /home/$user/backup-temp/profile
-# sudo chown -R $user:$user /home/$user/backup-temp/
-# # sudo cp -R /opt/masos/configs/all /home/$user/backup-temp/all_backup/
-# sudo cp -R /home/$user/*.* /home/$user/backup-temp/profile/
+# sudo mkdir /home//home/pi/backup-temp 
+# sudo mkdir /home//home/pi/backup-temp/profile
+# sudo chown -R /home/pi:/home/pi /home//home/pi/backup-temp/
+# # sudo cp -R /opt/masos/configs/all /home//home/pi/backup-temp/all_backup/
+# sudo cp -R /home//home/pi/*.* /home//home/pi/backup-temp/profile/
 # # funcion para actualizacion del sistema completo MasOS ,tambien se actualiza MasOS-Setup script
 	# sudo rm -R MasOS-Setup/
 		# git clone --depth=1 https://github.com/DOCK-PI3/MasOS-Setup.git
@@ -72,10 +72,10 @@ dialog --infobox " MasOS-Setup script se actualizo correctamente!...\n\nEn 5seg 
 # # # Restaurando backup con toda la configuracion del usuario despues de actualizar el sistema completo 	              #
 # # #######################################################################################################################
 # dialog --infobox "Restaurando configuracion de usuario, buscando backup ..." 30 75 ; sleep 3
-# sudo cp -R /home/$user/backup-temp/all_backup/* /opt/masos/configs/all
+# sudo cp -R /home//home/pi/backup-temp/all_backup/* /opt/masos/configs/all
 # sudo chmod -R +x /opt/masos
 # sudo chown -R root:root /opt
-# sudo chown -R $user:$user /opt/masos/configs
+# sudo chown -R /home/pi:/home/pi /opt/masos/configs
 # # dialog --infobox " La copia de seguridad se restauro correctamente ,reiniciando el sistema en 10s " 30 75 ; sleep 10
 # sudo shutdown -r now
 # done
@@ -84,24 +84,24 @@ dialog --infobox " MasOS-Setup script se actualizo correctamente!...\n\nEn 5seg 
 #########################################################################
 # Funcion EXTRAs Menu ES para MasOS ;-) #
 function masosmenu_extras() {                                          #
-dialog --infobox " MasOS opciones Extras para el menu de ES..." 30 55 ; sleep 5
+dialog --infobox " MasOS opciones Extras en rpi para el menu de ES..." 30 55 ; sleep 5
 cd
-sudo cp $user/MasOS-Setup/scriptmodules/extras/gamelist.xml /opt/masos/configs/all/emulationstation/gamelists/retropie
-# sudo rm -R /home/$user/MasOS-Setup/scriptmodules/supplementary/retropiemenu/gamelist.xml
-sudo cp -R $user/MasOS-Setup/scriptmodules/supplementary/retropiemenu/*.sh $user/RetroPie/retropiemenu
-sudo cp -R $user/MasOS-Setup/scriptmodules/supplementary/retropiemenu/icons $user/RetroPie/retropiemenu
-sudo cp -R $user/MasOS-Setup/scriptmodules/extras/scripts $user/RetroPie/
-sudo cp -R $user/MasOS-Setup/scriptmodules/extras/teamzt $user/MasOS/roms/
-# sudo rm -R /home/$user/MasOS-Setup/scriptmodules/extras
-sudo chmod -R +x $user/RetroPie
-sudo chmod -R +x $user/MasOS/roms/teamzt
+cp /home/pi/MasOS-Setup/scriptmodules/extras/gamelist.xml /opt/masos/configs/all/emulationstation/gamelists/retropie
+# sudo rm -R /home//home/pi/MasOS-Setup/scriptmodules/supplementary/retropiemenu/gamelist.xml
+sudo cp -R /home/pi/MasOS-Setup/scriptmodules/supplementary/retropiemenu/*.sh /home/pi/RetroPie/retropiemenu
+sudo cp -R /home/pi/MasOS-Setup/scriptmodules/supplementary/retropiemenu/icons /home/pi/RetroPie/retropiemenu
+sudo cp -R /home/pi/MasOS-Setup/scriptmodules/extras/scripts /home/pi/RetroPie/
+sudo cp -R /home/pi/MasOS-Setup/scriptmodules/extras/teamzt /home/pi/MasOS/roms/
+# sudo rm -R /home//home/pi/MasOS-Setup/scriptmodules/extras
+sudo chmod -R +x /home/pi/RetroPie
+sudo chmod -R +x /home/pi/MasOS/roms/teamzt
 sudo chmod -R +x /opt/
-sudo mkdir $user/MasOS/videoloadingscreens
-sudo mkdir $user/MasOS/roms/music
-sudo chown -R $user:$user /home/$user/MasOS
+sudo mkdir /home/pi/MasOS/videoloadingscreens
+sudo mkdir /home/pi/MasOS/roms/music
+sudo chown -R pi:pi /home/pi/MasOS
 dialog --infobox " Las opciones Extras estan instaladas,reiniciando el sistema en 5seg ..." 30 55 ; sleep 5
 # reboot
-# sudo chown -R $user:$user /opt/masos/configs
+# sudo chown -R /home/pi:/home/pi /opt/masos/configs
 # ---------------- FIN DEL CODIGO ------------ #
 }
 main_menu
