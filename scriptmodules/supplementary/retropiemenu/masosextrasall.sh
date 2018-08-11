@@ -86,19 +86,19 @@ dialog --infobox " MasOS-Setup script se actualizo correctamente!...\n\nEn 5seg 
 function masosmenu_extras() {                                          #
 dialog --infobox " MasOS opciones Extras para el menu de ES..." 30 55 ; sleep 5
 cd
-sudo cp /home/$user/MasOS-Setup/scriptmodules/extras/gamelist.xml /opt/masos/configs/all/emulationstation/gamelists/retropie/
+sudo cp /home/$user/MasOS-Setup/scriptmodules/extras/gamelist.xml /opt/masos/configs/all/emulationstation/gamelists/retropie
 # sudo rm -R /home/$user/MasOS-Setup/scriptmodules/supplementary/retropiemenu/gamelist.xml
-sudo cp -R /home/$user/MasOS-Setup/scriptmodules/supplementary/retropiemenu/*.sh /home/$user/RetroPie/retropiemenu/
-sudo cp -R /home/$user/MasOS-Setup/scriptmodules/supplementary/retropiemenu/icons/*.png /home/$user/RetroPie/retropiemenu/icons/
+sudo cp -R /home/$user/MasOS-Setup/scriptmodules/supplementary/retropiemenu/*.sh /home/$user/RetroPie/retropiemenu
+sudo cp -R /home/$user/MasOS-Setup/scriptmodules/supplementary/retropiemenu/icons /home/$user/RetroPie/retropiemenu
 sudo cp -R /home/$user/MasOS-Setup/scriptmodules/extras/scripts /home/$user/RetroPie/
 sudo cp -R /home/$user/MasOS-Setup/scriptmodules/extras/teamzt /home/$user/MasOS/roms/
 # sudo rm -R /home/$user/MasOS-Setup/scriptmodules/extras
-sudo chmod -R +x /home/$user/RetroPie/
-sudo chmod -R +x /home/$user/MasOS/roms/teamzt/
+sudo chmod -R +x /home/$user/RetroPie
+sudo chmod -R +x /home/$user/MasOS/roms/teamzt
 sudo chmod -R +x /opt/
-sudo mkdir /home/$user/MasOS/videoloadingscreens/
-sudo mkdir /home/$user/MasOS/roms/music/
-sudo chown -R $user:$user /home/$user/MasOS/
+sudo mkdir /home/$user/MasOS/videoloadingscreens
+sudo mkdir /home/$user/MasOS/roms/music
+sudo chown -R $user:$user /home/$user/MasOS
 dialog --infobox " Las opciones Extras estan instaladas,reiniciando el sistema en 5seg ..." 30 55 ; sleep 5
 # reboot
 # sudo chown -R $user:$user /opt/masos/configs
