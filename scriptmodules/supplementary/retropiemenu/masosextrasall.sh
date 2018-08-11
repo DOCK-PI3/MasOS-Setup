@@ -43,7 +43,7 @@ function masossetup_update() {                                          #
 dialog --infobox "...Actualizando script MasOS-Setup..." 30 55 ; sleep 3
 cd 
 	sudo rm -R /home/pi/MasOS-Setup/
-		git clone --depth=1 https://github.com/DOCK-PI3/MasOS-Setup.git
+		sudo git clone --depth=1 https://github.com/DOCK-PI3/MasOS-Setup.git
 	sudo chmod -R +x /home/pi/MasOS-Setup/
 dialog --infobox " MasOS-Setup script se actualizo correctamente!...\n\nEn 5seg se reinicia el sistema..espere por favor!" 60 75 ; sleep 5
 sudo shutdown -r now 
@@ -86,16 +86,16 @@ sudo shutdown -r now
 function masosmenu_extras() {                                          #
 dialog --infobox " MasOS opciones Extras en rpi para el menu de ES..." 30 55 ; sleep 5
 cd
-cp /home/pi/MasOS-Setup/scriptmodules/extras/gamelist.xml /opt/masos/configs/all/emulationstation/gamelists/retropie
+sudo cp /home/pi/MasOS-Setup/scriptmodules/extras/gamelist.xml /opt/masos/configs/all/emulationstation/gamelists/retropie
 # sudo rm -R /home//home/pi/MasOS-Setup/scriptmodules/supplementary/retropiemenu/gamelist.xml
-sudo cp -R /home/pi/MasOS-Setup/scriptmodules/supplementary/retropiemenu/*.sh /home/pi/RetroPie/retropiemenu
-sudo cp -R /home/pi/MasOS-Setup/scriptmodules/supplementary/retropiemenu/icons /home/pi/RetroPie/retropiemenu
-sudo cp -R /home/pi/MasOS-Setup/scriptmodules/extras/scripts /home/pi/RetroPie/
-cp -R /home/pi/MasOS-Setup/scriptmodules/extras/teamzt /home/pi/MasOS/roms/
+sudo cp -R /home/pi/MasOS-Setup/scriptmodules/supplementary/retropiemenu/* /home/pi/RetroPie/retropiemenu
+# sudo cp -R /home/pi/MasOS-Setup/scriptmodules/supplementary/retropiemenu/icons /home/pi/RetroPie/retropiemenu
+sudo cp -R /home/pi/MasOS-Setup/scriptmodules/extras/scripts /home/pi/RetroPie
+sudo cp -R /home/pi/MasOS-Setup/scriptmodules/extras/teamzt /home/pi/MasOS/roms
 # sudo rm -R /home//home/pi/MasOS-Setup/scriptmodules/extras
 sudo chmod -R +x /home/pi/RetroPie
 sudo chmod -R +x /home/pi/MasOS/roms/teamzt
-sudo chmod -R +x /opt/
+sudo chmod -R +x /opt
 sudo mkdir /home/pi/MasOS/videoloadingscreens
 sudo mkdir /home/pi/MasOS/roms/music
 sudo chown -R pi:pi /home/pi/MasOS
