@@ -91,10 +91,8 @@ sudo cp /home/pi/MasOS-Setup/scriptmodules/extras/gamelist.xml /opt/masos/config
 sudo cp -R /home/pi/MasOS-Setup/scriptmodules/supplementary/retropiemenu/* /home/pi/RetroPie/retropiemenu/
 # sudo cp -R /home/pi/MasOS-Setup/scriptmodules/supplementary/retropiemenu/icons /home/pi/RetroPie/retropiemenu
 sudo cp -R /home/pi/MasOS-Setup/scriptmodules/extras/scripts /home/pi/RetroPie/
-sudo cp -R /home/pi/MasOS-Setup/scriptmodules/extras/teamzt /home/pi/MasOS/roms/
 # sudo rm -R /home//home/pi/MasOS-Setup/scriptmodules/extras
 sudo chmod -R +x /home/pi/RetroPie
-sudo chmod -R +x /home/pi/MasOS/roms/teamzt
 sudo chmod -R +x /opt
 sudo mkdir /home/pi/MasOS/videoloadingscreens
 sudo mkdir /home/pi/MasOS/roms/music
