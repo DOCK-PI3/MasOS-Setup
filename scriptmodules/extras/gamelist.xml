@@ -6,14 +6,14 @@
 		<desc>Configure audio settings. Choose default of auto, 3.5mm jack, or HDMI. Mixer controls, and apply default settings.</desc>
 		<image>/home/pi/RetroPie/retropiemenu/icons/audiosettings.png</image>
 	</game>
-		<game>
+<!-- 		<game>
 		<path>./attractmode.sh</path>
 		<name>Switch to Attract Mode</name>
 		<desc>Reboot into the Attract Mode front-end.</desc>
 		<image>./icons/AttractMode.png</image>
 		<playcount>2</playcount>
 		<lastplayed>20171206T201236</lastplayed>
-	</game>
+	</game> -->
 	<game>
 		<path>./bluetooth.rp</path>
 		<name>Bluetooth</name>
@@ -45,31 +45,6 @@
 		<image>/home/pi/RetroPie/retropiemenu/icons/runcommand.png</image>
 		<playcount>1</playcount>
 		<lastplayed>20171207T151707</lastplayed>
-	</game>
-	<game>
-		<path>./escollections.sh</path>
-		<name>ES Collections</name>
-		<desc>This script will dynamically create the custom collections game list file.
-
-WARNING: This script only works if your ROMS are named according to the EmuMovies/HyperSpin/LaunchBox naming standard.
-
-When ran, it will scan your various roms folder looking for the games that belong to the collection chosen.  The script will create or update the Emulation Station custom gamelist file that is used by the collections menu items to show the games for it.
-
-You do not have to add the custom collection prior to running the script.
-
-Run the script and generate the collection of your choice then restart Emulation Station.
-
-After restarting, enable the new collection via the GUI.
-
-Press Start to bring up the menu
-Choose GAME COLLECTION SETTINGS
-Choose CUSTOM GAME COLLECTIONS
-
-Enable the new collection and exit back out to the main menu.  The new collection should now appear on the main menu.
-	</desc>
-		<image>./icons/escollections.png</image>
-		<playcount>7</playcount>
-		<lastplayed>20180108T142118</lastplayed>
 	</game>
 	<game>
 		<path>./removemedia.sh</path>
@@ -109,14 +84,6 @@ Each set of launching screens you have located there must be in their own parent
 		<image>/home/pi/RetroPie/retropiemenu/icons/steam.png</image>
 	</game>
 	<game>
-		<path>./esthemes.rp</path>
-		<name>ES Themes</name>
-		<desc>Install, uninstall, or update EmulationStation themes. Most themes can be previewed at https://github.com/retropie/ RetroPie-Setup/wiki/themes.</desc>
-		<image>./icons/esthemes.png</image>
-		<playcount>6</playcount>
-		<lastplayed>20180421T195000</lastplayed>
-	</game>
-	<game>
 		<path>./raspiconfig.rp</path>
 		<name>Raspi-Config</name>
 		<desc>Change user password, boot options, internationalization, camera, add your pi to Rastrack, overclock, overscan, memory split, SSH and more.</desc>
@@ -139,20 +106,20 @@ Each set of launching screens you have located there must be in their own parent
 		<playcount>1</playcount>
 		<lastplayed>20180426T224425</lastplayed>
 	</game>
+		<game>
+		<path>./esthemes.rp</path>
+		<name>ES Themes</name>
+		<desc>Install, uninstall, or update EmulationStation themes. Most themes can be previewed at https://github.com/Moriggy/ </desc>
+		<image>./icons/esthemes.png</image>
+		<playcount>6</playcount>
+		<lastplayed>20180421T195000</lastplayed>
+	</game>
 	<game>
 		<path>./Expand to External Drive Enable.sh</path>
 		<name>Expand to External Drive Enable</name>
 		<image>./icons/Expand to External Drive Enable.png</image>
 		<playcount>1</playcount>
 		<lastplayed>20180426T224444</lastplayed>
-	</game>
-	<game>
-		<path>./Shaders.sh</path>
-		<name>Shaders</name>
-		<desc>Retroach shaders.</desc>
-		<image>./icons/Shaders.png</image>
-		<playcount>8</playcount>
-		<lastplayed>20180430T143005</lastplayed>
 	</game>
 	<game>
 		<path>./retroarch.rp</path>
