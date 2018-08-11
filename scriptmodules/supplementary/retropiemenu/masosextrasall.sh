@@ -5,16 +5,16 @@ rp_module_section=""
 infobox= ""
 infobox="${infobox}_______________________________________________________\n\n"
 infobox="${infobox}\n"
-infobox="${infobox}MasOS Script para actualizar todos los paquetes del sistema incluido el MasOS-Setup script. \n\n"
+infobox="${infobox}\nMasOS Herramientas extras para el menu y actualizador de script base. \n\n"
 infobox="${infobox}\n"
 infobox="${infobox}\n"
 infobox="${infobox}\n"
 infobox="${infobox}\n"
-infobox="${infobox}Herramienta para reparar iconos en emulationstation del menu y nombres de la lista.\n"
+infobox="${infobox}Se recomienda su instalacion....\n"
 infobox="${infobox}\n"
 
-dialog --backtitle "MasOS Herramienta, mas actualizador del setup" \
---title "MasOS actualizador de Script (by mabedeep)" \
+dialog --backtitle "MasOS Herramientas extras y actualizador de script base" \
+--title "MasOS EXTRAS y actualizador de Script (by mabedeep)" \
 --msgbox "${infobox}" 35 110
 
 
