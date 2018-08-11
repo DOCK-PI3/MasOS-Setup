@@ -3,8 +3,8 @@
 #IFS=';'
 
 # Welcome
- dialog --backtitle "RetroPie Utility" --title "RetroPie Launching Screens Utility Menu" \
-    --yesno "\nRetroPie Launching Screens Utility menu.\n\nThis utility will let you quickly install or remove launching/loading screens.\n\nLaunching screens are image files that are shown for a few seconds after you initally launch a game.\n\nThey are shown for a few seconds and then the game will start.\n\n\n\nDo you want to proceed?" \
+ dialog --backtitle "MasOS Utility" --title "MasOS Launching Screens Utility Menu" \
+    --yesno "\nMasOS Launching Screens Utility menu.\n\nThis utility will let you quickly install or remove launching/loading screens.\n\nLaunching screens are image files that are shown for a few seconds after you initally launch a game.\n\nThey are shown for a few seconds and then the game will start.\n\n\n\nDo you want to proceed?" \
     20 80 2>&1 > /dev/tty \
     || exit
 
@@ -33,7 +33,7 @@ function main_menu() {
 
 function install_screens() {
 
-ls /home/pi/RetroPie/LaunchingScreens |grep -v README > /tmp/displays
+ls /home/pi/MasOS/LaunchingScreens |grep -v README > /tmp/displays
 
 let i=0 # define counting variable
 W=() # define working array
@@ -42,7 +42,7 @@ while read -r line; do # process file by file
     W+=($i "$line")
 done < <(cat /tmp/displays)
 
-CONFDISP=$(dialog --title "RetroPie Launching Screens Utility" --menu "Current available launching screenset.  Chose one to install." 24 80 17 "${W[@]}" 3>&2 2>&1 1>&3)
+CONFDISP=$(dialog --title "MasOS Launching Screens Utility" --menu "Current available launching screenset.  Chose one to install." 24 80 17 "${W[@]}" 3>&2 2>&1 1>&3)
 
 clear
 
@@ -52,7 +52,7 @@ else
 rm /opt/retropie/configs/*/launching.png
 rm /opt/retropie/configs/*/launching.jpg
 currentdisplay=`sed -n ${CONFDISP}p /tmp/displays`
-cp -r /home/pi/RetroPie/LaunchingScreens/${currentdisplay}/* /opt/retropie/configs
+cp -r /home/pi/MasOS/LaunchingScreens/${currentdisplay}/* /opt/retropie/configs
 fi
 
 }
@@ -76,15 +76,15 @@ function install_launching_screens() {
         theme="default"
         repo="default"
     fi
-    rm -rf "/home/pi/RetroPie/LaunchingScreens/$theme"
-    mkdir -p "/home/pi/RetroPie/LaunchingScreens"
-    git clone "https://github.com/$repo/launchingscreens-$theme.git" "/home/pi/RetroPie/LaunchingScreens/$theme"
+    rm -rf "/home/pi/MasOS/LaunchingScreens/$theme"
+    mkdir -p "/home/pi/MasOS/LaunchingScreens"
+    git clone "https://github.com/$repo/launchingscreens-$theme.git" "/home/pi/MasOS/LaunchingScreens/$theme"
 }
 
 function uninstall_launching_screens() {
     local theme="$1"
-    if [[ -d "/home/pi/RetroPie/LaunchingScreens/$theme" ]]; then
-        rm -rf "/home/pi/RetroPie/LaunchingScreens/$theme"
+    if [[ -d "/home/pi/MasOS/LaunchingScreens/$theme" ]]; then
+        rm -rf "/home/pi/MasOS/LaunchingScreens/$theme"
     fi
 }
 
@@ -127,7 +127,7 @@ function download_screens() {
             theme=($theme)
             repo="${theme[0]}"
             theme="${theme[1]}"
-            if [[ -d "/home/pi/RetroPie/LaunchingScreens/$theme" ]]; then
+            if [[ -d "/home/pi/MasOS/LaunchingScreens/$theme" ]]; then
                 status+=("i")
                 options+=("$i" "Update or Uninstall $theme (installed)")
                 installed_themes+=("$theme $repo")
@@ -137,7 +137,7 @@ function download_screens() {
             fi
             ((i++))
         done
-        local cmd=(dialog --default-item "$default" --backtitle "$__backtitle" --menu "RetroPie Launching Screens Downloader - Choose an option" 22 76 16)
+        local cmd=(dialog --default-item "$default" --backtitle "$__backtitle" --menu "MasOS Launching Screens Downloader - Choose an option" 22 76 16)
         local choice=$("${cmd[@]}" "${options[@]}" 2>&1 >/dev/tty)
         default="$choice"
         [[ -z "$choice" ]] && break
@@ -154,7 +154,7 @@ function download_screens() {
                 repo="${theme[0]}"
                 theme="${theme[1]}"
 #                if [[ "${status[choice]}" == "i" ]]; then
-                if [[ -d "/home/pi/RetroPie/LaunchingScreens/$theme" ]]; then
+                if [[ -d "/home/pi/MasOS/LaunchingScreens/$theme" ]]; then
                     options=(1 "Update $theme" 2 "Uninstall $theme")
                     cmd=(dialog --backtitle "$__backtitle" --menu "Choose an option for the launching screens pack" 12 40 06)
                     local choice=$("${cmd[@]}" "${options[@]}" 2>&1 >/dev/tty)

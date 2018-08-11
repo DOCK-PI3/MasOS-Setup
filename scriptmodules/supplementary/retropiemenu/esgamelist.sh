@@ -338,15 +338,15 @@ function cleanup() {
 function install_gamelist() {
   dialog --infobox "...processing..." 3 20 ; sleep 2
   system=$1
-  gamelist_dir="/home/pi/RetroPie/roms/${system}"
-  sourcepath_dir="/home/pi/RetroPie/ESGamelists/${system}"
+  gamelist_dir="/home/pi/MasOS/roms/${system}"
+  sourcepath_dir="/home/pi/MasOS/ESGamelists/${system}"
  
   let i=0 # define counting variable
   W=() # define working array
   while read -r line; do # process file by file
     let i=$i+1
     W+=($i "$line")
-  done < <(cat /home/pi/RetroPie/ESGamelists/romextensions.txt)
+  done < <(cat /home/pi/MasOS/ESGamelists/romextensions.txt)
 
   CONFDISP=$(dialog --title "Emulation Station Gamelist Utility" --menu "Current available rom filename extensions.  Chose one to use." 24 80 17 "${W[@]}" 3>&2 2>&1 1>&3)
 
@@ -355,7 +355,7 @@ function install_gamelist() {
   if [ -z $CONFDISP ]; then
    return
   else
-    romext=`sed -n ${CONFDISP}p /home/pi/RetroPie/ESGamelists/romextensions.txt`
+    romext=`sed -n ${CONFDISP}p /home/pi/MasOS/ESGamelists/romextensions.txt`
     cp "${sourcepath_dir}/gamelist.xml" "${gamelist_dir}/gamelist.xml"
     sed -i "s/[a-z][a-z][a-z]<\/path>/${romext}<\/path>/g" "${gamelist_dir}/gamelist.xml"
   fi
@@ -365,8 +365,8 @@ function install_gamelist() {
 function install_gamelist_arcade() {
   dialog --infobox "...processing..." 3 20 ; sleep 2
   system=$1
-  gamelist_dir="/home/pi/RetroPie/roms/${system}"
-  sourcepath_dir="/home/pi/RetroPie/ESGamelists/arcade_media"
+  gamelist_dir="/home/pi/MasOS/roms/${system}"
+  sourcepath_dir="/home/pi/MasOS/ESGamelists/arcade_media"
  
   cp "${sourcepath_dir}/gamelist.xml" "${gamelist_dir}/gamelist.xml"
 
@@ -375,7 +375,7 @@ function install_gamelist_arcade() {
 function clean_gamelist() {
   dialog --infobox "...processing..." 3 20 ; sleep 2
   system=$1
-  gamelist_dir="/home/pi/RetroPie/roms/${system}"
+  gamelist_dir="/home/pi/MasOS/roms/${system}"
   original_gamelist="${gamelist_dir}/gamelist.xml"
   clean_gamelist="${gamelist_dir}/gamelist.xml-clean"
 
