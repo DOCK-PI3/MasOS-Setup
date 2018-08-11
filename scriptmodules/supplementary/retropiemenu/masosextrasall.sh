@@ -86,12 +86,12 @@ sudo shutdown -r now
 function masosmenu_extras() {                                          #
 dialog --infobox " MasOS opciones Extras en rpi para el menu de ES..." 30 55 ; sleep 5
 cd
-sudo cp /home/pi/MasOS-Setup/scriptmodules/extras/gamelist.xml /opt/masos/configs/all/emulationstation/gamelists/retropie
+sudo cp /home/pi/MasOS-Setup/scriptmodules/extras/gamelist.xml /opt/masos/configs/all/emulationstation/gamelists/retropie/
 # sudo rm -R /home//home/pi/MasOS-Setup/scriptmodules/supplementary/retropiemenu/gamelist.xml
-sudo cp -R /home/pi/MasOS-Setup/scriptmodules/supplementary/retropiemenu/* /home/pi/RetroPie/retropiemenu
+sudo cp -R /home/pi/MasOS-Setup/scriptmodules/supplementary/retropiemenu/* /home/pi/RetroPie/retropiemenu/
 # sudo cp -R /home/pi/MasOS-Setup/scriptmodules/supplementary/retropiemenu/icons /home/pi/RetroPie/retropiemenu
-sudo cp -R /home/pi/MasOS-Setup/scriptmodules/extras/scripts /home/pi/RetroPie
-sudo cp -R /home/pi/MasOS-Setup/scriptmodules/extras/teamzt /home/pi/MasOS/roms
+sudo cp -R /home/pi/MasOS-Setup/scriptmodules/extras/scripts /home/pi/RetroPie/
+sudo cp -R /home/pi/MasOS-Setup/scriptmodules/extras/teamzt /home/pi/MasOS/roms/
 # sudo rm -R /home//home/pi/MasOS-Setup/scriptmodules/extras
 sudo chmod -R +x /home/pi/RetroPie
 sudo chmod -R +x /home/pi/MasOS/roms/teamzt
