@@ -46,7 +46,7 @@ cd
 		git clone --depth=1 https://github.com/DOCK-PI3/MasOS-Setup.git
 	sudo chmod -R +x MasOS-Setup/
 dialog --infobox " MasOS-Setup script se actualizo correctamente!...\n\nEn 5seg se reinicia el sistema..espere por favor!" 60 75 ; sleep 5
-sudo shutdown -r now
+# sudo shutdown -r now
 }
 
 # function masosystem_upgrade() {                                                                                       
@@ -100,7 +100,7 @@ sudo mkdir /home/$user/MasOS/videoloadingscreens/
 sudo mkdir /home/$user/MasOS/roms/music/
 sudo chown -R $user:$user /home/$user/MasOS/
 dialog --infobox " Las opciones Extras estan instaladas,reiniciando el sistema en 5seg ..." 30 55 ; sleep 5
-reboot
+# reboot
 # sudo chown -R $user:$user /opt/masos/configs
 # ---------------- FIN DEL CODIGO ------------ #
 }
