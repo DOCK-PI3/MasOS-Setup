@@ -69,9 +69,7 @@ You can select individual systems to remove excess media files.</desc>
 		<desc>This script will enable or disable the use of launching screens.
 
 Launching screensets are located here:
-/home/pi/RetroPie/LaunchingScreens
-
-Each set of launching screens you have located there must be in their own parent folder, with the individual emulator system folders containing the launching.png files underneath.
+Each set of ../LaunchingScreens you have located there must be in their own parent folder, with the individual emulator system folders containing the launching.png files underneath.
 </desc>
 		<image>./icons/launchingscreens.png</image>
 		<playcount>26</playcount>
