@@ -536,13 +536,13 @@ function gui_setup() {
                     rps_logStart
                     basic_install_setup
 					# ALGUNOS EXTRAS PARA MASOS ....
-					sudo cp /home/$user/MasOS-Setup/scriptmodules/supplementary/retropiemenu/masosextrasall.sh /home/$user/RetroPie/retropiemenu/
-                    sudo apt-get install -y libboost-all-dev
-					sudo chmod +x /home/$user/RetroPie/retropiemenu/masosextrasall.sh
+					sudo cp /home/pi/MasOS-Setup/scriptmodules/supplementary/retropiemenu/masosextrasall.sh /home/pi/RetroPie/retropiemenu/
+					sudo chmod +x /home/pi/RetroPie/retropiemenu/masosextrasall.sh
 					sudo killall emulationstation
-					sudo cp -R /home/$user/MasOS-Setup/scriptmodules/extras/es_idioma/resources /opt/masos/supplementary/emulationstation/
-					sudo cp -R /home/$user/MasOS-Setup/scriptmodules/extras/es_idioma/locale /opt/masos/supplementary/emulationstation/
-					sudo cp /home/$user/MasOS-Setup/scriptmodules/extras/es_idioma/emulationstaion /opt/masos/supplementary/emulationstation/
+					sudo cp -R /home/pi/MasOS-Setup/scriptmodules/extras/es_idioma/resources/ /opt/masos/supplementary/emulationstation/
+					sudo cp -R /home/pi/MasOS-Setup/scriptmodules/extras/es_idioma/locale/ /opt/masos/supplementary/emulationstation/
+					sudo cp /home/pi/MasOS-Setup/scriptmodules/extras/es_idioma/emulationstaion /opt/masos/supplementary/emulationstation/
+					sudo apt-get install -y libboost-all-dev
 					# export LANGUAGE=es_ES.UTF-8
 					# export LANG=es_ES.UTF-8
 					# export LC_ALL=es_ES.UTF-8
