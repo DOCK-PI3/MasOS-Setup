@@ -1,0 +1,1057 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: masos-emulationstation\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2018-08-14 01:29+0000\n"
+"Language: es_ES.UTF-8\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n > 1);\n"
+
+msgid "FILENAME, ASCENDING"
+msgstr "NOMBRE DE ARCHIVO, ↑"
+
+msgid "FILENAME, DESCENDING"
+msgstr "NOMBRE DE ARCHIVO, ↓"
+
+msgid "RATING, ASCENDING"
+msgstr "CLASIFICACIÓN, ↑"
+
+msgid "RATING, DESCENDING"
+msgstr "CLASIFICACIÓN, ↓"
+
+msgid "TIMES PLAYED, ASCENDING"
+msgstr "PARTIDAS JUGADAS ↑"
+
+msgid "TIMES PLAYED, DESCENDING"
+msgstr "PARTIDAS JUGADAS ↓"
+
+msgid "LAST PLAYED, ASCENDING"
+msgstr "ÚLTIMA PARTIDA ↑"
+
+msgid "LAST PLAYED, DESCENDING"
+msgstr "ÚLTIMO JUGADO, ↓"
+
+msgid "NUMBER PLAYERS, ASCENDING"
+msgstr "NÚMERO DE JUGADORES, ↑"
+
+msgid "NUMBER PLAYERS, DESCENDING"
+msgstr "NÚMERO DE JUGADORES, ↓"
+
+msgid "RELEASE DATE, ASCENDING"
+msgstr "FECHA DE LANZAMIENTO ↑"
+
+msgid "RELEASE DATE, DESCENDING"
+msgstr "FECHA DE LANZAMIENTO ↓"
+
+msgid "GENRE, ASCENDING"
+msgstr "GENERO ↑"
+
+msgid "GENRE, DESCENDING"
+msgstr "GENERO ↓"
+
+msgid "DEVELOPER, ASCENDING"
+msgstr "DESARROLLADOR ↑"
+
+msgid "DEVELOPER, DESCENDING"
+msgstr "DESARROLLADOR ↓"
+
+msgid "PUBLISHER, ASCENDING"
+msgstr "EDITOR ↑"
+
+msgid "PUBLISHER, DESCENDING"
+msgstr "EDITOR ↓"
+
+msgid "SYSTEM, ASCENDING"
+msgstr "SISTEMA ↑"
+
+msgid "SYSTEM, DESCENDING"
+msgstr "SISTEMA ↓"
+
+msgid "MENU"
+msgstr "MENU"
+
+msgid ""
+"The selected UI mode has nothing to show,\n"
+" returning to UI mode: FULL"
+msgstr ""
+"El modo UI seleccionado no tiene nada que mostrar,\n"
+"volviendo al modo UI: COMPLETO"
+
+msgid "OK"
+msgstr "OK"
+
+msgid "CONFIGURATION"
+msgstr "CONFIGURACION"
+
+msgid "{1} GAME AVAILABLE"
+msgid_plural "{1} GAMES AVAILABLE"
+msgstr[0] "{1} JUEGO DISPONIBLE"
+msgstr[1] "{1} JUEGOS DISPONIBLES"
+
+msgid "CHOOSE"
+msgstr "ESCOGER"
+
+msgid "SELECT"
+msgstr "SELECCIONAR"
+
+msgid "RANDOM"
+msgstr "ALEATORIO"
+
+msgid "LAUNCH SCREENSAVER"
+msgstr "SCREENSAVER"
+
+msgid "Full"
+msgstr "COMPLETO"
+
+msgid "Kiosk"
+msgstr "QUIOSCO"
+
+msgid "Kid"
+msgstr "NIÑO"
+
+msgid "RATING:"
+msgstr "CLASIFICACIÓN:"
+
+msgid "RELEASED:"
+msgstr "PUBLICADO:"
+
+msgid "DEVELOPER:"
+msgstr "DESARROLLADOR:"
+
+msgid "PUBLISHER:"
+msgstr "EDITOR:"
+
+msgid "GENRE:"
+msgstr "GENERO:"
+
+msgid "PLAYERS:"
+msgstr "JUGADORES:"
+
+msgid "LAST PLAYED:"
+msgstr "ÚLTIMO PARTIDA:"
+
+msgid "TIMES PLAYED:"
+msgstr "PARTIDAS JUGADAS:"
+
+msgid "unknown"
+msgstr "desconocido"
+
+msgid "<No Entries Found>"
+msgstr "<Entradas no encontradas>"
+
+msgid "SYSTEM"
+msgstr "SISTEMA"
+
+msgid "LAUNCH"
+msgstr "LANZAR"
+
+msgid "BACK"
+msgstr "ATRAS"
+
+msgid "OPTIONS"
+msgstr "OPCIONES"
+
+msgid "collections"
+msgstr "colecciones"
+
+msgid "all"
+msgstr "todos"
+
+msgid "ALL GAMES"
+msgstr "TODOS LOS JUEGOS"
+
+msgid "recent"
+msgstr "reciente"
+
+msgid "LAST PLAYED"
+msgstr "ÚLTIMA PARTIDA"
+
+msgid "favorites"
+msgstr "favoritos"
+
+msgid "FAVORITES"
+msgstr "FAVORITOS"
+
+msgid "COLLECTIONS"
+msgstr "COLECCIONES"
+
+msgid "New Collection"
+msgstr "Nueva Coleccion"
+
+msgid "Editing the '{1}' Collection. Add/remove games with Y."
+msgstr "Editar la '{1}' Coleccion. Agregar/eliminar juegos con la Y."
+
+msgid "Finished editing the '{1}' Collection."
+msgstr "Terminó de editar la colección '{1}'"
+
+msgid "Added '{1}' to '{2}'"
+msgstr "Agregó '{1}' a '{2}'"
+
+msgid "Removed '{1}' from '{2}'"
+msgstr "Se eliminó '{1}' de '{2}'"
+
+msgid "This collection is empty."
+msgstr "Esta colección está vacía."
+
+msgid "None"
+msgstr "Nada"
+
+msgid "Various"
+msgstr "Varios"
+
+msgid " among other titles."
+msgstr " entre otros títulos."
+
+msgid "This collection contains {1} games, including {2}"
+msgstr "Esta colección contiene {1} juegos, incluidos {2}"
+
+msgid "NAME"
+msgstr "NOMBRE"
+
+msgid "ENTER GAME NAME"
+msgstr "INGRESAR NOMBRE DEL JUEGO"
+
+msgid "SORTNAME"
+msgstr "ORDENAR X NOMBRE"
+
+msgid "ENTER GAME SORT NAME"
+msgstr "INTRODUCIR EL NOMBRE DE LA CLASE"
+
+msgid "DESCRIPTION"
+msgstr "DESCRIPCIÓN"
+
+msgid "ENTER DESCRIPTION"
+msgstr "INTRODUCIR DESCRIPCIÓN"
+
+msgid "IMAGE"
+msgstr "IMAGEN"
+
+msgid "ENTER PATH TO IMAGE"
+msgstr "INGRESAR RUTA A IMAGEN"
+
+msgid "VIDEO"
+msgstr "VIDEO"
+
+msgid "ENTER PATH TO VIDEO"
+msgstr "INGRESAR RUTA A VIDEO"
+
+msgid "MARQUEE"
+msgstr "MARQUEE"
+
+msgid "ENTER PATH TO MARQUEE"
+msgstr "INGRESAR RUTA A MARQUEE"
+
+msgid "THUMBNAIL"
+msgstr "MINIATURA"
+
+msgid "ENTER PATH TO THUMBNAIL"
+msgstr "INGRESAR RUTA A MINIATURA"
+
+msgid "RATING"
+msgstr "CLASIFICACIÓN"
+
+msgid "ENTER RATING"
+msgstr "INGRESAR CLASIFICACIÓN"
+
+msgid "RELEASE DATE"
+msgstr "FECHA DE LANZAMIENTO"
+
+msgid "ENTER RELEASE DATE"
+msgstr "INGRESAR FECHA DE LANZAMIENTO"
+
+msgid "DEVELOPER"
+msgstr "DESARROLLADOR"
+
+msgid "ENTER GAME DEVELOPER"
+msgstr "INGRESAR DESARROLLADOR DE JUEGOS"
+
+msgid "PUBLISHER"
+msgstr "EDITOR"
+
+msgid "ENTER GAME PUBLISHER"
+msgstr "INGRESAR EDITOR DE JUEGOS"
+
+msgid "GENRE"
+msgstr "GENERO"
+
+msgid "ENTER GAME GENRE"
+msgstr "INGRESAR GENERO DE JUEGOS"
+
+msgid "PLAYERS"
+msgstr "JUGADORES"
+
+msgid "ENTER NUMBER OF PLAYERS"
+msgstr "NUMERO DE JUGADORES"
+
+msgid "FAVORITE"
+msgstr "FAVORITO"
+
+msgid "ENTER FAVORITE OFF/ON"
+msgstr "INGRESAR FAVORITO OFF/ON"
+
+msgid "HIDDEN"
+msgstr "OCULTO"
+
+msgid "ENTER HIDDEN OFF/ON"
+msgstr "OCULTO OFF/ON"
+
+msgid "KIDGAME"
+msgstr "JUEGO DE NIÑOS"
+
+msgid "ENTER KIDGAME OFF/ON"
+msgstr "JUEGO DE NIÑOS OFF/ON"
+
+msgid "PLAY COUNT"
+msgstr "REPRODUCCIONES"
+
+msgid "ENTER NUMBER OF TIMES PLAYED"
+msgstr "INTRODUZCA EL NÚMERO DE VECES JUGADO"
+
+msgid "ENTER LAST PLAYED DATE"
+msgstr "INGRESAR ÚLTIMA FECHA DE JUEGO"
+
+msgid "CLOSE"
+msgstr "CERRAR"
+
+msgid "SCRAPE NOW"
+msgstr "SCRAPEAR AHORA"
+
+msgid "SCRAPE THESE GAMES"
+msgstr "SCRAPEAR ESTOS JUEGOS"
+
+msgid "All Games"
+msgstr "Todos los juegos"
+
+msgid "Only missing image"
+msgstr "Solo sin imagenes"
+
+msgid "FILTER"
+msgstr "FILTRAR"
+
+msgid "SCRAPE THESE SYSTEMS"
+msgstr "SCRAPEAR ESTOS SISTEMAS"
+
+msgid "SYSTEMS"
+msgstr "SYSTEMAS"
+
+msgid "USER DECIDES ON CONFLICTS"
+msgstr "EL USUARIO DECIDE SOBRE CONFLICTOS?"
+
+msgid "START"
+msgstr "INICIAR"
+
+msgid ""
+"WARNING: SOME OF YOUR SELECTED SYSTEMS DO NOT HAVE A PLATFORM SET. RESULTS "
+"MAY BE EVEN MORE INACCURATE THAN USUAL!\n"
+"CONTINUE ANYWAY?"
+msgstr ""
+"ADVERTENCIA: ALGUNOS DE SUS SISTEMAS SELECCIONADOS NO TIENEN UN JUEGO DE "
+"PLATAFORMA. LOS RESULTADOS PUEDEN SER AÚN MÁS RAROS QUE EL USUAL!\n"
+"QUIERE CONTINUAR DE TODAS MANERAS?"
+
+msgid "YES"
+msgstr "SI"
+
+msgid "NO"
+msgstr "NO"
+
+msgid "NO GAMES FIT THAT CRITERIA."
+msgstr "NINGÚN JUEGO SE ADAPTA A ESE CRITERIO."
+
+msgid "MAIN MENU"
+msgstr "MasOS MENU"
+
+msgid "SCRAPER"
+msgstr "SCRAPEAR"
+
+msgid "SOUND SETTINGS"
+msgstr "OPCIONES DE SONIDO"
+
+msgid "UI SETTINGS"
+msgstr "UI OPCIONES"
+
+msgid "GAME COLLECTION SETTINGS"
+msgstr "CONFIGURACIÓN DE LA COLECCIÓN DEL JUEGO"
+
+msgid "OTHER SETTINGS"
+msgstr "OTRAS OPCIONES"
+
+msgid "CONFIGURE INPUT"
+msgstr "CONFIGURAR CONTROLES"
+
+msgid "QUIT"
+msgstr "ABANDONAR"
+
+msgid "SCRAPE FROM"
+msgstr "SCRAPEAR DESDE"
+
+msgid "SCRAPE RATINGS"
+msgstr "SCRAPER CALIFICACIONES"
+
+msgid "SYSTEM VOLUME"
+msgstr "VOLUMEN DEL SISTEMA"
+
+msgid "AUDIO DEVICE"
+msgstr "DISPOSITIVO DE AUDIO"
+
+msgid "PCM"
+msgstr "PCM"
+
+msgid "Speaker"
+msgstr "Altavoz"
+
+msgid "Master"
+msgstr "Maestro"
+
+msgid "ENABLE NAVIGATION SOUNDS"
+msgstr "ACTIVAR SONIDOS DE NAVEGACIÓN"
+
+msgid "ENABLE VIDEO AUDIO"
+msgstr "ACTIVAR AUDIO EN LOS VIDEOS"
+
+msgid "OMX PLAYER AUDIO DEVICE"
+msgstr "DISPOSITIVO OMX AUDIO PLAYER"
+
+msgid "local"
+msgstr "LOCAL"
+
+msgid "hdmi"
+msgstr "HDMI"
+
+msgid "both"
+msgstr "BOTH"
+
+msgid "UI MODE"
+msgstr "MODO INTERFACE"
+
+msgid ""
+"You are changing the UI to a restricted mode:\n"
+"{1}\n"
+"This will hide most menu-options to prevent changes to the system.\n"
+"To unlock and return to the full UI, enter this code: \n"
+"\"{2}\"\n"
+"\n"
+"Do you want to proceed?"
+msgstr ""
+"Está cambiando la interfaz de usuario a un modo restringido:\n"
+"{1}\n"
+"Esto ocultará la mayoría de las opciones de menú para evitar cambios en el "
+"sistema. Para desbloquear y regresar a la IU completa, ingrese este "
+"código: \n"
+"\"{2}\"\n"
+"\n"
+"Quieres proceder?"
+
+msgid "SCREENSAVER SETTINGS"
+msgstr "AJUSTES PROTECCIÓN DE PANTALLA"
+
+msgid "QUICK SYSTEM SELECT"
+msgstr "SELECCIÓN RÁPIDA DEL SISTEMA"
+
+msgid "CAROUSEL TRANSITIONS"
+msgstr "TRANSICIONES DE CARRUSEL"
+
+msgid "TRANSITION STYLE"
+msgstr "ESTILO DE TRANSICIÓN"
+
+msgid "fade"
+msgstr "FADE"
+
+msgid "slide"
+msgstr "SLIDE"
+
+msgid "instant"
+msgstr "INSTANTANEO"
+
+msgid "THEME SET"
+msgstr "TEMA"
+
+msgid "GAMELIST VIEW STYLE"
+msgstr "ESTILO EN LISTA DE JUEGOS"
+
+msgid "automatic"
+msgstr "AUTOMATICO"
+
+msgid "basic"
+msgstr "SIMPLE"
+
+msgid "detailed"
+msgstr "DETALLE"
+
+msgid "video"
+msgstr "VIDEO"
+
+msgid "grid"
+msgstr "GRID"
+
+msgid "START ON SYSTEM"
+msgstr "INICIAR EN SISTEMA"
+
+msgid "NONE"
+msgstr "NADA"
+
+msgid "ON-SCREEN HELP"
+msgstr "AYUDA EN PANTALLA"
+
+msgid "ENABLE FILTERS"
+msgstr "ACTIVAR FILTROS"
+
+msgid "Mb"
+msgstr "MB"
+
+msgid "VRAM LIMIT"
+msgstr "LIMITE DE VRAM"
+
+msgid "POWER SAVER MODES"
+msgstr "MODO AHORRO"
+
+msgid "disabled"
+msgstr "INHABILITAR"
+
+msgid "default"
+msgstr "NORMAL"
+
+msgid "enhanced"
+msgstr "MEJORADO"
+
+msgid "SAVE METADATA ON EXIT"
+msgstr "GUARDAR DATOS AL SALIR"
+
+msgid "PARSE GAMESLISTS ONLY"
+msgstr "LISTA DE JUEGOS ANALIZAR SOLAMENTE"
+
+msgid "SHOW HIDDEN FILES"
+msgstr "MOSTRAR FICHEROS OCULTOS"
+
+msgid "USE OMX PLAYER (HW ACCELERATED)"
+msgstr "USAR OMX PLAYER (ACELERADO)"
+
+msgid "SHOW FRAMERATE"
+msgstr "MOSTRAR CUADROS POR SEGUNDO"
+
+msgid "ARE YOU SURE YOU WANT TO CONFIGURE INPUT?"
+msgstr "ESTÁS SEGURO DE QUE QUIERES CONFIGURAR LA ENTRADA DEL CONTROL?"
+
+msgid "REALLY RESTART?"
+msgstr "QUIERES REINICIAR?"
+
+msgid "RESTART EMULATIONSTATION"
+msgstr "REINICIAR EMULATIONSTATION"
+
+msgid "REALLY QUIT?"
+msgstr "QUIERES SALIR,SEGURO?"
+
+msgid "QUIT EMULATIONSTATION"
+msgstr "CERRAR EMULATIONSTATION"
+
+msgid "RESTART SYSTEM"
+msgstr "REINICIAR EL SISTEMA"
+
+msgid "REALLY SHUTDOWN?"
+msgstr "QUIERE APAGAR EL SISTEMA?"
+
+msgid "SHUTDOWN SYSTEM"
+msgstr "APAGAR EL SISTEMA"
+
+msgid "CREATE NEW CUSTOM COLLECTION FROM THEME"
+msgstr "CREAR NUEVA COLECCIÓN PERSONALIZADA DEL TEMA"
+
+msgid "SELECT THEME FOLDER"
+msgstr "SELECCIONE LA CARPETA DEL TEMA"
+
+msgid "CREATE NEW CUSTOM COLLECTION"
+msgstr "CREAR NUEVA COLECCIÓN PERSONALIZADA"
+
+msgid "New Collection Name"
+msgstr "Nuevo nombre de la colección"
+
+msgid "GROUP UNTHEMED CUSTOM COLLECTIONS"
+msgstr "GRUPO ILIMITADO DE COLECCIONES PERSONALIZADAS"
+
+msgid "SORT CUSTOM COLLECTIONS AND SYSTEMS"
+msgstr "CLASIFICAR COLECCIONES Y SISTEMAS PERSONALIZADOS"
+
+msgid "FINISH EDITING '{1}' COLLECTION"
+msgstr "TERMINAR EDICIÓN DE '{1}' COLECCIÓN"
+
+msgid "SELECT COLLECTIONS"
+msgstr "SELECCIONE COLECCIONES"
+
+msgid "AUTOMATIC GAME COLLECTIONS"
+msgstr "COLECCIONES AUTOMÁTICAS DEL JUEGO"
+
+msgid "CUSTOM GAME COLLECTIONS"
+msgstr "COLECCIONES DE JUEGOS PERSONALIZADAS"
+
+msgid "INPUT"
+msgstr "ENTRADA"
+
+msgid "SEARCH"
+msgstr "BUSCAR"
+
+msgid "CANCEL"
+msgstr "CANCELAR"
+
+msgid "JUMP TO..."
+msgstr "SALTAR A..."
+
+msgid "SORT GAMES BY"
+msgstr "CLASIFICAR JUEGOS POR"
+
+msgid "FILTER GAMELIST"
+msgstr "FILTRAR LISTA DE JUEGOS"
+
+msgid "ADD/REMOVE GAMES TO THIS GAME COLLECTION"
+msgstr "AGREGAR/QUITAR JUEGOS A ESTA COLECCIÓN DE JUEGO"
+
+msgid "EDIT THIS GAME'S METADATA"
+msgstr "EDITAR LOS METADATOS DE ESTE JUEGO"
+
+msgid "SWAP VIDEO AFTER (SECS)"
+msgstr "INTERCAMBIAR VIDEO DESPUÉS DE (SEGUNDOS)"
+
+msgid "USE OMX PLAYER FOR SCREENSAVER"
+msgstr "UTILICE OMX PLAYER PARA SCREENSAVER"
+
+msgid "SHOW GAME INFO"
+msgstr "MOSTAR INFORMACION DEL JUEGO"
+
+msgid "always"
+msgstr "SIEMPRE"
+
+msgid "start & end"
+msgstr "INICIO & FIN"
+
+msgid "never"
+msgstr "NUNCA"
+
+msgid "SHOW GAME INFO ON SCREENSAVER"
+msgstr "MOSTRAR INFORMACIÓN DE JUEGO EN SCREENSAVER"
+
+msgid "USE COMPATIBLE LOW RESOLUTION FOR CAPTIONS"
+msgstr "UTILIZAR UNA RESOLUCIÓN BAJA COMPATIBLE PARA SUBTÍTULOS"
+
+msgid "STRETCH VIDEO ON SCREENSAVER"
+msgstr "ESTIRAR VÍDEO EN SCREENSAVER"
+
+msgid ""
+"Using OMX Player and displaying Game Info may result in the video flickering "
+"in some TV modes. If that happens, consider:\n"
+"\n"
+"- Disabling the \"Show Game Info\" option;\n"
+"- Disabling \"Overscan\" on the Pi configuration menu might help:\n"
+"RetroPie > Raspi-Config > Advanced Options > Overscan > \"No\".\n"
+"- Disabling the use of OMX Player for the screensaver."
+msgstr ""
+"El uso de OMX Player y la visualización de la información del juego pueden "
+"ocasionar que el video parpadee en algunos modos de TV. Si eso sucede, "
+"considere: \n"
+"- Deshabilitar la opción \"Mostrar información del juego\";\n"
+"- Deshabilitar \"Overscan\" en el menú de configuración MasOS podría "
+"ayudar:\n"
+"MasOS > Raspi-Config > Advanced Options > Overscan > \"No\".\n"
+"- Desactivar el uso de OMX Player para el protector de pantalla."
+
+msgid "GOT IT!"
+msgstr "LO TENGO!"
+
+msgid "SCRAPING IN PROGRESS"
+msgstr "SCRAPEO EN PROGRESO"
+
+msgid "subtitle text"
+msgstr "texto del subtítulo"
+
+msgid "SKIP"
+msgstr "SALTAR"
+
+msgid "STOP"
+msgstr "DETENER"
+
+msgid "STOP (PROGRESS SAVED)"
+msgstr "DETENER (EL PROGRESO SE GUARDA)"
+
+msgid "GAME {1} OF {2}"
+msgstr "JUEGO {1} DE {2}"
+
+msgid "NO GAMES WERE SCRAPED."
+msgstr "NINGUNOS DE LOS JUEGOS FUERON SCRAPEADOS"
+
+msgid "{1} GAME SUCCESSFULLY SCRAPED!"
+msgid_plural "{1} GAMES SUCCESSFULLY SCRAPED!"
+msgstr[0] "{1} JUEGO SE SCRAPEO EXITOSAMENTE!"
+msgstr[1] "{1} JUEGOS SCRAPEADOS EXITOSAMENTE!"
+
+msgid "{1} GAME SKIPPED."
+msgid_plural "{1} GAMES SKIPPED."
+msgstr[0] "{1} JUEGO OMITIDO."
+msgstr[1] "{1} JUEGOS OMITIDOS."
+
+msgid "SWAP IMAGE AFTER (SECS)"
+msgstr "CAMBIAR IMAGEN DESPUÉS DE (SEGUNDOS)"
+
+msgid "STRETCH IMAGES"
+msgstr "ESTIRAR IMÁGENES"
+
+msgid "BACKGROUND AUDIO"
+msgstr "SONIDO DE FONDO"
+
+msgid "USE CUSTOM IMAGES"
+msgstr "USAR IMÁGENES PERSONALIZADAS"
+
+msgid "CUSTOM IMAGE DIR"
+msgstr "DIRECTORIO DE IMAGEN PERSONALIZADO"
+
+msgid "CUSTOM IMAGE DIR RECURSIVE"
+msgstr "DIRECTORIO DE IMAGEN PERSONALIZADA RECURSIVO"
+
+msgid "CUSTOM IMAGE FILTER"
+msgstr "FILTRO DE IMAGEN PERSONALIZADO"
+
+msgid "SCREENSAVER AFTER"
+msgstr "SCREENSAVER DESPUÉS"
+
+msgid "SCREENSAVER CONTROLS"
+msgstr "SCREENSAVER CONTROLES"
+
+msgid "SCREENSAVER BEHAVIOR"
+msgstr "COMPORTAMIENTO DEL SCREENSAVER"
+
+msgid "dim"
+msgstr "OSCURECER"
+
+msgid "black"
+msgstr "NEGRO"
+
+msgid "random video"
+msgstr "VÍDEO AL AZAR"
+
+msgid "slideshow"
+msgstr "DIAPOSITIVAS"
+
+msgid ""
+"The \"Random Video\" screensaver shows videos from your gamelist.\n"
+"\n"
+"If you do not have videos, or if in several consecutive attempts the games "
+"it selects don't have videos it will default to black.\n"
+"\n"
+"More options in the \"UI Settings\" > \"Video Screensaver\" menu."
+msgstr ""
+"El protector de pantalla \"Random Video\" muestra videos de tu lista de "
+"juegos. \n"
+"Si no tienes videos, o si en varios intentos consecutivos los juegos "
+"seleccionados no tienen videos, será predeterminado en negro.\n"
+"\n"
+"Más opciones en el menú \"UI Settings\" > \"Video Screensaver\" . "
+
+msgid "USE HARDWARE BACKLIGHT CONTROL"
+msgstr "UTILIZAR EL CONTROL DE FONDO DEL HARDWARE"
+
+msgid "VIDEO SCREENSAVER SETTINGS"
+msgstr "VIDEO SCREENSAVER OPCIONES"
+
+msgid "SLIDESHOW SCREENSAVER SETTINGS"
+msgstr "PANTALLA DE DIAPOSITIVA OPCIONES"
+
+msgid "VIDEO SCREENSAVER"
+msgstr "VIDEO SCREENSAVER"
+
+msgid "SLIDESHOW SCREENSAVER"
+msgstr "PANTALLA DE DIAPOSITIVA"
+
+msgid "EDIT METADATA"
+msgstr "EDITAR METADATOS"
+
+msgid "SCRAPE"
+msgstr "SCRAPEAR"
+
+msgid "SAVE"
+msgstr "GUARDAR"
+
+msgid ""
+"THIS WILL DELETE A FILE!\n"
+"ARE YOU SURE?"
+msgstr ""
+"ESTO ELIMINARÁ UN FICHERO!\n"
+"ESTÁS SEGURO?"
+
+msgid "DELETE"
+msgstr "ELIMINAR"
+
+msgid "SAVE CHANGES?"
+msgstr "GUARDAR CAMBIOS?"
+
+msgid "FILTER GAMELIST BY"
+msgstr "FILTRAR LISTA DE JUEGOS POR"
+
+msgid "RESET ALL FILTERS"
+msgstr "ELIMINAR TODOS LOS FILTROS"
+
+msgid "FALSE"
+msgstr "FALSO"
+
+msgid "TRUE"
+msgstr "VERDADERO"
+
+msgid "PUBLISHER / DEVELOPER"
+msgstr "EDITOR / DESARROLLADOR"
+
+msgid "{1} STARS"
+msgstr "{1} ESTRELLAS"
+
+msgid "0 STARS"
+msgstr "0 ESTRELLAS"
+
+msgid "ADD STAR"
+msgstr "AÑADIR ESTRELLA"
+
+msgid "NO GAMES FOUND - SKIP"
+msgstr "NO SE ENCUENTRAN JUEGOS - OMITIR"
+
+msgid "RETRY"
+msgstr "PROCESAR DE NUEVO"
+
+msgid "SEARCH FOR"
+msgstr "BUSCAR POR"
+
+msgid "ACCEPT RESULT"
+msgstr "ACEPTAR RESULTADO"
+
+msgid ""
+"IT LOOKS LIKE YOUR SYSTEMS CONFIGURATION FILE HAS NOT BEEN SET UP OR IS "
+"INVALID. YOU'LL NEED TO DO THIS BY HAND, UNFORTUNATELY.\n"
+"\n"
+"VISIT EMULATIONSTATION.ORG FOR MORE INFORMATION."
+msgstr ""
+"PARECE QUE EL ARCHIVO DE CONFIGURACIÓN DE SISTEMAS NO HA SIDO CONFIGURADO O "
+"ES INVÁLIDO. USTED NECESITARÁ HACER ESTO A MANO, DESAFORTUNADAMENTE.\n"
+"\n"
+"VISITA EMULATIONSTATION.ORG PARA MÁS INFORMACIÓN."
+
+msgid ""
+"WE CAN'T FIND ANY SYSTEMS!\n"
+"CHECK THAT YOUR PATHS ARE CORRECT IN THE SYSTEMS CONFIGURATION FILE, AND "
+"YOUR GAME DIRECTORY HAS AT LEAST ONE GAME WITH THE CORRECT EXTENSION.\n"
+"\n"
+"VISIT EMULATIONSTATION.ORG FOR MORE INFORMATION."
+msgstr ""
+"NO PODEMOS ENCONTRAR NINGÚN SISTEMA!\n"
+"COMPRUEBE QUE SUS RUTAS SON CORRECTAS EN EL ARCHIVO DE CONFIGURACIÓN DE "
+"SISTEMAS, Y SU DIRECTORIO DE JUEGOS TIENE AL MENOS UN JUEGO CON LA EXTENSIÓN "
+"CORRECTA.\n"
+"VISITA EMULATIONSTATION.ORG PARA MÁS INFORMACIÓN."
+
+msgid "DISCARD CHANGES"
+msgstr "DESCARTAR LOS CAMBIOS"
+
+msgid "WELCOME"
+msgstr "BIENVENIDO"
+
+msgid "{1} GAMEPAD DETECTED"
+msgid_plural "{1} GAMEPADS DETECTED"
+msgstr[0] "{1} GAMEPAD DETECTADO"
+msgstr[1] "{1} GAMEPADS DETECTADOS"
+
+msgid "NO GAMEPADS DETECTED"
+msgstr "NO SE DETECTAN GAMEPADS"
+
+msgid "HOLD A BUTTON ON YOUR DEVICE TO CONFIGURE IT."
+msgstr "MANTENGA PULSADO UN BOTÓN EN SU DISPOSITIVO PARA CONFIGURARLO."
+
+msgid "PRESS F4 TO QUIT AT ANY TIME."
+msgstr "PRESIONA F4 PARA SALIR EN CUALQUIER MOMENTO."
+
+msgid "PRESS ESC TO CANCEL."
+msgstr "PRESIONE ESC PARA CANCELAR."
+
+msgctxt "button"
+msgid "D-PAD UP"
+msgstr "D-PAD ARRIBA"
+
+msgctxt "button"
+msgid "D-PAD DOWN"
+msgstr "D-PAD ABAJO"
+
+msgctxt "button"
+msgid "D-PAD LEFT"
+msgstr "D-PAD IZQUIERDA"
+
+msgctxt "button"
+msgid "D-PAD RIGHT"
+msgstr "D-PAD DERECHA"
+
+msgctxt "button"
+msgid "START"
+msgstr "START"
+
+msgctxt "button"
+msgid "SELECT"
+msgstr "SELECT"
+
+msgctxt "button"
+msgid "BUTTON A / EAST"
+msgstr "BOTON A"
+
+msgctxt "button"
+msgid "BUTTON B / SOUTH"
+msgstr "BOTON B"
+
+msgctxt "button"
+msgid "BUTTON X / NORTH"
+msgstr "BOTON X"
+
+msgctxt "button"
+msgid "BUTTON Y / WEST"
+msgstr "BOTON Y"
+
+msgctxt "button"
+msgid "LEFT SHOULDER"
+msgstr "L1 o LB"
+
+msgctxt "button"
+msgid "RIGHT SHOULDER"
+msgstr "R1 o RB"
+
+msgctxt "button"
+msgid "LEFT TRIGGER"
+msgstr "L2 o LT"
+
+msgctxt "button"
+msgid "RIGHT TRIGGER"
+msgstr "R2 o RT"
+
+msgctxt "button"
+msgid "LEFT THUMB"
+msgstr "PULGAR IZQUIERDO"
+
+msgctxt "button"
+msgid "RIGHT THUMB"
+msgstr "PULGAR DERECHO"
+
+msgctxt "button"
+msgid "LEFT ANALOG UP"
+msgstr "ANALÓGICO IZQUIERDO ARRIBA"
+
+msgctxt "button"
+msgid "LEFT ANALOG DOWN"
+msgstr "ANALÓGICO IZQUIERDO ABAJO"
+
+msgctxt "button"
+msgid "LEFT ANALOG LEFT"
+msgstr "ANALÓGICO IZQUIERDO IZQUIERDA"
+
+msgctxt "button"
+msgid "LEFT ANALOG RIGHT"
+msgstr "ANALÓGICO IZQUIERDO DERECHA"
+
+msgctxt "button"
+msgid "RIGHT ANALOG UP"
+msgstr "ANALOGO DERECHO ARRIBA"
+
+msgctxt "button"
+msgid "RIGHT ANALOG DOWN"
+msgstr "ANALOGO DERECHO ABAJO"
+
+msgctxt "button"
+msgid "RIGHT ANALOG LEFT"
+msgstr "ANALOGO DERECHO IZQUIERDA"
+
+msgctxt "button"
+msgid "RIGHT ANALOG RIGHT"
+msgstr "ANALOGO DERECHO DERECHA"
+
+msgctxt "button"
+msgid "HOTKEY ENABLE"
+msgstr "HOTKEY"
+
+msgid "CONFIGURING"
+msgstr "CONFIGURACION"
+
+msgid "KEYBOARD"
+msgstr "TECLADO"
+
+msgid "CEC"
+msgstr "CEC"
+
+msgid "GAMEPAD {1}"
+msgstr "GAMEPAD {1}"
+
+msgid "HOLD ANY BUTTON TO SKIP"
+msgstr "MANTENER CUALQUIER BOTÓN PULSADO PARA SALTAR"
+
+msgid "-NOT DEFINED-"
+msgstr "-NO DEFINIDO-"
+
+msgid ""
+"YOU DIDN'T CHOOSE A HOTKEY ENABLE BUTTON. THIS IS REQUIRED FOR EXITING GAMES "
+"WITH A CONTROLLER. DO YOU WANT TO USE THE SELECT BUTTON DEFAULT ? PLEASE "
+"ANSWER YES TO USE SELECT OR NO TO NOT SET A HOTKEY ENABLE BUTTON."
+msgstr ""
+"USTED NO ELIGIÓ UN BOTÓN DE ACTIVACIÓN DE HOTKEY. ESTO SE REQUIERE PARA "
+"SALIR DE JUEGOS CON UN CONTROLADOR. ¿QUIERES USAR EL BOTÓN DE SELECCIÓN POR "
+"DEFECTO? POR FAVOR RESPONDE SÍ A UTILIZAR SELECCIONAR O NO PARA NO "
+"CONFIGURAR UN BOTÓN DE ACTIVACIÓN DE LA TECLA HOTKEY."
+
+msgid "HOLD FOR {1}S TO SKIP"
+msgid_plural "HOLD FOR {1}S TO SKIP"
+msgstr[0] "MANTENER {1}S PARA SALTAR"
+msgstr[1] "MANTENER {1}S PARA SALTAR"
+
+msgid "PRESS ANYTHING"
+msgstr "PRESIONA NINGUNO"
+
+msgid "ALREADY TAKEN"
+msgstr "YA ESTA OCUPADO"
+
+msgid "CHANGE"
+msgstr "CAMBIO"
+
+msgid "MOVE CURSOR"
+msgstr "MOVER CURSOR"
+
+msgid "STOP EDITING"
+msgstr "DEJAR DE EDITAR"
+
+msgid "EDIT"
+msgstr "EDITAR"
+
+msgid "{1} day ago"
+msgid_plural "{1} days ago"
+msgstr[0] "hier"
+msgstr[1] "il y a {1} jours"
+
+msgid "{1} hour ago"
+msgid_plural "{1} hours ago"
+msgstr[0] "il y a une heure"
+msgstr[1] "il y a {1} heures"
+
+msgid "{1} minute ago"
+msgid_plural "{1} minutes ago"
+msgstr[0] "il y a une minute"
+msgstr[1] "il y a {1} minutes"
+
+msgid "{1} second ago"
+msgid_plural "{1} seconds ago"
+msgstr[0] "il y a une seconde"
+msgstr[1] "il y a {1} secondes"
+
+msgid "ACCEPT"
+msgstr "ACEPTAR"
+
+msgid "SELECT ALL"
+msgstr "SELECCIONAR TODOS"
+
+msgid "SELECT NONE"
+msgstr "SELECCIONAR NINGUNO"
+
+msgid "{1} SELECTED"
+msgid_plural "{1} SELECTED"
+msgstr[0] "{1} SELECCIONADO"
+msgstr[1] "{1} SELECCIONADOS"
+
+msgid "WORKING..."
+msgstr "TRABAJANDO..."
+
+msgid "LOADING..."
+msgstr "CARGANDO..."

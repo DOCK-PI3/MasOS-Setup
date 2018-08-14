@@ -1,8 +1,8 @@
 #!/usr/bin/env bash
 
-# This file is part of The RetroPie Project
+# This file is part of The MasOS Project
 #
-# The RetroPie Project is the legal property of its developers, whose names are
+# The MasOS Project is the legal property of its developers, whose names are
 # too numerous to list here. Please refer to the COPYRIGHT.md file distributed with this source.
 #
 # See the LICENSE.md file at the top-level directory of this distribution and
@@ -535,8 +535,18 @@ function gui_setup() {
                 {
                     rps_logStart
                     basic_install_setup
-					sudo cp -R /home/$user/MasOS-Setup/scriptmodules/supplementary/retropiemenu/masosextrasall.sh /home/$user/RetroPie/retropiemenu/
-                    sudo chmod +x /home/$user/RetroPie/retropiemenu/masosextrasall.sh
+					# ALGUNOS EXTRAS PARA MASOS ....
+					sudo cp /home/$user/MasOS-Setup/scriptmodules/supplementary/retropiemenu/masosextrasall.sh /home/$user/RetroPie/retropiemenu/
+                    sudo apt-get install -y libboost-all-dev
+					sudo chmod +x /home/$user/RetroPie/retropiemenu/masosextrasall.sh
+					sudo killall emulationstation
+					sudo cp -R /home/$user/MasOS-Setup/scriptmodules/extras/es_idioma/resources /opt/masos/supplementary/emulationstation/
+					sudo cp -R /home/$user/MasOS-Setup/scriptmodules/extras/es_idioma/locale /opt/masos/supplementary/emulationstation/
+					sudo cp /home/$user/MasOS-Setup/scriptmodules/extras/es_idioma/emulationstaion /opt/masos/supplementary/emulationstation/
+					#sudo locale-gen
+					sudo cp /home/$user/MasOS-Setup/scriptmodules/extras/es_idioma/locale.masos /etc/default/locale
+					sudo chown root:root /etc/default/locale 
+					# FIN DE LOS EXTRAS
 					rps_logEnd
                 } &> >(tee >(gzip --stdout >"$logfilename"))
                 rps_printInfo "$logfilename"

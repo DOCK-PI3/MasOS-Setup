@@ -108,7 +108,7 @@ Cada conjunto de ../LaunchingScreens que haya localizado allí debe estar en su 
 		<game>
 		<path>./esthemes.rp</path>
 		<name>ES Themes</name>
-		<desc>Install, uninstall, or update EmulationStation themes. Most themes can be previewed at https://github.com/Moriggy/ </desc>
+		<desc>Instalar, desinstalar o actualizar temas de EmulationStation. La mayoría de los temas se pueden previsualizar en https://github.com/Moriggy/</desc>
 		<image>./icons/esthemes.png</image>
 		<playcount>6</playcount>
 		<lastplayed>20180421T195000</lastplayed>
@@ -204,7 +204,7 @@ Utilidades ,herramientas ,descargas de arts y mucho mas.
 Tambien puede actualizar el MasOS-Script sin introducir nada de codigos.
 
 Con la actualizacion o instalacion del menu termine su aparato se reiniciara automaticamente...</desc>
-		<image>./icons/masosupdateallsystem.png</image>
+		<image>./icons/masosextrasall.png</image>
 		<playcount>1</playcount>
 		<lastplayed>20180809T235634</lastplayed>
 	</game>
