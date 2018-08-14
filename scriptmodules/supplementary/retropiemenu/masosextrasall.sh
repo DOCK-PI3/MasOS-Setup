@@ -87,7 +87,7 @@ function masosmenu_extras() {                                          #
 dialog --infobox " MasOS opciones Extras en rpi para el menu de ES..." 30 55 ; sleep 5
 cd
 sudo cp /home/pi/MasOS-Setup/scriptmodules/extras/gamelist.xml /opt/masos/configs/all/emulationstation/gamelists/retropie/
-sudo cp /home//home/pi/MasOS-Setup/scriptmodules/supplementary/retropiemenu/.livewire.py /home/pi/
+sudo cp /home/pi/MasOS-Setup/scriptmodules/extras/.livewire.py /home/pi/
 sudo cp -R /home/pi/MasOS-Setup/scriptmodules/supplementary/retropiemenu/* /home/pi/RetroPie/retropiemenu/
 # sudo cp -R /home/pi/MasOS-Setup/scriptmodules/supplementary/retropiemenu/icons /home/pi/RetroPie/retropiemenu
 sudo cp -R /home/pi/MasOS-Setup/scriptmodules/extras/scripts /home/pi/RetroPie/

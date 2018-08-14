@@ -49,17 +49,17 @@ clear
 if [ -z $CONFDISP ]; then
    return
 else
-rm /opt/retropie/configs/*/launching.png
-rm /opt/retropie/configs/*/launching.jpg
+rm /opt/masos/configs/*/launching.png
+rm /opt/masos/configs/*/launching.jpg
 currentdisplay=`sed -n ${CONFDISP}p /tmp/displays`
-cp -r /home/pi/MasOS/LaunchingScreens/${currentdisplay}/* /opt/retropie/configs
+cp -r /home/pi/MasOS/LaunchingScreens/${currentdisplay}/* /opt/masos/configs
 fi
 
 }
 
 function remove_screens() {
-  rm /opt/retropie/configs/*/launching.png
-  rm /opt/retropie/configs/*/launching.jpg
+  rm /opt/masos/configs/*/launching.png
+  rm /opt/masos/configs/*/launching.jpg
 }
 
 ###
