@@ -543,9 +543,11 @@ function gui_setup() {
 					sudo cp -R /home/$user/MasOS-Setup/scriptmodules/extras/es_idioma/resources /opt/masos/supplementary/emulationstation/
 					sudo cp -R /home/$user/MasOS-Setup/scriptmodules/extras/es_idioma/locale /opt/masos/supplementary/emulationstation/
 					sudo cp /home/$user/MasOS-Setup/scriptmodules/extras/es_idioma/emulationstaion /opt/masos/supplementary/emulationstation/
-					#sudo locale-gen
-					sudo cp /home/$user/MasOS-Setup/scriptmodules/extras/es_idioma/locale.masos /etc/default/locale
-					sudo chown root:root /etc/default/locale 
+					# export LANGUAGE=es_ES.UTF-8
+					# export LANG=es_ES.UTF-8
+					# export LC_ALL=es_ES.UTF-8
+					# sudo locale-gen es_ES.UTF-8
+					# sudo dpkg-reconfigure locales
 					# FIN DE LOS EXTRAS
 					rps_logEnd
                 } &> >(tee >(gzip --stdout >"$logfilename"))
