@@ -17,11 +17,11 @@ RSP_PLUGIN="$4"
 [[ -n "$RES" ]] && RES="--resolution $RES"
 [[ -z "$RSP_PLUGIN" ]] && RSP_PLUGIN="mupen64plus-rsp-hle"
 
-rootdir="/opt/retropie"
+rootdir="/opt/masos"
 configdir="$rootdir/configs"
 config="$configdir/n64/mupen64plus.cfg"
 inputconfig="$configdir/n64/InputAutoCfg.ini"
-datadir="$HOME/RetroPie"
+datadir="$HOME/MasOS"
 romdir="$datadir/roms"
 
 source "$rootdir/lib/inifuncs.sh"

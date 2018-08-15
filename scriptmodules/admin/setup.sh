@@ -535,20 +535,6 @@ function gui_setup() {
                 {
                     rps_logStart
                     basic_install_setup
-					# ALGUNOS EXTRAS PARA MASOS ....
-					sudo cp /home/pi/MasOS-Setup/scriptmodules/supplementary/retropiemenu/masosextrasall.sh /home/pi/RetroPie/retropiemenu/
-					sudo chmod +x /home/pi/RetroPie/retropiemenu/masosextrasall.sh
-					sudo killall emulationstation
-					sudo cp -R /home/pi/MasOS-Setup/scriptmodules/extras/es_idioma/resources/ /opt/masos/supplementary/emulationstation/
-					sudo cp -R /home/pi/MasOS-Setup/scriptmodules/extras/es_idioma/locale/ /opt/masos/supplementary/emulationstation/
-					sudo cp /home/pi/MasOS-Setup/scriptmodules/extras/es_idioma/emulationstaion /opt/masos/supplementary/emulationstation/
-					sudo apt-get install -y libboost-all-dev
-					# export LANGUAGE=es_ES.UTF-8
-					# export LANG=es_ES.UTF-8
-					# export LC_ALL=es_ES.UTF-8
-					# sudo locale-gen es_ES.UTF-8
-					# sudo dpkg-reconfigure locales
-					# FIN DE LOS EXTRAS
 					rps_logEnd
                 } &> >(tee >(gzip --stdout >"$logfilename"))
                 rps_printInfo "$logfilename"
@@ -574,8 +560,15 @@ function gui_setup() {
                 ;;
             R)
                 dialog --defaultno --yesno "¿Estás seguro de que quieres reiniciar?\n\nTen en cuenta que si reinicias cuando se está ejecutando Emulation Station, perderás los cambios en los metadatos." 22 76 2>&1 >/dev/tty || continue
-                sudo cp -R /home/$user/MasOS-Setup/scriptmodules/supplementary/retropiemenu/masosextrasall.sh /home/$user/RetroPie/retropiemenu/
+                sudo cp /home/$user/MasOS-Setup/scriptmodules/supplementary/retropiemenu/masosextrasall.sh /home/$user/RetroPie/retropiemenu/
                 sudo chmod +x /home/$user/RetroPie/retropiemenu/masosextrasall.sh
+				sudo cp /home/pi/MasOS-Setup/scriptmodules/supplementary/retropiemenu/masosextrasall.sh /home/pi/RetroPie/retropiemenu/
+				sudo chmod +x /home/pi/RetroPie/retropiemenu/masosextrasall.sh
+				sudo apt-get install -y libboost-all-dev
+				sudo killall emulationstation
+				sudo cp -R /home/pi/MasOS-Setup/scriptmodules/extras/es_idioma/resources/ /opt/masos/supplementary/emulationstation/
+				sudo cp -R /home/pi/MasOS-Setup/scriptmodules/extras/es_idioma/locale/ /opt/masos/supplementary/emulationstation/
+				sudo cp /home/pi/MasOS-Setup/scriptmodules/extras/es_idioma/emulationstaion /opt/masos/supplementary/emulationstation/
 				reboot_setup
                 ;;
         esac
