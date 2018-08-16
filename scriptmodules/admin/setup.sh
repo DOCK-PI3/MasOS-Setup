@@ -560,8 +560,8 @@ function gui_setup() {
                 ;;
             R)
                 dialog --defaultno --yesno "¿Estás seguro de que quieres reiniciar?\n\nTen en cuenta que si reinicias cuando se está ejecutando Emulation Station, perderás los cambios en los metadatos." 22 76 2>&1 >/dev/tty || continue
-                sudo cp /home/$user/MasOS-Setup/scriptmodules/supplementary/retropiemenu/masosextrasall.sh /home/$user/RetroPie/retropiemenu/
-                sudo chmod +x /home/$user/RetroPie/retropiemenu/masosextrasall.sh
+                # sudo cp /home/$user/MasOS-Setup/scriptmodules/supplementary/retropiemenu/masosextrasall.sh /home/$user/RetroPie/retropiemenu/
+                # sudo chmod +x /home/$user/RetroPie/retropiemenu/masosextrasall.sh
 				sudo cp /home/pi/MasOS-Setup/scriptmodules/supplementary/retropiemenu/masosextrasall.sh /home/pi/RetroPie/retropiemenu/
 				sudo chmod +x /home/pi/RetroPie/retropiemenu/masosextrasall.sh
 				sudo apt-get install -y libboost-all-dev
