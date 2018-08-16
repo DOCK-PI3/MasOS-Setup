@@ -564,11 +564,6 @@ function gui_setup() {
                 # sudo chmod +x /home/$user/RetroPie/retropiemenu/masosextrasall.sh
 				sudo cp /home/pi/MasOS-Setup/scriptmodules/supplementary/retropiemenu/masosextrasall.sh /home/pi/RetroPie/retropiemenu/
 				sudo chmod +x /home/pi/RetroPie/retropiemenu/masosextrasall.sh
-				sudo apt-get install -y libboost-all-dev
-				sudo killall emulationstation
-				sudo cp -R /home/pi/MasOS-Setup/scriptmodules/extras/es_idioma/resources/ /opt/masos/supplementary/emulationstation/
-				sudo cp -R /home/pi/MasOS-Setup/scriptmodules/extras/es_idioma/locale/ /opt/masos/supplementary/emulationstation/
-				sudo cp /home/pi/MasOS-Setup/scriptmodules/extras/es_idioma/emulationstaion /opt/masos/supplementary/emulationstation/
 				reboot_setup
                 ;;
         esac
