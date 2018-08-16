@@ -246,8 +246,8 @@ function preview_splashscreen() {
 }
 
 function download_extra_splashscreen() {
-    gitPullOrClone "$datadir/splashscreens/retropie-extra" https://github.com/HerbFargus/retropie-splashscreens-extra
-    chown -R $user:$user "$datadir/splashscreens/retropie-extra"
+    gitPullOrClone "$datadir/splashscreens/masos-extra" https://github.com/DOCK-PI3/masos-splashscreens-extra
+    chown -R $user:$user "$datadir/splashscreens/masos-extra"
 }
 
 function gui_splashscreen() {
@@ -281,7 +281,7 @@ function gui_splashscreen() {
             6 "Append splashscreen to list (for multiple entries)"
             7 "Preview splashscreens"
             8 "Update MasOS splashscreens"
-            9 "Download RetroPie-Extra splashscreens"
+            9 "Descargar MasOS-Extra splashscreens"
         )
         local choice=$("${cmd[@]}" "${options[@]}" 2>&1 >/dev/tty)
         if [[ -n "$choice" ]]; then
@@ -325,7 +325,7 @@ function gui_splashscreen() {
                     ;;
                 9)
                     rp_callModule splashscreen download_extra
-                    printMsgs "dialog" "The RetroPie-Extra splashscreens have been downloaded to $datadir/splashscreens/retropie-extra"
+                    printMsgs "dialog" "The MasOS-Extra splashscreens have been downloaded to $datadir/splashscreens/masos-extra"
                     ;;
             esac
         else
