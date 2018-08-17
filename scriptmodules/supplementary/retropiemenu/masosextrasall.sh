@@ -10,10 +10,10 @@ infobox="${infobox}\n"
 infobox="${infobox}\n"
 infobox="${infobox}\n"
 infobox="${infobox}\n"
-infobox="${infobox}Se recomienda su instalacion....\n"
+infobox="${infobox}Se recomienda su instalacion en raspberry pi....\n"
 infobox="${infobox}\n"
 
-dialog --backtitle "MasOS Herramientas extras y actualizador de script base" \
+dialog --backtitle "MasOS extras y actualizador de script base" \
 --title "MasOS EXTRAS y actualizador de Script (by mabedeep)" \
 --msgbox "${infobox}" 35 110
 
@@ -46,7 +46,7 @@ cd
 		sudo git clone --depth=1 https://github.com/DOCK-PI3/MasOS-Setup.git
 	sudo chmod -R +x /home/pi/MasOS-Setup/
 dialog --infobox " MasOS-Setup script se actualizo correctamente!...\n\nEn 5seg se reinicia el sistema..espere por favor!" 60 75 ; sleep 5
-sudo shutdown -r now 
+sudo reboot 
 }
 
 # function masosystem_upgrade() {                                                                                       
@@ -56,12 +56,12 @@ sudo shutdown -r now
 # #######################################################################################################################
 # ############################## by mabedeep ############################################################################
 # cd
-# sudo mkdir /home//home/pi/backup-temp 
-# sudo mkdir /home//home/pi/backup-temp/profile
-# sudo chown -R /home/pi:/home/pi /home//home/pi/backup-temp/
-# # sudo cp -R /opt/masos/configs/all /home//home/pi/backup-temp/all_backup/
-# sudo cp -R /home//home/pi/*.* /home//home/pi/backup-temp/profile/
-# # funcion para actualizacion del sistema completo MasOS ,tambien se actualiza MasOS-Setup script
+# sudo mkdir /home/pi/backup-temp 
+# sudo mkdir /home/pi/backup-temp/profile
+# sudo chown -R pi:pi /home/pi/backup-temp/
+# # sudo cp -R /opt/masos/configs/all /home/pi/backup-temp/all_backup/
+# sudo cp -R /home/pi/*.* /home/pi/backup-temp/profile/
+# actualizacion del sistema completo MasOS ,tambien se actualiza MasOS-Setup script
 	# sudo rm -R MasOS-Setup/
 		# git clone --depth=1 https://github.com/DOCK-PI3/MasOS-Setup.git
 			# sudo chmod -R +x MasOS-Setup/
@@ -82,7 +82,7 @@ sudo shutdown -r now
 # }
 
 #########################################################################
-# Funcion EXTRAs Menu ES para MasOS ;-) #
+# Funciones EXTRAs Menu ES para MasOS ;-) #
 function masosmenu_extras() {                                          #
 dialog --infobox " MasOS opciones Extras en rpi para el menu de ES..." 30 55 ; sleep 5
 cd
@@ -91,15 +91,13 @@ sudo cp /home/pi/MasOS-Setup/scriptmodules/extras/.livewire.py /home/pi/
 sudo cp -R /home/pi/MasOS-Setup/scriptmodules/supplementary/retropiemenu/* /home/pi/RetroPie/retropiemenu/
 # sudo cp -R /home/pi/MasOS-Setup/scriptmodules/supplementary/retropiemenu/icons /home/pi/RetroPie/retropiemenu
 sudo cp -R /home/pi/MasOS-Setup/scriptmodules/extras/scripts /home/pi/RetroPie/
-# sudo rm -R /home//home/pi/MasOS-Setup/scriptmodules/extras
 sudo chmod -R +x /home/pi/RetroPie
 sudo chmod -R +x /opt
 sudo mkdir /home/pi/MasOS/videoloadingscreens
 sudo mkdir /home/pi/MasOS/roms/music
 sudo chown -R pi:pi /home/pi/MasOS
 dialog --infobox " Las opciones Extras estan instaladas,reiniciando el sistema en 10seg ..." 30 55 ; sleep 10
-reboot
-# sudo chown -R pi:pi /opt/masos/configs
+sudo reboot
 # ---------------- FIN DEL CODIGO ------------ #
 }
 main_menu
