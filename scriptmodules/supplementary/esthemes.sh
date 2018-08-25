@@ -1,12 +1,12 @@
 #!/usr/bin/env bash
 
-# This file is part of The RetroPie Project
+# This file is part of The MasOS Project
 #
-# The RetroPie Project is the legal property of its developers, whose names are
+# The MasOS Project is the legal property of its developers, whose names are
 # too numerous to list here. Please refer to the COPYRIGHT.md file distributed with this source.
 #
 # See the LICENSE.md file at the top-level directory of this distribution and
-# at https://raw.githubusercontent.com/RetroPie/RetroPie-Setup/master/LICENSE.md
+# at https://raw.githubusercontent.com/DOCK-PI3/MasOS-Setup/master/LICENSE.md
 #
 
 rp_module_id="esthemes"
@@ -28,7 +28,7 @@ function install_theme_esthemes() {
         repo="Moriggy"
     fi
     if [[ -z "$theme" ]]; then
-        theme="retro"
+        theme="MasOS"
         repo="Moriggy"
     fi
     mkdir -p "/etc/emulationstation/themes"
@@ -46,6 +46,7 @@ function gui_esthemes() {
     local themes=(
 		'Moriggy retro'
         'Moriggy maximus-v3'
+		'Moriggy MasOS'
     )
     while true; do
         local theme
