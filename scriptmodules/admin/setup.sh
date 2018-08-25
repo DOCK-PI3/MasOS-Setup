@@ -127,7 +127,7 @@ function post_update_setup() {
     } &> >(tee >(gzip --stdout >"$logfilename"))
     rps_printInfo "$logfilename"
 
-    printMsgs "dialog" "AVISO: la secuencia de comandos de configuracion de MasOS y las imagenes de la tarjeta SD de MasOS prefabricadas estan disponibles para descargar de forma gratuita desde https://inforetro.wixsite.com/myarcade .\n\nLa imagen de MasOS preconstruida incluye software que tiene licencias no comerciales. No esta permitido vender imagenes de MasOS ni incluir MasOS con su producto comercial. \n\nNo se incluyen juegos con derechos de autor en MacOS.\n\nSi le vendieron este software, puede informarnos al respecto enviando un correo electronico a dock.pi3@gmail.com ."
+    printMsgs "dialog" "AVISO: la secuencia de comandos de configuracion de MasOS y las imagenes de la tarjeta SD de MasOS prefabricadas estan disponibles para descargar de forma gratuita desde http://masos.ga .\n\nLa imagen de MasOS preconstruida incluye software que tiene licencias no comerciales. No esta permitido vender imagenes de MasOS ni incluir MasOS con su producto comercial. \n\nNo se incluyen juegos con derechos de autor en MacOS.\n\nSi le vendieron este software, puede informarnos al respecto enviando un correo electronico a dock.pi3@gmail.com ."
 
     # return to set return function
     "${return_func[@]}"
@@ -534,6 +534,7 @@ function gui_setup() {
                 rps_logInit
                 {
                     rps_logStart
+					sudo apt-get install -y libboost-all-dev
                     basic_install_setup
 					rps_logEnd
                 } &> >(tee >(gzip --stdout >"$logfilename"))
@@ -560,10 +561,10 @@ function gui_setup() {
                 ;;
             R)
                 dialog --defaultno --yesno "¿Estás seguro de que quieres reiniciar?\n\nTen en cuenta que si reinicias cuando se está ejecutando Emulation Station, perderás los cambios en los metadatos." 22 76 2>&1 >/dev/tty || continue
-                # sudo cp /home/$user/MasOS-Setup/scriptmodules/supplementary/retropiemenu/masosextrasall.sh /home/$user/RetroPie/retropiemenu/
-                # sudo chmod +x /home/$user/RetroPie/retropiemenu/masosextrasall.sh
 				sudo cp /home/pi/MasOS-Setup/scriptmodules/supplementary/retropiemenu/masosextrasall.sh /home/pi/RetroPie/retropiemenu/
 				sudo chmod +x /home/pi/RetroPie/retropiemenu/masosextrasall.sh
+				sudo cp /home/$user/MasOS-Setup/scriptmodules/supplementary/retropiemenu/masosextrasall.sh /home/$user/RetroPie/retropiemenu/
+                sudo chmod +x /home/$user/RetroPie/retropiemenu/masosextrasall.sh
 				reboot_setup
                 ;;
         esac

@@ -48,7 +48,7 @@ if [[ "$(id -u)" -ne 0 ]]; then
     exit 1
 fi
 
-__backtitle="MyArcadeSpain - MasOS Setup. Installation dir: $rootdir for user $user"
+__backtitle="http://masos.ga - MasOS-Setup. Installation dir: $rootdir for user $user"
 
 source "$scriptdir/scriptmodules/system.sh"
 source "$scriptdir/scriptmodules/helpers.sh"
