@@ -6,7 +6,7 @@ rp_module_section=""
 
 # Welcome
  dialog --backtitle "The Bezel Project" --title "The Bezel Project - Bezel Pack Utility" \
-    --yesno "\nThe Bezel Project Bezel Utility menu.\n\nThis utility will provide a downloader for Retroarach system bezel packs to be used for various systems within RetroPie.\n\nThese bezel packs will only work if the ROMs you are using are named according to the No-Intro naming convention used by EmuMovies/HyperSpin.\n\nThis utility provides a download for a bezel pack for a system and includes a PNG bezel file for every ROM for that system.  The download will also include the necessary configuration files needed for Retroarch to show them.  The script will also update the required retroarch.cfg files for the emulators located in the /opt/masos/configs directory.  These changes are necessary to show the PNG bezels with an opacity of 1.\n\nPeriodically, new bezel packs are completed and you will need to run the script updater to download the newest version to see these additional packs.\n\n**NOTE**\nThe MAME bezel back is inclusive for any roms located in the arcade/fba/mame-libretro rom folders.\n\n\nDo you want to proceed?" \
+    --yesno "\nMenu Bezel Project Utility.\n\nEsta utilidad proporcionará una descarga para los paquetes de bezels del sistema Retroarach para ser utilizado en varios sistemas dentro de MasOS.\n\nEstos paquetes de bezels solo funcionaran si las ROM que está utilizando reciben el nombre según NO-intro utilizada por EmuMovies/HyperSpin.\n\nEsta utilidad proporciona una descarga para un paquete de bezels para un sistema e incluye un archivo de bezel PNG para cada ROM de ese sistema. La descarga tambien incluira los archivos de configuracion necesarios necesarios para Retroarch para mostrarlos. El script tambien actualizara los archivos retroarch.cfg necesarios para los emuladores ubicados en el directorio /opt/masos/configs. Estos cambios son necesarios para mostrar los bezels PNG con una opacidad de 1.\n\nPor regla general, se completan los nuevos paquetes de bezels y debera ejecutar el actualizador de scripts para descargar la version mas nueva y ver estos paquetes adicionales.\n\n* * NOTA **\nEl marco del bezel MAME esta incluido para las roms ubicadas en las carpetas arcade /fba/mame-libretro rom.\n\n\n¿Desea continuar?" \
     28 110 2>&1 > /dev/tty \
     || exit
 
@@ -15,13 +15,13 @@ function main_menu() {
     local choice
 
     while true; do
-        choice=$(dialog --backtitle "$BACKTITLE" --title " MAIN MENU " \
+        choice=$(dialog --backtitle "$BACKTITLE" --title " MENU PRINCIPAL " \
             --ok-label OK --cancel-label Exit \
-            --menu "What action would you like to perform?" 25 75 20 \
-            1 "Download system bezel pack (will automatcally enable bezels)" \
-            2 "Enable system bezel pack" \
-            3 "Disable system bezel pack" \
-            4 "Information:  Retroarch cores setup for bezels per system" \
+            --menu "Elija una opcion" 25 75 20 \
+            1 "Descargar pack bezel de sistema (automaticamente habilita los bezels)" \
+            2 "Habilitar pack bezel de sistema" \
+            3 "Deshabilitar pack bezel de sistema" \
+            4 "Informacion:  Retroarch cores setup de bezels por sistema" \
             2>&1 > /dev/tty)
 
         case "$choice" in
@@ -83,7 +83,7 @@ function uninstall_bezel_pack() {
 
 function download_bezel() {
     local themes=(
-		'thebezelproject MAME'
+        'thebezelproject MAME'
         'thebezelproject Atari5200'
         'thebezelproject Atari7800'
         'thebezelproject GCEVectrex'
@@ -103,7 +103,7 @@ function download_bezel() {
         local status=()
         local default
 
-        options+=(U "Update install script - script will exit when updated")
+        options+=(U "Actualizar el script - el script se cerrara despues de actualizarse")
 
         local i=1
         for theme in "${themes[@]}"; do
@@ -112,22 +112,22 @@ function download_bezel() {
             theme="${theme[1]}"
             if [[ -d "/opt/masos/configs/all/retroarch/overlay/GameBezels/$theme" ]]; then
                 status+=("i")
-                options+=("$i" "Update or Uninstall $theme (installed)")
+                options+=("$i" "Actualizar o Desinstalar $theme (instalado)")
                 installed_bezelpacks+=("$theme $repo")
             else
                 status+=("n")
-                options+=("$i" "Install $theme (not installed)")
+                options+=("$i" "Instalar $theme (no instalado)")
             fi
             ((i++))
         done
-        local cmd=(dialog --default-item "$default" --backtitle "$__backtitle" --menu "The Bezel Project -  Bezel Pack Downloader - Choose an option" 22 76 16)
+        local cmd=(dialog --default-item "$default" --backtitle "$__backtitle" --menu "The Bezel Project -  Bezel Pack Downloader - Elija una opcion" 22 76 16)
         local choice=$("${cmd[@]}" "${options[@]}" 2>&1 >/dev/tty)
         default="$choice"
         [[ -z "$choice" ]] && break
         case "$choice" in
             U)  #update install script to get new theme listings
-                cd "/home/pi/RetroPie/retropiemenu" 
-                mv "bezelproject.sh" "bezelproject.sh.bkp"			
+                cd "/home/pi/RetroPie/masosmenu" 
+                mv "bezelproject.sh" "bezelproject.sh.bkp" 
                 wget "https://raw.githubusercontent.com/Moriggy/BezelProject/master/bezelproject.sh" 
                 chmod 777 "bezelproject.sh" 
                 exit
@@ -138,8 +138,8 @@ function download_bezel() {
                 theme="${theme[1]}"
 #                if [[ "${status[choice]}" == "i" ]]; then
                 if [[ -d "/opt/masos/configs/all/retroarch/overlay/GameBezels/$theme" ]]; then
-                    options=(1 "Update $theme" 2 "Uninstall $theme")
-                    cmd=(dialog --backtitle "$__backtitle" --menu "Choose an option for the bezel pack" 12 40 06)
+                    options=(1 "Actualizar $theme" 2 "Desinstalar $theme")
+                    cmd=(dialog --backtitle "$__backtitle" --menu "Elija una opcion de pack de bezel" 12 40 06)
                     local choice=$("${cmd[@]}" "${options[@]}" 2>&1 >/dev/tty)
                     case "$choice" in
                         1)
@@ -162,9 +162,9 @@ function disable_bezel() {
 
 clear
     while true; do
-        choice=$(dialog --backtitle "$BACKTITLE" --title " MAIN MENU " \
+        choice=$(dialog --backtitle "$BACKTITLE" --title " MENU PRINCIPAL " \
             --ok-label OK --cancel-label Exit \
-            --menu "Which system would you like to disable bezels for?" 25 75 20 \
+            --menu "Que sistema quieres deshabilitar los bezels?" 25 75 20 \
             1 "GCEVectrex" \
             2 "SuperGrafx" \
             3 "Sega32X" \
@@ -204,9 +204,9 @@ function enable_bezel() {
 
 clear
     while true; do
-        choice=$(dialog --backtitle "$BACKTITLE" --title " MAIN MENU " \
+        choice=$(dialog --backtitle "$BACKTITLE" --title " MENU PRINCIPAL " \
             --ok-label OK --cancel-label Exit \
-            --menu "Which system would you like to enable bezels for?" 25 75 20 \
+            --menu "Que sistema quieres habilitar los bezels?" 25 75 20 \
             1 "GCEVectrex" \
             2 "SuperGrafx" \
             3 "Sega32X" \
@@ -243,7 +243,7 @@ clear
 }
 
 function hide_bezel() {
-dialog --infobox "...processing..." 3 20 ; sleep 2
+dialog --infobox "...procesando..." 3 20 ; sleep 2
 emulator=$1
 file="/opt/masos/configs/${emulator}/retroarch.cfg"
 
@@ -279,7 +279,7 @@ esac
 }
 
 function show_bezel() {
-dialog --infobox "...processing..." 3 20 ; sleep 2
+dialog --infobox "...procesando..." 3 20 ; sleep 2
 emulator=$1
 file="/opt/masos/configs/${emulator}/retroarch.cfg"
 
