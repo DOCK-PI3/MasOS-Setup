@@ -76,14 +76,14 @@ function uninstall_bezel_pack() {
     fi
     if [[ "${theme}" == "MAME" ]]; then
       if [[ -d "/opt/masos/configs/all/retroarch/overlay/ArcadeBezels" ]]; then
-        rm -rf "/opt/masos/configs/all/retroarch/overlay/ArcdeBezels"
+        rm -rf "/opt/masos/configs/all/retroarch/overlay/ArcadeBezels"
       fi
     fi
 }
 
 function download_bezel() {
     local themes=(
-        'thebezelproject MAME'
+		'thebezelproject MAME'
         'thebezelproject Atari5200'
         'thebezelproject Atari7800'
         'thebezelproject GCEVectrex'
@@ -127,8 +127,7 @@ function download_bezel() {
         case "$choice" in
             U)  #update install script to get new theme listings
                 cd "/home/pi/RetroPie/retropiemenu" 
-                mv "bezelproject.sh" "bezelproject.sh.bkp"
-https://github.com/Moriggy/BezelProject				
+                mv "bezelproject.sh" "bezelproject.sh.bkp"			
                 wget "https://raw.githubusercontent.com/Moriggy/BezelProject/master/bezelproject.sh" 
                 chmod 777 "bezelproject.sh" 
                 exit
