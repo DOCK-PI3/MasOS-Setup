@@ -3,8 +3,8 @@
 IFS=';'
 
 # Welcome
- dialog --backtitle "RetroPie" --title "RetroPie Media Removal Utility" \
-    --yesno "\nRetroPie media removal utility.\n\nThis utility will remove extra media files (boxart, cartart, snap, and wheel) for a chosen system where there is not a matching game for it.\n\nIf you keep your media for MAME or Final Burn Alpha in the /roms/arcade folder, there is a special choice just for that.\n\nThis script expects you to be using the following media folders.\n\nboxart\ncartart\nsnap\nwheel\n\nWARNING: Always make a backup copy of your SD card and your roms and media files before making changes to your system.\n\n\nDo you want to proceed?" \
+ dialog --backtitle "MasOS" --title "MasOS Media Removal Utility" \
+    --yesno "\nMasOS media removal utility.\n\nThis utility will remove extra media files (boxart, cartart, snap, and wheel) for a chosen system where there is not a matching game for it.\n\nIf you keep your media for MAME or Final Burn Alpha in the /roms/arcade folder, there is a special choice just for that.\n\nThis script expects you to be using the following media folders.\n\nboxart\ncartart\nsnap\nwheel\n\nWARNING: Always make a backup copy of your SD card and your roms and media files before making changes to your system.\n\n\nDo you want to proceed?" \
     25 80 2>&1 > /dev/tty \
     || exit
 
@@ -171,7 +171,7 @@ function main_menu() {
 function remove_media() {
 dialog --infobox "...processing..." 3 20 ; sleep 2
 choice=$1
-directory="/home/pi/RetroPie/roms/${choice}"
+directory="/home/pi/MasOS/roms/${choice}"
 
 ls "${directory}/boxart" | sed -e 's/\.jpg$//' | sed -e 's/\.png$//' > /tmp/boxart.txt
 ls "${directory}/cartart" | sed -e 's/\.jpg$//' | sed -e 's/\.png$//' > /tmp/cartart.txt
@@ -228,8 +228,8 @@ rm /tmp/remove_media.sh
 function remove_media_arcade() {
 dialog --infobox "...processing..." 3 20 ; sleep 2
 choice=$1
-arcade="/home/pi/RetroPie/roms/arcade"
-directory="/home/pi/RetroPie/roms/${choice}"
+arcade="/home/pi/MasOS/roms/arcade"
+directory="/home/pi/MasOS/roms/${choice}"
 
 ls "${arcade}/boxart" | sed -e 's/\.jpg$//' | sed -e 's/\.png$//' > /tmp/boxart.txt
 ls "${arcade}/cartart" | sed -e 's/\.jpg$//' | sed -e 's/\.png$//' > /tmp/cartart.txt

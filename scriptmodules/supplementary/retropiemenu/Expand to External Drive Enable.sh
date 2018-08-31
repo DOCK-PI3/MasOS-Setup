@@ -26,7 +26,7 @@ fi
 
 sudo grep -w UUID /etc/fstab |grep -v ext4 > /dev/null 2>&1
 if [ $? -eq 0 ] ; then
-echo "It seems you already have an external drive mapped. Only one external drive is supported. Please run the "Remove Drive Expansion" script from the Retropie menu before adding a new drive."
+echo "It seems you already have an external drive mapped. Only one external drive is supported. Please run the "Remove Drive Expansion" script from the MasOS menu before adding a new drive."
 sleep 10
 exit
 else
@@ -45,14 +45,14 @@ fi
 
 
 mkdir $HOME/addonusb/roms/
-mkdir $HOME/RetroPie/combined_drives
+mkdir $HOME/MasOS/combined_drives
 mkdir $HOME/.work
 echo "Syncing the roms directories...not roms on your internal drive to the external drive. They will be located in the "roms" directory on your external drive"
 sleep 3
 sudo chmod 777  $HOME/addonusb
-find "$HOME/RetroPie/roms" -mindepth 1 -maxdepth 1 -type d -printf "$HOME/addonusb/roms/%f\n" | xargs mkdir -p 2>/dev/null || true
+find "$HOME/MasOS/roms" -mindepth 1 -maxdepth 1 -type d -printf "$HOME/addonusb/roms/%f\n" | xargs mkdir -p 2>/dev/null || true
 sleep 1
-mv $HOME/RetroPie/roms $HOME/RetroPie/localroms
+mv $HOME/MasOS/roms $HOME/MasOS/localroms
 cd /etc/samba/
 sudo curl -o smb.conf.exp https://raw.githubusercontent.com/Shakz76/Eazy-Hax-RetroPie-Toolkit/master/cfg/smb.conf.exp
 sudo mv smb.conf smb.conf.bkup
