@@ -126,7 +126,7 @@ function download_bezel() {
         [[ -z "$choice" ]] && break
         case "$choice" in
             U)  #update install script to get new theme listings
-                cd "/home/pi/RetroPie/masosmenu" 
+                cd "/home/pi/RetroPie/retropiemenu" 
                 mv "bezelproject.sh" "bezelproject.sh.bkp" 
                 wget "https://raw.githubusercontent.com/Moriggy/BezelProject/master/bezelproject.sh" 
                 chmod 777 "bezelproject.sh" 
