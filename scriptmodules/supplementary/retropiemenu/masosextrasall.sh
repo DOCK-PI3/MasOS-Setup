@@ -5,16 +5,16 @@ rp_module_section=""
 infobox= ""
 infobox="${infobox}_______________________________________________________\n\n"
 infobox="${infobox}\n"
-infobox="${infobox}\nMasOS Herramientas extras para el menu y actualizador de script base. \n\n"
+infobox="${infobox}\nMasOS Herramientas extras para el menu ,actualizador de script base \n\n"
+infobox="${infobox}\ny reparador de permisos para la version PC"
 infobox="${infobox}\n"
 infobox="${infobox}\n"
 infobox="${infobox}\n"
-infobox="${infobox}\n"
-infobox="${infobox}Se recomienda su instalacion en raspberry pi....\n"
+infobox="${infobox}Se recomienda instalacion de EXTRAS para el menu solo en raspberry pi....\n"
 infobox="${infobox}\n"
 
 dialog --backtitle "MasOS extras y actualizador de script base" \
---title "MasOS EXTRAS y actualizador de Script (by mabedeep)" \
+--title "MasOS EXTRAS ,actualizador de Script y raparador de permisos en PC(by mabedeep)" \
 --msgbox "${infobox}" 35 110
 
 
@@ -28,12 +28,14 @@ function main_menu() {
             --menu "Que accion te gustaria realizar?" 25 75 20 \
             1 "Actualizar MasOS-Setup script" \
 			2 "MasOS EXTRAS para el menu de emulationstaion" \
-            2>&1 > /dev/tty)
+            3 "Reparar permisos en MasOS PC" \
+			2>&1 > /dev/tty)
 
         case "$choice" in
             1) masossetup_update  ;;
 			2) masosmenu_extras  ;;
-            *)  break ;;
+            3) permisos_pc  ;;
+			*)  break ;;
         esac
     done
 }
@@ -49,40 +51,8 @@ dialog --infobox " MasOS-Setup script se actualizo correctamente!...\n\nEn 5seg 
 sudo reboot 
 }
 
-# function masosystem_upgrade() {                                                                                       
-# dialog --infobox "...Despues de actualizar el sistema se reiniciara automaticamente..." 30 75 ; sleep 5                
-# #######################################################################################################################
-# # Copia de seguridad ficheros de configuracion backup "Importante guardar copia para restaurar despues de actualizar" #
-# #######################################################################################################################
-# ############################## by mabedeep ############################################################################
-# cd
-# sudo mkdir /home/pi/backup-temp 
-# sudo mkdir /home/pi/backup-temp/profile
-# sudo chown -R pi:pi /home/pi/backup-temp/
-# # sudo cp -R /opt/masos/configs/all /home/pi/backup-temp/all_backup/
-# sudo cp -R /home/pi/*.* /home/pi/backup-temp/profile/
-# actualizacion del sistema completo MasOS ,tambien se actualiza MasOS-Setup script
-	# sudo rm -R MasOS-Setup/
-		# git clone --depth=1 https://github.com/DOCK-PI3/MasOS-Setup.git
-			# sudo chmod -R +x MasOS-Setup/
-			# sudo apt-get update
-		# sudo apt-get upgrade -y
-	# clear
-# # #######################################################################################################################
-# # # Restaurando backup con toda la configuracion del usuario despues de actualizar el sistema completo 	              #
-# # #######################################################################################################################
-# dialog --infobox "Restaurando configuracion de usuario, buscando backup ..." 30 75 ; sleep 3
-# sudo cp -R /home//home/pi/backup-temp/all_backup/* /opt/masos/configs/all
-# sudo chmod -R +x /opt/masos
-# sudo chown -R root:root /opt
-# sudo chown -R /home/pi:/home/pi /opt/masos/configs
-# # dialog --infobox " La copia de seguridad se restauro correctamente ,reiniciando el sistema en 10s " 30 75 ; sleep 10
-# sudo shutdown -r now
-# done
-# }
-
 #########################################################################
-# Funciones EXTRAs Menu ES para MasOS ;-) #
+# Funcion EXTRAs Menu ES para MasOS ;-) #
 function masosmenu_extras() {                                          #
 dialog --infobox " MasOS opciones Extras en rpi para el menu de ES..." 30 55 ; sleep 5
 cd
@@ -96,8 +66,23 @@ sudo chmod -R +x /opt
 sudo mkdir /home/pi/MasOS/videoloadingscreens
 sudo mkdir /home/pi/MasOS/roms/music
 sudo chown -R pi:pi /home/pi/MasOS
-dialog --infobox " Las opciones Extras estan instaladas,reiniciando el sistema en 10seg ..." 30 55 ; sleep 10
+dialog --infobox " Las opciones Extras estan instaladas,reiniciando el sistema en 5seg ..." 30 55 ; sleep 5
 sudo reboot
-# ---------------- FIN DEL CODIGO ------------ #
+# ---------------------------- #
+}
+
+#########################################################################
+# Funcion Reparar permisos en MasOS PC ;-) #
+function permisos_pc() {                                          #
+dialog --infobox " Repara los permisos en la version PC para que todo funcione correctamente..." 30 55 ; sleep 5
+cd
+sudo chmod -R +x /home/$user/RetroPie/
+sudo chmod -R +x /opt/masos/
+sudo chown -R $user:$user /home/$user/MasOS/
+sudo chown -R root:root /home/$user/RetroPie/
+sudo chown -R root:root /opt/masos/supplementary/
+sudo chown -R $user:$user /opt/masos/supplementary/retropie-manager/
+dialog --infobox " Los permisos fueron reparados ..." 30 55 ; sleep 5
+# ---------------------------- #
 }
 main_menu
