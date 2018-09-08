@@ -76,10 +76,10 @@ sudo reboot
 function permisos_pc() {                                          #
 dialog --infobox " Repara los permisos en la version PC para que todo funcione correctamente..." 30 55 ; sleep 5
 cd
-sudo chmod -R +x /home/$user/RetroPie/
-sudo chmod -R +x /opt/masos/
-sudo chown -R $user:$user /home/$user/MasOS/
-sudo chown -R root:root /home/$user/RetroPie/
+sudo chmod -R +x RetroPie/
+sudo chmod -R +x /opt/masos
+sudo chown -R $user:$user $user/MasOS/
+sudo chown -R root:root $user/RetroPie/
 sudo chown -R root:root /opt/masos/supplementary/
 sudo chown -R $user:$user /opt/masos/supplementary/retropie-manager/
 dialog --infobox " Los permisos fueron reparados ..." 30 55 ; sleep 5
