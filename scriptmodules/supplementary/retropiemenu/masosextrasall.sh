@@ -74,14 +74,14 @@ sudo reboot
 #########################################################################
 # Funcion Reparar permisos en MasOS PC ;-) #
 function permisos_pc() {                                          #
-dialog --infobox " Repara los permisos en la version PC para que todo funcione correctamente..." 30 55 ; sleep 5
+dialog --infobox " Repara los permisos en la version PC para que todo funcione correctamente...\n\nRecuerda tu nombre de usuario tiene que ser masos" 30 55 ; sleep 5
 cd
-sudo chmod -R +x RetroPie/
-sudo chmod -R +x /opt/masos
-sudo chown -R $user:$user $user/MasOS/
-sudo chown -R root:root $user/RetroPie/
+sudo chmod -R +x /home/masos/RetroPie/
+sudo chmod -R +x /opt/masos/
+sudo chown -R masos:masos /home/masos/MasOS/
+sudo chown -R root:root /home/masos/RetroPie/
 sudo chown -R root:root /opt/masos/supplementary/
-sudo chown -R $user:$user /opt/masos/supplementary/retropie-manager/
+sudo chown -R masos:masos /opt/masos/supplementary/retropie-manager/
 dialog --infobox " Los permisos fueron reparados ..." 30 55 ; sleep 5
 # ---------------------------- #
 }
