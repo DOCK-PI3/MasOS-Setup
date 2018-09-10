@@ -6,14 +6,14 @@
 		<desc>Configuraciones de audio .Elija predeterminado auto, jack de 3.5mm o HDMI. Controles del mezclador, y aplicar configuraciones predeterminadas.</desc>
 		<image>/home/pi/RetroPie/retropiemenu/icons/audiosettings.png</image>
 	</game>
-<!-- 		<game>
+	<game>
 		<path>./attractmode.sh</path>
 		<name>Switch to Attract Mode</name>
 		<desc>Reboot into the Attract Mode front-end.</desc>
 		<image>./icons/AttractMode.png</image>
 		<playcount>2</playcount>
 		<lastplayed>20171206T201236</lastplayed>
-	</game> -->
+	</game>
 	<game>
 		<path>./bluetooth.rp</path>
 		<name>Bluetooth</name>

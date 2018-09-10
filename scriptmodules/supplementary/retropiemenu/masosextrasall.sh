@@ -79,9 +79,8 @@ cd
 sudo chmod -R +x /home/masos/RetroPie/
 sudo chmod -R +x /opt/masos/
 sudo chown -R masos:masos /home/masos/MasOS/
-sudo chown -R root:root /home/masos/RetroPie/
-sudo chown -R root:root /opt/masos/supplementary/
-sudo chown -R masos:masos /opt/masos/supplementary/retropie-manager/
+sudo chown -R masos:masos /home/masos/RetroPie/
+sudo chown -R masos:masos /opt/masos/
 dialog --infobox " Los permisos fueron reparados ..." 30 55 ; sleep 5
 # ---------------------------- #
 }
