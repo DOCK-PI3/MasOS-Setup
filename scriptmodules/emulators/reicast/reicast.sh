@@ -11,7 +11,7 @@
 
 AUDIO="$1"
 ROM="$2"
-rootdir="/opt/retropie"
+rootdir="/opt/masos"
 configdir="$rootdir/configs"
 
 source "$rootdir/lib/inifuncs.sh"
@@ -72,7 +72,7 @@ function mapInput() {
     echo "$params"
 }
 
-if [[ ! -f "$HOME/RetroPie/BIOS/dc_boot.bin" ]]; then
+if [[ ! -f "$HOME/MasOS/BIOS/dc_boot.bin" ]]; then
     dialog --no-cancel --pause "You need to copy the Dreamcast BIOS files (dc_boot.bin and dc_flash.bin) to the folder $biosdir to boot the Dreamcast emulator." 22 76 15
     exit 1
 fi
