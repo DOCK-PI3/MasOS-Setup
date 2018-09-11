@@ -80,10 +80,10 @@ sudo reboot
 function permisos_pc() {                                          #
 dialog --infobox " Repara los permisos en la version PC para que todo funcione correctamente...\n\nRecuerda tu nombre de usuario tiene que ser masos" 30 55 ; sleep 5
 cd
-sudo chmod -R +x /home/masos/RetroPie/
+sudo chmod -R +x ~/RetroPie/
 sudo chmod -R +x /opt/masos/
-sudo chown -R masos:masos /home/masos/MasOS/
-sudo chown -R masos:masos /home/masos/RetroPie/
+sudo chown -R masos:masos ~/MasOS/
+sudo chown -R masos:masos ~/RetroPie/
 sudo chown -R masos:masos /opt/masos/
 dialog --infobox " Los permisos fueron reparados ..." 30 55 ; sleep 5
 # ---------------------------- #
@@ -107,7 +107,7 @@ function pc_spanish() {                                          #
 dialog --infobox " PC Ubuntu 16.04.5 - instalar idioma español en ES..." 30 55 ; sleep 5
 cd
 sudo killall emulationstaion
-sudo cp -R /home/pi/MasOS-Setup/scriptmodules/extras/es_idiomaPC/* /opt/masos/supplementary/emulationstaion/
+sudo cp -R ~/MasOS-Setup/scriptmodules/extras/es_idiomaPC/* /opt/masos/supplementary/emulationstaion/
 dialog --infobox " El idioma se instalo correctamente ,reiniciando el sistema en 5seg ..." 30 55 ; sleep 5
 sudo reboot
 # ---------------------------- #
