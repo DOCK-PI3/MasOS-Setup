@@ -6,7 +6,7 @@ infobox= ""
 infobox="${infobox}_______________________________________________________\n\n"
 infobox="${infobox}\n"
 infobox="${infobox}\nMasOS Herramientas extras para el menu ,actualizador de script base \n\n"
-infobox="${infobox}\ny reparador de permisos para la version PC"
+infobox="${infobox}\ny reparador de permisos para la version PC,IDIOMAS y mucho mas.."
 infobox="${infobox}\n"
 infobox="${infobox}\n"
 infobox="${infobox}\n"
@@ -14,7 +14,7 @@ infobox="${infobox}Se recomienda instalacion de EXTRAS para el menu solo en rasp
 infobox="${infobox}\n"
 
 dialog --backtitle "MasOS extras y actualizador de script base" \
---title "MasOS EXTRAS ,actualizador de Script y raparador de permisos en PC(by mabedeep)" \
+--title "MasOS EXTRAS ,actualizador de Script y raparador de permisos en PC(by MasOS TEAM)" \
 --msgbox "${infobox}" 35 110
 
 
@@ -66,7 +66,7 @@ sudo cp -R /home/pi/MasOS-Setup/scriptmodules/supplementary/retropiemenu/* /home
 # sudo cp -R /home/pi/MasOS-Setup/scriptmodules/supplementary/retropiemenu/icons /home/pi/RetroPie/retropiemenu
 sudo cp -R /home/pi/MasOS-Setup/scriptmodules/extras/scripts /home/pi/RetroPie/
 sudo chmod -R +x /home/pi/RetroPie
-sudo chmod -R +x /opt
+sudo chmod -R +x /opt/
 sudo mkdir /home/pi/MasOS/videoloadingscreens
 sudo mkdir /home/pi/MasOS/roms/music
 sudo chown -R pi:pi /home/pi/MasOS
@@ -95,7 +95,8 @@ function pi_spanish() {                                          #
 dialog --infobox " Raspberry pi - instalar idioma español en ES..." 30 55 ; sleep 5
 cd
 sudo killall emulationstaion
-sudo cp -R /home/pi/MasOS-Setup/scriptmodules/extras/es_idioma/* /opt/masos/supplementary/emulationstaion/
+sudo cp -R /home/pi/MasOS-Setup/scriptmodules/extras/es_idioma/locale/ /opt/masos/supplementary/emulationstaion/
+sudo cp -R /home/pi/MasOS-Setup/scriptmodules/extras/es_idioma/resources/ /opt/masos/supplementary/emulationstaion/
 sudo cp /home/pi/MasOS-Setup/scriptmodules/extras/es_idioma/emulationstaion /opt/masos/supplementary/emulationstaion/
 dialog --infobox " El idioma se instalo correctamente ,reiniciando el sistema en 5seg ..." 30 55 ; sleep 5
 sudo reboot
@@ -108,7 +109,8 @@ function pc_spanish() {                                          #
 dialog --infobox " PC Ubuntu 16.04.5 - instalar idioma español en ES..." 30 55 ; sleep 5
 cd
 sudo killall emulationstaion
-sudo cp -R ~/MasOS-Setup/scriptmodules/extras/es_idiomaPC/* /opt/masos/supplementary/emulationstaion/
+sudo cp -R ~/MasOS-Setup/scriptmodules/extras/es_idiomaPC/locale/ /opt/masos/supplementary/emulationstaion/
+sudo cp -R ~/MasOS-Setup/scriptmodules/extras/es_idiomaPC/resources/ /opt/masos/supplementary/emulationstaion/
 sudo cp ~/MasOS-Setup/scriptmodules/extras/es_idiomaPC/emulationstaion /opt/masos/supplementary/emulationstaion/
 dialog --infobox " El idioma se instalo correctamente ,reiniciando el sistema en 5seg ..." 30 55 ; sleep 5
 sudo reboot
