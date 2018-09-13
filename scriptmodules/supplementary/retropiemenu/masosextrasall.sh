@@ -97,7 +97,7 @@ cd
 sudo killall emulationstaion
 sudo cp -R /home/pi/MasOS-Setup/scriptmodules/extras/es_idioma/locale/ /opt/masos/supplementary/emulationstaion/
 sudo cp -R /home/pi/MasOS-Setup/scriptmodules/extras/es_idioma/resources/ /opt/masos/supplementary/emulationstaion/
-sudo cp /home/pi/MasOS-Setup/scriptmodules/extras/es_idioma/emulationstaion /opt/masos/supplementary/emulationstaion/
+sudo cp -R /home/pi/MasOS-Setup/scriptmodules/extras/es_idioma/* /opt/masos/supplementary/emulationstaion/
 dialog --infobox " El idioma se instalo correctamente ,reiniciando el sistema en 5seg ..." 30 55 ; sleep 5
 sudo reboot
 # ---------------------------- #
@@ -111,7 +111,7 @@ cd
 sudo killall emulationstaion
 sudo cp -R ~/MasOS-Setup/scriptmodules/extras/es_idiomaPC/locale/ /opt/masos/supplementary/emulationstaion/
 sudo cp -R ~/MasOS-Setup/scriptmodules/extras/es_idiomaPC/resources/ /opt/masos/supplementary/emulationstaion/
-sudo cp ~/MasOS-Setup/scriptmodules/extras/es_idiomaPC/emulationstaion /opt/masos/supplementary/emulationstaion/
+sudo cp ~/MasOS-Setup/scriptmodules/extras/es_idiomaPC/* /opt/masos/supplementary/emulationstaion/
 dialog --infobox " El idioma se instalo correctamente ,reiniciando el sistema en 5seg ..." 30 55 ; sleep 5
 sudo reboot
 # ---------------------------- #
