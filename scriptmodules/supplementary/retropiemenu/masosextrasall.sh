@@ -83,7 +83,7 @@ cd
 sudo chmod -R +x ~/RetroPie/
 sudo chmod -R +x /opt/masos/
 sudo chown -R masos:masos ~/MasOS/
-sudo chown -R masos:masos ~/RetroPie/
+sudo chown -R root:root ~/RetroPie/
 sudo chown -R masos:masos /opt/masos/
 dialog --infobox " Los permisos fueron reparados ..." 30 55 ; sleep 5
 # ---------------------------- #
@@ -96,6 +96,7 @@ dialog --infobox " Raspberry pi - instalar idioma español en ES..." 30 55 ; sle
 cd
 sudo killall emulationstaion
 sudo cp -R /home/pi/MasOS-Setup/scriptmodules/extras/es_idioma/* /opt/masos/supplementary/emulationstaion/
+sudo cp /home/pi/MasOS-Setup/scriptmodules/extras/es_idioma/emulationstaion /opt/masos/supplementary/emulationstaion/
 dialog --infobox " El idioma se instalo correctamente ,reiniciando el sistema en 5seg ..." 30 55 ; sleep 5
 sudo reboot
 # ---------------------------- #
@@ -108,6 +109,7 @@ dialog --infobox " PC Ubuntu 16.04.5 - instalar idioma español en ES..." 30 55 
 cd
 sudo killall emulationstaion
 sudo cp -R ~/MasOS-Setup/scriptmodules/extras/es_idiomaPC/* /opt/masos/supplementary/emulationstaion/
+sudo cp ~/MasOS-Setup/scriptmodules/extras/es_idiomaPC/emulationstaion /opt/masos/supplementary/emulationstaion/
 dialog --infobox " El idioma se instalo correctamente ,reiniciando el sistema en 5seg ..." 30 55 ; sleep 5
 sudo reboot
 # ---------------------------- #
