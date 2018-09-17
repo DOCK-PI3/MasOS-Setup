@@ -2,7 +2,7 @@
 rp_module_id="masosupdateallsystem"
 rp_module_desc="Actualizador para el sistema MasOS"
 rp_module_section=""
-infobox= ""
+infobox= "${infobox}\n"
 infobox="${infobox}_______________________________________________________\n\n"
 infobox="${infobox}\n"
 infobox="${infobox}\nMasOS Herramientas extras para el menu ,actualizador de script base \n\n"
@@ -48,9 +48,9 @@ function main_menu() {
 function masossetup_update() {                                          #
 dialog --infobox "...Actualizando script MasOS-Setup..." 30 55 ; sleep 3
 cd 
-	sudo rm -R /home/pi/MasOS-Setup/
+	sudo rm -R ~/MasOS-Setup/
 		sudo git clone --depth=1 https://github.com/DOCK-PI3/MasOS-Setup.git
-	sudo chmod -R +x /home/pi/MasOS-Setup/
+	sudo chmod -R +x ~/MasOS-Setup/
 dialog --infobox " MasOS-Setup script se actualizo correctamente!...\n\nEn 5seg se reinicia el sistema..espere por favor!" 60 75 ; sleep 5
 sudo reboot 
 }
