@@ -82,9 +82,9 @@ dialog --infobox " Repara los permisos en la version PC para que todo funcione c
 cd
 sudo chmod -R +x ~/RetroPie/
 sudo chmod -R +x /opt/masos/
-sudo chown -R masos:masos ~/MasOS/
+sudo chown -R $user:$user ~/MasOS/
 sudo chown -R root:root ~/RetroPie/
-sudo chown -R masos:masos /opt/masos/
+sudo chown -R $user:$user /opt/masos/
 dialog --infobox " Los permisos fueron reparados ..." 30 55 ; sleep 5
 # ---------------------------- #
 }
@@ -94,7 +94,7 @@ dialog --infobox " Los permisos fueron reparados ..." 30 55 ; sleep 5
 function pi_spanish() {                                          #
 dialog --infobox " Raspberry pi - instalar idioma español en ES..." 30 55 ; sleep 5
 cd
-sudo killall emulationstaion
+sudo killall emulationstation
 sudo cp -R /home/pi/MasOS-Setup/scriptmodules/extras/es_idioma/locale/ /opt/masos/supplementary/emulationstaion/
 sudo cp -R /home/pi/MasOS-Setup/scriptmodules/extras/es_idioma/resources/ /opt/masos/supplementary/emulationstaion/
 sudo cp -R /home/pi/MasOS-Setup/scriptmodules/extras/es_idioma/* /opt/masos/supplementary/emulationstaion/
@@ -108,7 +108,7 @@ sudo reboot
 function pc_spanish() {                                          #
 dialog --infobox " PC Ubuntu 16.04.5 - instalar idioma español en ES..." 30 55 ; sleep 5
 cd
-sudo killall emulationstaion
+sudo killall emulationstation
 sudo cp -R ~/MasOS-Setup/scriptmodules/extras/es_idiomaPC/locale/ /opt/masos/supplementary/emulationstaion/
 sudo cp -R ~/MasOS-Setup/scriptmodules/extras/es_idiomaPC/resources/ /opt/masos/supplementary/emulationstaion/
 sudo cp ~/MasOS-Setup/scriptmodules/extras/es_idiomaPC/* /opt/masos/supplementary/emulationstaion/
