@@ -48,7 +48,24 @@ function gui_esthemes() {
 		'Moriggy retro'
         'Moriggy maximus-v3'
 		'Moriggy MasOS'
-    )
+		'RetroPie carbon'
+		'ehettervik workbench'
+		'ruckage famicom-mini'
+        'ruckage snes-mini'
+		'ruckage nes-mini'
+        'TMNTturtleguy ComicBook'
+        'TMNTturtleguy ComicBook_4-3'
+        'TMNTturtleguy ComicBook_SE-Wheelart'
+        'TMNTturtleguy ComicBook_4-3_SE-Wheelart'
+		'HerbFargus tronkyfran'
+		'dmmarti hurstyblue'
+	    'garaine marioblue'
+        'garaine bigwood'
+		'RetroHursty69 neogeo_only'
+		'SuperMagicom nostalgic'
+		'RetroHursty69 comiccrazy'
+	    'RetroHursty69 greenilicious'
+	)
     while true; do
         local theme
         local installed_themes=()
