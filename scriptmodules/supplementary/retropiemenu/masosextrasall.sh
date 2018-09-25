@@ -27,7 +27,7 @@ function main_menu() {
             --ok-label OK --cancel-label Exit \
             --menu "Que accion te gustaria realizar?" 25 75 20 \
             1 "Actualizar MasOS-Setup script" \
-			2 "MasOS EXTRAS para el menu de emulationstaion" \
+			2 "MasOS EXTRAS para el menu de emulationstation" \
             3 "Reparar permisos en MasOS PC" \
             4 "Rasbperry pi ES instalar idioma español" \
             5 "PC ES instalar idioma español" \
@@ -95,9 +95,9 @@ function pi_spanish() {                                          #
 dialog --infobox " Raspberry pi - instalar idioma español en ES..." 30 55 ; sleep 5
 cd
 sudo killall emulationstation
-sudo cp -R /home/pi/MasOS-Setup/scriptmodules/extras/es_idioma/locale/ /opt/masos/supplementary/emulationstaion/
-sudo cp -R /home/pi/MasOS-Setup/scriptmodules/extras/es_idioma/resources/ /opt/masos/supplementary/emulationstaion/
-sudo cp -R /home/pi/MasOS-Setup/scriptmodules/extras/es_idioma/* /opt/masos/supplementary/emulationstaion/
+sudo cp -R /home/pi/MasOS-Setup/scriptmodules/extras/es_idioma/locale/ /opt/masos/supplementary/emulationstation/
+sudo cp -R /home/pi/MasOS-Setup/scriptmodules/extras/es_idioma/resources/ /opt/masos/supplementary/emulationstation/
+sudo cp -R /home/pi/MasOS-Setup/scriptmodules/extras/es_idioma/* /opt/masos/supplementary/emulationstation/
 dialog --infobox " El idioma se instalo correctamente ,reiniciando el sistema en 5seg ..." 30 55 ; sleep 5
 sudo reboot
 # ---------------------------- #
@@ -109,9 +109,9 @@ function pc_spanish() {                                          #
 dialog --infobox " PC Ubuntu 16.04.5 - instalar idioma español en ES..." 30 55 ; sleep 5
 cd
 sudo killall emulationstation
-sudo cp -R ~/MasOS-Setup/scriptmodules/extras/es_idiomaPC/locale/ /opt/masos/supplementary/emulationstaion/
-sudo cp -R ~/MasOS-Setup/scriptmodules/extras/es_idiomaPC/resources/ /opt/masos/supplementary/emulationstaion/
-sudo cp ~/MasOS-Setup/scriptmodules/extras/es_idiomaPC/* /opt/masos/supplementary/emulationstaion/
+sudo cp -R ~/MasOS-Setup/scriptmodules/extras/es_idiomaPC/locale/ /opt/masos/supplementary/emulationstation/
+sudo cp -R ~/MasOS-Setup/scriptmodules/extras/es_idiomaPC/resources/ /opt/masos/supplementary/emulationstation/
+sudo cp ~/MasOS-Setup/scriptmodules/extras/es_idiomaPC/* /opt/masos/supplementary/emulationstation/
 dialog --infobox " El idioma se instalo correctamente ,reiniciando el sistema en 5seg ..." 30 55 ; sleep 5
 sudo reboot
 # ---------------------------- #
