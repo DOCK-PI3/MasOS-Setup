@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 rp_module_id="masosupdateallsystem"
 rp_module_desc="Actualizador para el sistema MasOS"
 rp_module_section=""
@@ -31,6 +31,7 @@ function main_menu() {
             3 "Reparar permisos en MasOS PC" \
             4 "Rasbperry pi ES instalar idioma español" \
             5 "PC ES instalar idioma español" \
+		    6 "BETA Instalar MalditaCastilla en Raspberry pi" \
 			2>&1 > /dev/tty)
 
         case "$choice" in
@@ -39,6 +40,7 @@ function main_menu() {
             3) permisos_pc  ;;
 			4) pi_spanish  ;;
 			5) pc_spanish  ;;
+			6) inst_malditac  ;;
 			*)  break ;;
         esac
     done
@@ -83,8 +85,9 @@ cd
 sudo chmod -R +x ~/RetroPie/
 sudo chmod -R +x /opt/masos/
 sudo chown -R $user:$user ~/MasOS/
-sudo chown -R root:root ~/RetroPie/
+# sudo chown -R root:root ~/RetroPie/
 sudo chown -R $user:$user /opt/masos/
+sudo chown -R $user:$user /etc/emulationstation/themes/
 dialog --infobox " Los permisos fueron reparados ..." 30 55 ; sleep 5
 # ---------------------------- #
 }
@@ -115,5 +118,17 @@ sudo cp ~/MasOS-Setup/scriptmodules/extras/es_idiomaPC/* /opt/masos/supplementar
 dialog --infobox " El idioma se instalo correctamente ,reiniciando el sistema en 5seg ..." 30 55 ; sleep 5
 sudo reboot
 # ---------------------------- #
+}
+
+#########################################################################
+# funcion Instalador de MalditaCastilla en MasOS  ;-) #
+function inst_malditac() {                                          #
+dialog --infobox "...Instalando MalditaCastilla en MasOS..." 30 55 ; sleep 3 
+  sudo apt-get install -y libopenal-dev
+	wget -O- -q https://www.yoyogames.com/download/pi/castilla | tar -xvz -C "$md_inst"
+patchVendorGraphics "$md_inst/MalditaCastilla/MalditaCastilla"
+mkRomDir "ports"
+addPort "$md_id" "MalditaCastilla" "MalditaCastilla" "$md_inst/MalditaCastilla/MalditaCastilla"
+dialog --infobox " MalditaCastilla se instalo correctamente en tu raspberry pi!...\n\nReinicia ES o tu sistema si no lo ves en la seccion PORTS!" 60 75 ; sleep 5
 }
 main_menu

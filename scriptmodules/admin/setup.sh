@@ -18,7 +18,7 @@ function rps_logInit() {
         if mkdir -p "$__logdir"; then
             chown $user:$user "$__logdir"
         else
-            fatalError "No se pudo hacer el directorio $__logdir"
+            fatalError "No se pudo crear el directorio $__logdir"
         fi
     fi
     local now=$(date +'%Y-%m-%d_%H%M%S')
@@ -65,7 +65,7 @@ function depends_setup() {
     fi
 
     if isPlatform "rpi" && isPlatform "mesa"; then
-        printMsgs "dialog" "ERROR: Tiene habilitado el controlador experimental GL de escritorio. Esto NO es compatible con MasOS, y la Emulation Station y los emuladores no se ejecutaran.\n\nDeshabilite el controlador experimental GL de escritorio desde el menu 'Opciones avanzadas' de raspi-config."
+        printMsgs "dialog" "ERROR: Tiene habilitado el controlador experimental GL de escritorio. Esto NO es compatible con MasOS, Emulation Station y los emuladores no se ejecutaran.\n\nDeshabilite el controlador experimental GL de escritorio desde el menu 'Opciones avanzadas' de raspi-config."
         exit 1
     fi
 
