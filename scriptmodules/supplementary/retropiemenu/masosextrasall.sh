@@ -122,13 +122,20 @@ sudo reboot
 
 #########################################################################
 # funcion Instalador de MalditaCastilla en MasOS  ;-) #
-function inst_malditac() {                                          #
+function inst_malditac() {
+rp_module_id="gamemaker"
+rp_module_desc="MalditaCastilla Gamemaker game for Raspberry Pi"
+rp_module_section="exp"
+rp_module_flags="!mali !x86"                                          #
 dialog --infobox "...Instalando MalditaCastilla en MasOS..." 30 55 ; sleep 3 
   sudo apt-get install -y libopenal-dev
-	wget -O- -q https://www.yoyogames.com/download/pi/castilla | tar -xvz -C "$md_inst"
-patchVendorGraphics "$md_inst/MalditaCastilla/MalditaCastilla"
+   cd /opt/masos/ && mkdir ports
+    cd /opt/masos/ports/ && mkdir gamemaker
+	sudo chown -R pi:pi /opt/masos/ports/
+	wget -O- -q https://www.yoyogames.com/download/pi/castilla | tar -xvz -C /opt/masos/ports/gamemaker/
+patchVendorGraphics "/opt/masos/ports/gamemaker/MalditaCastilla/MalditaCastilla"
 mkRomDir "ports"
-addPort "$md_id" "MalditaCastilla" "MalditaCastilla" "$md_inst/MalditaCastilla/MalditaCastilla"
+addPort "$md_id" "MalditaCastilla" "MalditaCastilla" "/opt/masos/ports/gamemaker/MalditaCastilla/MalditaCastilla"
 dialog --infobox " MalditaCastilla se instalo correctamente en tu raspberry pi!...\n\nReinicia ES o tu sistema si no lo ves en la seccion PORTS!" 60 75 ; sleep 5
 }
 main_menu
