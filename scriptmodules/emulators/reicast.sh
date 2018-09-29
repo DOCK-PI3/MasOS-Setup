@@ -78,7 +78,8 @@ function configure_reicast() {
     mkdir -p "$md_conf_root/dreamcast/"{data,mappings}
 
     # symlink bios
-    ln -sf "$biosdir/"{dc_boot.bin,dc_flash.bin} "$md_conf_root/dreamcast/data"
+    mkUserDir "$biosdir/dc"
+    ln -sf "$biosdir/dc/"{dc_boot.bin,dc_flash.bin} "$md_conf_root/dreamcast/data"
 
     # copy default mappings
     cp "$md_inst/share/reicast/mappings/"*.cfg "$md_conf_root/dreamcast/mappings/"

@@ -75,6 +75,11 @@ function get_os_version() {
     local error=""
     case "$__os_id" in
         Raspbian|Debian)
+			# Debian unstable is not officially supported though
+            if [[ "$__os_release" == "unstable" ]]; then
+                __os_release=10
+            fi
+
             if compareVersions "$__os_release" lt 8; then
                 error="You need Raspbian/Debian Jessie or newer"
             fi
@@ -165,7 +170,7 @@ function get_os_version() {
 }
 
 function get_retropie_depends() {
-    local depends=(git dialog wget gcc g++ build-essential unzip xmlstarlet python-pyudev)
+    local depends=(git dialog wget gcc g++ build-essential unzip xmlstarlet python-pyudev ca-certificates)
 
     if ! getDepends "${depends[@]}"; then
         fatalError "Unable to install packages required by $0 - ${md_ret_errors[@]}"
@@ -299,7 +304,7 @@ function platform_odroid-c2() {
         __platform_flags="arm armv8 neon mali gles"
     else
         __default_cflags="-O2 -march=native"
-        __platform_flags="aarch64 mali"
+        __platform_flags="aarch64 mali gles"
     fi
     __default_cflags+=" -ftree-vectorize -funsafe-math-optimizations"
     __default_asflags=""
