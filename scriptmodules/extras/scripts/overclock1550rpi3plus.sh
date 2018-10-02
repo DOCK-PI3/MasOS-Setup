@@ -16,7 +16,7 @@ else
 fi
 
 # applies overclocked settings
-sudo cp /home/pi/RetroPie/scripts/config_overclock1550rpi3bplus.txt /boot/config.txt
+sudo cp /home/pi/MasOS/scripts/config_overclock1550rpi3bplus.txt /boot/config.txt
 echo "Overclocked settings updated, rebooting"
 echo
 echo "To go back to factory settings, run no overclock.sh"

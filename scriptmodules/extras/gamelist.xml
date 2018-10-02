@@ -7,14 +7,6 @@
 		<image>/home/pi/RetroPie/retropiemenu/icons/audiosettings.png</image>
 	</game>
 	<game>
-		<path>./attractmode.sh</path>
-		<name>Switch to Attract Mode</name>
-		<desc>Reboot into the Attract Mode front-end.</desc>
-		<image>./icons/AttractMode.png</image>
-		<playcount>2</playcount>
-		<lastplayed>20171206T201236</lastplayed>
-	</game>
-	<game>
 		<path>./bluetooth.rp</path>
 		<name>Bluetooth</name>
 		<desc>Regístrese y conéctese a dispositivos bluetooth. Anule el registro y elimine los dispositivos , visualice los dispositivos registrados y conectados.</desc>
@@ -64,18 +56,6 @@ Puede seleccionar sistemas individuales para eliminar el exceso de archivos mult
 		<lastplayed>20180123T121507</lastplayed>
 	</game>
 	<game>
-		<path>./launchingscreens.sh</path>
-		<name>Launching Screens</name>
-		<desc>Este script activará o desactivará el uso de pantallas de inicio en los sistemas de cada emulador que tenga instalado.
-
-Lanzamiento de juegos de pantalla se encuentran aquí:
-Cada conjunto de ../LaunchingScreens que haya localizado allí debe estar en su propia carpeta principal, con las carpetas individuales del sistema del emulador que contienen los archivos launching.png debajo.
-</desc>
-		<image>./icons/launchingscreens.png</image>
-		<playcount>26</playcount>
-		<lastplayed>20180131T205253</lastplayed>
-	</game>
-	<game>
 		<path>./moonlight.sh</path>
 		<name>Steam Moonlight config</name>
 		<desc>Configure steam Moonlight</desc>
@@ -88,14 +68,6 @@ Cada conjunto de ../LaunchingScreens que haya localizado allí debe estar en su 
 		<image>./icons/raspiconfig.png</image>
 		<playcount>1</playcount>
 		<lastplayed>20180423T092927</lastplayed>
-	</game>
-	<game>
-		<path>./overclock.sh</path>
-		<name>Overclock MasOS</name>
-		<desc>Ajustes de overclock para RPI3 y RPI3B +.</desc>
-		<image>./icons/overclock.png</image>
-		<playcount>17</playcount>
-		<lastplayed>20180423T093333</lastplayed>
 	</game>
 	<game>
 		<path>./Expand to External Drive Disable.sh</path>
@@ -128,39 +100,6 @@ Cada conjunto de ../LaunchingScreens que haya localizado allí debe estar en su 
 		<image>./icons/retroarch.png</image>
 		<playcount>1</playcount>
 		<lastplayed>20180502T085504</lastplayed>
-	</game>
-	<game>
-		<path>./bezels.sh</path>
-		<name>Retroarch Bezels</name>
-		<desc>Este script activará o desactivará el uso de superposiciones de bezels para emuladores basados en Retroarch.
-
-Las superposiciones de bezels y los archivos de configuración están aquí:
-/opt/masos/configs/all/retroarch/overlay
-
-Los archivos de configuración Retroarch están aquí:
-/opt/masos/configs/(emulator)/retroarch.cfg
-
-Esta secuencia de comandos actualizará los archivos de configuración de retroarch para usar el archivo de configuración denominado bezel designado.
-</desc>
-		<image>./icons/bezels.png</image>
-		<playcount>32</playcount>
-		<lastplayed>20180506T211042</lastplayed>
-	</game>
-	<game>
-		<path>./videoloading.sh</path>
-		<name>MasOS VideoLoadingscreen</name>
-		<desc>Habilitar o deshabilitar la pantalla de video en la carga de roms.</desc>
-		<image>./icons/videoloading.png</image>
-		<playcount>1</playcount>
-		<lastplayed />
-	</game>
-	<game>
-		<path>./bezelproject.sh</path>
-		<name>Bezel Project</name>
-		<desc>Descarga y administra los bezels de juegos.</desc>
-		<image>./icons/bezelproject.png</image>
-		<playcount>2</playcount>
-		<lastplayed>20180511T135740</lastplayed>
 	</game>
 	<game>
 		<path>./wifi.rp</path>
@@ -215,5 +154,23 @@ Con la actualizacion o instalacion del menu termine su aparato se reiniciara aut
 		<image>./icons/rpsetup.png</image>
 		<playcount>22</playcount>
 		<lastplayed>20180809T235525</lastplayed>
+	</game>
+	<game>
+		<path>./PersonalizarMasOS.sh</path>
+		<name>Personalizar MasOS</name>
+		<desc>Muchas opciones mas para MasOS con solo un clic.
+
+Podras instalar:
+
+Bezels
+Launching image screens
+Video Loading Screens
+
+O tambien podras hacer overclock.
+
+</desc>
+		<image>./icons/pmasos.png</image>
+		<playcount>1</playcount>
+		<lastplayed>20180918T235634</lastplayed>
 	</game>
 </gameList>

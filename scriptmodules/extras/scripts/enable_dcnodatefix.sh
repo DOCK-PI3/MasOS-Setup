@@ -4,16 +4,16 @@
 #
 
 # creates backup config
-if [ -f "/opt/retropie/emulators/reicast/bin/reicast.bk" ];
+if [ -f "/opt/masos/emulators/reicast/bin/reicast.bk" ];
 then
    echo "already backed up"
 else
    echo "backing up" 
-   cp /opt/retropie/emulators/reicast/bin/reicast /opt/retropie/emulators/reicast/bin/reicast.bk 
+   cp /opt/masos/emulators/reicast/bin/reicast /opt/masos/emulators/reicast/bin/reicast.bk 
 fi
 
 # Enabling Dreamcast date/time Fix
-sudo cp /home/pi/RetroPie/scripts/reicast_nodate /opt/retropie/emulators/reicast/bin/reicast
+sudo cp /home/pi/MasOS/scripts/reicast_nodate /opt/masos/emulators/reicast/bin/reicast
 echo "reicast emulator updated, rebooting"
 echo
 echo "To go back to factory settings, disable reicast no date"

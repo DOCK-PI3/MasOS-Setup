@@ -2,12 +2,12 @@
 rp_module_id="bezelproject"
 rp_module_desc="BezelPrject en MasOS"
 rp_module_section=""
-#IFS=';'
+IFS=';'
 
 # Welcome
- dialog --backtitle "The Bezel Project" --title "The Bezel Project - Bezel Pack Utility" \
-    --yesno "\nMenu Bezel Project Utility.\n\nEsta utilidad proporcionará una descarga para los paquetes de bezels del sistema Retroarach para ser utilizado en varios sistemas dentro de MasOS.\n\nEstos paquetes de bezels solo funcionaran si las ROM que está utilizando reciben el nombre según NO-intro utilizada por EmuMovies/HyperSpin.\n\nEsta utilidad proporciona una descarga para un paquete de bezels para un sistema e incluye un archivo de bezel PNG para cada ROM de ese sistema. La descarga tambien incluira los archivos de configuracion necesarios necesarios para Retroarch para mostrarlos. El script tambien actualizara los archivos retroarch.cfg necesarios para los emuladores ubicados en el directorio /opt/masos/configs. Estos cambios son necesarios para mostrar los bezels PNG con una opacidad de 1.\n\nPor regla general, se completan los nuevos paquetes de bezels y debera ejecutar el actualizador de scripts para descargar la version mas nueva y ver estos paquetes adicionales.\n\n* * NOTA **\nEl marco del bezel MAME esta incluido para las roms ubicadas en las carpetas arcade /fba/mame-libretro rom.\n\n\n¿Desea continuar?" \
-    28 110 2>&1 > /dev/tty \
+ dialog --backtitle "MasOS Utility" --title "MasOS Retroarch Bezel Utility Menu" \
+    --yesno "\nMasOS Retroarch Bezel Utility menu.\n\nEsta utilidad proporcionará una manera rápida de ocultar o mostrar bezels dentro de emuladores Retroarch.\n\nPuedes usar esta utilidad para ocultar o mostrar muchos sistemas al mismo tiempo o individualmente.\n\nPara sistemas de mano, hay tres opciones para bezels. Puede elegir 1080p, 720p u otro. Dependiendo de la resolución de su TV / monitor, puede que tenga que probar un par de ellos para obtener el correcto. \ N \ nSi no encuentra ninguna de estas opciones que funcionen correctamente, deberá ir a RetroArch (select + x) para ajustar manualmente.\n\nHay una opción para instalar bezels conosle. Cuando esté habilitado, mostrará bezels de juegos o géneros para muchos juegos basados ​​en consola. La habilitación de los bezels de la consola también habilitará automáticamente los bezels del sistema para esas consolas.\n\n\nQuieres proceder?" \
+    30 110 2>&1 > /dev/tty \
     || exit
 
 
@@ -15,144 +15,25 @@ function main_menu() {
     local choice
 
     while true; do
-        choice=$(dialog --backtitle "$BACKTITLE" --title " MENU PRINCIPAL " \
-            --ok-label OK --cancel-label Exit \
-            --menu "Elija una opcion" 25 75 20 \
-            1 "Descargar pack bezel de sistema (automaticamente habilita los bezels)" \
-            2 "Habilitar pack bezel de sistema" \
-            3 "Deshabilitar pack bezel de sistema" \
-            4 "Informacion:  Retroarch cores setup de bezels por sistema" \
-            2>&1 > /dev/tty)
+        choice=$(dialog --backtitle "$BACKTITLE" --title " MAIN MENU " \
+            --ok-label OK --cancel-label Atras \
+            --menu "Que acción te gustaría realizar?" 25 75 20 \
+            1 "Ocultar bezel del sistema" \
+            2 "Mostrar bezel del sistema" \
+            3 "Habilite el paquete de bezels del sistema n°1 (solo puede tener 1 habilitado a la vez)" \
+            4 "Habilite el paquete de bezels del sistema n°2 (solo puede tener 1 habilitado a la vez)" \
+            5 "Habilite el paquete de bezels del sistema n°3 (solo puede tener 1 habilitado a la vez)" \
+            6 "Opcional: habilitar los marcos del juego de la consola" \
+			2>&1 > /dev/tty)
 
         case "$choice" in
-            1) download_bezel  ;;
+            1) disable_bezel  ;;
             2) enable_bezel  ;;
-            3) disable_bezel  ;;
-            4) retroarch_bezelinfo  ;;
-            *)  break ;;
-        esac
-    done
-}
-
-#########################################################
-# Functions for download and enable/disable bezel packs #
-#########################################################
-
-function install_bezel_pack() {
-    local theme="$1"
-    local repo="$2"
-    if [[ -z "$repo" ]]; then
-        repo="default"
-    fi
-    if [[ -z "$theme" ]]; then
-        theme="default"
-        repo="default"
-    fi
-    atheme=`echo ${theme} | sed 's/.*/\L&/'`
-
-    if [[ "${atheme}" == "mame" ]];then
-      mv "/opt/masos/configs/all/retroarch/config/disable_FB Alpha" "/opt/masos/configs/all/retroarch/config/FB Alpha" 2> /dev/null
-      mv "/opt/masos/configs/all/retroarch/config/disable_MAME 2003" "/opt/masos/configs/all/retroarch/config/MAME 2003" 2> /dev/null
-      mv "/opt/masos/configs/all/retroarch/config/disable_MAME 2010" "/opt/masos/configs/all/retroarch/config/MAME 2010" 2> /dev/null
-    fi
-
-    git clone "https://github.com/$repo/bezelproject-$theme.git" "/tmp/${theme}"
-    cp -r "/tmp/${theme}/retroarch/" /opt/masos/configs/all/
-    sudo rm -rf "/tmp/${theme}"
-
-    if [[ "${atheme}" == "mame" ]];then
-      show_bezel "arcade"
-      show_bezel "fba"
-      show_bezel "mame-libretro"
-    else
-      show_bezel "${atheme}"
-    fi
-}
-
-function uninstall_bezel_pack() {
-    local theme="$1"
-    if [[ -d "/opt/masos/configs/all/retroarch/overlay/GameBezels/$theme" ]]; then
-        rm -rf "/opt/masos/configs/all/retroarch/overlay/GameBezels/$theme"
-    fi
-    if [[ "${theme}" == "MAME" ]]; then
-      if [[ -d "/opt/masos/configs/all/retroarch/overlay/ArcadeBezels" ]]; then
-        rm -rf "/opt/masos/configs/all/retroarch/overlay/ArcadeBezels"
-      fi
-    fi
-}
-
-function download_bezel() {
-    local themes=(
-        'thebezelproject MAME'
-        'thebezelproject Atari5200'
-        'thebezelproject Atari7800'
-        'thebezelproject GCEVectrex'
-        'thebezelproject MasterSystem'
-        'thebezelproject MegaDrive'
-        'thebezelproject NES'
-        'thebezelproject Sega32X'
-        'thebezelproject SG-1000'
-        'thebezelproject SNES'
-        'thebezelproject SuperGrafx'
-    )
-    while true; do
-        local theme
-        local installed_bezelpacks=()
-        local repo
-        local options=()
-        local status=()
-        local default
-
-        options+=(U "Actualizar el script - el script se cerrara despues de actualizarse")
-
-        local i=1
-        for theme in "${themes[@]}"; do
-            theme=($theme)
-            repo="${theme[0]}"
-            theme="${theme[1]}"
-            if [[ -d "/opt/masos/configs/all/retroarch/overlay/GameBezels/$theme" ]]; then
-                status+=("i")
-                options+=("$i" "Actualizar o Desinstalar $theme (instalado)")
-                installed_bezelpacks+=("$theme $repo")
-            else
-                status+=("n")
-                options+=("$i" "Instalar $theme (no instalado)")
-            fi
-            ((i++))
-        done
-        local cmd=(dialog --default-item "$default" --backtitle "$__backtitle" --menu "The Bezel Project -  Bezel Pack Downloader - Elija una opcion" 22 76 16)
-        local choice=$("${cmd[@]}" "${options[@]}" 2>&1 >/dev/tty)
-        default="$choice"
-        [[ -z "$choice" ]] && break
-        case "$choice" in
-            U)  #update install script to get new theme listings
-                cd "/home/pi/RetroPie/retropiemenu" 
-                mv "bezelproject.sh" "bezelproject.sh.bkp" 
-                wget "https://raw.githubusercontent.com/Moriggy/BezelProject/master/bezelproject.sh" 
-                chmod 777 "bezelproject.sh" 
-                exit
-                ;;
-            *)  #install or update themes
-                theme=(${themes[choice-1]})
-                repo="${theme[0]}"
-                theme="${theme[1]}"
-#                if [[ "${status[choice]}" == "i" ]]; then
-                if [[ -d "/opt/masos/configs/all/retroarch/overlay/GameBezels/$theme" ]]; then
-                    options=(1 "Actualizar $theme" 2 "Desinstalar $theme")
-                    cmd=(dialog --backtitle "$__backtitle" --menu "Elija una opcion de pack de bezel" 12 40 06)
-                    local choice=$("${cmd[@]}" "${options[@]}" 2>&1 >/dev/tty)
-                    case "$choice" in
-                        1)
-                            install_bezel_pack "$theme" "$repo"
-                            ;;
-                        2)
-                            uninstall_bezel_pack "$theme"
-                            ;;
-                    esac
-                else
-                    install_bezel_pack "$theme" "$repo"
-                fi
-                ;;
+            3) bezel_pack1  ;;
+            4) bezel_pack2  ;;
+            5) bezel_pack3  ;;
+            6) console_bezels  ;;
+			*)  break ;;
         esac
     done
 }
@@ -162,38 +43,108 @@ function disable_bezel() {
 
 clear
     while true; do
-        choice=$(dialog --backtitle "$BACKTITLE" --title " MENU PRINCIPAL " \
+        choice=$(dialog --backtitle "$BACKTITLE" --title " MAIN MENU " \
             --ok-label OK --cancel-label Exit \
-            --menu "Que sistema quieres deshabilitar los bezels?" 25 75 20 \
-            1 "GCEVectrex" \
-            2 "SuperGrafx" \
-            3 "Sega32X" \
-            4 "SG-1000" \
-            5 "Arcade" \
-            6 "Final Burn Alpha" \
-            7 "MAME Libretro" \
-            8 "NES" \
-            9 "MasterSystem" \
-            10 "Atari 5200" \
-            11 "Atari 7800" \
-            12 "SNES" \
-            13 "MegaDrive" \
+            --menu "Which system would you like to disable bezels for?" 25 75 20 \
+            1 "arcade" \
+            2 "fba" \
+            3 "mame-libretro" \
+            4 "atari2600" \
+            5 "atari5200" \
+            6 "atari7800" \
+            7 "coleco" \
+            8 "famicom" \
+            9 "fds" \
+            10 "mastersystem" \
+            11 "megadrive" \
+            12 "megadrive-japan" \
+            13 "n64" \
+            14 "neogeo" \
+            15 "nes" \
+            16 "pce-cd" \
+            17 "pcengine" \
+            18 "psx" \
+            19 "sega32x" \
+            20 "segacd" \
+            21 "sfc" \
+            22 "sg-1000" \
+            23 "snes" \
+            24 "supergrafx" \
+            25 "tg16" \
+            26 "tg-cd" \
+            27 "vectrex" \
+            28 "atarilynx" \
+            29 "gamegear" \
+            30 "gb" \
+            31 "gba" \
+            32 "gbc" \
+            33 "ngp" \
+            34 "ngpc" \
+            35 "psp" \
+            36 "pspminis" \
+            37 "virtualboy" \
+            38 "wonderswan" \
+            39 "wonderswancolor" \
+            40 "amstradcpc" \
+            41 "atari800" \
+            42 "atarist" \
+            43 "c64" \
+            44 "msx" \
+            45 "msx2" \
+            46 "videopac" \
+            47 "x68000" \
+            48 "zxspectrum" \
             2>&1 > /dev/tty)
 
         case "$choice" in
-            1) hide_bezel vectrex ;;
-            2) hide_bezel supergrafx ;;
-            3) hide_bezel sega32x ;;
-            4) hide_bezel sg-1000 ;;
-            5) hide_bezel arcade ;;
-            6) hide_bezel fba ;;
-            7) hide_bezel mame-libretro ;;
-            8) hide_bezel nes ;;
-            9) hide_bezel mastersystem ;;
-            10) hide_bezel atari5200 ;;
-            11) hide_bezel atari7800 ;;
-            12) hide_bezel snes ;;
-            13) hide_bezel megadrive ;;
+            1) hide_bezel arcade ;;
+            2) hide_bezel fba ;;
+            3) hide_bezel mame-libretro ;;
+            4) hide_bezel atari2600 ;;
+            5) hide_bezel atari5200 ;;
+            6) hide_bezel atari7800 ;;
+            7) hide_bezel coleco ;;
+            8) hide_bezel famicom ;;
+            9) hide_bezel fds ;;
+            10) hide_bezel mastersystem ;;
+            11) hide_bezel megadrive ;;
+            12) hide_bezel megadrive-japan ;;
+            13) hide_bezel n64 ;;
+            14) hide_bezel neogeo ;;
+            15) hide_bezel nes ;;
+            16) hide_bezel pce-cd ;;
+            17) hide_bezel pcengine ;;
+            18) hide_bezel psx ;;
+            19) hide_bezel sega32x ;;
+            20) hide_bezel segacd ;;
+            21) hide_bezel sfc ;;
+            22) hide_bezel sg-1000 ;;
+            23) hide_bezel snes ;;
+            24) hide_bezel supergrafx ;;
+            25) hide_bezel tg16 ;;
+            26) hide_bezel tg-cd ;;
+            27) hide_bezel vectrex ;;
+            28) hide_bezel atarilynx ;;
+            29) hide_bezel gamegear ;;
+            30) hide_bezel gb ;;
+            31) hide_bezel gba ;;
+            32) hide_bezel gbc ;;
+            33) hide_bezel ngp ;;
+            34) hide_bezel ngpc ;;
+            35) hide_bezel psp ;;
+            36) hide_bezel pspminis ;;
+            37) hide_bezel virtualboy ;;
+            38) hide_bezel wonderswan ;;
+            39) hide_bezel wonderswancolor ;;
+            40) hide_bezel amstradcpc ;;
+            41) hide_bezel atari800 ;;
+            42) hide_bezel atarist ;;
+            43) hide_bezel c64 ;;
+            44) hide_bezel msx ;;
+            45) hide_bezel msx2 ;;
+            46) hide_bezel videopac ;;
+            47) hide_bezel x68000 ;;
+            48) hide_bezel zxspectrum ;;
             *)  break ;;
         esac
     done
@@ -204,38 +155,156 @@ function enable_bezel() {
 
 clear
     while true; do
-        choice=$(dialog --backtitle "$BACKTITLE" --title " MENU PRINCIPAL " \
+        choice=$(dialog --backtitle "$BACKTITLE" --title " MAIN MENU " \
             --ok-label OK --cancel-label Exit \
-            --menu "Que sistema quieres habilitar los bezels?" 25 75 20 \
-            1 "GCEVectrex" \
-            2 "SuperGrafx" \
-            3 "Sega32X" \
-            4 "SG-1000" \
-            5 "Arcade" \
-            6 "Final Burn Alpha" \
-            7 "MAME Libretro" \
-            8 "NES" \
-            9 "MasterSystem" \
-            10 "Atari 5200" \
-            11 "Atari 7800" \
-            12 "SNES" \
-            13 "MegaDrive" \
+            --menu "Which system would you like to enable bezels for?" 25 75 20 \
+            1 "arcade" \
+            2 "fba" \
+            3 "mame-libretro" \
+            4 "atari2600" \
+            5 "atari5200" \
+            6 "atari7800" \
+            7 "coleco" \
+            8 "famicom" \
+            9 "fds" \
+            10 "mastersystem" \
+            11 "megadrive" \
+            12 "megadrive-japan" \
+            13 "n64" \
+            14 "neogeo" \
+            15 "nes" \
+            16 "pce-cd" \
+            17 "pcengine" \
+            18 "psx" \
+            19 "sega32x" \
+            20 "segacd" \
+            21 "sfc" \
+            22 "sg-1000" \
+            23 "snes" \
+            24 "supergrafx" \
+            25 "tg16" \
+            26 "tg-cd" \
+            27 "vectrex" \
+            28 "atarilynx_1080" \
+            29 "atarilynx_720" \
+            30 "atarilynx_other" \
+            31 "gamegear_1080" \
+            32 "gamegear_720" \
+            33 "gamegear_other" \
+            34 "gb_1080" \
+            35 "gb_720" \
+            36 "gb_other" \
+            37 "gba_1080" \
+            38 "gba_720" \
+            39 "gba_other" \
+            40 "gbc_1080" \
+            41 "gbc_720" \
+            42 "gbc_other" \
+            43 "ngp_1080" \
+            44 "ngp_720" \
+            45 "ngp_other" \
+            46 "ngpc_1080" \
+            47 "ngpc_720" \
+            48 "ngpc_other" \
+            49 "psp_1080" \
+            50 "psp_720" \
+            51 "psp_other" \
+            52 "pspminis_1080" \
+            53 "pspminis_720" \
+            54 "pspminis_other" \
+            55 "virtualboy_1080" \
+            56 "virtualboy_720" \
+            57 "virtualboy_other" \
+            58 "wonderswan_1080" \
+            59 "wonderswan_720" \
+            60 "wonderswan_other" \
+            61 "wonderswancolor_1080" \
+            62 "wonderswancolor_720" \
+            63 "wonderswancolor_other" \
+            64 "amstradcpc" \
+            65 "atari800" \
+            66 "atarist" \
+            67 "c64" \
+            68 "msx" \
+            69 "msx2" \
+            70 "videopac" \
+            71 "x68000" \
+            72 "zxspectrum" \
             2>&1 > /dev/tty)
 
         case "$choice" in
-            1) show_bezel gcevectrex ;;
-            2) show_bezel supergrafx ;;
-            3) show_bezel sega32x ;;
-            4) show_bezel sg-1000 ;;
-            5) show_bezel arcade ;;
-            6) show_bezel fba ;;
-            7) show_bezel mame-libretro ;;
-            8) show_bezel nes ;;
-            9) show_bezel mastersystem ;;
-            10) show_bezel atari5200 ;;
-            11) show_bezel atari7800 ;;
-            12) show_bezel snes ;;
-            13) show_bezel megadrive ;;
+            1) show_bezel arcade ;;
+            2) show_bezel fba ;;
+            3) show_bezel mame-libretro ;;
+            4) show_bezel atari2600 ;;
+            5) show_bezel atari5200 ;;
+            6) show_bezel atari7800 ;;
+            7) show_bezel coleco ;;
+            8) show_bezel famicom ;;
+            9) show_bezel fds ;;
+            10) show_bezel mastersystem ;;
+            11) show_bezel megadrive ;;
+            12) show_bezel megadrive-japan ;;
+            13) show_bezel n64 ;;
+            14) show_bezel neogeo ;;
+            15) show_bezel nes ;;
+            16) show_bezel pce-cd ;;
+            17) show_bezel pcengine ;;
+            18) show_bezel psx ;;
+            19) show_bezel sega32x ;;
+            20) show_bezel segacd ;;
+            21) show_bezel sfc ;;
+            22) show_bezel sg-1000 ;;
+            23) show_bezel snes ;;
+            24) show_bezel supergrafx ;;
+            25) show_bezel tg16 ;;
+            26) show_bezel tg-cd ;;
+            27) show_bezel vectrex ;;
+            28) show_bezel atarilynx_1080 ;;
+            29) show_bezel atarilynx_720 ;;
+            30) show_bezel atarilynx_other ;;
+            31) show_bezel gamegear_1080 ;;
+            32) show_bezel gamegear_720 ;;
+            33) show_bezel gamegear_other ;;
+            34) show_bezel gb_1080 ;;
+            35) show_bezel gb_720 ;;
+            36) show_bezel gb_other ;;
+            37) show_bezel gba_1080 ;;
+            38) show_bezel gba_720 ;;
+            39) show_bezel gba_other ;;
+            40) show_bezel gbc_1080 ;;
+            41) show_bezel gbc_720 ;;
+            42) show_bezel gbc_other ;;
+            43) show_bezel ngp_1080 ;;
+            44) show_bezel ngp_720 ;;
+            45) show_bezel ngp_other ;;
+            46) show_bezel ngpc_1080 ;;
+            47) show_bezel ngpc_720 ;;
+            48) show_bezel ngpc_other ;;
+            49) show_bezel psp_1080 ;;
+            50) show_bezel psp_720 ;;
+            51) show_bezel psp_other ;;
+            52) show_bezel pspminis_1080 ;;
+            53) show_bezel pspminis_720 ;;
+            54) show_bezel pspminis_other ;;
+            55) show_bezel virtualboy_1080 ;;
+            56) show_bezel virtualboy_720 ;;
+            57) show_bezel virtualboy_other ;;
+            58) show_bezel wonderswan_1080 ;;
+            59) show_bezel wonderswan_720 ;;
+            60) show_bezel wonderswan_other ;;
+            61) show_bezel wonderswancolor_1080 ;;
+            62) show_bezel wonderswancolor_720 ;;
+            63) show_bezel wonderswancolor_other ;;
+            64) show_bezel amstradcpc ;;
+            65) show_bezel atari800 ;;
+            66) show_bezel atarist ;;
+            67) show_bezel c64 ;;
+            68) show_bezel msx ;;
+            69) show_bezel msx2 ;;
+            70) show_bezel videopac ;;
+            71) show_bezel x68000 ;;
+            72) show_bezel zxspectrum ;;
             *)  break ;;
         esac
     done
@@ -243,7 +312,7 @@ clear
 }
 
 function hide_bezel() {
-dialog --infobox "...procesando..." 3 20 ; sleep 2
+dialog --infobox "...processing..." 3 20 ; sleep 2
 emulator=$1
 file="/opt/masos/configs/${emulator}/retroarch.cfg"
 
@@ -279,7 +348,7 @@ esac
 }
 
 function show_bezel() {
-dialog --infobox "...procesando..." 3 20 ; sleep 2
+dialog --infobox "...processing..." 3 20 ; sleep 2
 emulator=$1
 file="/opt/masos/configs/${emulator}/retroarch.cfg"
 
@@ -511,20 +580,14 @@ nes)
   if [[ ${ifexist} > 0 ]]
   then
     cp /opt/masos/configs/nes/retroarch.cfg /opt/masos/configs/nes/retroarch.cfg.bkp
-    cat /opt/masos/configs/nes/retroarch.cfg |grep -v input_overlay |grep -v aspect_ratio |grep -v custom_viewport |grep -v force_aspect > /tmp/retroarch.cfg
+    cat /opt/masos/configs/nes/retroarch.cfg |grep -v input_overlay |grep -v aspect_ratio |grep -v custom_viewport > /tmp/retroarch.cfg
     cp /tmp/retroarch.cfg /opt/masos/configs/nes/retroarch.cfg
     sed -i '2i input_overlay = "/opt/masos/configs/all/retroarch/overlay/Nintendo-Entertainment-System.cfg"' /opt/masos/configs/nes/retroarch.cfg
     sed -i '3i input_overlay_opacity = "1.000000"' /opt/masos/configs/nes/retroarch.cfg
-    sed -i '4i aspect_ratio_index = "16"' /opt/masos/configs/nes/retroarch.cfg
-    sed -i '5i video_force_aspect = "true"' /opt/masos/configs/nes/retroarch.cfg
-    sed -i '6i video_aspect_ratio = "-1.000000"' /opt/masos/configs/nes/retroarch.cfg
   else
     cp /opt/masos/configs/nes/retroarch.cfg /opt/masos/configs/nes/retroarch.cfg.bkp
     sed -i '2i input_overlay = "/opt/masos/configs/all/retroarch/overlay/Nintendo-Entertainment-System.cfg"' /opt/masos/configs/nes/retroarch.cfg
     sed -i '3i input_overlay_opacity = "1.000000"' /opt/masos/configs/nes/retroarch.cfg
-    sed -i '4i aspect_ratio_index = "16"' /opt/masos/configs/nes/retroarch.cfg
-    sed -i '5i video_force_aspect = "true"' /opt/masos/configs/nes/retroarch.cfg
-    sed -i '6i video_aspect_ratio = "-1.000000"' /opt/masos/configs/nes/retroarch.cfg
   fi
   ;;
 pce-cd)
@@ -692,7 +755,7 @@ tg-cd)
     sed -i '3i input_overlay_opacity = "1.000000"' /opt/masos/configs/tg-cd/retroarch.cfg
   fi
   ;;
-gcevectrex)
+vectrex)
   ifexist=`cat /opt/masos/configs/vectrex/retroarch.cfg |grep "input_overlay" |wc -l`
   if [[ ${ifexist} > 0 ]]
   then
@@ -1742,77 +1805,126 @@ zxspectrum)
     sed -i '3i input_overlay_opacity = "1.000000"' /opt/masos/configs/zxspectrum/retroarch.cfg
   fi
   ;;
-supergamemachine)
-  ifexist=`cat /opt/masos/configs/supergamemachine/retroarch.cfg |grep "input_overlay" |wc -l`
-  if [[ ${ifexist} > 0 ]]
-  then
-    cp /opt/masos/configs/supergamemachine/retroarch.cfg /opt/masos/configs/supergamemachine/retroarch.cfg.bkp
-    cat /opt/masos/configs/supergamemachine/retroarch.cfg |grep -v input_overlay |grep -v aspect_ratio |grep -v custom_viewport > /tmp/retroarch.cfg
-    cp /tmp/retroarch.cfg /opt/masos/configs/supergamemachine/retroarch.cfg
-    sed -i '2i input_overlay = "/opt/masos/configs/all/retroarch/overlay/Atari-2600.cfg"' /opt/masos/configs/supergamemachine/retroarch.cfg
-    sed -i '3i input_overlay_opacity = "1.000000"' /opt/masos/configs/supergamemachine/retroarch.cfg
-  else
-    cp /opt/masos/configs/supergamemachine/retroarch.cfg /opt/masos/configs/supergamemachine/retroarch.cfg.bkp
-    sed -i '2i input_overlay = "/opt/masos/configs/all/retroarch/overlay/SuperGameMachine.cfg"' /opt/masos/configs/supergamemachine/retroarch.cfg
-    sed -i '3i input_overlay_opacity = "1.000000"' /opt/masos/configs/supergamemachine/retroarch.cfg
-  fi
-  ;;
 esac
 }
 
-function retroarch_bezelinfo() {
+function bezel_pack1() {
+  dialog --infobox "...processing..." 3 20 ; sleep 2
+  sourcepath_dir="/home/pi/MasOS/RetroarchBezels/bezelpack1"
+  destinationpath_dir="/opt/masos/configs/all/retroarch/overlay"
+  cp ${sourcepath_dir}/* ${destinationpath_dir}
+}
 
-echo "The Bezel Project is setup with the following sytem-to-core mapping." > /tmp/bezelprojectinfo.txt
-echo "" >> /tmp/bezelprojectinfo.txt
+function bezel_pack2() {
+  dialog --infobox "...processing..." 3 20 ; sleep 2
+  sourcepath_dir="/home/pi/MasOS/RetroarchBezels/bezelpack2"
+  destinationpath_dir="/opt/masos/configs/all/retroarch/overlay"
+  cp ${sourcepath_dir}/* ${destinationpath_dir}
+}
 
-echo "To show a specific game bezel, Retroarch must have an override config file for each game.  These " >> /tmp/bezelprojectinfo.txt
-echo "configuration files are saved in special directories that are named according to the Retroarch " >> /tmp/bezelprojectinfo.txt
-echo "emulator core that system uses." >> /tmp/bezelprojectinfo.txt
-echo "" >> /tmp/bezelprojectinfo.txt
+function bezel_pack3() {
+  dialog --infobox "...processing..." 3 20 ; sleep 2
+  sourcepath_dir="/home/pi/MasOS/RetroarchBezels/bezelpack3"
+  destinationpath_dir="/opt/masos/configs/all/retroarch/overlay"
+  cp ${sourcepath_dir}/* ${destinationpath_dir}
+}
 
-echo "The supplied Retroarch configuration files for the bezel utility are setup to use certain " >> /tmp/bezelprojectinfo.txt
-echo "emulators for certain systems." >> /tmp/bezelprojectinfo.txt
-echo "" >> /tmp/bezelprojectinfo.txt
+function console_bezels() {
+local choice
+    while true; do
+        choice=$(dialog --backtitle "$BACKTITLE" --title " MAIN MENU " \
+            --ok-label OK --cancel-label Exit \
+            --menu "What action would you like to perform?" 25 75 20 \
+            1 "Hide console game bezels" \
+            2 "Show console game bezels" \
+            2>&1 > /dev/tty)
 
-echo "In order for the supplied bezels to be shown, you must be using the proper Retroarch emulator " >> /tmp/bezelprojectinfo.txt
-echo "for a system listed in the table below." >> /tmp/bezelprojectinfo.txt
-echo "" >> /tmp/bezelprojectinfo.txt
+        case "$choice" in
+            1) hide_console_bezels  ;;
+            2) show_console_bezels  ;;
+            *)  break ;;
+        esac
+    done
+}
 
-echo "This table lists all of the systems that have the abilty to show bezels that The Bezel Project " >> /tmp/bezelprojectinfo.txt
-echo "hopes to make bezels for." >> /tmp/bezelprojectinfo.txt
-echo "" >> /tmp/bezelprojectinfo.txt
-echo "" >> /tmp/bezelprojectinfo.txt
+function hide_console_bezels() {
+dialog --infobox "...processing..." 3 20 ; sleep 2
+hide_bezel atari2600
+hide_bezel atari5200
+hide_bezel atari7800
+hide_bezel coleco
+hide_bezel famicom
+hide_bezel fds
+hide_bezel mastersystem
+hide_bezel megadrive
+hide_bezel megadrive-japan
+hide_bezel n64
+hide_bezel nes
+hide_bezel pce-cd
+hide_bezel pcengine
+hide_bezel psx
+hide_bezel sega32x
+hide_bezel segacd
+hide_bezel sfc
+hide_bezel sg-1000
+hide_bezel snes
+hide_bezel supergrafx
+hide_bezel tg16
+hide_bezel tg-cd
+  mv "/opt/masos/configs/all/retroarch/config/Atari800" "/opt/masos/configs/all/retroarch/config/disable_Atari800"
+  mv "/opt/masos/configs/all/retroarch/config/BlueMSX" "/opt/masos/configs/all/retroarch/config/disable_BlueMSX"
+  mv "/opt/masos/configs/all/retroarch/config/FCEUmm" "/opt/masos/configs/all/retroarch/config/disable_FCEUmm"
+  mv "/opt/masos/configs/all/retroarch/config/Genesis Plus GX" "/opt/masos/configs/all/retroarch/config/disable_Genesis Plus GX"
+  mv "/opt/masos/configs/all/retroarch/config/Mednafen PCE Fast" "/opt/masos/configs/all/retroarch/config/disable_Mednafen PCE Fast"
+  mv "/opt/masos/configs/all/retroarch/config/Mednafen SuperGrafx" "/opt/masos/configs/all/retroarch/config/disable_Mednafen SuperGrafx"
+  mv "/opt/masos/configs/all/retroarch/config/Mupen64Plus GLES2" "/opt/masos/configs/all/retroarch/config/disable_Mupen64Plus GLES2"
+  mv "/opt/masos/configs/all/retroarch/config/Nestopia" "/opt/masos/configs/all/retroarch/config/disable_Nestopia"
+  mv "/opt/masos/configs/all/retroarch/config/PCSX-ReARMed" "/opt/masos/configs/all/retroarch/config/disable_PCSX-ReARMed"
+  mv "/opt/masos/configs/all/retroarch/config/PicoDrive" "/opt/masos/configs/all/retroarch/config/disable_PicoDrive"
+  mv "/opt/masos/configs/all/retroarch/config/ProSystem" "/opt/masos/configs/all/retroarch/config/disable_ProSystem"
+  mv "/opt/masos/configs/all/retroarch/config/Snes9x" "/opt/masos/configs/all/retroarch/config/disable_Snes9x"
+  mv "/opt/masos/configs/all/retroarch/config/Snes9x 2010" "/opt/masos/configs/all/retroarch/config/disable_Snes9x 2010"
+  mv "/opt/masos/configs/all/retroarch/config/Stella" "/opt/masos/configs/all/retroarch/config/disable_Stella"
+}
 
-echo "System                                          Retroarch Emulator" >> /tmp/bezelprojectinfo.txt
-echo "Atari 2600                                      lr-stella" >> /tmp/bezelprojectinfo.txt
-echo "Atari 5200                                      lr-atari800" >> /tmp/bezelprojectinfo.txt
-echo "Atari 7800                                      lr-prosystem" >> /tmp/bezelprojectinfo.txt
-echo "ColecoVision                                    lr-bluemsx" >> /tmp/bezelprojectinfo.txt
-echo "GCE Vectrex                                     lr-vecx" >> /tmp/bezelprojectinfo.txt
-echo "NEC PC Engine CD                                lr-beetle-pce-fast" >> /tmp/bezelprojectinfo.txt
-echo "NEC PC Engine                                   lr-beetle-pce-fast" >> /tmp/bezelprojectinfo.txt
-echo "NEC SuperGrafx                                  lr-beetle-supergrafx" >> /tmp/bezelprojectinfo.txt
-echo "NEC TurboGrafx-CD                               lr-beetle-pce-fast" >> /tmp/bezelprojectinfo.txt
-echo "NEC TurboGrafx-16                               lr-beetle-pce-fast" >> /tmp/bezelprojectinfo.txt
-echo "Nintendo 64                                     lr-Mupen64plus" >> /tmp/bezelprojectinfo.txt
-echo "Nintendo Entertainment System                   lr-fceumm, lr-nestopia" >> /tmp/bezelprojectinfo.txt
-echo "Nintendo Famicom Disk System                    lr-fceumm, lr-nestopia" >> /tmp/bezelprojectinfo.txt
-echo "Nintendo Famicom                                lr-fceumm, lr-nestopia" >> /tmp/bezelprojectinfo.txt
-echo "Nintendo Super Famicom                          lr-snes9x, lr-snes9x2010" >> /tmp/bezelprojectinfo.txt
-echo "Sega 32X                                        lr-picodrive, lr-genesis-plus-gx" >> /tmp/bezelprojectinfo.txt
-echo "Sega CD                                         lr-picodrive, lr-genesis-plus-gx" >> /tmp/bezelprojectinfo.txt
-echo "Sega Genesis                                    lr-picodrive, lr-genesis-plus-gx" >> /tmp/bezelprojectinfo.txt
-echo "Sega Master System                              lr-picodrive, lr-genesis-plus-gx" >> /tmp/bezelprojectinfo.txt
-echo "Sega Mega Drive                                 lr-picodrive, lr-genesis-plus-gx" >> /tmp/bezelprojectinfo.txt
-echo "Sega Mega Drive Japan                           lr-picodrive, lr-genesis-plus-gx" >> /tmp/bezelprojectinfo.txt
-echo "Sega SG-1000                                    lr-genesis-plus-gx" >> /tmp/bezelprojectinfo.txt
-echo "Sony PlayStation                                lr-pcsx-rearmed" >> /tmp/bezelprojectinfo.txt
-echo "Super Nintendo Entertainment System             lr-snes9x, lr-snes9x2010" >> /tmp/bezelprojectinfo.txt
-echo "" >> /tmp/bezelprojectinfo.txt
-
-dialog --backtitle "The Bezel Project" \
---title "The Bezel Project - Bezel Pack Utility" \
---textbox /tmp/bezelprojectinfo.txt 30 110
+function show_console_bezels() {
+dialog --infobox "...processing..." 3 20 ; sleep 2
+show_bezel atari2600
+show_bezel atari5200
+show_bezel atari7800
+show_bezel coleco
+show_bezel famicom
+show_bezel fds
+show_bezel mastersystem
+show_bezel megadrive
+show_bezel megadrive-japan
+show_bezel n64
+show_bezel nes
+show_bezel pce-cd
+show_bezel pcengine
+show_bezel psx
+show_bezel sega32x
+show_bezel segacd
+show_bezel sfc
+show_bezel sg-1000
+show_bezel snes
+show_bezel supergrafx
+show_bezel tg16
+show_bezel tg-cd
+  mv "/opt/masos/configs/all/retroarch/config/disable_Atari800" "/opt/masos/configs/all/retroarch/config/Atari800"
+  mv "/opt/masos/configs/all/retroarch/config/disable_BlueMSX" "/opt/masos/configs/all/retroarch/config/BlueMSX"
+  mv "/opt/masos/configs/all/retroarch/config/disable_FCEUmm" "/opt/masos/configs/all/retroarch/config/FCEUmm"
+  mv "/opt/masos/configs/all/retroarch/config/disable_Genesis Plus GX" "/opt/masos/configs/all/retroarch/config/Genesis Plus GX"
+  mv "/opt/masos/configs/all/retroarch/config/disable_Mednafen PCE Fast" "/opt/masos/configs/all/retroarch/config/Mednafen PCE Fast"
+  mv "/opt/masos/configs/all/retroarch/config/disable_Mednafen SuperGrafx" "/opt/masos/configs/all/retroarch/config/Mednafen SuperGrafx"
+  mv "/opt/masos/configs/all/retroarch/config/disable_Mupen64Plus GLES2" "/opt/masos/configs/all/retroarch/config/Mupen64Plus GLES2"
+  mv "/opt/masos/configs/all/retroarch/config/disable_Nestopia" "/opt/masos/configs/all/retroarch/config/Nestopia"
+  mv "/opt/masos/configs/all/retroarch/config/disable_PCSX-ReARMed" "/opt/masos/configs/all/retroarch/config/PCSX-ReARMed"
+  mv "/opt/masos/configs/all/retroarch/config/disable_PicoDrive" "/opt/masos/configs/all/retroarch/config/PicoDrive"
+  mv "/opt/masos/configs/all/retroarch/config/disable_ProSystem" "/opt/masos/configs/all/retroarch/config/ProSystem"
+  mv "/opt/masos/configs/all/retroarch/config/disable_Snes9x" "/opt/masos/configs/all/retroarch/config/Snes9x"
+  mv "/opt/masos/configs/all/retroarch/config/disable_Snes9x 2010" "/opt/masos/configs/all/retroarch/config/Snes9x 2010"
+  mv "/opt/masos/configs/all/retroarch/config/disable_Stella" "/opt/masos/configs/all/retroarch/config/Stella"
 }
 
 # Main

@@ -5,7 +5,7 @@
 #
 
 # applying standard, factory settings
-sudo cp /home/pi/RetroPie/scripts/config_std.txt /boot/config.txt
+sudo cp /home/pi/MasOS/scripts/config_std.txt /boot/config.txt
 echo "Applied factory settings, now rebooting"
 echo
 

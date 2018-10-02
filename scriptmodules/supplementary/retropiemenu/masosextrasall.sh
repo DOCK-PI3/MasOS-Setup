@@ -1,4 +1,4 @@
-#!/usr/bin/env bash
+#!/bin/bash
 rp_module_id="masosupdateallsystem"
 rp_module_desc="Actualizador para el sistema MasOS"
 rp_module_section=""
@@ -27,7 +27,7 @@ function main_menu() {
             --ok-label OK --cancel-label Exit \
             --menu "Que accion te gustaria realizar?" 25 75 20 \
             1 "Actualizar MasOS-Setup script" \
-			2 "MasOS EXTRAS para el menu de emulationstation" \
+			2 "MasOS EXTRAS para el menu de emulationstaion" \
             3 "Reparar permisos en MasOS PC" \
             4 "Rasbperry pi ES instalar idioma español" \
             5 "PC ES instalar idioma español" \
@@ -63,7 +63,6 @@ cd
 sudo cp /home/pi/MasOS-Setup/scriptmodules/extras/gamelist.xml /opt/masos/configs/all/emulationstation/gamelists/retropie/
 sudo cp /home/pi/MasOS-Setup/scriptmodules/extras/.livewire.py /home/pi/
 sudo cp -R /home/pi/MasOS-Setup/scriptmodules/supplementary/retropiemenu/* /home/pi/RetroPie/retropiemenu/
-# sudo cp -R /home/pi/MasOS-Setup/scriptmodules/supplementary/retropiemenu/icons /home/pi/RetroPie/retropiemenu
 sudo cp -R /home/pi/MasOS-Setup/scriptmodules/extras/scripts /home/pi/RetroPie/
 sudo chmod -R +x /home/pi/RetroPie
 sudo chmod -R +x /opt/
@@ -83,9 +82,8 @@ cd
 sudo chmod -R +x ~/RetroPie/
 sudo chmod -R +x /opt/masos/
 sudo chown -R $user:$user ~/MasOS/
-# sudo chown -R root:root ~/RetroPie/
+sudo chown -R root:root ~/RetroPie/
 sudo chown -R $user:$user /opt/masos/
-sudo chown -R $user:$user /etc/emulationstation/themes/
 dialog --infobox " Los permisos fueron reparados ..." 30 55 ; sleep 5
 # ---------------------------- #
 }
@@ -96,9 +94,9 @@ function pi_spanish() {                                          #
 dialog --infobox " Raspberry pi - instalar idioma español en ES..." 30 55 ; sleep 5
 cd
 sudo killall emulationstation
-sudo cp -R /home/pi/MasOS-Setup/scriptmodules/extras/es_idioma/locale/ /opt/masos/supplementary/emulationstation/
-sudo cp -R /home/pi/MasOS-Setup/scriptmodules/extras/es_idioma/resources/ /opt/masos/supplementary/emulationstation/
-sudo cp -R /home/pi/MasOS-Setup/scriptmodules/extras/es_idioma/* /opt/masos/supplementary/emulationstation/
+sudo cp -R /home/pi/MasOS-Setup/scriptmodules/extras/es_idioma/locale/ /opt/masos/supplementary/emulationstaion/
+sudo cp -R /home/pi/MasOS-Setup/scriptmodules/extras/es_idioma/resources/ /opt/masos/supplementary/emulationstaion/
+sudo cp -R /home/pi/MasOS-Setup/scriptmodules/extras/es_idioma/* /opt/masos/supplementary/emulationstaion/
 dialog --infobox " El idioma se instalo correctamente ,reiniciando el sistema en 5seg ..." 30 55 ; sleep 5
 sudo reboot
 # ---------------------------- #
@@ -110,12 +108,11 @@ function pc_spanish() {                                          #
 dialog --infobox " PC Ubuntu 16.04.5 - instalar idioma español en ES..." 30 55 ; sleep 5
 cd
 sudo killall emulationstation
-sudo cp -R ~/MasOS-Setup/scriptmodules/extras/es_idiomaPC/locale/ /opt/masos/supplementary/emulationstation/
-sudo cp -R ~/MasOS-Setup/scriptmodules/extras/es_idiomaPC/resources/ /opt/masos/supplementary/emulationstation/
-sudo cp ~/MasOS-Setup/scriptmodules/extras/es_idiomaPC/* /opt/masos/supplementary/emulationstation/
+sudo cp -R ~/MasOS-Setup/scriptmodules/extras/es_idiomaPC/locale/ /opt/masos/supplementary/emulationstaion/
+sudo cp -R ~/MasOS-Setup/scriptmodules/extras/es_idiomaPC/resources/ /opt/masos/supplementary/emulationstaion/
+sudo cp ~/MasOS-Setup/scriptmodules/extras/es_idiomaPC/* /opt/masos/supplementary/emulationstaion/
 dialog --infobox " El idioma se instalo correctamente ,reiniciando el sistema en 5seg ..." 30 55 ; sleep 5
 sudo reboot
 # ---------------------------- #
 }
-
 main_menu
