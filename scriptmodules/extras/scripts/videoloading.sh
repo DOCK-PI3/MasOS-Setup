@@ -7,10 +7,10 @@ infobox="${infobox}_______________________________________________________\n\n"
 infobox="${infobox}\n"
 infobox="${infobox}MasOS Video Loading Screen Script\n\n"
 infobox="${infobox}\n"
-infobox="${infobox}Video loading screen se va a activar en MasOS.\n"
+infobox="${infobox}Video loading screen se puede activar en MasOS.\n"
 infobox="${infobox}\n"
 infobox="${infobox}Cuando inicias un juego, se reproduce un video como pantalla de carga.\n"
-infobox="${infobox}\n"
+infobox="${infobox}Al salir del juego, se reproducirá otro video\n"
 infobox="${infobox}\n\n"
 infobox="${infobox}**Deshabilitar**\ncuando ejecuta la opción de deshabilitar, la carpeta videoloadingscreens se renombra a videoloadingscreens_disable\n"
 infobox="${infobox}\n"
@@ -60,13 +60,14 @@ function enable_videoloadingscreens() {
 	dialog --infobox "...Activando..." 3 20 ; sleep 2
 	disable_dir="/home/pi/MasOS/videoloadingscreens_disable"
 	enable_dir="/home/pi/MasOS/videoloadingscreens"
+	fichero="/opt/masos/configs/all/runcommand-onstart.sh.bkp"
 
 	if [[ -d "$disable_dir" ]]; then
 	 mv /home/pi/MasOS/videoloadingscreens_disable /home/pi/MasOS/videoloadingscreens
 	
-		if [[ ! "$fichero" ]]; then
+		if [[ -f "$fichero" ]]; then
 			mv /opt/masos/configs/all/runcommand-onstart.sh.bkp /opt/masos/configs/all/runcommand-onstart.sh
-			mv /opt/masos/configs/all/runcommand-onend.sh.bkp /opt/masos/configs/all/runcommand-onsend.sh
+			mv /opt/masos/configs/all/runcommand-onend.sh.bkp /opt/masos/configs/all/runcommand-onend.sh
 		else
 			cp /home/pi/RetroPie/scripts/pi3/runcommand-onstart.sh /opt/masos/configs/all/runcommand-onstart.sh
 			cp /home/pi/RetroPie/scripts/pi3/runcommand-onend.sh /opt/masos/configs/all/runcommand-onend.sh
