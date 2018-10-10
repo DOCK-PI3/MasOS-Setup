@@ -1,3 +1,15 @@
+The MasOS - FORK Project 
+Copyright (C) 2018-2045 by the following: 
+
+Si hace alguna contribucion sera añadido a esta lista. (ver: AUTHORS)
+
+* Mabe Betancor "DOCK-PI3"
+* Moriggy "Moriggy"
+
+
+
+
+---------------------------------------------------------------
 The RetroPie Project
 Copyright (C) 2012-2017 by the following:
 

@@ -1,4 +1,4 @@
-# RetroPie Legal Information
+# MasOS Fork de Retropie Legal Information
 
 ## License
 
@@ -627,4 +627,4 @@ END OF TERMS AND CONDITIONS
 
 ## Copyright
 
-(c) Copyright 2012-2015 RetroPie Project (See COPYRIGHT.md)
+(c) Copyright 2018-2045 MasOS Project (See COPYRIGHT.md)
