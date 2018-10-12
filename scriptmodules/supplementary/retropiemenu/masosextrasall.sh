@@ -78,9 +78,10 @@ sudo reboot
 #########################################################################
 # Funcion Reparar permisos en MasOS PC ;-) #
 function permisos_pc() {                                          #
-dialog --infobox " Repara los permisos en el directorio themes para que puedan ser editados los ficheros...\n\n" 30 55 ; sleep 5
+dialog --infobox " Repara los permisos en el directorio themes y overlays para que puedan ser editados los ficheros...\n\n" 30 55 ; sleep 5
 cd
 sudo chown -R $user:$user /etc/emulationstation/themes/
+sudo chown -R $user:$user /opt/masos/configs/
 dialog --infobox " Los permisos fueron reparados ..." 30 55 ; sleep 5
 # ---------------------------- #
 }
