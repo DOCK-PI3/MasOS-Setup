@@ -67,7 +67,7 @@ sudo cp -R /home/pi/MasOS-Setup/scriptmodules/supplementary/retropiemenu/* /home
 sudo cp -R /home/pi/MasOS-Setup/scriptmodules/extras/scripts /home/pi/RetroPie/
 sudo chmod -R +x /home/pi/RetroPie
 sudo chmod -R +x /opt/
-sudo mkdir /home/pi/MasOS/videoloadingscreens_disable
+# sudo mkdir /home/pi/MasOS/videoloadingscreens_disable
 sudo mkdir /home/pi/MasOS/roms/music
 sudo chown -R pi:pi /home/pi/MasOS
 dialog --infobox " Las opciones Extras estan instaladas,reiniciando el sistema en 5seg ..." 30 55 ; sleep 5
