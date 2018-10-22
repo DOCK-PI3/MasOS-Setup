@@ -11,10 +11,10 @@ infobox="${infobox}\n"
 infobox="${infobox}\n"
 infobox="${infobox}\n"
 infobox="${infobox}Se recomienda instalacion de EXTRAS para el menu solo en raspberry pi....\n"
-infobox="${infobox}\n"
+infobox="${infobox}\nEn PC puede instalar los extras si usa de nombre de usuario pi"
 
 dialog --backtitle "MasOS extras y actualizador de script base" \
---title "MasOS EXTRAS ,actualizador de Script y raparador de permisos en PC(by MasOS TEAM)" \
+--title "MasOS EXTRAS ,actualizador y raparador de permisos en PC(by Mabedeep - The MasOS TEAM)" \
 --msgbox "${infobox}" 35 110
 
 

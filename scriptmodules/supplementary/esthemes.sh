@@ -45,6 +45,7 @@ function uninstall_theme_esthemes() {
 function gui_esthemes() {
     local themes=(
 		'DOCK-PI3 Perinquen'
+		'Moriggy hypernostalgic'
 		'Moriggy retro'
         'Moriggy maximus-v3'
 		'Moriggy MasOS'
