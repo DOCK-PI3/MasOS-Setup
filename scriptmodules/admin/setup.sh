@@ -509,7 +509,7 @@ function gui_setup() {
             # "X Desinstalar completamente MasOS."
 
             R "Realice un reinicio"
-            "R Reinicia tu máquina, reinicie su maquina para que las medificaciones tengan efecto."
+            "R Reinicia tu dispositivo, reinicie su maquina para que las modificaciones tengan efecto."
         )
 
         choice=$("${cmd[@]}" "${options[@]}" 2>&1 >/dev/tty)
