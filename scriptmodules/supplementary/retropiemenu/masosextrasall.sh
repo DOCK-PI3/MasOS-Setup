@@ -29,16 +29,18 @@ function main_menu() {
             1 "Actualizar MasOS-Setup script" \
 			2 "MasOS EXTRAS para el menu de emulationstation" \
             3 "Reparar permisos en MasOS PC" \
-            4 "Rasbperry pi ES instalar idioma español" \
-            5 "PC ES instalar idioma español" \
+			4 "PC MasOS EXTRAS para el menu de emulationstation" \
+            5 "Rasbperry pi ES-dev instalar idioma español" \
+            6 "PC ES-dev instalar idioma español Ubuntu 16.04.5" \
 			2>&1 > /dev/tty)
 
         case "$choice" in
             1) masossetup_update  ;;
 			2) masosmenu_extras  ;;
             3) permisos_pc  ;;
-			4) pi_spanish  ;;
-			5) pc_spanish  ;;
+			4) masosmenu_extrasPC ;;
+			5) pi_spanish  ;;
+			6) pc_spanish  ;;
 			*)  break ;;
         esac
     done
@@ -67,9 +69,26 @@ sudo cp -R /home/pi/MasOS-Setup/scriptmodules/supplementary/retropiemenu/* /home
 sudo cp -R /home/pi/MasOS-Setup/scriptmodules/extras/scripts /home/pi/RetroPie/
 sudo chmod -R +x /home/pi/RetroPie
 sudo chmod -R +x /opt/
-# sudo mkdir /home/pi/MasOS/videoloadingscreens_disable
 sudo mkdir /home/pi/MasOS/roms/music
 sudo chown -R pi:pi /home/pi/MasOS
+dialog --infobox " Las opciones Extras estan instaladas,reiniciando el sistema en 5seg ..." 30 55 ; sleep 5
+sudo reboot
+# ---------------------------- #
+}
+
+#########################################################################
+# Funcion PC EXTRAs Menu ES para MasOS ;-) #
+function masosmenu_extrasPC() {                                          #
+dialog --infobox " PC MasOS opciones Extras para el menu de ES..." 30 55 ; sleep 5
+cd
+sudo cp ~/MasOS-Setup/scriptmodules/extras/gamelist.xml /opt/masos/configs/all/emulationstation/gamelists/retropie/
+sudo cp ~/MasOS-Setup/scriptmodules/extras/.livewire.py ~/
+sudo cp -R ~/MasOS-Setup/scriptmodules/supplementary/retropiemenu/* ~/RetroPie/retropiemenu/
+sudo cp -R ~/MasOS-Setup/scriptmodules/extras/scripts ~/RetroPie/
+sudo chmod -R +x ~/RetroPie
+sudo chmod -R +x /opt/
+sudo mkdir ~/MasOS/roms/music
+sudo chown -R $user:$user ~/MasOS
 dialog --infobox " Las opciones Extras estan instaladas,reiniciando el sistema en 5seg ..." 30 55 ; sleep 5
 sudo reboot
 # ---------------------------- #
