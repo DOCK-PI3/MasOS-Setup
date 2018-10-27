@@ -1,1 +1,1 @@
-[[ -f /home/pi/MasOS/videoloadingscreens/$1.mp4 ]] && vlc -f --no-video-title-show --play-and-exit --no-qt-name-in-title --qt-minimal-view --no-qt-bgcone "/home/pi/MasOS/videoloadingscreens/$1.mp4"
+[[ -f ~/MasOS/videoloadingscreens/$1.mp4 ]] && vlc -f --no-video-title-show --play-and-exit --no-qt-name-in-title --qt-minimal-view --no-qt-bgcone "~/MasOS/videoloadingscreens/$1.mp4"

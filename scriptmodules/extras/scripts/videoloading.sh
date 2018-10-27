@@ -33,7 +33,8 @@ function main_menu() {
             2 "PI3 Desactivar videoloadingscreens" \
             3 "PC Activar videoloadingscreens" \
             4 "PC Desactivar videoloadingscreens" \
-			5 "Descargar packs videoloadingscreens" \
+			5 "PI3 Descargar packs videoloadingscreens" \
+			5 "PC Descargar packs videoloadingscreens" \
             2>&1 > /dev/tty)
 
         case "$choice" in
@@ -42,6 +43,7 @@ function main_menu() {
             3) enable_videoloadingscreensPC  ;;
             4) disable_videoloadingscreensPC  ;;
 			5) download_video ;;
+			6) download_video_pc ;;
             *)  break ;;
         esac
     done
@@ -105,7 +107,7 @@ function enable_videoloadingscreensPC() {
 	enable_dir=~/MasOS/videoloadingscreens
 	fichero="/opt/masos/configs/all/runcommand-onstart.sh.bkp"
 	if [[ -d "$disable_dir" ]]; then
-		mv ~/MasOS/videoloadingscreens_disable /home/pi/MasOS/videoloadingscreens
+		mv ~/MasOS/videoloadingscreens_disable ~/MasOS/videoloadingscreens
 		if [[ -f "$fichero" ]]; then
 			sudo mv /opt/masos/configs/all/runcommand-onstart.sh.bkp /opt/masos/configs/all/runcommand-onstart.sh
 			sudo mv /opt/masos/configs/all/runcommand-onend.sh.bkp /opt/masos/configs/all/runcommand-onend.sh
@@ -114,13 +116,81 @@ function enable_videoloadingscreensPC() {
 			sudo cp ~/RetroPie/scripts/pc/runcommand-onend.sh /opt/masos/configs/all/runcommand-onend.sh
 		fi
 	else
-		sudo mkdir /home/pi/MasOS/videoloadingscreens
+		sudo mkdir ~/MasOS/videoloadingscreens
 		sudo chown -R $user:$user $enable_dir
 		sudo cp ~/RetroPie/scripts/pc/runcommand-onstart.sh /opt/masos/configs/all/runcommand-onstart.sh
 		sudo cp ~/RetroPie/scripts/pc/runcommand-onend.sh /opt/masos/configs/all/runcommand-onend.sh
 	fi
 
 }
+
+function download_video_pc() {
+	local choice
+	enable_dir=~/MasOS/videoloadingscreens
+    while true; do
+        choice=$(dialog --backtitle "MasOS Video Loading Screen Script" --title " DESCARGA DE PACKS " \
+            --ok-label OK --cancel-label Atrás \
+            --menu "Que pack te gustaría descargar?" 25 75 20 \
+            1 "Pack Moriggy MasOS" \
+            2 "Pack Supreme" \
+			3 "Pack Dock-pi3" \
+            2>&1 > /dev/tty)
+
+        case "$choice" in
+            1) clear
+				if [[ -d "$enable_dir" ]]; then
+					sudo rm -R $enable_dir/*
+					echo "Empezando la descarga del pack de videos elegido"; sleep 2
+					cd $enable_dir && wget https://github.com/Moriggy/videoloadingscreens-masos/archive/master.zip && unzip master.zip
+					sudo rm $enable_dir/master.zip
+					clear
+					echo "Moviendo videos a la carpeta de destino, un momento por favor..."
+					sudo mv $enable_dir/videoloadingscreens-masos-master/*.mp4 $enable_dir
+					sudo rm -R $enable_dir/videoloadingscreens-masos-master/
+					sudo chown -R $user:$user $enable_dir
+					dialog --infobox "Descarga completada!!" 3 25 ; sleep 3
+				else
+					dialog --infobox "Debe estar activada la opción de videolaunchingscreens!!" 3 80 ; sleep 5
+			fi ;;
+			
+            2) clear
+				if [[ -d "$enable_dir" ]]; then
+					sudo rm -R $enable_dir/*
+					echo "Empezando la descarga del pack de videos elegido"; sleep 2
+					cd $enable_dir && wget https://github.com/Moriggy/videoloadingscreens-Supreme/archive/master.zip && unzip master.zip
+					sudo rm $enable_dir/master.zip
+					clear
+					echo "Moviendo videos a la carpeta de destino, un momento por favor..."
+					sudo mv $enable_dir/videoloadingscreens-Supreme-master/*.mp4 $enable_dir
+					sudo rm -R $enable_dir/videoloadingscreens-Supreme-master/
+					sudo chown -R $user:$user $enable_dir
+					dialog --infobox "Descarga completada!!" 3 25 ; sleep 3
+				else
+					dialog --infobox "Debe estar activada la opción de videolaunchingscreens!!" 3 80 ; sleep 5
+			fi ;;
+			
+			3) clear
+				if [[ -d "$enable_dir" ]]; then
+					sudo rm -R $enable_dir/*
+					echo "Empezando la descarga del pack de videos elegido"; sleep 2
+					cd $enable_dir && wget https://github.com/DOCK-PI3/sistemas_intros_pack1/archive/master.zip && unzip master.zip
+					sudo rm $enable_dir/master.zip
+					clear
+					echo "Moviendo videos a la carpeta de destino, un momento por favor..."
+					sudo mv $enable_dir/sistemas_intros_pack1-master/*.mp4 $enable_dir
+					sudo rm -R $enable_dir/sistemas_intros_pack1-master/
+					sudo chown -R $user:$user $enable_dir
+					dialog --infobox "Descarga completada!!" 3 25 ; sleep 3
+				else
+					dialog --infobox "Debe estar activada la opción de videolaunchingscreens!!" 3 80 ; sleep 5
+			fi ;;
+			
+            *)  break ;;
+        esac
+    done
+
+}
+
 ################################################ fin del codigo para pc ######################
 
 function download_video() {
