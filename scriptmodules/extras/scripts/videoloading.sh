@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 rp_module_id="bashvideoloading"
 rp_module_desc="Video mientras carga la rom en MasOS"
 rp_module_section=""
@@ -34,7 +34,7 @@ function main_menu() {
             3 "PC Activar videoloadingscreens" \
             4 "PC Desactivar videoloadingscreens" \
 			5 "PI3 Descargar packs videoloadingscreens" \
-			5 "PC Descargar packs videoloadingscreens" \
+			6 "PC Descargar packs videoloadingscreens" \
             2>&1 > /dev/tty)
 
         case "$choice" in
@@ -91,8 +91,8 @@ function enable_videoloadingscreens() {
 ################################################ Principio del codigo para pc ######################
 function disable_videoloadingscreensPC() {
 	dialog --infobox "...Desactivando..." 3 22 ; sleep 2
-	disable_dir=~/MasOS/videoloadingscreens_disable
-	enable_dir=~/MasOS/videoloadingscreens
+	disable_dir="~/MasOS/videoloadingscreens_disable"
+	enable_dir="~/MasOS/videoloadingscreens"
 	if [[ -d "$enable_dir" ]]; then
 		mv ~/MasOS/videoloadingscreens ~/MasOS/videoloadingscreens_disable
 		sudo mv /opt/masos/configs/all/runcommand-onstart.sh /opt/masos/configs/all/runcommand-onstart.sh.bkp
@@ -103,8 +103,8 @@ function disable_videoloadingscreensPC() {
 
 function enable_videoloadingscreensPC() {
 	dialog --infobox "...Activando..." 3 20 ; sleep 2
-	disable_dir=~/MasOS/videoloadingscreens_disable
-	enable_dir=~/MasOS/videoloadingscreens
+	disable_dir="~/MasOS/videoloadingscreens_disable"
+	enable_dir="~/MasOS/videoloadingscreens"
 	fichero="/opt/masos/configs/all/runcommand-onstart.sh.bkp"
 	if [[ -d "$disable_dir" ]]; then
 		mv ~/MasOS/videoloadingscreens_disable ~/MasOS/videoloadingscreens
@@ -126,7 +126,7 @@ function enable_videoloadingscreensPC() {
 
 function download_video_pc() {
 	local choice
-	enable_dir=~/MasOS/videoloadingscreens
+	enable_dir="~/MasOS/videoloadingscreens"
     while true; do
         choice=$(dialog --backtitle "MasOS Video Loading Screen Script" --title " DESCARGA DE PACKS " \
             --ok-label OK --cancel-label Atrás \
