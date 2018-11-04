@@ -3,13 +3,15 @@ rp_module_id="masosupdateallsystem"
 rp_module_desc="Actualizador para el sistema MasOS"
 rp_module_section=""
 infobox= "${infobox}\n"
-infobox="${infobox}_______________________________________________________\n\n"
+infobox="${infobox}\n_______________________________________________________\n\n"
 infobox="${infobox}\n"
-infobox="${infobox}\nMasOS Herramientas extras para el menu ,actualizador de script base \n\n"
+infobox="${infobox}\nMasOS Herramientas extras para el menu ,actualizador de script base"
 infobox="${infobox}\ny reparador de permisos para la version PC,IDIOMAS y mucho mas.."
 infobox="${infobox}\n"
-infobox="${infobox}\n"
-infobox="${infobox}\n"
+infobox="${infobox}\nIDIOMA español para emulationstation-dev CMake y Make auto ....new,"
+infobox="${infobox}\neste script es para las instalaciones desde 0 ,funciona en rpi y pc \n"
+infobox="${infobox}sin importar el nombre d usuario o sistema,solo tienen que tener instalado \n"
+infobox="${infobox}emulationstation-dev ,lo pueden instalar en Administrar paquetes/Paquetes experimentales\n"
 infobox="${infobox}Se recomienda instalacion de EXTRAS para el menu solo en raspberry pi....\n"
 infobox="${infobox}\nEn PC puede instalar los extras si usa de nombre de usuario pi"
 
@@ -32,6 +34,7 @@ function main_menu() {
 			4 "PC MasOS EXTRAS para el menu de emulationstation" \
             5 "Rasbperry pi ES-dev instalar idioma español" \
             6 "PC ES-dev instalar idioma español Ubuntu 16.04.5" \
+	    7 "IDIOMA español emulationstation-dev para instalaciones desde 0" \
 			2>&1 > /dev/tty)
 
         case "$choice" in
@@ -41,6 +44,7 @@ function main_menu() {
 			4) masosmenu_extrasPC ;;
 			5) pi_spanish  ;;
 			6) pc_spanish  ;;
+			7) idioma_spanish_all  ;;
 			*)  break ;;
         esac
     done
@@ -128,6 +132,23 @@ sudo killall emulationstation
 sudo cp -R ~/MasOS-Setup/scriptmodules/extras/es_idiomaPC/locale/ /opt/masos/supplementary/emulationstation/
 sudo cp -R ~/MasOS-Setup/scriptmodules/extras/es_idiomaPC/resources/ /opt/masos/supplementary/emulationstation/
 sudo cp ~/MasOS-Setup/scriptmodules/extras/es_idiomaPC/* /opt/masos/supplementary/emulationstation/
+dialog --infobox " El idioma se instalo correctamente ,reiniciando el sistema en 5seg ..." 30 55 ; sleep 5
+sudo reboot
+# ---------------------------- #
+}
+                                                                                                                     #
+######################################################################################################################
+# Instalar idioma español en ES-dev all system - CMake y Make # Dependencias emulationstation-dev y libboost-all-dev#
+function idioma_spanish_all() {                                          #############################################
+dialog --infobox " CMAKE Y MAKE instalar idioma español en emulationstation-dev. Recuerde debe ejecutar el script desde consola y con emulationstation inactivo.." 30 55 ; sleep 5
+cd && git clone --recursive https://github.com/DOCK-PI3/EmulationStation.git
+cd EmulationStation && mkdir src && cd src
+cmake .. && make
+sudo cp -R ~/EmulationStation/locale/ /opt/masos/supplementary/emulationstation-dev/
+sudo cp -R ~/EmulationStation/resources/ /opt/masos/supplementary/emulationstation-dev/
+sudo cp ~/EmulationStation/emulationstation /opt/masos/supplementary/emulationstation-dev/
+sudo rm -R ~/EmulationStation
+sudo chown -R $user:$user /opt/masos/supplementary/emulationstation-dev/
 dialog --infobox " El idioma se instalo correctamente ,reiniciando el sistema en 5seg ..." 30 55 ; sleep 5
 sudo reboot
 # ---------------------------- #
