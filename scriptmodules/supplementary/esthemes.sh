@@ -49,6 +49,7 @@ function gui_esthemes() {
 		'Moriggy retro'
         'Moriggy maximus-v3'
 		'Moriggy MasOS'
+		'lipebello spaceoddity'
 		'RetroPie carbon'
 		'ehettervik workbench'
 		'ruckage famicom-mini'
