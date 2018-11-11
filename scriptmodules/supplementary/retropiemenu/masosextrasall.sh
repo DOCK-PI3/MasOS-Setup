@@ -28,7 +28,7 @@ function main_menu() {
         choice=$(dialog --backtitle "$BACKTITLE" --title " MAIN MENU " \
             --ok-label OK --cancel-label Exit \
             --menu "Que accion te gustaria realizar?" 25 75 20 \
-            1 "Actualizar MasOS-Setup script" \
+            1 "RPI Actualizar MasOS-Setup script" \
 			2 "MasOS EXTRAS para el menu de emulationstation" \
             3 "Reparar permisos en MasOS PC" \
 			4 "PC MasOS EXTRAS para el menu de emulationstation" \
@@ -52,11 +52,21 @@ function main_menu() {
 #########################################################################
 # funcion actualizacion para MasOS Setup script  ;-) #
 function masossetup_update() {                                          #
-dialog --infobox "...Actualizando script MasOS-Setup..." 30 55 ; sleep 3
+dialog --infobox "...Actualizando RPI script MasOS-Setup..." 30 55 ; sleep 3
 cd 
-	sudo rm -R ~/MasOS-Setup/
+	sudo rm -R /home/pi/MasOS-Setup/
 		sudo git clone --depth=1 https://github.com/DOCK-PI3/MasOS-Setup.git
-	sudo chmod -R +x ~/MasOS-Setup/
+	sudo chmod -R +x /home/pi/MasOS-Setup/
+cd
+sudo cp /home/pi/MasOS-Setup/scriptmodules/extras/gamelist.xml /opt/masos/configs/all/emulationstation/gamelists/retropie/
+sudo cp /home/pi/MasOS-Setup/scriptmodules/extras/.livewire.py /home/pi/
+sudo cp -R /home/pi/MasOS-Setup/scriptmodules/supplementary/retropiemenu/* /home/pi/RetroPie/retropiemenu/
+# sudo cp -R /home/pi/MasOS-Setup/scriptmodules/supplementary/retropiemenu/icons /home/pi/RetroPie/retropiemenu
+sudo cp -R /home/pi/MasOS-Setup/scriptmodules/extras/scripts /home/pi/RetroPie/
+sudo chmod -R +x /home/pi/RetroPie
+sudo chmod -R +x /opt/
+sudo mkdir /home/pi/MasOS/roms/music
+sudo chown -R pi:pi /home/pi/MasOS
 dialog --infobox " MasOS-Setup script se actualizo correctamente!...\n\nEn 5seg se reinicia el sistema..espere por favor!" 60 75 ; sleep 5
 sudo reboot 
 }
