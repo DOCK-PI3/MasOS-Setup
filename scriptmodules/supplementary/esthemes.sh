@@ -49,6 +49,7 @@ function gui_esthemes() {
 		'Moriggy retro'
         'Moriggy maximus-v3'
 		'Moriggy MasOS'
+		'DOCK-PI3 paralleluniverse'
 		'lipebello spaceoddity'
 		'RetroPie carbon'
 		'ehettervik workbench'
