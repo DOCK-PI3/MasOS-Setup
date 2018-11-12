@@ -35,6 +35,7 @@ function main_menu() {
             5 "Rasbperry pi ES-dev instalar idioma español" \
             6 "PC ES-dev instalar idioma español Ubuntu 16.04.5" \
 	    7 "IDIOMA español emulationstation-dev para instalaciones desde 0" \
+		8 "PC Actualizar MasOS-Setup script" \
 			2>&1 > /dev/tty)
 
         case "$choice" in
@@ -45,10 +46,12 @@ function main_menu() {
 			5) pi_spanish  ;;
 			6) pc_spanish  ;;
 			7) idioma_spanish_all  ;;
+			8) masossetup_updatePC ;;
 			*)  break ;;
         esac
     done
 }
+
 #########################################################################
 # funcion actualizacion para MasOS Setup script  ;-) #
 function masossetup_update() {                                          #
@@ -61,13 +64,33 @@ cd
 sudo cp /home/pi/MasOS-Setup/scriptmodules/extras/gamelist.xml /opt/masos/configs/all/emulationstation/gamelists/retropie/
 sudo cp /home/pi/MasOS-Setup/scriptmodules/extras/.livewire.py /home/pi/
 sudo cp -R /home/pi/MasOS-Setup/scriptmodules/supplementary/retropiemenu/* /home/pi/RetroPie/retropiemenu/
-# sudo cp -R /home/pi/MasOS-Setup/scriptmodules/supplementary/retropiemenu/icons /home/pi/RetroPie/retropiemenu
 sudo cp -R /home/pi/MasOS-Setup/scriptmodules/extras/scripts /home/pi/RetroPie/
 sudo chmod -R +x /home/pi/RetroPie
 sudo chmod -R +x /opt/
 sudo mkdir /home/pi/MasOS/roms/music
 sudo chown -R pi:pi /home/pi/MasOS
-dialog --infobox " MasOS-Setup script se actualizo correctamente!...\n\nEn 5seg se reinicia el sistema..espere por favor!" 60 75 ; sleep 5
+dialog --infobox "RPI MasOS-Setup script se actualizo correctamente!...\n\nEn 5seg se reinicia el sistema..espere por favor!" 60 75 ; sleep 5
+sudo reboot 
+}
+
+#########################################################################
+# funcion actualizacion para PC MasOS Setup script  ;-) #
+function masossetup_updatePC() {                                          #
+dialog --infobox "...Actualizando PC script MasOS-Setup..." 30 55 ; sleep 3
+cd 
+	sudo rm -R ~/MasOS-Setup/
+		sudo git clone --depth=1 https://github.com/DOCK-PI3/MasOS-Setup.git
+	sudo chmod -R +x ~/MasOS-Setup/
+cd
+sudo cp ~/MasOS-Setup/scriptmodules/extras/gamelist.xml /opt/masos/configs/all/emulationstation/gamelists/retropie/
+sudo cp ~/MasOS-Setup/scriptmodules/extras/.livewire.py ~/
+sudo cp -R ~/MasOS-Setup/scriptmodules/supplementary/retropiemenu/* ~/RetroPie/retropiemenu/
+sudo cp -R ~/MasOS-Setup/scriptmodules/extras/scripts ~/RetroPie/
+sudo chmod -R +x ~/RetroPie
+sudo chmod -R +x /opt/
+sudo mkdir ~/MasOS/roms/music
+sudo chown -R pi:pi ~/MasOS
+dialog --infobox " MasOS-Setup script se actualizo en su PC correctamente!...\n\nEn 5seg se reinicia el sistema..espere por favor!" 60 75 ; sleep 5
 sudo reboot 
 }
 
