@@ -51,7 +51,13 @@ function gui_esthemes() {
 		'Moriggy MasOS'
 		'DOCK-PI3 paralleluniverse'
 		'lipebello spaceoddity'
+		'lipebello strangerstuff'
+		'lipebello swineapple'
+		'lipebello retrorama'
 		'RetroPie carbon'
+		'RetroPie carbon-nometa'
+		'dmmarti maximuspie'
+		'dmmarti kidz'
 		'ehettervik workbench'
 		'ruckage famicom-mini'
         'ruckage snes-mini'
@@ -65,9 +71,13 @@ function gui_esthemes() {
 	    'garaine marioblue'
         'garaine bigwood'
 		'RetroHursty69 neogeo_only'
+		'RetroHursty69 graffiti'
+		'RetroHursty69 cabsnazzy'
+		'RetroHursty69 heychromey'
 		'SuperMagicom nostalgic'
 		'RetroHursty69 comiccrazy'
 	    'RetroHursty69 greenilicious'
+		'waweedman pii-wii'
 	)
     while true; do
         local theme
