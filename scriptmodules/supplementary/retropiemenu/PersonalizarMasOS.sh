@@ -12,7 +12,7 @@
 rp_module_id="Masos Team"
 rp_module_desc="Personalizar el sistema MasOS"
 rp_module_section=""
-infobox="${infobox}_______________________________________________________\n\n"
+infobox="${infobox}___________________________________________________\n\n"
 infobox="${infobox}\nHerramienta para personalizar MasOS\n"
 infobox="${infobox}\nMasOS Team no se hace responsable de un mal uso de estos scripts\n\n"
 infobox="${infobox}\n"
