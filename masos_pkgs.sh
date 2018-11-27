@@ -5,10 +5,10 @@
 # The MasOS Project es legal, esta contruido bajo raspbian que es de codigo abierto, en este nuevo
 # sistema trabajan unos pocos desarroladores independientes de diversas partes del planeta.
 #
-# MasOS El sistema operativo creado por miembros de la comunidad MyArcadeSpain ... de ahí su nombre.!
+# MasOS El sistema operativo retro en español con emulationstation ,retroarch y varios scripts independientes mas configuraciones y themes nuevos.!
 #fork de retropie
 
-__version="3.0"
+__version="3.1"
 
 [[ "$__debug" -eq 1 ]] && set -x
 
