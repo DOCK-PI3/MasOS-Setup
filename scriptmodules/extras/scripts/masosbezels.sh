@@ -56,6 +56,8 @@ local choice
 
         case "$choice" in
             1) dialog --infobox "...Borrando..." 3 25 ; sleep 2  
+				mv $bezel_dir/config/remaps $bezel_dir
+				mv $bezel_dir/remaps $bezel_dir/config/ && chmod 755 $bezel_dir/config/remaps
 				rm -R $bezel_dir/config/*
 				rm -R $bezel_dir/overlay/* 
 				break;;
