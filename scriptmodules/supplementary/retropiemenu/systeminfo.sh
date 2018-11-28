@@ -21,7 +21,8 @@ fi
 
 infobox= ""
 infobox="${infobox}\n$(date)\n"
-infobox="${infobox}_______________________________________________________\n\n"
+infobox="${infobox}\n$(uname -a)\n"
+infobox="${infobox}_______________________________________________________\n"
 infobox="${infobox}Temperatura\n\n"
 infobox="${infobox}CPU: ${cpuTempC} C/${cpuTempF} F\n"
 infobox="${infobox}GPU: ${gpuTempC} C/${gpuTempF} F\n"
@@ -32,9 +33,10 @@ infobox="${infobox}SD Card Informacion\n\n"
 infobox="${infobox}${sdcard1}\n"
 infobox="${infobox}${sdcard2}\n"
 infobox="${infobox}\n"
-infobox="${infobox}Su IP actual\n\n"
+infobox="${infobox}\n"
+infobox="${infobox}Su IP actual\n"
 infobox="${infobox}$(ip route get 8.8.8.8 2>/dev/null | awk '{print $NF; exit}')\n"
 
-dialog --backtitle "System Information" \
---title "MasOS System Information" \
+dialog --backtitle "MasOS Informacion del Sistema" \
+--title "Informacion del Sistema" \
 --msgbox "${infobox}" 25 60
