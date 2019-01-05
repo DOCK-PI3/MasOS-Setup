@@ -55,7 +55,6 @@ function gui_esthemes() {
 		'lipebello strangerstuff'
 		'lipebello swineapple'
 		'lipebello retrorama'
-		'lipebello pdcomics'
 		'RetroPie carbon'
 		'RetroPie carbon-nometa'
 		'dmmarti maximuspie'
