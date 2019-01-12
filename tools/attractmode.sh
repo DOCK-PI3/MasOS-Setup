@@ -98,7 +98,6 @@ ExecStart=-/sbin/agetty --autologin $user --noclear %I \$TERM
 _EOF_
         fi
         _autostart_script_autostart "$mode"
-    fi
 sudo shutdown -r now
 # ---------------------------- #
 }
