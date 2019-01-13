@@ -85,8 +85,8 @@ sleep 5 && sudo shutdown -r now
 function eliminar_attract() {
 dialog --infobox " ... Eliminando Attract mode de su rpi .......\n\n" 30 55 ; sleep 5
 sudo rm -R /home/pi/MasOS/roms/setup
-sudo rm -R /usr/local/share/attract && sudo rm -R /etc/samba/smb.conf
-sudo systemctl restart smbd.service
+# sudo rm -R /usr/local/share/attract && sudo rm -R /etc/samba/smb.conf
+# sudo systemctl restart smbd.service
 sudo rm -R /usr/local/bin/attract
 sudo cp /opt/masos/configs/all/ES-Start.sh /opt/masos/configs/all/autostart.sh
 sudo rm -R /opt/masos/configs/all/AM-Start.sh && sudo rm -R /opt/masos/configs/all/ES-Start.sh
@@ -112,7 +112,7 @@ cd /home/pi/ && wget https://github.com/DOCK-PI3/attract-config-rpi/archive/mast
  sudo cp -R /home/pi/attract-config-rpi-master/opt/masos/configs/all/* /opt/masos/configs/all/
   sudo chmod -R +x /opt/masos/configs/all/AM-Start.sh && sudo chmod -R +x /opt/masos/configs/all/ES-Start.sh
  sudo cp -R /home/pi/attract-config-rpi-master/etc/samba/smb.conf /etc/samba/
- sudo systemctl restart smbd.service
+ # sudo systemctl restart smbd.service
  cd && mkdir .attract
   sudo cp -R /home/pi/attract-config-rpi-master/attract/* /home/pi/.attract/
   sudo chown -R pi:pi /home/pi/.attract/
