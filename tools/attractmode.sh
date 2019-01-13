@@ -73,9 +73,20 @@ cd attract
 make -j4 USE_GLES=1
 sudo make -j4 install USE_GLES=1
 sudo rm -r -f /home/pi/develop
-attract ; sleep 3 && killall attract
-cd /home/pi/MasOS-Setup/scriptmodules/supplementary/ && sudo ./autostart.sh
-sleep 5 && sudo shutdown -r now
+# CONFIG INI PARA Attract-Mode
+cd && wget https://github.com/DOCK-PI3/attract-config-rpi/blob/master/RetroPie/retropiemenu/Switch%20To%20Attract%20Mode.sh
+sudo cp -R Switch\ To\ Attract\ Mode.sh /home/pi/RetroPie/retropiemenu/
+cd && sudo rm -R Switch\ To\ Attract\ Mode.sh
+sudo chmod -R +x /home/pi/RetroPie/retropiemenu/
+cd && wget https://github.com/DOCK-PI3/attract-config-rpi/blob/master/opt/masos/configs/all/AM-Start.sh
+sudo cp -R AM-Start.sh /opt/masos/configs/all/
+cd && sudo rm -R AM-Start.sh
+sudo chmod -R +x /opt/masos/configs/all/AM-Start.sh
+cd && mkdir .attract
+dialog --infobox " Antes de instalar la configuracion de attract, \n entre con pi-masos y active el autostart para ES" 30 55 ; sleep 5
+dialog --infobox " Luego cambia a AM,una vez que inicie seleccione el idioma ESPAÑOL \n ,ya puede instalar la configuracion ,reiniciando en 10s" 30 55 ; sleep 5
+dialog --infobox " Attract se instalo de forma correcta y con mmal ,reiniciando en 5s" 30 55 ; sleep 5
+sudo shutdown -r now
 # ---------------------------- #
 }
 
@@ -91,8 +102,8 @@ sudo rm -R /usr/local/bin/attract
 sudo cp /opt/masos/configs/all/ES-Start.sh /opt/masos/configs/all/autostart.sh
 sudo rm -R /opt/masos/configs/all/AM-Start.sh && sudo rm -R /opt/masos/configs/all/ES-Start.sh
 sudo rm -R /home/pi/RetroPie/retropiemenu/Switch\ To\ Attract\ Mode.sh
-sudo shutdown -r now
 dialog --infobox " Attract mode se elimino de su sistema" 30 55 ; sleep 5
+sudo shutdown -r now
 # ---------------------------- #
 }
 
@@ -113,7 +124,6 @@ cd /home/pi/ && wget https://github.com/DOCK-PI3/attract-config-rpi/archive/mast
   sudo chmod -R +x /opt/masos/configs/all/AM-Start.sh && sudo chmod -R +x /opt/masos/configs/all/ES-Start.sh
  sudo cp -R /home/pi/attract-config-rpi-master/etc/samba/smb.conf /etc/samba/
  # sudo systemctl restart smbd.service
- cd && mkdir .attract
   sudo cp -R /home/pi/attract-config-rpi-master/attract/* /home/pi/.attract/
   sudo chown -R pi:pi /home/pi/.attract/
   sudo chown -R pi:pi /opt/masos/configs/all/
