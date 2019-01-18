@@ -19,14 +19,12 @@ function main_menu() {
             --ok-label OK --cancel-label Exit \
             --menu "Quieres instalar Attract? ...dale" 25 75 20 \
             1 "Instalar/Actualizar Attract Mode con mmal" \
-			2 "Eliminar Attract Mode en MasOS" \
-			3 "Configurar Attract Mode en MasOS" \
+			2 "Configurar Attract Mode en MasOS" \
 			2>&1 > /dev/tty)
 
         case "$choice" in
             1) masos_attractinstall  ;;
-			2) eliminar_attract  ;;
-			3) config_attract  ;;
+			2) config_attract  ;;
 			*)  break ;;
         esac
     done
@@ -93,17 +91,17 @@ sudo shutdown -r now
 
 #########################################################################
 # Funcion eliminar attract en MasOS ;-) #
-function eliminar_attract() {
-dialog --infobox " ... Eliminando Attract mode de su rpi .......\n\n" 30 55 ; sleep 5
-sudo rm -R /home/pi/MasOS/roms/setup
-# sudo rm -R /usr/local/share/attract && sudo rm -R /etc/samba/smb.conf
-# sudo systemctl restart smbd.service
-sudo rm -R /usr/local/bin/attract
-sudo cp /opt/masos/configs/all/ES-Start.sh /opt/masos/configs/all/autostart.sh
-sudo rm -R /opt/masos/configs/all/AM-Start.sh && sudo rm -R /opt/masos/configs/all/ES-Start.sh
-sudo rm -R /home/pi/RetroPie/retropiemenu/Switch\ To\ Attract\ Mode.sh
-dialog --infobox " Attract mode se elimino de su sistema" 30 55 ; sleep 5
-sudo shutdown -r now
+# function eliminar_attract() {
+# dialog --infobox " ... Eliminando Attract mode de su rpi .......\n\n" 30 55 ; sleep 5
+# sudo rm -R /home/pi/MasOS/roms/setup
+# # sudo rm -R /usr/local/share/attract && sudo rm -R /etc/samba/smb.conf
+# # sudo systemctl restart smbd.service
+# sudo rm -R /usr/local/bin/attract
+# sudo cp /opt/masos/configs/all/ES-Start.sh /opt/masos/configs/all/autostart.sh
+# sudo rm -R /opt/masos/configs/all/AM-Start.sh && sudo rm -R /opt/masos/configs/all/ES-Start.sh
+# sudo rm -R /home/pi/RetroPie/retropiemenu/Switch\ To\ Attract\ Mode.sh
+# dialog --infobox " Attract mode se elimino de su sistema" 30 55 ; sleep 5
+# sudo shutdown -r now
 # ---------------------------- #
 }
 
