@@ -8,7 +8,7 @@
 # MasOS El sistema operativo retro en español con emulationstation ,retroarch y varios scripts independientes mas configuraciones y themes nuevos.!
 #fork de retropie
 
-__version="3.1"
+__version="4.0.0"
 
 [[ "$__debug" -eq 1 ]] && set -x
 
@@ -48,7 +48,7 @@ if [[ "$(id -u)" -ne 0 ]]; then
     exit 1
 fi
 
-__backtitle="http://masos.ga - MasOS-Setup. Installation dir: $rootdir for user $user"
+__backtitle="http://web.masos.ga - MasOS-Setup. Installation dir: $rootdir for user $user"
 
 source "$scriptdir/scriptmodules/system.sh"
 source "$scriptdir/scriptmodules/helpers.sh"
