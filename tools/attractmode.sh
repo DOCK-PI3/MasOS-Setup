@@ -103,7 +103,7 @@ sudo shutdown -r now
 # dialog --infobox " Attract mode se elimino de su sistema" 30 55 ; sleep 5
 # sudo shutdown -r now
 # ---------------------------- #
-}
+
 
 
 #########################################################################
