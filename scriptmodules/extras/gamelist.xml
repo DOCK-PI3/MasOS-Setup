@@ -56,12 +56,6 @@ Puede seleccionar sistemas individuales para eliminar el exceso de archivos mult
 		<lastplayed>20180123T121507</lastplayed>
 	</game>
 	<game>
-		<path>./moonlight.sh</path>
-		<name>Steam Moonlight config</name>
-		<desc>Configure steam Moonlight</desc>
-		<image>/home/pi/RetroPie/retropiemenu/icons/steam.png</image>
-	</game>
-	<game>
 		<path>./raspiconfig.rp</path>
 		<name>Raspberry Configurador</name>
 		<desc>Configurador oficial incorporado en Raspberry pi.Cambie la contraseña del usuario, las opciones de arranque, la internacionalización, la cámara, agregue su pi a Rastrack, overclock, overscan, división de memoria, SSH y más.</desc>
@@ -70,28 +64,12 @@ Puede seleccionar sistemas individuales para eliminar el exceso de archivos mult
 		<lastplayed>20180423T092927</lastplayed>
 	</game>
 	<game>
-		<path>./Expand to External Drive Disable.sh</path>
-		<name>Inhabilitar Expandir a unidad externa</name>
-		<desc>Inhabilitar la opcion de Expandir a unidad externa.....</desc>
-		<image>./icons/Expand to External Drive Disable.png</image>
-		<playcount>1</playcount>
-		<lastplayed>20180426T224425</lastplayed>
-	</game>
-		<game>
 		<path>./esthemes.rp</path>
 		<name>ES Themes</name>
 		<desc>Instalar, desinstalar o actualizar temas de EmulationStation. La mayoría de los temas se pueden previsualizar en https://github.com/Moriggy/</desc>
 		<image>./icons/esthemes.png</image>
 		<playcount>6</playcount>
 		<lastplayed>20180421T195000</lastplayed>
-	</game>
-	<game>
-		<path>./Expand to External Drive Enable.sh</path>
-		<name>Habilitar Expandir a unidad externa</name>
-		<desc>Habilitar la opcion de Expandir a unidad externa.....</desc>
-		<image>./icons/Expand to External Drive Enable.png</image>
-		<playcount>1</playcount>
-		<lastplayed>20180426T224444</lastplayed>
 	</game>
 	<game>
 		<path>./retroarch.rp</path>
@@ -118,34 +96,29 @@ Puede seleccionar sistemas individuales para eliminar el exceso de archivos mult
 		<lastplayed>20180626T080229</lastplayed>
 	</game>
 	<game>
-		<path>./systeminfo.sh</path>
-		<name>MasOS Info</name>
-		<desc>Aqui puede ver informacion sobre el sistema importante para usted,como por ejemplo....	
-La IP actual de su dispositivo, temperaturas de CPU - GPU ,ademas puede ver informacion sobre sus discos de almacenamiento.</desc>
-		<image>./icons/systeminfo.png</image>
-		<playcount>4</playcount>
-		<lastplayed>20180809T093814</lastplayed>
+		<path>./MasOS Utilidades/Deshabilitar Overscan.sh</path>
+		<name>Deshabilitar Overscan</name>
+		<desc>Quita los marcos negros que aparecen en la pantalla alrededor de la imagen (ajusta la imagen para que se vea en la pantalla entera).</desc>
 	</game>
 	<game>
-		<path>./Eazy Hax Toolkit/Install Background Music.sh</path>
+		<path>./MasOS Utilidades/Habilitar Overscan.sh</path>
+		<name>Habilitar Overscan</name>
+		<desc>Ajusta la imagen para que se vea en la pantalla entera, en caso de que se vea la imagen más grande que la pantalla.</desc>
+	</game>
+	<game>
+		<path>./MasOS Utilidades/Instalar Boton de encendido.sh</path>
+		<name>Instalar Boton de encendido</name>
+		<desc>Habilita la opción de encender la Raspberry mediante un botón conectado al GPIO.</desc>
+	</game>
+	<game>
+		<path>./MasOS Utilidades/Instalar musica de fondo.sh</path>
 		<name>Instalar música de fondo</name>
 		<desc>Instala la musica de fondo en MasOS para emulationstation.</desc>
-		<playcount>3</playcount>
-		<lastplayed>20180809T095308</lastplayed>
 	</game>
 	<game>
-		<path>./masosextrasall.sh</path>
-		<name>MasOS EXTRAs menu ES</name>
-		<desc>Muchas opciones mas para este menu con solo un clic.
-
-Utilidades ,herramientas ,descargas de arts y mucho mas.
-
-Tambien puede actualizar el MasOS-Script sin introducir nada de codigos.
-
-Con la actualizacion o instalacion del menu termine su aparato se reiniciara automaticamente...</desc>
-		<image>./icons/masosextrasall.png</image>
-		<playcount>1</playcount>
-		<lastplayed>20180809T235634</lastplayed>
+		<path>./MasOS Utilidades/Instalar Pistola Aimtrak.sh</path>
+		<name>Instalar Pistola Aimtrak</name>
+		<desc>Instala todos los drivers necesarios para poder usar la pistola Aimtrak en advance-mame 1.4 con los juegos compatibles con ello. Necesitas dicha pistola y realizar una configuración previa.</desc>
 	</game>
 	<game>
 		<path>./rpsetup.rp</path>
@@ -172,5 +145,42 @@ O tambien podras hacer overclock.
 		<image>./icons/pmasos.png</image>
 		<playcount>1</playcount>
 		<lastplayed>20180918T235634</lastplayed>
+	</game>
+	<game>
+		<path>./masosextrasall.sh</path>
+		<name>MasOS EXTRAs menu ES</name>
+		<desc>Muchas opciones mas para este menu con solo un clic.
+
+Utilidades ,herramientas ,descargas de arts y mucho mas.
+
+Tambien puede actualizar el MasOS-Script sin introducir nada de codigos.
+
+Con la actualizacion o instalacion del menu termine su aparato se reiniciara automaticamente...</desc>
+		<image>./icons/masosextrasall.png</image>
+		<playcount>6</playcount>
+		<lastplayed>20190207T111747</lastplayed>
+	</game>
+	<game>
+		<path>./MasOS Utilidades/Deshabilitar Overscan.sh</path>
+		<name>Deshabilitar Overscan</name>
+		<playcount>1</playcount>
+		<lastplayed>20190207T114347</lastplayed>
+	</game>
+	<game>
+		<path>./Switch To Attract Mode.sh</path>
+		<name>Cambiar a Attract Mode</name>
+		<desc>Cambiar al entorno gráfico Attract Mode</desc>
+		<image>./icons/attractmode.png</image>
+		<playcount>21</playcount>
+		<lastplayed>20190208T125700</lastplayed>
+	</game>
+	<game>
+		<path>./systeminfo.sh</path>
+		<name>MasOS Info</name>
+		<desc>Aqui puede ver informacion sobre el sistema importante para usted,como por ejemplo....	
+La IP actual de su dispositivo, temperaturas de CPU - GPU ,ademas puede ver informacion sobre sus discos de almacenamiento.</desc>
+		<image>./icons/systeminfo.png</image>
+		<playcount>6</playcount>
+		<lastplayed>20190208T130953</lastplayed>
 	</game>
 </gameList>
