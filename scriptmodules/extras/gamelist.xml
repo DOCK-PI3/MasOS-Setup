@@ -147,12 +147,6 @@ O tambien podras hacer overclock.
 		<lastplayed>20180918T235634</lastplayed>
 	</game>
 	<game>
-		<path>./MasOS Utilidades/Deshabilitar Overscan.sh</path>
-		<name>Deshabilitar Overscan</name>
-		<playcount>1</playcount>
-		<lastplayed>20190207T114347</lastplayed>
-	</game>
-	<game>
 		<path>./Switch To Attract Mode.sh</path>
 		<name>Cambiar a Attract Mode</name>
 		<desc>Cambiar al entorno gráfico Attract Mode</desc>
