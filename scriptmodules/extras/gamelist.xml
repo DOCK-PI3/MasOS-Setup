@@ -147,20 +147,6 @@ O tambien podras hacer overclock.
 		<lastplayed>20180918T235634</lastplayed>
 	</game>
 	<game>
-		<path>./masosextrasall.sh</path>
-		<name>MasOS EXTRAs menu ES</name>
-		<desc>Muchas opciones mas para este menu con solo un clic.
-
-Utilidades ,herramientas ,descargas de arts y mucho mas.
-
-Tambien puede actualizar el MasOS-Script sin introducir nada de codigos.
-
-Con la actualizacion o instalacion del menu termine su aparato se reiniciara automaticamente...</desc>
-		<image>./icons/masosextrasall.png</image>
-		<playcount>6</playcount>
-		<lastplayed>20190207T111747</lastplayed>
-	</game>
-	<game>
 		<path>./MasOS Utilidades/Deshabilitar Overscan.sh</path>
 		<name>Deshabilitar Overscan</name>
 		<playcount>1</playcount>
@@ -182,5 +168,19 @@ La IP actual de su dispositivo, temperaturas de CPU - GPU ,ademas puede ver info
 		<image>./icons/systeminfo.png</image>
 		<playcount>6</playcount>
 		<lastplayed>20190208T130953</lastplayed>
+	</game>
+	<game>
+		<path>./masosextrasall.sh</path>
+		<name>MasOS EXTRAs menu ES</name>
+		<desc>Muchas opciones mas para este menu con solo un clic.
+
+Utilidades ,herramientas ,descargas de arts y mucho mas.
+
+Tambien puede actualizar el MasOS-Script sin introducir nada de codigos.
+
+Con la actualizacion o instalacion del menu termine su aparato se reiniciara automaticamente...</desc>
+		<image>./icons/masosextrasall.png</image>
+		<playcount>12</playcount>
+		<lastplayed>20190213T203555</lastplayed>
 	</game>
 </gameList>
