@@ -121,13 +121,14 @@ cd /home/pi/ && wget https://github.com/DOCK-PI3/attract-config-rpi/archive/mast
  sudo cp -R /home/pi/attract-config-rpi-master/opt/masos/configs/all/* /opt/masos/configs/all/
   sudo chmod -R +x /opt/masos/configs/all/AM-Start.sh && sudo chmod -R +x /opt/masos/configs/all/ES-Start.sh
  sudo cp -R /home/pi/attract-config-rpi-master/etc/samba/smb.conf /etc/samba/
- # sudo systemctl restart smbd.service
   sudo cp -R /home/pi/attract-config-rpi-master/attract/* /home/pi/.attract/
   sudo chown -R pi:pi /home/pi/.attract/
   sudo chown -R pi:pi /opt/masos/configs/all/
 dialog --infobox " Attract Mode se configuro correctamente!...\n\n Recuerde generar las listas de roms desde attract cuando meta juegos \n\n y para el menu setup si no le aparece!" 370 370 ; sleep 5
 # Borrar directorios de compilacion y de configuracion.....
 sudo rm -r -f /home/pi/attract-config-rpi-master
+# cp /opt/masos/configs/all/AM-Start.sh /opt/masos/configs/all/autostart.sh
+# sudo reboot
 # ---------------------------- #
 }
 main_menu
