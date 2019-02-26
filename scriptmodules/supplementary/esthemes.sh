@@ -46,6 +46,7 @@ function gui_esthemes() {
     local themes=(
 		'DOCK-PI3 bluepixel'
 		'DOCK-PI3 Perinquen'
+		'DOCK-PI3 BIGGRID'
 		'Moriggy hypernostalgic'
 		'Moriggy retro'
         'Moriggy maximus-v3'
