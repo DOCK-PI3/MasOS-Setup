@@ -10,7 +10,7 @@
 #
 
 rp_module_id="setup"
-rp_module_desc="GUI based setup for MasOS"
+rp_module_desc="GUI instalador base para MasOS"
 rp_module_section=""
 
 function rps_logInit() {
