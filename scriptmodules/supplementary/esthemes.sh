@@ -45,14 +45,16 @@ function uninstall_theme_esthemes() {
 
 function gui_esthemes() {
     local themes=(
-		'DOCK-PI3 bluepixel'
-		'DOCK-PI3 Perinquen'
 		'DOCK-PI3 BIGGRID'
-		'Moriggy hypernostalgic'
-		'Moriggy retro'
-        'Moriggy maximus-v3'
-		'Moriggy MasOS'
+		'DOCK-PI3 bluepixel'
 		'DOCK-PI3 paralleluniverse'
+		'DOCK-PI3 Perinquen'
+		'Moriggy es-next-pixel-Legacy'
+		'Moriggy hypernostalgic'
+        'Moriggy MasOS'
+		'Moriggy maximus-v3'
+		'Moriggy retro'
+		'Moriggy PandoraBoxVerde'
 		'lipebello spaceoddity'
 		'lipebello strangerstuff'
 		'lipebello swineapple'
