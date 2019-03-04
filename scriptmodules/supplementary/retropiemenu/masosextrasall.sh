@@ -89,7 +89,7 @@ sudo cp -R ~/MasOS-Setup/scriptmodules/extras/scripts ~/RetroPie/
 sudo chmod -R +x ~/RetroPie
 sudo chmod -R +x /opt/
 sudo mkdir ~/MasOS/roms/music
-sudo chown -R pi:pi ~/MasOS
+sudo chown -R $user:$user ~/MasOS
 dialog --infobox " MasOS-Setup script se actualizo en su PC correctamente!...\n\nEn 5seg se reinicia el sistema..espere por favor!" 60 75 ; sleep 5
 sudo reboot 
 }
@@ -173,7 +173,7 @@ sudo reboot
 ######################################################################################################################
 # Instalar idioma español en ES-dev all system - CMake y Make # Dependencias emulationstation-dev y libboost-all-dev#
 function idioma_spanish_all() {                                          #############################################
-dialog --infobox " CMAKE Y MAKE instalar idioma español en emulationstation-dev. Recuerde debe ejecutar el script desde consola y con emulationstation inactivo.." 30 55 ; sleep 5
+dialog --infobox " CMAKE Y MAKE instalar idioma español en emulationstation-dev. Recuerde ejecutar el script desde consola y con emulationstation inactivo.." 30 55 ; sleep 5
 cd && git clone --recursive https://github.com/DOCK-PI3/EmulationStation.git
 cd EmulationStation && mkdir src && cd src
 cmake .. && make
