@@ -32,7 +32,7 @@ function main_menu() {
 			2 "MasOS EXTRAS para el menu de emulationstation" \
             3 "Reparar permisos en MasOS PC" \
 			4 "PC MasOS EXTRAS para el menu de emulationstation" \
-            5 "Rasbperry pi ES-dev instalar idioma español" \
+            5 "Rasbperry pi ES instalar idioma español" \
             6 "PC ES-dev instalar idioma español Ubuntu 16.04.5" \
 	    7 "IDIOMA español emulationstation-dev para instalaciones desde 0" \
 		8 "PC Actualizar MasOS-Setup script" \
