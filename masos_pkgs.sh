@@ -8,7 +8,7 @@
 # MasOS El sistema operativo retro en español con emulationstation ,retroarch y varios scripts independientes mas configuraciones y themes nuevos.!
 #fork de retropie
 
-__version="4.0.0"
+__version="4.0.4"
 
 [[ "$__debug" -eq 1 ]] && set -x
 
@@ -44,11 +44,11 @@ __swapdir="$__tmpdir"
 
 # check, if sudo is used
 if [[ "$(id -u)" -ne 0 ]]; then
-    echo "Script must be run under sudo from the user you want to install for. Try 'sudo $0'"
+    echo "El script debe ejecutarse con sudo. ej: 'sudo $0'"
     exit 1
 fi
 
-__backtitle="http://web.masos.ga - MasOS-Setup. Installation dir: $rootdir for user $user"
+__backtitle="http://masos.dx.am/ - MasOS-Setup. Directorio de instalacion: $rootdir para el usuario $user"
 
 source "$scriptdir/scriptmodules/system.sh"
 source "$scriptdir/scriptmodules/helpers.sh"
