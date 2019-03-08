@@ -29,24 +29,26 @@ function main_menu() {
             --ok-label OK --cancel-label Exit \
             --menu "Que accion te gustaria realizar?" 25 75 20 \
             1 "RPI Actualizar MasOS-Setup script" \
-			2 "MasOS EXTRAS para el menu de emulationstation" \
-            3 "Reparar permisos en MasOS PC" \
-			4 "PC MasOS EXTRAS para el menu de emulationstation" \
-            5 "Rasbperry pi ES instalar idioma español" \
+			2 "RPI EXTRAS para el menu de ES" \
+            3 "RPI ES instalar idioma español" \
+			4 "PC MasOS EXTRAS para el menu de ES" \
+            5 "PC Reparar permisos en MasOS" \
             6 "PC ES-dev instalar idioma español Ubuntu 16.04.5" \
-	    7 "IDIOMA español emulationstation-dev para instalaciones desde 0" \
-		8 "PC Actualizar MasOS-Setup script" \
+			7 "PC Actualizar MasOS-Setup script" \
+			8 "IDIOMA español emulationstation-dev instalaciones desde 0" \
+			9 "EmulationStation iconos Originales" \
 			2>&1 > /dev/tty)
 
         case "$choice" in
             1) masossetup_update  ;;
 			2) masosmenu_extras  ;;
-            3) permisos_pc  ;;
+            3) pi_spanish ;;
 			4) masosmenu_extrasPC ;;
-			5) pi_spanish  ;;
+			5) permisos_pc  ;;
 			6) pc_spanish  ;;
-			7) idioma_spanish_all  ;;
-			8) masossetup_updatePC ;;
+			7) masossetup_updatePC ;;
+			8) idioma_spanish_all ;;
+			9) esicons_origi ;;
 			*)  break ;;
         esac
     done
@@ -184,6 +186,21 @@ sudo rm -R ~/EmulationStation
 sudo chown -R $user:$user /opt/masos/supplementary/emulationstation-dev/
 dialog --infobox " El idioma se instalo correctamente ,reiniciando el sistema en 5seg ..." 30 55 ; sleep 5
 sudo reboot
+# ---------------------------- #
+}
+
+#########################################################################
+# instalar ES icons origi #
+function esicons_origi() {                                          #
+dialog --infobox "... instalar ES icons originales ..." 30 55 ; sleep 5
+cd && mkdir temporal
+cd temporal && git clone https://github.com/DOCK-PI3/es-iconsthemes-ORIGINAL.git
+sudo cp -R ~/temporal/es-iconsthemes-ORIGINAL/*.svg /opt/masos/supplementary/emulationstation/resources/help/
+sudo cp -R ~/temporal/es-iconsthemes-ORIGINAL/*.svg /opt/masos/supplementary/emulationstation-dev/resources/help/
+sudo chown -R $user:$user /opt/masos/supplementary/emulationstation/
+sudo chown -R $user:$user /opt/masos/supplementary/emulationstation-dev/
+sudo rm -R ~/temporal
+dialog --infobox "... Iconos originales instalados ,reinicie ES para ver los nuevos iconos..." 30 55 ; sleep 5
 # ---------------------------- #
 }
 
