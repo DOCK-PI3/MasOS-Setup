@@ -50,6 +50,7 @@ function gui_esthemes() {
 		'DOCK-PI3 bluepixel'
 		'DOCK-PI3 paralleluniverse'
 		'DOCK-PI3 Perinquen'
+		'DOCK-PI3 PlataFina'
 		'Moriggy es-next-pixel-Legacy'
 		'Moriggy hypernostalgic'
         'Moriggy MasOS'

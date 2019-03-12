@@ -128,7 +128,8 @@ function download_video() {
             --menu "Que pack te gustaría descargar?" 25 75 20 \
             1 "Pack Moriggy MasOS" \
             2 "Pack Supreme" \
-			3 "Pack Dock-pi3" \
+			3 "Pack Mabedeep Dock-pi3" \
+			4 "Pack Moriggy Bloques 3D" \
             2>&1 > /dev/tty)
 
         case "$choice" in
@@ -184,6 +185,22 @@ function download_video() {
 			fi 
 			break ;;
 			
+			4) clear
+				if [[ -d "$enable_dir" ]]; then
+					rm -R $enable_dir/*
+					echo "Empezando la descarga del pack de videos elegido"; sleep 2
+					cd $enable_dir && wget https://github.com/Moriggy/videoloadingscreens-Bloques-3D/archive/master.zip && unzip master.zip
+					rm $enable_dir/master.zip
+					clear
+					echo "Moviendo videos a la carpeta de destino, un momento por favor..."
+					mv $enable_dir/videoloadingscreens-Bloques-3D-master/*.mp4 $enable_dir
+					rm -R $enable_dir/videoloadingscreens-Bloques-3D-master/
+					chown -R $user:$user $enable_dir
+					dialog --infobox "Descarga completada!!" 3 25 ; sleep 3
+				else
+					dialog --infobox "Debe estar activada la opción de videolaunchingscreens!!" 3 80 ; sleep 5
+			fi 
+			break ;;
             *)  break ;;
         esac
     done
