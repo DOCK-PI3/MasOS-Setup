@@ -4,7 +4,7 @@ MasOS-Setup fork de RetroPie en español ,creado en verano de 2018.
 General Usage
 -------------
 
-Script de Shell para configurar Raspberry Pi, Vero4K, ODroid-C1 o una PC + Ubuntu con muchos emuladores y juegos, MasOS usando EmulationStation como interfaz gráfica. Las imágenes preinstaladas de inicio para Raspberry Pi están disponibles para aquellos que desean un sistema listo para usar, descargables desde la sección de descargas nuestro sitio web http://web.masos.ga 
+Script de Shell para configurar Raspberry Pi, Vero4K, ODroid-C1 o una PC + Ubuntu con muchos emuladores y juegos, MasOS usando EmulationStation como interfaz gráfica. Las imágenes preinstaladas de inicio para Raspberry Pi están disponibles para aquellos que desean un sistema listo para usar, descargables desde la sección de descargas nuestro sitio web http://masos.dx.am 
 
 Este script está diseñado para su uso en Raspbian en el Rasperry Pi, OSMC , Vero4K , ODroid-C1 o una PC de 32 u 64bit.
 
