@@ -951,7 +951,7 @@ function show_launch() {
         else
             launch_name="$EMULATOR"
         fi
-        DIALOGRC="$CONFIGDIR/all/runcommand-launch-dialog.cfg" dialog --infobox "\nLaunching $launch_name ...\n\nPress a button to configure\n\nErrors are logged to $LOG" 9 60
+        DIALOGRC="$CONFIGDIR/all/runcommand-launch-dialog.cfg" dialog --infobox "\nLanzando $launch_name ...\n\nPulsa el boton A para configurar CORE\n\nErrors are logged to $LOG" 9 60
     fi
 }
 
