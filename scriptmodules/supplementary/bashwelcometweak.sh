@@ -71,17 +71,17 @@ function retropie_welcome() {
     local bfgwht="${bld}$(tput setaf 7)"
 
     local logo=(
-        "${fgred}   .***.   "
-        "${fgred}   ***${bfgwht}*${fgred}*   "
-        "${fgred}   \`***'   "
-        "${bfgwht}    |*|    "
-        "${bfgwht}    |*|    "
-        "${bfgred}  ..${bfgwht}|*|${bfgred}..  "
-        "${bfgred}.*** ${bfgwht}*${bfgred} ***."
-        "${bfgred}*******${fggrn}@@${bfgred}**"
-        "${fgred}\`*${bfgred}****${bfgylw}@@${bfgred}*${fgred}*'"
-        "${fgred} \`*******'${fgrst} "
-        "${fgred}   \`\"\"\"'${fgrst}   "
+        "${fgred}**********************************************"
+        "${fgred}**                                          **"
+        "${fgred}**   ${bfgwht}**   **                 ****   ****    ${fgred}**"
+		"${fgred}**   ${bfgwht}**   **                **  ** **   *   ${fgred}**"
+        "${fgred}**   ${bfgwht}*** ***  ****    ****  **  ** **       ${fgred}**"
+        "${fgred}**   ${bfgwht}** * **      *  *      **  **  ****    ${fgred}**"
+        "${fgred}**   ${bfgwht}**   **  ****    ****  **  **     **   ${fgred}**"
+        "${fgred}**   ${bfgwht}**   ** *    *       * **  ** *   **   ${fgred}**"
+        "${fgred}**   ${bfgwht}**   **  **** *  ****   ****   ****    ${fgred}**"
+        "${fgred}**                                          **"
+        "${fgred}**********************************************"
         )
 
     local out
@@ -90,7 +90,7 @@ function retropie_welcome() {
         out+="  ${logo[$i]}  "
         case "$i" in
             0)
-                out+="${fggrn}$(date +"%A, %e %B %Y, %r")"
+                out+="${fggrn}$(date +"%A, %e %B %Y, %X")"
                 ;;
             1)
                 out+="${fggrn}$(uname -srmo)"
@@ -102,22 +102,22 @@ function retropie_welcome() {
                 out+="${fgwht}${df_out[1]}"
                 ;;
             5)
-                out+="${fgred}Uptime.............: ${UPTIME}"
+                out+="${bfgred}Tiempo de actividad.: ${UPTIME}"
                 ;;
             6)
-                out+="${fgred}Memory.............: $(grep MemFree /proc/meminfo | awk {'print $2'})kB (Free) / $(grep MemTotal /proc/meminfo | awk {'print $2'})kB (Total)"
+                out+="${bfgred}Memoria.............: $(grep MemFree /proc/meminfo | awk {'print $2'})kB (Free) / $(grep MemTotal /proc/meminfo | awk {'print $2'})kB (Total)"
                 ;;
             7)
-                out+="${fgred}Running Processes..: $(ps ax | wc -l | tr -d " ")"
+                out+="${bfgred}Procesos Corriendo..: $(ps ax | wc -l | tr -d " ")"
                 ;;
             8)
-                out+="${fgred}IP Address.........: $(ip route get 8.8.8.8 2>/dev/null | awk '{print $NF; exit}')"
+                out+="${bfgred}Dirección IP........: $(ip route get 8.8.8.8 2>/dev/null | awk '{print $NF; exit}')"
                 ;;
             9)
-                out+="Temperature........: CPU: $cpuTempC°C/$cpuTempF°F GPU: $gpuTempC°C/$gpuTempF°F"
+                out+="${bfgred}Temperatura.........: CPU: $cpuTempC°C/$cpuTempF°F GPU: $gpuTempC°C/$gpuTempF°F"
                 ;;
             10)
-                out+="${fgwht}The RetroPie Project, https://retropie.org.uk"
+                out+="${fgwht}Proyecto MasOS, http://masos.dx.am"
                 ;;
         esac
         out+="\n"
