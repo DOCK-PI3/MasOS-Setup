@@ -5,7 +5,7 @@
 # The MasOS Project 2018 es legal, esta contruido bajo raspbian que es de codigo abierto, en este nuevo
 # sistema trabajan unos pocos desarroladores independientes de diversas partes del planeta.
 #
-# MasOS sistema operativo fork de RetroPie ,proyecto iniciado en la comunidad MyArcadeSpain a mediados del año 2018 por dos de sus usuarios y desvinculada de la misma 5 meses despues por desiciones criticas de las 2 o 3 personas que gestionan MyArcadeSpain...
+# MasOS sistema operativo fork de RetroPie ,proyecto iniciado a mediados del año 2018 por MasOS Team ( Noromu ,Manu ,Moriggy & Mabedeep "DOCK-PI3" ) ...
 #
 
 scriptdir="$(dirname "$0")"

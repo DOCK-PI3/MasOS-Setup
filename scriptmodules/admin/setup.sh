@@ -127,7 +127,7 @@ function post_update_setup() {
     } &> >(tee >(gzip --stdout >"$logfilename"))
     rps_printInfo "$logfilename"
 
-    printMsgs "dialog" "AVISO: la secuencia de comandos de configuracion de MasOS y las imagenes de la tarjeta SD de MasOS prefabricadas estan disponibles para descargar de forma gratuita desde http://web.masos.ga .\n\nLa imagen de MasOS preconstruida incluye software que tiene licencias no comerciales. No esta permitido vender imagenes de MasOS ni incluir MasOS con su producto comercial. \n\nNo se incluyen juegos con derechos de autor en MasOS.\n\nSi le vendieron este software, puede informarnos al respecto enviando un correo electronico a dock.pi3@gmail.com ."
+    printMsgs "dialog" "AVISO: la secuencia de comandos de configuracion de MasOS y las imagenes de la tarjeta SD de MasOS prefabricadas estan disponibles para descargar de forma gratuita desde http://masos.dx.am/ .\n\nLa imagen de MasOS preconstruida incluye software que tiene licencias no comerciales. No esta permitido vender imagenes de MasOS ni incluir MasOS con su producto comercial. \n\nNo se incluyen juegos con derechos de autor en MasOS.\n\nSi le vendieron este software, puede informarnos al respecto enviando un correo electronico a masosgroup@gmail.com ."
 
     # return to set return function
     "${return_func[@]}"
