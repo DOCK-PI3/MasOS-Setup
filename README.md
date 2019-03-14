@@ -37,7 +37,7 @@ Binarios y fuentes
 
 En la Raspberry Pi, la configuración de MasOS ofrece la posibilidad de instalar desde binarios o fuente. Para otras plataformas compatibles, solo está disponible una instalación de origen. Se recomienda instalar desde binario en una Raspberry Pi, ya que construir todo desde la fuente puede llevar mucho tiempo.
 
-Para obtener más información, visite la web en http://web.masos.ga o el repositorio en https://github.com/DOCK-PI3/MasOS-Setup.
+Para obtener más información, visite la web en http://masos.dx.am o el repositorio en https://github.com/DOCK-PI3/MasOS-Setup.
 
 FORO MASOS
 ----------
