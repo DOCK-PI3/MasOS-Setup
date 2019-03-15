@@ -1,8 +1,8 @@
 #!/usr/bin/env bash
 
 rp_module_id="joystick-selection"
-rp_module_desc="Set controllers for RetroArch players 1-4 (global or system specific)."
-rp_module_help="Follow the instructions on the dialogs to configure which joystick to use for RetroArch players 1-4 (global or system specific)."
+rp_module_desc="Configure los mandos para 1-4 jugadores en RetroArch (global o especifico del sistema)."
+rp_module_help="Siga las instrucciones en los cuadros de dialogo para configurar que joystick usar para los jugadores RetroArch 1-4 (global o especifico del sistema)."
 rp_module_section="exp"
 
 function depends_joystick-selection() {
@@ -32,7 +32,7 @@ function install_joystick-selection() {
         xmlstarlet ed -L -P -s "/gameList" -t elem -n "gameTMP" \
             -s "//gameTMP" -t elem -n path -v "./joystick_selection.sh" \
             -s "//gameTMP" -t elem -n name -v "Joystick Selection" \
-            -s "//gameTMP" -t elem -n desc -v "Select which joystick to use for RetroArch players 1-4 (global or system specific)." \
+            -s "//gameTMP" -t elem -n desc -v "Seleccione que joystick usar para los jugadores RetroArch 1-4 (global o especifico del sistema)." \
             -s "//gameTMP" -t elem -n image -v "./icons/joystick_selection.png" \
             -r "//gameTMP" -v "game" \
             "$gamelistxml"

@@ -33,7 +33,7 @@ function _add_system_mehstation() {
 
     command="${command//%ROM%/%exec%}"
     extensions="${extensions// /,}"
-    NAME="$fullname" COMMAND="$command" DIR="$path" EXTS="$extensions" "/opt/retropie/supplementary/mehstation/bin/mehtadata" -db="$db" -new-platform
+    NAME="$fullname" COMMAND="$command" DIR="$path" EXTS="$extensions" "/opt/masos/supplementary/mehstation/bin/mehtadata" -db="$db" -new-platform
 }
 
 function _del_system_mehstation() {
@@ -43,7 +43,7 @@ function _del_system_mehstation() {
     local fullname="$1"
     local name="$2"
 
-    PLATFORM_NAME="$fullname" "/opt/retropie/supplementary/mehstation/bin/mehtadata" -db="$db" -del-platform
+    PLATFORM_NAME="$fullname" "/opt/masos/supplementary/mehstation/bin/mehtadata" -db="$db" -del-platform
 }
 
 function _add_rom_mehstation() {
@@ -57,9 +57,9 @@ function _add_rom_mehstation() {
     local desc="$5"
     local image="$6"
 
-    NAME="$4" FILEPATH="$path" PLATFORM_NAME="$system_fullname" DESCRIPTION="$desc" "/opt/retropie/supplementary/mehstation/bin/mehtadata" -db="$db" -new-exec
+    NAME="$4" FILEPATH="$path" PLATFORM_NAME="$system_fullname" DESCRIPTION="$desc" "/opt/masos/supplementary/mehstation/bin/mehtadata" -db="$db" -new-exec
 
-    RESOURCE="$image" FILEPATH="$path" PLATFORM_NAME="$system_fullname" TYPE="cover" "/opt/retropie/supplementary/mehstation/bin/mehtadata" -db="$db" -new-res
+    RESOURCE="$image" FILEPATH="$path" PLATFORM_NAME="$system_fullname" TYPE="cover" "/opt/masos/supplementary/mehstation/bin/mehtadata" -db="$db" -new-res
 }
 
 function depends_mehstation() {

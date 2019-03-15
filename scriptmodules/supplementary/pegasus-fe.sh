@@ -10,7 +10,7 @@
 #
 
 rp_module_id="pegasus-fe"
-rp_module_desc="Pegasus: A cross platform, customizable graphical frontend (latest alpha release)"
+rp_module_desc="Pegasus: Una plataforma multiplataforma, interfaz grafica personalizable (ultima versión alfa)"
 rp_module_licence="GPL3+ https://raw.githubusercontent.com/mmatyas/pegasus-frontend/master/LICENSE.md"
 rp_module_section="exp"
 rp_module_flags="!mali !kms frontend"
@@ -48,7 +48,7 @@ function install_bin_pegasus-fe() {
         fi
     fi
     if [[ -z "${platform}" ]]; then
-        md_ret_errors+=("Sorry, Pegasus is not yet available for this platform. Consider reporting this on the forum!")
+        md_ret_errors+=("Lo sentimos, Pegasus todavia no esta disponible para esta plataforma. ¡Considere reportar esto en el foro!")
         return
     fi
 
@@ -59,7 +59,7 @@ function install_bin_pegasus-fe() {
     asset_url="$(echo "${all_assets}" | grep ${platform})"
 
     if [[ -z "${asset_url}" ]]; then
-        md_ret_errors+=("Looks like the latest Pegasus release is not yet available for this platform. This happens when the build is so fresh it's being uploaded right now, or when there's a technical problem on the download server. Either way, this is a temporary problem, so please try again in 1-2 minutes. If the problem persists, consider reporting it on the forum!")
+        md_ret_errors+=("Parece que la ultima version de Pegasus aun no esta disponible para esta plataforma. Esto sucede cuando la compilacion es tan reciente que se esta cargando en este momento, o cuando hay un problema tecnico en el servidor de descarga. De cualquier manera, este es un problema temporal, asi que intentalo de nuevo en 1-2 minutos. Si el problema persiste, ¡considera reportarlo en el foro!")
         return
     fi
 

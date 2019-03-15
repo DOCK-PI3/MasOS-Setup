@@ -10,7 +10,7 @@
 #
 
 rp_module_id="autostart"
-rp_module_desc="Auto-start Emulation Station / Kodi on boot"
+rp_module_desc="Auto-start EmulationStation / Kodi en el arranque"
 rp_module_section="config"
 
 function _update_hook_autostart() {
@@ -107,32 +107,32 @@ function remove_autostart() {
 }
 
 function gui_autostart() {
-    cmd=(dialog --backtitle "$__backtitle" --menu "Choose the desired boot behaviour." 22 76 16)
+    cmd=(dialog --backtitle "$__backtitle" --menu "Elije el tipo de arranque deseado." 22 76 16)
     while true; do
         if isPlatform "x11"; then
             local x11_autostart
             if [[ -f "$home/.config/autostart/masos.desktop" ]]; then
-                options=(1 "Autostart Emulation Station after login (Enabled)")
+                options=(1 "Autostart EmulationStation despues del inicio de sesion (Habilitado)")
                 x11_autostart=1
             else
-                options=(1 "Autostart Emulation Station after login (Disabled)")
+                options=(1 "Autostart EmulationStation despues del inicio de sesion (Deshabilitado)")
                 x11_autostart=0
             fi
         else
             options=(
-                1 "Start Emulation Station at boot"
-                2 "Start Kodi at boot (exit for Emulation Station)"
-                E "Manually edit $configdir/autostart.sh"
+                1 "Iniciar EmulationStation en el arranque"
+                2 "Iniciar Kodi en el arranque (salir de EmulationStation)"
+                E "Editar manualmente $configdir/autostart.sh"
             )
             if [[ "$__os_id" == "Raspbian" ]]; then
                 options+=(
-                    CL "Boot to text console (require login)"
-                    CA "Boot to text console (auto login as $user)"
+                    CL "Iniciar en la consola de texto (requiere inicio de sesión)"
+                    CA "Iniciar en la consola de texto (inicio de sesion automatico como $user)"
                 )
             fi
-            options+=(DL "Boot to desktop (require login)")
+            options+=(DL "Iniciar en el escritorio (requiere inicio de sesión)")
             if [[ "$__os_id" == "Raspbian" ]]; then
-                options+=(DA "Boot to desktop (auto login as $user)")
+                options+=(DA "Iniciar en el escritorio (inicio de sesión automático como $user)")
             fi
         fi
         choice=$("${cmd[@]}" "${options[@]}" 2>&1 >/dev/tty)
@@ -142,39 +142,39 @@ function gui_autostart() {
                     if isPlatform "x11"; then
                         if [[ "$x11_autostart" -eq 0 ]]; then
                             enable_autostart
-                            printMsgs "dialog" "Emulation Station is set to autostart after login."
+                            printMsgs "dialog" "EmulationStation esta configurado para iniciarse automaticamente despues de iniciar sesion."
                         else
                             disable_autostart
-                            printMsgs "dialog" "Autostarting of Emulation Station is disabled."
+                            printMsgs "dialog" "El inicio automatico de EmulationStation esta desactivado."
                         fi
                         x11_autostart=$((x11_autostart ^ 1))
                     else
                         enable_autostart
-                        printMsgs "dialog" "Emulation Station is set to launch at boot."
+                        printMsgs "dialog" "EmulationStation esta configurado para iniciarse en el arranque."
                     fi
                     ;;
                 2)
                     enable_autostart kodi
-                    printMsgs "dialog" "Kodi is set to launch at boot."
+                    printMsgs "dialog" "Kodi esta listo para iniciarse en el arranque."
                     ;;
                 E)
                     editFile "$configdir/all/autostart.sh"
                     ;;
                 CL)
                     disable_autostart B1
-                    printMsgs "dialog" "Booting to text console (require login)."
+                    printMsgs "dialog" "Arrancando a la consola de texto (requiere login)."
                     ;;
                 CA)
                     disable_autostart B2
-                    printMsgs "dialog" "Booting to text console (auto login as $user)."
+                    printMsgs "dialog" "Arrancando a la consola de texto (inicio de sesion automatico como $user)."
                     ;;
                 DL)
                     disable_autostart B3
-                    printMsgs "dialog" "Booting to desktop (require login)."
+                    printMsgs "dialog" "Arrancando desde el escritorio (requiere login)."
                     ;;
                 DA)
                     disable_autostart B4
-                    printMsgs "dialog" "Booting to desktop (auto login as $user)."
+                    printMsgs "dialog" "Arrancando al escritorio (inicio de sesion automatico como $user)."
                     ;;
             esac
         else

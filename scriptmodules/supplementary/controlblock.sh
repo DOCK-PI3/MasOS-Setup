@@ -10,10 +10,10 @@
 #
 
 rp_module_id="controlblock"
-rp_module_desc="ControlBlock Driver"
+rp_module_desc="Controlador ControlBlock"
 rp_module_section="driver"
 rp_module_flags="noinstclean"
-rp_module_help="Please note that you need to manually enable or disable the ControlBlock Service in the Configuration section. IMPORTANT: If the service is enabled and the power switch functionality is enabled (which is the default setting) in the config file, you need to have a switch connected to the ControlBlock."
+rp_module_help="Tenga en cuenta que necesita habilitar o deshabilitar manualmente el Servicio ControlBlock en la seccion Configuracion. IMPORTANTE: si el servicio esta habilitado y la funcion del interruptor de encendido esta habilitada (que es la configuracion predeterminada) en el archivo de configuracion, debe tener un interruptor conectado al ControlBlock."
 
 function depends_controlblock() {
     local depends=(cmake doxygen)
@@ -43,10 +43,10 @@ function install_controlblock() {
 }
 
 function gui_controlblock() {
-    local cmd=(dialog --backtitle "$__backtitle" --menu "Choose an option." 22 86 16)
+    local cmd=(dialog --backtitle "$__backtitle" --menu "Elija una opcion." 22 86 16)
     local options=(
-        1 "Enable ControlBlock driver"
-        2 "Disable ControlBlock driver"
+        1 "Habilitar el controlador ControlBlock"
+        2 "Deshabilitar el controlador ControlBlock"
 
     )
     local choice=$("${cmd[@]}" "${options[@]}" 2>&1 >/dev/tty)

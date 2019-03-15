@@ -29,7 +29,7 @@ function _set_interface_wifi() {
 }
 
 function remove_wifi() {
-    sed -i '/RETROPIE CONFIG START/,/RETROPIE CONFIG END/d' "/etc/wpa_supplicant/wpa_supplicant.conf"
+    sed -i '/MASOS CONFIG START/,/MASOS CONFIG END/d' "/etc/wpa_supplicant/wpa_supplicant.conf"
     _set_interface_wifi down 2>/dev/null
 }
 
@@ -68,16 +68,16 @@ function connect_wifi() {
     done < <(list_wifi)
     options+=("H" "Hidden ESSID")
 
-    local cmd=(dialog --backtitle "$__backtitle" --menu "Please choose the network you would like to connect to" 22 76 16)
+    local cmd=(dialog --backtitle "$__backtitle" --menu "Elija la red a la que desea conectarse" 22 76 16)
     choice=$("${cmd[@]}" "${options[@]}" 2>&1 >/dev/tty)
     [[ -z "$choice" ]] && return
 
     local hidden=0
     if [[ "$choice" == "H" ]]; then
-        cmd=(dialog --backtitle "$__backtitle" --inputbox "Please enter the ESSID" 10 60)
+        cmd=(dialog --backtitle "$__backtitle" --inputbox "Por favor ingresa el ESSID" 10 60)
         essid=$("${cmd[@]}" 2>&1 >/dev/tty)
         [[ -z "$essid" ]] && return
-        cmd=(dialog --backtitle "$__backtitle" --nocancel --menu "Please choose the WiFi type" 12 40 6)
+        cmd=(dialog --backtitle "$__backtitle" --nocancel --menu "Por favor, elija el tipo de WiFi" 12 40 6)
         options=(
             wpa "WPA/WPA2"
             wep "WEP"
@@ -92,17 +92,17 @@ function connect_wifi() {
 
     if [[ "$type" == "wpa" || "$type" == "wep" ]]; then
         local key=""
-        cmd=(dialog --backtitle "$__backtitle" --insecure --passwordbox "Please enter the WiFi key/password for $essid" 10 63)
+        cmd=(dialog --backtitle "$__backtitle" --insecure --passwordbox "Por favor, introduzca la clave/contraseña WiFi para $essid" 10 63)
         local key_ok=0
         while [[ $key_ok -eq 0 ]]; do
             key=$("${cmd[@]}" 2>&1 >/dev/tty) || return
             key_ok=1
             if [[ ${#key} -lt 8 || ${#key} -gt 63 ]] && [[ "$type" == "wpa" ]]; then
-                printMsgs "dialog" "Password must be between 8 and 63 characters"
+                printMsgs "dialog" "La contraseña debe tener entre 8 y 63 caracteres."
                 key_ok=0
             fi
             if [[ -z "$key" && $type == "wep" ]]; then
-                printMsgs "dialog" "Password cannot be empty"
+                printMsgs "dialog" "La contraseña no puede estar vacia"
                 key_ok=0
             fi
         done
@@ -153,7 +153,7 @@ function gui_connect_wifi() {
     # BEGIN workaround for dhcpcd trigger failure on Raspbian stretch
     systemctl restart dhcpcd &>/dev/null
     # END workaround
-    dialog --backtitle "$__backtitle" --infobox "\nConnecting ..." 5 40 >/dev/tty
+    dialog --backtitle "$__backtitle" --infobox "\nConectando ..." 5 40 >/dev/tty
     local id=""
     i=0
     while [[ -z "$id" && $i -lt 30 ]]; do
@@ -162,7 +162,7 @@ function gui_connect_wifi() {
         ((i++))
     done
     if [[ -z "$id" ]]; then
-        printMsgs "dialog" "Unable to connect to network $essid"
+        printMsgs "dialog" "No se puede conectar a la red $essid"
         _set_interface_wifi down 2>/dev/null
     fi
 }
@@ -172,7 +172,7 @@ function _check_country_wifi() {
     iniConfig "=" "" /etc/wpa_supplicant/wpa_supplicant.conf
     iniGet "country"
     if [[ -z "$ini_value" ]]; then
-        if dialog --defaultno --yesno "You don't currently have your WiFi country set in /etc/wpa_supplicant/wpa_supplicant.conf\n\nOn a Raspberry Pi 3 Model B+ your WiFI will be disabled until the country is set. You can do this via raspi-config which is available from the RetroPie menu in Emulation Station. Once in raspi-config you can set your country via menu 4 (Localisation Options)\n\nDo you want me to launch raspi-config for you now ?" 22 76 2>&1 >/dev/tty; then
+        if dialog --defaultno --yesno "Actualmente no tienes tu pais WiFi configurado en /etc/wpa_supplicant/wpa_supplicant.conf\n\nEn una Raspberry Pi 3 Modelo B+ su WiFi se deshabilitara hasta que se establezca el pais. Puede hacerlo a traves de raspi-config, que esta disponible en el menu MasOS en EmulationStation. Una vez en raspi-config, puede configurar su pais a traves del menu 4 (Opciones de localizacion)\n\n¿Desea que inicie raspi-config para usted ahora?" 22 76 2>&1 >/dev/tty; then
             raspi-config
         fi
     fi
@@ -188,12 +188,12 @@ function gui_wifi() {
         local ip_wlan=$(ip route ls dev wlan0 2>/dev/null | awk 'END {print $7}')
         local cmd=(dialog --backtitle "$__backtitle" --cancel-label "Exit" --item-help --help-button --default-item "$default" --menu "Configure WiFi\nCurrent IP: $ip_current\nWireless IP: $ip_wlan\nWireless ESSID: $(iwgetid -r)" 22 76 16)
         local options=(
-            1 "Connect to WiFi network"
-            "1 Connect to your WiFi network"
-            2 "Disconnect/Remove WiFi config"
-            "2 Disconnect and remove any Wifi configuration"
-            3 "Import wifi credentials from /boot/wifikeyfile.txt"
-            "3 Will import the ssid (name) and psk (password) from a file /boot/wifikeyfile.txt
+            1 "Conectarse a la red WiFi"
+            "1 Conectate a tu red WiFi"
+            2 "Desconectar/Eliminar configuracion WiFi"
+            "2 Desconecta y elimina cualquier configuracion Wifi."
+            3 "Importar credenciales wifi desde /boot/wifikeyfile.txt"
+            "3 Importara el ssid (nombre) y psk (contraseña) desde un archivo /boot/wifikeyfile.txt
 
 The file should contain two lines as follows\n\nssid = \"YOUR WIFI SSID\"\npsk = \"YOUR PASSWORD\""
         )

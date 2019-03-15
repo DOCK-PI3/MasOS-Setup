@@ -11,7 +11,7 @@
 #
 
 rp_module_id="splashscreen"
-rp_module_desc="Configure Splashscreen"
+rp_module_desc="Configurar Splashscreen"
 rp_module_section="main"
 rp_module_flags="noinstclean !x86 !osmc !xbian !mali !kms"
 
@@ -185,19 +185,19 @@ function randomize_splashscreen() {
     case "$choice" in
         1)
             iniSet "RANDOMIZE" "retropie"
-            printMsgs "dialog" "Splashscreen randomizer enabled in directory $path"
+            printMsgs "dialog" "Splashscreen randomizer habilitado en el directorio $path"
             ;;
         2)
             iniSet "RANDOMIZE" "custom"
-            printMsgs "dialog" "Splashscreen randomizer enabled in directory $path"
+            printMsgs "dialog" "Splashscreen randomizer habilitado en el directorio $path"
             ;;
         3)
             iniSet "RANDOMIZE" "all"
-            printMsgs "dialog" "Splashscreen randomizer enabled for both splashscreen directories."
+            printMsgs "dialog" "Splashscreen randomizer habilitado para ambos directorios de splashscreen."
             ;;
         4)
             iniSet "RANDOMIZE" "list"
-            printMsgs "dialog" "Splashscreen randomizer enabled for entries in /etc/splashscreen.list"
+            printMsgs "dialog" "Splashscreen randomizer habilitado para entradas en /etc/splashscreen.list"
             ;;
     esac
 }
@@ -212,7 +212,7 @@ function preview_splashscreen() {
     local path
     local file
     while true; do
-        local cmd=(dialog --backtitle "$__backtitle" --menu "Choose an option." 22 86 16)
+        local cmd=(dialog --backtitle "$__backtitle" --menu "Elija una opcion." 22 86 16)
         local choice=$("${cmd[@]}" "${options[@]}" 2>&1 >/dev/tty)
         [[ -z "$choice" ]] && break
         path="$(choose_path_splashscreen)"
@@ -230,7 +230,7 @@ function preview_splashscreen() {
                     if [[ -s "$file" ]]; then
                         fbi --timeout 6 --once --autozoom --list "$file"
                     else
-                        printMsgs "dialog" "There are no splashscreens installed in $path"
+                        printMsgs "dialog" "No hay splashscreens instalados en $path"
                     fi
                     rm -f "$file"
                     break
@@ -255,32 +255,32 @@ function gui_splashscreen() {
         rp_callModule splashscreen depends
         rp_callModule splashscreen install
     fi
-    local cmd=(dialog --backtitle "$__backtitle" --menu "Choose an option." 22 86 16)
+    local cmd=(dialog --backtitle "$__backtitle" --menu "Elija una opcion" 22 86 16)
     while true; do
         local enabled=0
         local random=0
         [[ -n "$(find "/etc/systemd/system/"*".wants" -type l -name "asplashscreen.service")" ]] && enabled=1
-        local options=(1 "Choose splashscreen")
+        local options=(1 "Elija splashscreen")
         if [[ "$enabled" -eq 1 ]]; then
-            options+=(2 "Disable splashscreen on boot (Enabled)")
+            options+=(2 "Deshabilitar splashscreen en el arranque (Habilitado)")
             iniConfig "=" '"' "$md_inst/asplashscreen.sh"
             iniGet "RANDOMIZE"
             random=1
             [[ "$ini_value" == "disabled" ]] && random=0
             if [[ "$random" -eq 1 ]]; then
-                options+=(3 "Disable splashscreen randomizer (Enabled)")
+                options+=(3 "Deshabilitar el random de splashscreens (habilitado)")
             else
-                options+=(3 "Enable splashscreen randomizer (Disabled)")
+                options+=(3 "Habilitar el random de splashscreen (Deshabilitado)")
             fi
         else
-            options+=(2 "Enable splashscreen on boot (Disabled)")
+            options+=(2 "Activar splashscreen en el arranque (Disabled)")
         fi
         options+=(
-            4 "Use default MasOS splashscreen"
-            5 "Manually edit splashscreen list"
-            6 "Append splashscreen to list (for multiple entries)"
-            7 "Preview splashscreens"
-            8 "Update MasOS splashscreens"
+            4 "Usar la pantalla de inicio de MasOS por defecto"
+            5 "Editar manualmente la lista de splashscreen"
+            6 "Añadir splashscreen a la lista (para entradas múltiples)"
+            7 "Vista previa de splashscreens"
+            8 "Actualizar MasOS splashscreens"
             9 "Descargar MasOS-Extra splashscreens"
         )
         local choice=$("${cmd[@]}" "${options[@]}" 2>&1 >/dev/tty)
@@ -292,24 +292,24 @@ function gui_splashscreen() {
                 2)
                     if [[ "$enabled" -eq 1 ]]; then
                         disable_splashscreen
-                        printMsgs "dialog" "Disabled splashscreen on boot."
+                        printMsgs "dialog" "Deshabilitado splashscreen en el arranque."
                     else
                         [[ ! -f /etc/splashscreen.list ]] && rp_callModule splashscreen default
                         enable_splashscreen
-                        printMsgs "dialog" "Enabled splashscreen on boot."
+                        printMsgs "dialog" "Habilitado splashscreen en el arranque."
                     fi
                     ;;
                 3)
                     if [[ "$random" -eq 1 ]]; then
                         iniSet "RANDOMIZE" "disabled"
-                        printMsgs "dialog" "Splashscreen randomizer disabled."
+                        printMsgs "dialog" "Deshabilitado random Splashscreen."
                     else
                         randomize_splashscreen
                     fi
                     ;;
                 4)
                     default_splashscreen
-                    printMsgs "dialog" "Splashscreen set to MasOS default."
+                    printMsgs "dialog" "Splashscreen configurado en Masos por defecto."
                     ;;
                 5)
                     editFile /etc/splashscreen.list
@@ -325,7 +325,7 @@ function gui_splashscreen() {
                     ;;
                 9)
                     rp_callModule splashscreen download_extra
-                    printMsgs "dialog" "The MasOS-Extra splashscreens have been downloaded to $datadir/splashscreens/masos-extra"
+                    printMsgs "dialog" "Los splashscreens de MasOS-Extra se han descargado en $datadir/splashscreens/masos-extra"
                     ;;
             esac
         else

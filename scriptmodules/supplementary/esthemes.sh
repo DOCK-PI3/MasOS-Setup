@@ -10,7 +10,7 @@
 #
 
 rp_module_id="esthemes"
-rp_module_desc="Instalar MasOS themes para Emulation Station"
+rp_module_desc="Instalar MasOS themes para EmulationStation"
 rp_module_section="config"
 
 function depends_esthemes() {
@@ -97,13 +97,13 @@ function gui_esthemes() {
         local gallerydir="/etc/emulationstation/es-theme-gallery"
         if [[ -d "$gallerydir" ]]; then
             status+=("i")
-            options+=(G "View or Update Theme Gallery")
+            options+=(G "Ver o actualizar Theme Gallery")
         else
             status+=("n")
-            options+=(G "Download Theme Gallery")
+            options+=(G "Descargar Theme Gallery")
         fi
 
-        options+=(U "Update all installed themes")
+        options+=(U "Actualizar todos los themes instalados")
 
         local i=1
         for theme in "${themes[@]}"; do
@@ -112,22 +112,22 @@ function gui_esthemes() {
             theme="${theme[1]}"
             if [[ -d "/etc/emulationstation/themes/$theme" ]]; then
                 status+=("i")
-                options+=("$i" "Update or Uninstall $repo/$theme (installed)")
+                options+=("$i" "Actualizar o desinstalar $repo/$theme (instalado)")
                 installed_themes+=("$theme $repo")
             else
                 status+=("n")
-                options+=("$i" "Install $repo/$theme (not installed)")
+                options+=("$i" "Instalar $repo/$theme (no instalado)")
             fi
             ((i++))
         done
-        local cmd=(dialog --default-item "$default" --backtitle "$__backtitle" --menu "Choose an option" 22 76 16)
+        local cmd=(dialog --default-item "$default" --backtitle "$__backtitle" --menu "Elija una opcion" 22 76 16)
         local choice=$("${cmd[@]}" "${options[@]}" 2>&1 >/dev/tty)
         default="$choice"
         [[ -z "$choice" ]] && break
         case "$choice" in
             G)
                 if [[ "${status[0]}" == "i" ]]; then
-                    options=(1 "View Theme Gallery" 2 "Update Theme Gallery" 3 "Remove Theme Gallery")
+                    options=(1 "Ver Theme Gallery" 2 "Actualizar Theme Gallery" 3 "Eliminar Theme Gallery")
                     cmd=(dialog --backtitle "$__backtitle" --menu "Choose an option for gallery" 12 40 06)
                     local choice=$("${cmd[@]}" "${options[@]}" 2>&1 >/dev/tty)
                     case "$choice" in
@@ -164,7 +164,7 @@ function gui_esthemes() {
                 theme="${theme[1]}"
                 if [[ "${status[choice]}" == "i" ]]; then
                     options=(1 "Update $repo/$theme" 2 "Uninstall $repo/$theme")
-                    cmd=(dialog --backtitle "$__backtitle" --menu "Choose an option for theme" 12 40 06)
+                    cmd=(dialog --backtitle "$__backtitle" --menu "Elija una opcion para el theme" 12 40 06)
                     local choice=$("${cmd[@]}" "${options[@]}" 2>&1 >/dev/tty)
                     case "$choice" in
                         1)

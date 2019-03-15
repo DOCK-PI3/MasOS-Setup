@@ -151,11 +151,11 @@ function package_setup() {
         fi
 
         if rp_hasBinary "$idx"; then
-            options+=(B "$install de binario")
+            options+=(B "$Instalar de binario")
         fi
 
         if fnExists "sources_${md_id}"; then
-            options+=(S "$install de la fuente")
+            options+=(S "$Instalar de la fuente")
         fi
 
         if rp_isInstalled "$idx"; then
@@ -229,7 +229,7 @@ function package_setup() {
                 ;;
             Z)
                 rp_callModule "$idx" clean
-                printMsgs "dialog" "$__builddir/$md_id ha sido removido."
+                printMsgs "dialog" "$__builddir/$md_id ha sido eliminada."
                 ;;
             *)
                 break
@@ -248,12 +248,12 @@ function section_gui_setup() {
 
         # we don't build binaries for experimental packages
         if rp_hasBinaries && [[ "$section" != "exp" ]]; then
-            options+=(B "Instalar / Actualizar todo ${__sections[$section]} paquetes de binario" "Esto instalara todo ${__sections[$section]} paquetes de archivos binarios (si estan disponibles). Si falta un archivo binario, se realizará una instalacion de source.")
+            options+=(B "Instalar / Actualizar todos ${__sections[$section]} los paquetes de binario" "Esto instalara todos los paquetes ${__sections[$section]} de archivos binarios (si estan disponibles). Si falta un archivo binario, se realizara una instalacion desde la fuente.")
         fi
 
         options+=(
-            S "Instalar / Actualizar todo ${__sections[$section]} paquetes desde la fuente -source" "S Esto construira e instalara todos los paquetes de $section desde source.La construccion desde la fuente atraera las ultimas versiones de muchos de los emuladores. El edificio podria fallar o los binarios resultantes podrian no funcionar. Solo elija esta opcion si se siente comodo trabajando con la consola de Linux y depurando cualquier problema."
-            X "Eliminar todo ${__sections[$section]} paquetes" "X Esto eliminara todos los paquetes de $section."
+            S "Instalar / Actualizar todos los paquetes ${__sections[$section]} desde la fuente -source" "S Esto construira e instalara todos los paquetes de $section desde source.La construccion desde la fuente instalara las ultimas versiones de muchos de los emuladores. La instalacion podria fallar o los binarios resultantes podrian no funcionar. Solo elija esta opcion si se siente comodo trabajando con la consola de Linux y depurando cualquier problema."
+            X "Eliminar todos los paquetes ${__sections[$section]} " "X Esto eliminara todos los paquetes de $section."
         )
 
         local idx
@@ -436,7 +436,7 @@ function packages_gui_setup() {
     local options=()
 
     for section in core main opt driver exp; do
-        options+=($section "Administrar ${__sections[$section]} paquetes" "$section Elija la parte superior instalar / actualizar / configurar paquetes de la ${__sections[$section]}")
+        options+=($section "Administrar ${__sections[$section]} paquetes" "$section Elija la parte superior instalar/actualizar/configurar paquetes de la ${__sections[$section]}")
     done
 
     local cmd

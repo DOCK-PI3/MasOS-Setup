@@ -42,12 +42,12 @@ function install_bin_gamecondriver() {
 
     # test if gamecon installation is OK
     if [[ -z "$(modinfo -n gamecon_gpio_rpi | grep gamecon_gpio_rpi.ko)" ]]; then
-        md_ret_errors+=("Gamecon GPIO driver installation FAILED")
+        md_ret_errors+=("Fallo la instalacion del driver Gamecon GPIO")
     fi
 
     # test if db9 installation is OK
     if [[ -z "$(modinfo -n db9_gpio_rpi | grep db9_gpio_rpi.ko)" ]]; then
-        md_ret_errors+=("Db9 GPIO driver installation FAILED")
+        md_ret_errors+=("Fallo la instalación del driver GPIO Db9")
     fi
 }
 
@@ -89,7 +89,7 @@ function dual_snes_gamecondriver() {
 
     iniConfig " = " "" "$configdir/all/retroarch.cfg"
 
-    if dialog --yesno "Would you like to update button mappings in $configdir/all/retroarch.cfg for 2 SNES controllers?" 22 76 >/dev/tty; then
+    if dialog --yesno "¿Te gustaria actualizar el mapeo de botones en $configdir/all/retroarch.cfg para 2 controladores SNES?" 22 76 >/dev/tty; then
         if [[ "$GPIOREV" == 1 ]]; then
             iniSet "input_player1_joypad_index" "0"
             iniSet "input_player2_joypad_index" "1"
@@ -130,9 +130,9 @@ __________\n\
          |          ### Board gpio revision $gpio_rev detected ###\n\
     + *  |\n\
     * *  |\n\
-    1 -  |          The driver is now set to use the following\n\
-    2 *  |          configuration for 2 SNES controllers:\n\
-    * *  |          (compatible with RetroPie GPIO adapter)\n\
+    1 -  |          El driver ahora esta configurado para usar lo siguiente\n\
+    2 *  |          Configuracion para 2 controladores SNES:\n\
+    * *  |          (compatible con el adaptador MasOS GPIO)\n\
     * *  |\n\
     * *  |          + = power\n\
     * *  |          - = ground\n\
@@ -149,9 +149,9 @@ function gui_gamecondriver() {
     local default
 
     local options=(
-        1 "Configure for two SNES controllers"
-        2 "Read Gamecon GPIO driver documentation"
-        3 "Read Db9 GPIO driver documentation"
+        1 "Configurar para dos mandos SNES"
+        2 "Leer la documentacion del driver Gamecon GPIO"
+        3 "Leer la documentacion del driver Db9 GPIO"
     )
     while true; do
         local cmd=(dialog --backtitle "$__backtitle" --default-item "$default" --menu "Choose an option." 22 86 16)
@@ -160,7 +160,7 @@ function gui_gamecondriver() {
         if [[ -n "$choice" ]]; then
             case "$choice" in
                 1)
-                    dialog --defaultno --yesno "Gamecon driver supports RetroPie GPIO adapter board for 2 SNES controllers. Do you want to configure gamecon for 2 SNES controllers?"  22 76 >/dev/tty || continue
+                    dialog --defaultno --yesno "El driver Gamecon es compatible con la placa adaptadora MasOS GPIO para 2 mandos SNES. ¿Quieres configurar gamecon para 2 mandos SNES?"  22 76 >/dev/tty || continue
                     dual_snes_gamecondriver
                     ;;
                 2)
