@@ -131,7 +131,7 @@ function _set_loading_text_launchingimages() {
 function _set_press_button_text_launchingimages() {
     dialog \
         --backtitle "$__backtitle" \
-        --inputbox "Ingrese el texto \"PULSA EL BOTON A" (o deje en blanco para no mostrar texto):" \
+        --inputbox "Ingrese el texto \"PULSA EL BOTON A\" (o deje en blanco para no mostrar texto):" \
         0 70 \
         "PULSA EL BOTON A PARA CONFIGURAR LAS OPCIONES DE LANZAMIENTO" \
         2>&1 >/dev/tty \
