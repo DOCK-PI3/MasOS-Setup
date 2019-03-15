@@ -10,7 +10,7 @@
 #
 
 rp_module_id="samba"
-rp_module_desc="Configure Samba ROM Shares"
+rp_module_desc="Configura Samba ROM Shares"
 rp_module_section="config"
 
 function depends_samba() {
@@ -73,7 +73,7 @@ function remove_shares_samba() {
 
 function gui_samba() {
     while true; do
-        local cmd=(dialog --backtitle "$__backtitle" --menu "Choose an option" 22 76 16)
+        local cmd=(dialog --backtitle "$__backtitle" --menu "Elija una opcion" 22 76 16)
         local options=(
             1 "Instalar MasOS Samba shares"
             2 "Eliminar MasOS Samba shares"
