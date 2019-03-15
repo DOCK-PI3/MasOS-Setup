@@ -121,7 +121,7 @@ function _set_show_timeout_launchingimages() {
 function _set_loading_text_launchingimages() {
     dialog \
         --backtitle "$__backtitle" \
-        --inputbox "Ingrese el texto "\CARGANDO\" (o deje en blanco para que no haya texto):" \
+        --inputbox "Ingrese el texto \"CARGANDO\" (o deje en blanco para que no haya texto):" \
         0 70 \
         "CARGANDO..." \
         2>&1 >/dev/tty \
