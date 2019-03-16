@@ -151,11 +151,11 @@ function package_setup() {
         fi
 
         if rp_hasBinary "$idx"; then
-            options+=(B "$Instalar de binario")
+            options+=(B "$install de binario")
         fi
 
         if fnExists "sources_${md_id}"; then
-            options+=(S "$Instalar de la fuente")
+            options+=(S "$install de la fuente")
         fi
 
         if rp_isInstalled "$idx"; then
