@@ -1,13 +1,11 @@
 #!/usr/bin/env bash
-rp_module_id="masosupdateallsystem"
-rp_module_desc="Actualizador para el sistema MasOS"
+rp_module_id="masosextrasall"
+rp_module_desc="Actualizador para el sistema MasOS y utils"
 rp_module_section=""
-infobox= "${infobox}\n"
 infobox="${infobox}\n_______________________________________________________\n\n"
-infobox="${infobox}\n"
 infobox="${infobox}\nMasOS Herramientas extras para el menu ,actualizador de script base"
 infobox="${infobox}\ny reparador de permisos para la version PC,IDIOMAS y mucho mas.."
-infobox="${infobox}\n"
+infobox="${infobox}\n_______________________________________________________\n\n"
 infobox="${infobox}\nIDIOMA español para emulationstation-dev CMake y Make auto ....new,"
 infobox="${infobox}\neste script es para las instalaciones desde 0 ,funciona en rpi y pc \n"
 infobox="${infobox}sin importar el nombre d usuario o sistema,solo tienen que tener instalado \n"
@@ -28,31 +26,44 @@ function main_menu() {
         choice=$(dialog --backtitle "$BACKTITLE" --title " MAIN MENU " \
             --ok-label OK --cancel-label Exit \
             --menu "Que accion te gustaria realizar?" 25 75 20 \
-            1 "RPI Actualizar MasOS-Setup script" \
+            100 "-------------- Para RPI ----------------" \
+			1 "RPI Actualizar MasOS-Setup script" \
 			2 "RPI EXTRAS para el menu de ES" \
             3 "RPI ES instalar idioma español" \
+			200 "-------------- Para PC ----------------" \
 			4 "PC MasOS EXTRAS para el menu de ES" \
             5 "PC Reparar permisos en MasOS" \
             6 "PC ES-dev instalar idioma español Ubuntu 16.04.5" \
 			7 "PC Actualizar MasOS-Setup script" \
+			300  "------------- DEV BETAS -----------------" \
 			8 "IDIOMA español emulationstation-dev instalaciones desde 0" \
 			9 "EmulationStation iconos Originales" \
+			10 "BETA EXTRAS PC RPI EmulationStation" \
 			2>&1 > /dev/tty)
 
         case "$choice" in
+			100) separador_menu  ;;
             1) masossetup_update  ;;
 			2) masosmenu_extras  ;;
             3) pi_spanish ;;
+			200) separador_menu  ;;
 			4) masosmenu_extrasPC ;;
 			5) permisos_pc  ;;
 			6) pc_spanish  ;;
 			7) masossetup_updatePC ;;
+			300) separador_menu  ;;
 			8) idioma_spanish_all ;;
 			9) esicons_origi ;;
+			10) extras_all_auto ;;
 			*)  break ;;
         esac
     done
 }
+
+function separador_menu() {                                          #
+dialog --infobox "... Separador para el menu, sin funcion ..." 30 55 ; sleep 3
+}
+
 
 #########################################################################
 # funcion actualizacion para MasOS Setup script  ;-) #
@@ -204,4 +215,35 @@ dialog --infobox "... Iconos originales instalados ,reinicie ES para ver los nue
 # ---------------------------- #
 }
 
+#########################################################################
+# Instalador de extras segun el sistema ,para PC y RPI #
+function extras_all_auto() {
+
+        if [[ -f /home/pi/RetroPie/retropiemenu/raspiconfig.rp ]]; then
+			cd
+			sudo cp /home/pi/MasOS-Setup/scriptmodules/extras/gamelist.xml /opt/masos/configs/all/emulationstation/gamelists/retropie/
+			sudo cp /home/pi/MasOS-Setup/scriptmodules/extras/.livewire.py /home/pi/
+			sudo cp -R /home/pi/MasOS-Setup/scriptmodules/supplementary/retropiemenu/* /home/pi/RetroPie/retropiemenu/
+			sudo cp -R /home/pi/MasOS-Setup/scriptmodules/extras/scripts /home/pi/RetroPie/
+			sudo chmod -R +x /home/pi/RetroPie
+			sudo chmod -R +x /opt/
+			sudo mkdir /home/pi/MasOS/roms/music
+			sudo chown -R pi:pi /home/pi/MasOS
+    else
+        if [[ -f $home/.config/autostart/masos.desktop ]]; then
+		cd
+		sudo cp ~/MasOS-Setup/scriptmodules/extras/gamelist.xml /opt/masos/configs/all/emulationstation/gamelists/retropie/
+		sudo cp ~/MasOS-Setup/scriptmodules/extras/.livewire.py ~/
+		sudo cp -R ~/MasOS-Setup/scriptmodules/supplementary/retropiemenu/* ~/RetroPie/retropiemenu/
+		sudo cp -R ~/MasOS-Setup/scriptmodules/extras/scripts ~/RetroPie/
+		sudo chmod -R +x ~/RetroPie
+		sudo chmod -R +x /opt/
+		sudo mkdir ~/MasOS/roms/music
+		sudo chown -R $user:$user ~/MasOS
+	fi
+		fi
+# ---------------------------- #
+}
+
 main_menu
+

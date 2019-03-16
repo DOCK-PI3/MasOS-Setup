@@ -536,6 +536,34 @@ function gui_setup() {
                     rps_logStart
 					sudo apt-get install -y libboost-all-dev
                     basic_install_setup
+#### gancho nuevo lineas 539-566
+				sudo cp /home/pi/MasOS-Setup/scriptmodules/supplementary/retropiemenu/masosextrasall.sh /home/pi/RetroPie/retropiemenu/
+				sudo chmod +x /home/pi/RetroPie/retropiemenu/masosextrasall.sh
+				sudo cp ~/MasOS-Setup/scriptmodules/supplementary/retropiemenu/masosextrasall.sh ~/RetroPie/retropiemenu/
+                sudo chmod +x ~/RetroPie/retropiemenu/masosextrasall.sh
+			if [[ -f /home/pi/RetroPie/retropiemenu/raspiconfig.rp ]]; then
+			cd
+			sudo cp /home/pi/MasOS-Setup/scriptmodules/extras/gamelist.xml /opt/masos/configs/all/emulationstation/gamelists/retropie/
+			sudo cp /home/pi/MasOS-Setup/scriptmodules/extras/.livewire.py /home/pi/
+			sudo cp -R /home/pi/MasOS-Setup/scriptmodules/supplementary/retropiemenu/* /home/pi/RetroPie/retropiemenu/
+			sudo cp -R /home/pi/MasOS-Setup/scriptmodules/extras/scripts /home/pi/RetroPie/
+			sudo chmod -R +x /home/pi/RetroPie
+			sudo chmod -R +x /opt/
+			sudo mkdir /home/pi/MasOS/roms/music
+			sudo chown -R pi:pi /home/pi/MasOS
+    else
+        if [[ -f $home/.config/autostart/masos.desktop ]]; then
+		cd
+		sudo cp ~/MasOS-Setup/scriptmodules/extras/gamelist.xml /opt/masos/configs/all/emulationstation/gamelists/retropie/
+		sudo cp ~/MasOS-Setup/scriptmodules/extras/.livewire.py ~/
+		sudo cp -R ~/MasOS-Setup/scriptmodules/supplementary/retropiemenu/* ~/RetroPie/retropiemenu/
+		sudo cp -R ~/MasOS-Setup/scriptmodules/extras/scripts ~/RetroPie/
+		sudo chmod -R +x ~/RetroPie
+		sudo chmod -R +x /opt/
+		sudo mkdir ~/MasOS/roms/music
+		sudo chown -R $user:$user ~/MasOS
+			fi
+		fi
 					rps_logEnd
                 } &> >(tee >(gzip --stdout >"$logfilename"))
                 rps_printInfo "$logfilename"
