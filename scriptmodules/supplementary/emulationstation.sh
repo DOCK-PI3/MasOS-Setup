@@ -159,7 +159,8 @@ function install_emulationstation() {
         'README.md'
         'THEMES.md'
     )
-	md_ret_files+=(locale)
+	cp -r "$scriptdir/scriptmodules/extras/es_idioma/locale/" "/opt/masos/supplementary/emulationstation/"
+	cp -r "$scriptdir/scriptmodules/extras/es_idioma/resources/" "/opt/masos/supplementary/emulationstation/"
 }
 
 function init_input_emulationstation() {
