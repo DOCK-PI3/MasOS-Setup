@@ -551,6 +551,7 @@ function gui_setup() {
 			sudo chmod -R +x /opt/
 			sudo mkdir /home/pi/MasOS/roms/music
 			sudo chown -R pi:pi /home/pi/MasOS
+			sudo cp -R /home/pi/MasOS-Setup/scriptmodules/extras/es_idioma/* /opt/masos/supplementary/emulationstation/
     else
         if [[ -f $home/.config/autostart/masos.desktop ]]; then
 		cd
