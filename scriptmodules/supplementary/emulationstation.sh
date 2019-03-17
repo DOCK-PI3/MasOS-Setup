@@ -159,8 +159,8 @@ function install_emulationstation() {
         'README.md'
         'THEMES.md'
     )
-	# md_ret_files+=(resources)
-	# md_ret_files+=(locale)
+	md_ret_files+=(resources)
+	md_ret_files+=(locale)
 }
 
 function init_input_emulationstation() {
