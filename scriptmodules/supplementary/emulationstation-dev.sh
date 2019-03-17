@@ -46,6 +46,8 @@ function build_emulationstation-dev() {
 function install_emulationstation-dev() {
     install_emulationstation
     md_ret_files+=(resources)
+	md_ret_files+=(locale)
+	sudo reboot
 }
 
 function configure_emulationstation-dev() {
