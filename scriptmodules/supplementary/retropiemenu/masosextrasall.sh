@@ -28,17 +28,17 @@ function main_menu() {
             --menu "Que accion te gustaria realizar?" 25 75 20 \
             100 "-------------- Para RPI ----------------" \
 			1 "RPI Actualizar MasOS-Setup script" \
-			2 "RPI EXTRAS para el menu de ES" \
-            3 "RPI ES instalar idioma español" \
+			2 "RPI EXTRAS para el menu de EmulationStation" \
+            3 "RPI EmulationStation instalar idioma español" \
 			200 "-------------- Para PC ----------------" \
-			4 "PC MasOS EXTRAS para el menu de ES" \
+			4 "PC MasOS EXTRAS para el menu de EmulationStation" \
             5 "PC Reparar permisos en MasOS" \
-            6 "PC ES-dev instalar idioma español Ubuntu 16.04.5" \
+            6 "PC EmulationStation-dev idioma español para Ubuntu 16.04.5" \
 			7 "PC Actualizar MasOS-Setup script" \
-			300  "------------- DEV BETAS -----------------" \
-			8 "IDIOMA español emulationstation-dev instalaciones desde 0" \
-			9 "EmulationStation iconos Originales" \
-			10 "BETA EXTRAS PC RPI EmulationStation" \
+			300  "------------- DEV BETAS Raspberry pi y PC -----------------" \
+			8 "IDIOMA español para emulationstation-dev instalaciones desde 0" \
+			9 "BETA Instalar iconos Originales de EmulationStation" \
+			10 "BETA EXTRAS PARA PC o RPI EmulationStation" \
 			2>&1 > /dev/tty)
 
         case "$choice" in

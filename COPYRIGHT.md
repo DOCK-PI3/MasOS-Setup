@@ -1,11 +1,11 @@
-The MasOS - FORK Project 
+MasOS - RetroPie FORK spanish Project 
 Copyright (C) 2018-2045 by the following: 
 
 Si hace alguna contribucion sera añadido a esta lista. (ver: AUTHORS)
 
-* Mabe Betancor "DOCK-PI3"
+* Mabedeep "DOCK-PI3"
 * Moriggy "Moriggy"
-
+* Noromu "Noromu"
 
 
 
