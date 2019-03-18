@@ -21,14 +21,15 @@ Si quiere contribuir pongase en contacto con los administradores en telegram ---
 Todas las personas que contribuyan con el proyecto van a ser agregadas aqui en una lista y con su permiso. GRACIAS!
 ############################################################################
 
-1)-
+1)- DAGOSAL
 
-2)-
+2)- TWOEKA
 
-3)-
+3)- 
 
 4)-
 
 5)-
 
+#################################### MUCHAS GRACIAS DE PARTE DE MASOS TEAM!
 ############################################################################
