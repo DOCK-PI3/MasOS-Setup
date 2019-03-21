@@ -81,10 +81,10 @@ sudo cp -R AM-Start.sh /opt/masos/configs/all/
 cd && sudo rm -R AM-Start.sh
 sudo chmod -R +x /opt/masos/configs/all/AM-Start.sh
 cd && mkdir .attract
-dialog --infobox "... Seleccione el idioma español y cierre attract mode para continuar con la instalacion/configuracion ..." 370 370 ; sleep 8
+dialog --infobox "... Seleccione el idioma español y cierre attract mode para continuar con la instalacion/configuracion ,pulse escape y si para cerrar attract ..." 370 370 ; sleep 10
 attract
 # Configurar Attract-Mode swichs ,menus ,emulators....
-dialog --infobox "... Descargando ,descomprimiendo y copiando ficheros de configuracion para Attract y MasOS..." 370 370 ; sleep 3
+dialog --infobox "... Descargando ,descomprimiendo y copiando ficheros de configuracion para Attract y MasOS..." 370 370 ; sleep 5
 cd /home/pi/ && wget https://github.com/DOCK-PI3/attract-config-rpi/archive/master.zip && unzip -o master.zip
  sudo rm /home/pi/master.zip
     sudo cp -R /home/pi/attract-config-rpi-master/MasOS/roms/setup /home/pi/MasOS/roms/
@@ -96,14 +96,15 @@ cd /home/pi/ && wget https://github.com/DOCK-PI3/attract-config-rpi/archive/mast
   sudo chmod -R +x /opt/masos/configs/all/AM-Start.sh && sudo chmod -R +x /opt/masos/configs/all/ES-Start.sh
  sudo cp -R /home/pi/attract-config-rpi-master/etc/samba/smb.conf /etc/samba/
   sudo cp -R /home/pi/attract-config-rpi-master/attract/* /home/pi/.attract/
-  sudo chown -R pi:pi /home/pi/.attract/
-  sudo chown -R pi:pi /opt/masos/configs/all/
-dialog --infobox " Attract Mode se configuro correctamente!...\n\n Recuerde generar las listas de roms desde attract cuando meta juegos \n\n y para el menu setup si no le aparece!" 370 370 ; sleep 5
+dialog --infobox " Attract Mode se configuro correctamente!...\n\n Recuerde generar las listas de roms desde attract cuando meta juegos \n\n y para el menu setup si no le aparece!" 370 370 ; sleep 10
 # Borrar directorios de compilacion y de configuracion.....
 sudo rm -r -f /home/pi/attract-config-rpi-master
-dialog --infobox " Antes de reiniciar active el autostart para ES en el MasOS-Setup \nconfiguracion/herramientas - autostart emulationstation. Luego cierre el script para finalizar." 30 55 ; sleep 8
-sudo MasOS-Setup/masos_setup.sh
-dialog --infobox " Attract se instalo de forma correcta ,recuerde mirar si \nmmal esta activo en la configuracion general,reiniciando en 7s" 30 55 ; sleep 7
+dialog --infobox " Antes de reiniciar active el autostart para emulationstation en el menu MasOS config \nconfiguracion/herramientas - autostart / autostart emulationstation. Luego cierre el script para finalizar." 370 370 ; sleep 15
+su pi && cd
+sudo chown -R pi:pi /home/pi/.attract/
+sudo chown -R pi:pi /opt/masos/configs/all/
+emulationstation
+dialog --infobox " Attract se instalo y se configuro de forma correcta ,recuerde mirar si \nmmal esta activo en la configuracion general,reiniciando en 7s" 370 370 ; sleep 7
 sudo reboot
 # ---------------------------- #
 }
@@ -151,48 +152,5 @@ sudo rm -r -f /home/pi/attract-config-rpi-master
 # sudo reboot
 # ---------------------------- #
 }
-
-#########################################################################################################################
-# Utilizo el siguiente código para escribir texto en bruto en archivos, para actualizar la configuración de mi CPU. Espero que esto ayude! Guión:
-
-# #!/bin/sh
-
-# cat > /sys/devices/system/cpu/cpu0/cpufreq/scaling_governor <<EOF
-# performance
-# EOF
-
-# cat > /sys/devices/system/cpu/cpu1/cpufreq/scaling_governor <<EOF
-# performance
-# EOF
-# Esto escribe el texto "performance" en los dos archivos mencionados en el script anterior. Este ejemplo sobrescribe datos antiguos en archivos.
-
-# Este código se guarda como un archivo (cpu_update.sh) y para que sea ejecutable:
-
-# chmod +x cpu_update.sh
-# Después de eso, puedes ejecutar el script con:
-
-# ./cpu_update.sh
-# Si no desea sobrescribir los datos antiguos en el archivo, cambie
-
-# cat > /sys/devices/system/cpu/cpu1/cpufreq/scaling_governor <<EOF
-# con
-
-# cat >> /sys/devices/system/cpu/cpu1/cpufreq/scaling_governor <<EOF
-# Esto agregará su texto al final del archivo sin eliminar lo que otros datos ya están en el archivo.
-
-# ------------------------------
-# cat > foo.txt <<-EOF
-# > one
-# > two
-# > three
-# > 
-# > EOF
-# -----------------------------
-# cat >/etc/systemd/system/getty@tty1.service.d/autologin.conf <<_EOF_
-# [Service]
-# ExecStart=
-# ExecStart=-/sbin/agetty --autologin $user --noclear %I \$TERM
-# _EOF_
-# -----------------------------
 
 main_menu
