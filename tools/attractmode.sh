@@ -81,9 +81,9 @@ sudo cp -R AM-Start.sh /opt/masos/configs/all/
 cd && sudo rm -R AM-Start.sh
 sudo chmod -R +x /opt/masos/configs/all/AM-Start.sh
 cd && mkdir .attract
-dialog --infobox " Antes de instalar la configuracion de attract, \n entre con pi-masos y active el autostart para ES" 30 55 ; sleep 5
-dialog --infobox " Luego cambia a AM,una vez que inicie seleccione el idioma ESPAÑOL \n ,ya puede instalar la configuracion ,reiniciando en 10s" 30 55 ; sleep 5
-dialog --infobox " Attract se instalo de forma correcta y con mmal ,reiniciando en 5s" 30 55 ; sleep 5
+dialog --infobox " Antes de instalar la configuracion de attract,cuando se reinicie entre con pi:masos y \nejecute emulationstation ,luego inicie el MasOS configurador y active \nel autostart para ES desde Configuracion/Herramientas - Autostart." 350 350 ; sleep 20
+dialog --infobox " Luego cierre ES pulsando F4 y ejecuta en la terminal attract ,una vez que inicie seleccione el idioma ESPAÑOL \n ,luego cierre attract pulsando ESC y SALIR. " 350 350 ; sleep 10
+dialog --infobox " Attract se instalo de forma correcta y con mmal. Ya puede ejecutar de nuevo el script e instalar la configuracion para attrac mode. ,reiniciando en 5s" 350 350 ; sleep 5
 sudo shutdown -r now
 # ---------------------------- #
 }
@@ -110,7 +110,7 @@ sudo shutdown -r now
 # Funcion configurar attract en MasOS ;-) #
 function config_attract() {
 # Configurar Attract-Mode swichs ,menus ,emulators....
-dialog --infobox "... Descargando ,descomprimiendo y copiando ficheros de configuracion para Attract y MasOS..." 370 370 ; sleep 2
+dialog --infobox "... Descargando ,descomprimiendo y copiando ficheros de configuracion para Attract y MasOS, SCRIPTS ,EMULATORS ,VIDEOS SISTEMAS ,THEMES ,ECT..." 370 370 ; sleep 5
 cd /home/pi/ && wget https://github.com/DOCK-PI3/attract-config-rpi/archive/master.zip && unzip -o master.zip
  sudo rm /home/pi/master.zip
     sudo cp -R /home/pi/attract-config-rpi-master/MasOS/roms/setup /home/pi/MasOS/roms/
@@ -124,7 +124,7 @@ cd /home/pi/ && wget https://github.com/DOCK-PI3/attract-config-rpi/archive/mast
   sudo cp -R /home/pi/attract-config-rpi-master/attract/* /home/pi/.attract/
   sudo chown -R pi:pi /home/pi/.attract/
   sudo chown -R pi:pi /opt/masos/configs/all/
-dialog --infobox " Attract Mode se configuro correctamente!...\n\n Recuerde generar las listas de roms desde attract cuando meta juegos \n\n y para el menu setup si no le aparece!" 370 370 ; sleep 5
+dialog --infobox " Attract Mode se configuro correctamente!...\n\n Recuerde generar las listas de roms desde attract cuando meta juegos \n\n y para el menu setup si no le aparece!" 370 370 ; sleep 10
 # Borrar directorios de compilacion y de configuracion.....
 sudo rm -r -f /home/pi/attract-config-rpi-master
 # cp /opt/masos/configs/all/AM-Start.sh /opt/masos/configs/all/autostart.sh
