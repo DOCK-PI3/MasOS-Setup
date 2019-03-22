@@ -9,7 +9,7 @@ Por favor use el github solo para informes de errores. Para ayuda / soporte en e
 
 ## Puede crear sus themes y compartir su trabajo con la comunidad
 Despues de probar su theme si no tiene fallos se agregara a el instalador de themes esthemes.
-Si quiere contribuir pongase en contacto con los administradores en telegram ------- https://t.me/MasOsTeam
+Si quiere contribuir pongase en contacto con los administradores en telegram ------- https://t.me/Retro_Arcade_MasOs_Team
 
 
 
@@ -25,7 +25,7 @@ Todas las personas que contribuyan con el proyecto van a ser agregadas aqui en u
 
 2)- TWOEKA
 
-3)- 
+3)- MARTINYB
 
 4)-
 
