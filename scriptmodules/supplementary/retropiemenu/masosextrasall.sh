@@ -30,6 +30,7 @@ function main_menu() {
 			1 "RPI Actualizar MasOS-Setup script" \
 			2 "RPI EXTRAS para el menu de EmulationStation" \
             3 "RPI EmulationStation instalar idioma español" \
+			99 "RPI AttractMode Instalador/Configurador" \
 			200 "-------------- Para PC ----------------" \
 			4 "PC MasOS EXTRAS para el menu de EmulationStation" \
             5 "PC Reparar permisos en MasOS" \
@@ -46,6 +47,7 @@ function main_menu() {
             1) masossetup_update  ;;
 			2) masosmenu_extras  ;;
             3) pi_spanish ;;
+			99) pi_attractmode_ic ;;
 			200) separador_menu  ;;
 			4) masosmenu_extrasPC ;;
 			5) permisos_pc  ;;
@@ -64,6 +66,10 @@ function separador_menu() {                                          #
 dialog --infobox "... Separador para el menu, sin funcion ..." 30 55 ; sleep 3
 }
 
+function pi_attractmode_ic() {                                          #
+dialog --infobox "... Script instalador y configurador para attract mode ..." 30 55 ; sleep 3
+cd && sudo MasOS-Setup/tools/attractmode.sh
+}
 
 #########################################################################
 # funcion actualizacion para MasOS Setup script  ;-) #
