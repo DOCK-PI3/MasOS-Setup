@@ -86,8 +86,8 @@ cp /opt/masos/configs/all/AM-Start.sh /opt/masos/configs/all/autostart.sh
 sudo reboot
 _EOF_
 # cd && wget https://github.com/DOCK-PI3/attract-config-rpi/blob/master/RetroPie/retropiemenu/Switch%20To%20Attract%20Mode.sh
-cd && sudo cp -R Switch\ To\ Attract\ Mode.sh /home/pi/RetroPie/retropiemenu/
-cd && sudo rm -R Switch\ To\ Attract\ Mode.sh
+sudo cp -R /home/pi/Switch\ To\ Attract\ Mode.sh /home/pi/RetroPie/retropiemenu/
+sudo rm -R /home/pi/Switch\ To\ Attract\ Mode.sh
 sudo chmod -R +x /home/pi/RetroPie/retropiemenu/
 cd
     cat > /home/pi/AM-Start.sh <<_EOF_
@@ -95,29 +95,13 @@ cd
 attract
 _EOF_
 # cd && wget https://github.com/DOCK-PI3/attract-config-rpi/blob/master/opt/masos/configs/all/AM-Start.sh
-cd && sudo cp -R AM-Start.sh /opt/masos/configs/all/
-cd && sudo rm -R AM-Start.sh
+sudo cp -R /home/pi/AM-Start.sh /opt/masos/configs/all/
+sudo rm -R /home/pi/AM-Start.sh
 sudo chmod -R +x /opt/masos/configs/all/AM-Start.sh
 cd && mkdir .attract
-                # # Reparar auto login - autostart rpi
-				# mkdir -p /etc/systemd/system/getty@tty1.service.d
-                # systemctl set-default multi-user.target
-                # ln -fs /etc/systemd/system/autologin@.service /etc/systemd/system/getty.target.wants/getty@tty1.service
-            # else
-                # # Eliminar autologin.conf - usado actualmente...
-                # rm -f /etc/systemd/system/getty@tty1.service.d/autologin.conf
-                # raspi-config nonint do_boot_behaviour B2
-            # fi
-        # elif [[ "$(cat /proc/1/comm)" == "systemd" ]]; then
-            # mkdir -p /etc/systemd/system/getty@tty1.service.d/
-            # cat >/etc/systemd/system/getty@tty1.service.d/autologin.conf <<_EOF_
-# [Service]
-# ExecStart=
-# ExecStart=-/sbin/agetty --autologin $user --noclear %I \$TERM
-# _EOF_
-dialog --infobox " Ahora cuando se reinicie entre con USER:pi PASWD:masos y \nejecute el comando:emulationstation ,luego inicie el MasOS configurador y active \nel autostart para ES desde Configuracion/Herramientas - Autostart." 350 350 ; sleep 20
-dialog --infobox " Tiene un script en el menu de ES para cambiar a attract mode ,una vez que inicie attract seleccione su idioma \n ,ya puede usar atrractmode. " 350 350 ; sleep 10
-dialog --infobox " Attract se instalo de forma correcta y con mmal. Ahora si quiere,despues de seguir las indicaciones anteriores ,puede ejecutar de nuevo el script e instalar la configuracion para attrac mode. ,reiniciando en 20s" 350 350 ; sleep 20
+# dialog --infobox " Ahora cuando se reinicie entre con USER:pi PASWD:masos y \nejecute el comando:emulationstation ,luego inicie el MasOS configurador y active \nel autostart para ES desde Configuracion/Herramientas - Autostart." 350 350 ; sleep 20
+dialog --infobox " Se a creado un script en el menu de ES para cambiar a attract mode ,una vez que inicie attract seleccione su idioma \n ,ya puede usar atrractmode. " 350 350 ; sleep 10
+dialog --infobox " Attract se instalo de forma correcta y con mmal. Ahora si quiere,despues de seguir las indicaciones anteriores ,puede ejecutar de nuevo el script e instalar la configuracion para attrac mode. \n\nNOTA IMPORTANTE: Antes de instalar la configuracion para attract tiene que iniciarlo una vez como minimo... ,reiniciando en 20s" 350 350 ; sleep 20
 sudo shutdown -r now
 # ---------------------------- #
 }
