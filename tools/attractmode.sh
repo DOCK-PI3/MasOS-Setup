@@ -75,7 +75,7 @@ sudo rm -r -f /home/pi/develop
 
 # CONFIG INI PARA Attract-Mode
 cd
-    cat > "/home/pi/Switch\ To\ Attract\ Mode.sh" <<_EOF_
+    cat > /home/pi/Switch\ To\ Attract\ Mode.sh <<_EOF_
 #!/usr/bin/env bash
 echo ""
 echo "Cambiando el arranque a Attract Mode y reiniciando..."
@@ -85,25 +85,23 @@ cp /opt/masos/configs/all/AM-Start.sh /opt/masos/configs/all/autostart.sh
 sudo reboot
 _EOF_
 # cd && wget https://github.com/DOCK-PI3/attract-config-rpi/blob/master/RetroPie/retropiemenu/Switch%20To%20Attract%20Mode.sh
-sudo cp -R Switch\ To\ Attract\ Mode.sh /home/pi/RetroPie/retropiemenu/
+cd && sudo cp -R Switch\ To\ Attract\ Mode.sh /home/pi/RetroPie/retropiemenu/
 cd && sudo rm -R Switch\ To\ Attract\ Mode.sh
 sudo chmod -R +x /home/pi/RetroPie/retropiemenu/
 cd
-    cat > "/home/pi/AM-Start.sh" <<_EOF_
+    cat > /home/pi/AM-Start.sh <<_EOF_
 #!/usr/bin/env bash
-# RUTA: /opt/masos/configs/all/
 attract
 _EOF_
 # cd && wget https://github.com/DOCK-PI3/attract-config-rpi/blob/master/opt/masos/configs/all/AM-Start.sh
-sudo cp -R AM-Start.sh /opt/masos/configs/all/
+cd && sudo cp -R AM-Start.sh /opt/masos/configs/all/
 cd && sudo rm -R AM-Start.sh
 sudo chmod -R +x /opt/masos/configs/all/AM-Start.sh
 cd && mkdir .attract
-dialog --infobox " Antes de instalar la configuracion de attract,cuando se reinicie entre con pi:masos y \nejecute emulationstation ,luego inicie el MasOS configurador y active \nel autostart para ES desde Configuracion/Herramientas - Autostart." 350 350 ; sleep 20
-dialog --infobox " Luego cierre ES pulsando F4 y ejecuta en la terminal attract ,una vez que inicie seleccione el idioma ESPAÑOL \n ,luego cierre attract pulsando ESC y SALIR. " 350 350 ; sleep 10
-dialog --infobox " Attract se instalo de forma correcta y con mmal. Ya puede ejecutar de nuevo el script e instalar la configuracion para attrac mode. ,reiniciando en 5s" 350 350 ; sleep 5
-# sudo shutdown -r now
-emulationstation
+dialog --infobox " Ahora cuando se reinicie entre con USER:pi PASWD:masos y \nejecute el comando:emulationstation ,luego inicie el MasOS configurador y active \nel autostart para ES desde Configuracion/Herramientas - Autostart." 350 350 ; sleep 20
+dialog --infobox " Tiene un script en el menu de ES para cambiar a attract mode ,una vez que inicie attract seleccione su idioma \n ,ya puede usar atrractmode. " 350 350 ; sleep 10
+dialog --infobox " Attract se instalo de forma correcta y con mmal. Ahora si quiere,despues de seguir las indicaciones ,puede ejecutar de nuevo el script e instalar la configuracion para attrac mode. ,reiniciando en 20s" 350 350 ; sleep 20
+sudo shutdown -r now
 # ---------------------------- #
 }
 
@@ -143,10 +141,9 @@ cd /home/pi/ && wget https://github.com/DOCK-PI3/attract-config-rpi/archive/mast
   sudo cp -R /home/pi/attract-config-rpi-master/attract/* /home/pi/.attract/
   sudo chown -R pi:pi /home/pi/.attract/
   sudo chown -R pi:pi /opt/masos/configs/all/
-dialog --infobox " Attract Mode se configuro correctamente!...\n\n Recuerde generar las listas de roms desde attract cuando meta juegos \n\n y para el menu setup si no le aparece!" 370 370 ; sleep 10
+dialog --infobox " Attract Mode se configuro correctamente!...\n\n Recuerde generar las listas de roms desde attract cuando meta juegos \n\n y para el menu setup si no le aparece! ," 370 370 ; sleep 10
 # Borrar directorios de compilacion y de configuracion.....
 sudo rm -r -f /home/pi/attract-config-rpi-master
-# cp /opt/masos/configs/all/AM-Start.sh /opt/masos/configs/all/autostart.sh
 # sudo reboot
 # ---------------------------- #
 }
