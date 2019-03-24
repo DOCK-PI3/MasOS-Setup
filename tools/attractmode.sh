@@ -55,7 +55,7 @@ cmake .. -DSFML_RPI=1 -DEGL_INCLUDE_DIR=/opt/vc/include -DEGL_LIBRARY=/opt/vc/li
 sudo make -j4 install
 sudo ldconfig
 
-# Compilar FFmpeg con soporte mmal (decodificación de video acelerada por hardware)
+# Compilar FFmpeg con soporte mmal (decodificacion de video acelerada por hardware)
 cd /home/pi/develop
 git clone --depth 1 git://source.ffmpeg.org/ffmpeg.git
 cd ffmpeg
@@ -73,9 +73,10 @@ sudo make -j4 install USE_GLES=1
 sudo rm -r -f /home/pi/develop
 
 # CONFIG INI PARA Attract-Mode
+sudo chown -R pi:pi /home/pi/RetroPie/retropiemenu/
 sudo cp /opt/masos/configs/all/autostart.sh /opt/masos/configs/all/autostart_backup.sh
 cd
-    cat > /home/pi/Switch\ To\ Attract\ Mode.sh <<_EOF_
+   sudo cat > /home/pi/RetroPie/retropiemenu/Switch\ To\ Attract\ Mode.sh <<_EOF_
 #!/usr/bin/env bash
 echo ""
 echo "Cambiando el arranque a Attract Mode y reiniciando..."
@@ -84,17 +85,14 @@ sleep 5
 cp /opt/masos/configs/all/AM-Start.sh /opt/masos/configs/all/autostart.sh
 sudo reboot
 _EOF_
-sudo cp -R /home/pi/Switch\ To\ Attract\ Mode.sh /home/pi/RetroPie/retropiemenu/
-sudo rm -R /home/pi/Switch\ To\ Attract\ Mode.sh
 sudo chmod -R +x /home/pi/RetroPie/retropiemenu/
 cd
-    cat > /home/pi/AM-Start.sh <<_EOF_
+   sudo cat > /opt/masos/configs/all/AM-Start.sh <<_EOF_
 #!/usr/bin/env bash
 attract
 _EOF_
-sudo cp -R /home/pi/AM-Start.sh /opt/masos/configs/all/
-sudo rm -R /home/pi/AM-Start.sh
 sudo chmod -R +x /opt/masos/configs/all/AM-Start.sh
+# sudo chown -R root:root /home/pi/RetroPie/retropiemenu/
 cd && mkdir .attract
 dialog --infobox " Se a creado un script en el menu de ES para cambiar a attract mode ,una vez que inicie attract seleccione su idioma \n ,ya puede usar atrractmode. " 350 350 ; sleep 10
 dialog --infobox " Attract se instalo de forma correcta y con mmal. Ahora si quiere,despues de seguir las indicaciones anteriores ,puede ejecutar de nuevo el script e instalar la configuracion para attrac mode. \n\nNOTA IMPORTANTE: Antes de instalar la configuracion para attract tiene que iniciar attractmode una vez como minimo ,luego cierre attract ejecute emulationstation e inicie masos extras all para terminar de instalar la configuracion... ,reiniciando en 20s" 350 350 ; sleep 20
@@ -123,7 +121,7 @@ sudo shutdown -r now
 #########################################################################
 # Funcion configurar attract en MasOS ;-) #
 function config_attract() {
-# Configurar Attract-Mode swichs ,menus ,emulators....
+# Configurar Attract-Mode switchs ,menus ,emulators....
 dialog --infobox "... Descargando ,descomprimiendo y copiando ficheros de configuracion para Attract y MasOS, SCRIPTS ,EMULATORS ,VIDEOS SISTEMAS ,THEMES ,ECT..." 370 370 ; sleep 5
 cd /home/pi/ && wget https://github.com/DOCK-PI3/attract-config-rpi/archive/master.zip && unzip -o master.zip
  sudo rm /home/pi/master.zip
