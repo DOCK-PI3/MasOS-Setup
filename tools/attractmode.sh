@@ -39,7 +39,7 @@ sudo killall emulationstation
 sudo killall emulationstation-dev
 
 # ACTUALIZAR LISTA DE PAQUETES Y PAQUETES DEL SISTEMA
-sudo apt-get update; sudo apt-get upgrade -y
+sudo apt-get update
 
 # Crear entorno para compilar
 cd /home/pi && mkdir develop
@@ -76,7 +76,7 @@ sudo rm -r -f /home/pi/develop
 sudo chown -R pi:pi /home/pi/RetroPie/retropiemenu/
 sudo cp /opt/masos/configs/all/autostart.sh /opt/masos/configs/all/autostart_backup.sh
 cd
-   sudo cat > /home/pi/RetroPie/retropiemenu/Switch\ To\ Attract\ Mode.sh <<_EOF_
+   cat > /home/pi/RetroPie/retropiemenu/Switch\ To\ Attract\ Mode.sh <<_EOF_
 #!/usr/bin/env bash
 echo ""
 echo "Cambiando el arranque a Attract Mode y reiniciando..."
@@ -85,14 +85,15 @@ sleep 5
 cp /opt/masos/configs/all/AM-Start.sh /opt/masos/configs/all/autostart.sh
 sudo reboot
 _EOF_
-sudo chmod -R +x /home/pi/RetroPie/retropiemenu/
 cd
    sudo cat > /opt/masos/configs/all/AM-Start.sh <<_EOF_
 #!/usr/bin/env bash
 attract
 _EOF_
+sudo chmod -R +x /home/pi/RetroPie/retropiemenu/Switch\ To\ Attract\ Mode.sh
 sudo chmod -R +x /opt/masos/configs/all/AM-Start.sh
-# sudo chown -R root:root /home/pi/RetroPie/retropiemenu/
+sudo chown -R pi:pi /opt/masos/configs/all/AM-Start.sh
+sudo chown -R root:root /home/pi/RetroPie/retropiemenu/
 cd && mkdir .attract
 dialog --infobox " Se a creado un script en el menu de ES para cambiar a attract mode ,una vez que inicie attract seleccione su idioma \n ,ya puede usar atrractmode. " 350 350 ; sleep 10
 dialog --infobox " Attract se instalo de forma correcta y con mmal. Ahora si quiere,despues de seguir las indicaciones anteriores ,puede ejecutar de nuevo el script e instalar la configuracion para attrac mode. \n\nNOTA IMPORTANTE: Antes de instalar la configuracion para attract tiene que iniciar attractmode una vez como minimo ,luego cierre attract ejecute emulationstation e inicie masos extras all para terminar de instalar la configuracion... ,reiniciando en 20s" 350 350 ; sleep 20
