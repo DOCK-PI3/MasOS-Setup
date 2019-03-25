@@ -51,7 +51,7 @@ function disable_videoloadingscreens() {
 	enable_dir="/home/$user/MasOS/videoloadingscreens"
 
 	if [[ -d "$enable_dir" ]]; then
-		mv /home/$user/MasOS/videoloadingscreens /home/$user/MasOS/videoloadingscreens_disable
+		mv $enable_dir $disable_dir
 		mv /opt/masos/configs/all/runcommand-onstart.sh /opt/masos/configs/all/runcommand-onstart.sh.bkp
 		mv /opt/masos/configs/all/runcommand-onend.sh /opt/masos/configs/all/runcommand-onend.sh.bkp
 	fi
@@ -73,59 +73,40 @@ function enable_videoloadingscreens() {
             2>&1 > /dev/tty)
 
         case "$choice" in
-            1) if [[ -d "$disable_dir" ]]; then
-				mv /home/$user/MasOS/videoloadingscreens_disable /home/$user/MasOS/videoloadingscreens
-	
-				if [[ -f "$fichero" ]]; then
+            1) dialog --infobox "...Activando..." 3 19 ; sleep 2
+				if [[ -d "$disable_dir" ]]; then
+					mv $disable_dir $enable_dir
 					mv /opt/masos/configs/all/runcommand-onstart.sh.bkp /opt/masos/configs/all/runcommand-onstart.sh
 					mv /opt/masos/configs/all/runcommand-onend.sh.bkp /opt/masos/configs/all/runcommand-onend.sh
 				else
+					mkdir $enable_dir
+					chown -R $user:$user $enable_dir
 					cp /home/$user/RetroPie/scripts/pi3/runcommand-onstart.sh /opt/masos/configs/all/runcommand-onstart.sh
 					cp /home/$user/RetroPie/scripts/pi3/runcommand-onend.sh /opt/masos/configs/all/runcommand-onend.sh
+					chown -R $user:$user /opt/masos/configs/all/runcommand-onstart.sh
+					chown -R $user:$user /opt/masos/configs/all/runcommand-onend.sh
 				fi
-			else
-				mkdir /home/$user/MasOS/videoloadingscreens
-				chown -R $user:$user $enable_dir
-				cp /home/$user/RetroPie/scripts/pi3/runcommand-onstart.sh /opt/masos/configs/all/runcommand-onstart.sh
-				cp /home/$user/RetroPie/scripts/pi3/runcommand-onend.sh /opt/masos/configs/all/runcommand-onend.sh
-				chown -R $user:$user /opt/masos/configs/all/runcommand-onstart.sh
-				chown -R $user:$user /opt/masos/configs/all/runcommand-onend.sh
-			fi
 			break ;;
 			
-            2) if [[ -d "$disable_dir" ]]; then
-				mv /home/$user/MasOS/videoloadingscreens_disable /home/$user/MasOS/videoloadingscreens
-	
-				if [[ -f "$fichero" ]]; then
+            2) dialog --infobox "...Activando..." 3 19 ; sleep 2
+				if [[ -d "$disable_dir" ]]; then
+					mv $disable_dir $enable_dir
 					mv /opt/masos/configs/all/runcommand-onstart.sh.bkp /opt/masos/configs/all/runcommand-onstart.sh
 					mv /opt/masos/configs/all/runcommand-onend.sh.bkp /opt/masos/configs/all/runcommand-onend.sh
 				else
+					mkdir $enable_dir
+					chown -R $user:$user $enable_dir
 					# Creacion de los ficheros necesarios para el funcionamiento de los videos
-				sudo cat > /opt/masos/configs/all/runcommand-onstart.sh <<_EOF_
+					sudo cat > /opt/masos/configs/all/runcommand-onstart.sh <<_EOF_
 [[ -f /home/$user/MasOS/videoloadingscreens/\$1.mp4 ]] && vlc -f --no-video-title-show --play-and-exit --no-qt-name-in-title --qt-minimal-view --no-qt-bgcone "/home/$user/MasOS/videoloadingscreens/\$1.mp4"
 _EOF_
-sudo chown -R +x /opt/masos/configs/all/runcommand-onstart.sh
-
-				sudo cat > /opt/masos/configs/all/runcommand-onend.sh <<_EOF_
+					chown -R $user:$user /opt/masos/configs/all/runcommand-onstart.sh
+					sudo cat > /opt/masos/configs/all/runcommand-onend.sh <<_EOF_
 [[ -f /home/$user/MasOS/videoloadingscreens/salir.mp4 ]] && vlc -f --no-video-title-show --play-and-exit --no-qt-name-in-title --qt-minimal-view --no-qt-bgcone "/home/$user/MasOS/videoloadingscreens/salir.mp4"
 _EOF_
-sudo chown -R +x /opt/masos/configs/all/runcommand-onend.sh
+					chown -R $user:$user /opt/masos/configs/all/runcommand-onend.sh
 				fi
-			else
-				mkdir /home/$user/MasOS/videoloadingscreens
-				chown -R $user:$user $enable_dir
-				# Creacion de los ficheros necesarios para el funcionamiento de los videos
-				sudo cat > /opt/masos/configs/all/runcommand-onstart.sh <<_EOF_
-[[ -f /home/$user/MasOS/videoloadingscreens/\$1.mp4 ]] && vlc -f --no-video-title-show --play-and-exit --no-qt-name-in-title --qt-minimal-view --no-qt-bgcone "/home/$user/MasOS/videoloadingscreens/\$1.mp4"
-_EOF_
-sudo chown -R +x /opt/masos/configs/all/runcommand-onstart.sh
-
-				sudo cat > /opt/masos/configs/all/runcommand-onend.sh <<_EOF_
-[[ -f /home/$user/MasOS/videoloadingscreens/salir.mp4 ]] && vlc -f --no-video-title-show --play-and-exit --no-qt-name-in-title --qt-minimal-view --no-qt-bgcone "/home/$user/MasOS/videoloadingscreens/salir.mp4"
-_EOF_
-sudo chown -R +x /opt/masos/configs/all/runcommand-onend.sh
-			fi
-			break ;;
+				break ;;
             *)  break ;;
         esac
     done
@@ -149,13 +130,19 @@ function download_video() {
         case "$choice" in
             1) clear
 				if [[ -d "$enable_dir" ]]; then
-					rm -R $enable_dir/*
-					echo "$enable_dir"
-					echo "Empezando la descarga del pack de videos elegido"; sleep 2
+					if [ "$(ls $enable_dir)" ] 
+						then 
+							echo "Borrando el pack de videos anterior"; sleep 2
+							rm -R $enable_dir/*
+						else
+							echo "No hay videos en $enable_dir"; sleep 2
+						fi
+					echo "Empezando la descarga del pack de videos elegido"
+					echo ""; sleep 2
 					cd $enable_dir && wget https://github.com/Moriggy/videoloadingscreens-masos/archive/master.zip && unzip master.zip
 					rm $enable_dir/master.zip
 					clear
-					echo "Moviendo videos a la carpeta de destino, un momento por favor..."
+					echo "Moviendo videos a la carpeta de destino, un momento por favor..."; sleep 2
 					mv $enable_dir/videoloadingscreens-masos-master/*.mp4 $enable_dir
 					rm -R $enable_dir/videoloadingscreens-masos-master/
 					chown -R $user:$user $enable_dir
@@ -167,8 +154,15 @@ function download_video() {
 			
             2) clear
 				if [[ -d "$enable_dir" ]]; then
-					rm -R $enable_dir/*
-					echo "Empezando la descarga del pack de videos elegido"; sleep 2
+					if [ "$(ls $enable_dir)" ] 
+						then 
+							echo "Borrando el pack de videos anterior"; sleep 2
+							rm -R $enable_dir/*
+						else
+							echo "No hay videos en $enable_dir"; sleep 2
+						fi
+					echo "Empezando la descarga del pack de videos elegido"
+					echo ""; sleep 2
 					cd $enable_dir && wget https://github.com/Moriggy/videoloadingscreens-Supreme/archive/master.zip && unzip master.zip
 					rm $enable_dir/master.zip
 					clear
@@ -184,8 +178,15 @@ function download_video() {
 			
 			3) clear
 				if [[ -d "$enable_dir" ]]; then
-					rm -R $enable_dir/*
-					echo "Empezando la descarga del pack de videos elegido"; sleep 2
+					if [ "$(ls $enable_dir)" ] 
+						then 
+							echo "Borrando el pack de videos anterior"; sleep 2
+							rm -R $enable_dir/*
+						else
+							echo "No hay videos en $enable_dir"; sleep 2
+						fi
+					echo "Empezando la descarga del pack de videos elegido"
+					echo ""; sleep 2
 					cd $enable_dir && wget https://github.com/DOCK-PI3/sistemas_intros_pack1/archive/master.zip && unzip master.zip
 					rm $enable_dir/master.zip
 					clear
@@ -201,12 +202,19 @@ function download_video() {
 			
 			4) clear
 				if [[ -d "$enable_dir" ]]; then
-					rm -R $enable_dir/*
-					echo "Empezando la descarga del pack de videos elegido"; sleep 2
+					if [ "$(ls $enable_dir)" ] 
+						then 
+							echo "Borrando el pack de videos anterior"; sleep 2
+							rm -R $enable_dir/*
+						else
+							echo "No hay videos en $enable_dir"; sleep 2
+						fi
+					echo "Empezando la descarga del pack de videos elegido"
+					echo ""; sleep 2
 					cd $enable_dir && wget https://github.com/Moriggy/videoloadingscreens-Bloques-3D/archive/master.zip && unzip master.zip
 					rm $enable_dir/master.zip
 					clear
-					echo "Moviendo videos a la carpeta de destino, un momento por favor..."
+					echo "Moviendo videos a la carpeta de destino, un momento por favor..."; sleep 2
 					mv $enable_dir/videoloadingscreens-Bloques-3D-master/*.mp4 $enable_dir
 					rm -R $enable_dir/videoloadingscreens-Bloques-3D-master/
 					chown -R $user:$user $enable_dir
