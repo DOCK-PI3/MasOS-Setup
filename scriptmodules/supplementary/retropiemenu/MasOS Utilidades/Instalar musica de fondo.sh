@@ -91,27 +91,27 @@ function install_bgm() {
         echo -e "\n\n\n    $PKG seems to be installed...moving on with the Livewire background music install"
         sleep 3
         fi
-        wget https://raw.githubusercontent.com/Shakz76/Eazy-Hax-RetroPie-Toolkit/master/cfg/Toggle%20Background%20Music.sh -O $HOME/RetroPie/retropiemenu/Toggle\ Background\ Music.sh
-        cd $HOME && cp MasOS-Setup/scriptmodules/extras/.livewire.py -O $HOME/.livewire.py
-        sudo perl -i.bak -pe '$_ = qq[(sudo python $HOME/.livewire.py) &\n$_] if $_ eq qq[exit 0\n]'  /etc/rc.local
-        if [ ! -d "$HOME/MasOS/roms/music" ]; then
+        wget https://raw.githubusercontent.com/Shakz76/Eazy-Hax-RetroPie-Toolkit/master/cfg/Toggle%20Background%20Music.sh -O /home/pi/RetroPie/retropiemenu/Toggle\ Background\ Music.sh
+        cd /home/pi/ && cp MasOS-Setup/scriptmodules/extras/.livewire.py -O /home/pi/.livewire.py
+        sudo perl -i.bak -pe '$_ = qq[(sudo python /home/pi/.livewire.py) &\n$_] if $_ eq qq[exit 0\n]'  /etc/rc.local
+        if [ ! -d "/home/pi/MasOS/roms/music" ]; then
                 echo -e "\n\n\n    Music directory is missing. Downloading some starter music for you.\n\n\n"
                 sleep 3
-                cd $HOME/MasOS/roms/
-                wget http://eazyhax.com/downloads/music.zip -O $HOME/MasOS/roms/music.zip
+                cd /home/pi/MasOS/roms/
+                wget http://eazyhax.com/downloads/music.zip -O /home/pi/MasOS/roms/music.zip
                 unzip -o music.zip  && rm music.zip
         fi
         vol_menu
 }
 
 function remove_bgm() {
-	pgrep -f "python $HOME/.livewire.py"|xargs sudo kill -9
-	rm -f $HOME/RetroPie/retropiemenu/Toggle\ Background\ Music.sh
-	rm $HOME/.livewire.py
-	if [ -e $HOME/.DisableMusic ]; then
-		rm $HOME/.DisableMusic
+	pgrep -f "python /home/pi/.livewire.py"|xargs sudo kill -9
+	rm -f /home/pi/RetroPie/retropiemenu/Toggle\ Background\ Music.sh
+	rm /home/pi/.livewire.py
+	if [ -e /home/pi/.DisableMusic ]; then
+		rm /home/pi/.DisableMusic
 	fi
-	rm -r  $HOME/MasOS/roms/music/
+	rm -r  /home/pi/MasOS/roms/music/
 	sudo sed -i '/livewire/d' /etc/rc.local
 	echo -e "\n\n\n         Background Music has been removed from your system.\n\n\n"
 	sleep 5
@@ -120,74 +120,74 @@ function remove_bgm() {
 
 
 function 100_v() {
-        CUR_VAL=`grep "maxvolume =" $HOME/.livewire.py|awk '{print $3}'`
+        CUR_VAL=`grep "maxvolume =" /home/pi/.livewire.py|awk '{print $3}'`
         export CUR_VAL
-        perl -p -i -e 's/maxvolume = $ENV{CUR_VAL}/maxvolume = 1.0/g' $HOME/.livewire.py
-        pgrep -f "python $HOME/.livewire.py"|xargs sudo kill -9
-        sudo python $HOME/.livewire.py  --silent &
+        perl -p -i -e 's/maxvolume = $ENV{CUR_VAL}/maxvolume = 1.0/g' /home/pi/.livewire.py
+        pgrep -f "python /home/pi/.livewire.py"|xargs sudo kill -9
+        sudo python /home/pi/.livewire.py  --silent &
 }
 function 90_v() {
-        CUR_VAL=`grep "maxvolume =" $HOME/.livewire.py|awk '{print $3}'`
+        CUR_VAL=`grep "maxvolume =" /home/pi/.livewire.py|awk '{print $3}'`
         export CUR_VAL
-        perl -p -i -e 's/maxvolume = $ENV{CUR_VAL}/maxvolume = 0.90/g' $HOME/.livewire.py
-        pgrep -f "python $HOME/.livewire.py"|xargs sudo kill -9
-        sudo python $HOME/.livewire.py  --silent &
+        perl -p -i -e 's/maxvolume = $ENV{CUR_VAL}/maxvolume = 0.90/g' /home/pi/.livewire.py
+        pgrep -f "python /home/pi/.livewire.py"|xargs sudo kill -9
+        sudo python /home/pi/.livewire.py  --silent &
 }
 function 80_v() {
-        CUR_VAL=`grep "maxvolume =" $HOME/.livewire.py|awk '{print $3}'`
+        CUR_VAL=`grep "maxvolume =" /home/pi/.livewire.py|awk '{print $3}'`
         export CUR_VAL
-        perl -p -i -e 's/maxvolume = $ENV{CUR_VAL}/maxvolume = 0.80/g' $HOME/.livewire.py
-        pgrep -f "python $HOME/.livewire.py"|xargs sudo kill -9
-        sudo python $HOME/.livewire.py  --silent &
+        perl -p -i -e 's/maxvolume = $ENV{CUR_VAL}/maxvolume = 0.80/g' /home/pi/.livewire.py
+        pgrep -f "python /home/pi/.livewire.py"|xargs sudo kill -9
+        sudo python /home/pi/.livewire.py  --silent &
 }
 function 70_v() {
-        CUR_VAL=`grep "maxvolume =" $HOME/.livewire.py|awk '{print $3}'`
+        CUR_VAL=`grep "maxvolume =" /home/pi/.livewire.py|awk '{print $3}'`
         export CUR_VAL
-        perl -p -i -e 's/maxvolume = $ENV{CUR_VAL}/maxvolume = 70.0/g' $HOME/.livewire.py
-        pgrep -f "python $HOME/.livewire.py"|xargs sudo kill -9
-        sudo python $HOME/.livewire.py  --silent &
+        perl -p -i -e 's/maxvolume = $ENV{CUR_VAL}/maxvolume = 70.0/g' /home/pi/.livewire.py
+        pgrep -f "python /home/pi/.livewire.py"|xargs sudo kill -9
+        sudo python /home/pi/.livewire.py  --silent &
 }
 function 60_v() {
-        CUR_VAL=`grep "maxvolume =" $HOME/.livewire.py|awk '{print $3}'`
+        CUR_VAL=`grep "maxvolume =" /home/pi/.livewire.py|awk '{print $3}'`
         export CUR_VAL
-        perl -p -i -e 's/maxvolume = $ENV{CUR_VAL}/maxvolume = 60.0/g' $HOME/.livewire.py
-        pgrep -f "python $HOME/.livewire.py"|xargs sudo kill -9
-        sudo python $HOME/.livewire.py  --silent &
+        perl -p -i -e 's/maxvolume = $ENV{CUR_VAL}/maxvolume = 60.0/g' /home/pi/.livewire.py
+        pgrep -f "python /home/pi/.livewire.py"|xargs sudo kill -9
+        sudo python /home/pi/.livewire.py  --silent &
 }
 function 50_v() {
-        CUR_VAL=`grep "maxvolume =" $HOME/.livewire.py|awk '{print $3}'`
+        CUR_VAL=`grep "maxvolume =" /home/pi/.livewire.py|awk '{print $3}'`
         export CUR_VAL
-        perl -p -i -e 's/maxvolume = $ENV{CUR_VAL}/maxvolume = 0.50/g' $HOME/.livewire.py
-        pgrep -f "python $HOME/.livewire.py"|xargs sudo kill -9
-        sudo python $HOME/.livewire.py  --silent &
+        perl -p -i -e 's/maxvolume = $ENV{CUR_VAL}/maxvolume = 0.50/g' /home/pi/.livewire.py
+        pgrep -f "python /home/pi/.livewire.py"|xargs sudo kill -9
+        sudo python /home/pi/.livewire.py  --silent &
 }
 function 40_v() {
-        CUR_VAL=`grep "maxvolume =" $HOME/.livewire.py|awk '{print $3}'`
+        CUR_VAL=`grep "maxvolume =" /home/pi/.livewire.py|awk '{print $3}'`
         export CUR_VAL
-        perl -p -i -e 's/maxvolume = $ENV{CUR_VAL}/maxvolume = 0.40/g' $HOME/.livewire.py
-        pgrep -f "python $HOME/.livewire.py"|xargs sudo kill -9
-        sudo python $HOME/.livewire.py  --silent &
+        perl -p -i -e 's/maxvolume = $ENV{CUR_VAL}/maxvolume = 0.40/g' /home/pi/.livewire.py
+        pgrep -f "python /home/pi/.livewire.py"|xargs sudo kill -9
+        sudo python /home/pi/.livewire.py  --silent &
 }
 function 30_v() {
-        CUR_VAL=`grep "maxvolume =" $HOME/.livewire.py|awk '{print $3}'`
+        CUR_VAL=`grep "maxvolume =" /home/pi/.livewire.py|awk '{print $3}'`
         export CUR_VAL
-        perl -p -i -e 's/maxvolume = $ENV{CUR_VAL}/maxvolume = 0.30/g' $HOME/.livewire.py
-        pgrep -f "python $HOME/.livewire.py"|xargs sudo kill -9
-        sudo python $HOME/.livewire.py  --silent &
+        perl -p -i -e 's/maxvolume = $ENV{CUR_VAL}/maxvolume = 0.30/g' /home/pi/.livewire.py
+        pgrep -f "python /home/pi/.livewire.py"|xargs sudo kill -9
+        sudo python /home/pi/.livewire.py  --silent &
 }
 function 20_v() {
-        CUR_VAL=`grep "maxvolume =" $HOME/.livewire.py|awk '{print $3}'`
+        CUR_VAL=`grep "maxvolume =" /home/pi/.livewire.py|awk '{print $3}'`
         export CUR_VAL
-        perl -p -i -e 's/maxvolume = $ENV{CUR_VAL}/maxvolume = 0.20/g' $HOME/.livewire.py
-        pgrep -f "python $HOME/.livewire.py"|xargs sudo kill -9
-        sudo python $HOME/.livewire.py  --silent &
+        perl -p -i -e 's/maxvolume = $ENV{CUR_VAL}/maxvolume = 0.20/g' /home/pi/.livewire.py
+        pgrep -f "python /home/pi/.livewire.py"|xargs sudo kill -9
+        sudo python /home/pi/.livewire.py  --silent &
 }
 function 10_v() {
-        CUR_VAL=`grep "maxvolume =" $HOME/.livewire.py|awk '{print $3}'`
+        CUR_VAL=`grep "maxvolume =" /home/pi/.livewire.py|awk '{print $3}'`
         export CUR_VAL
-        perl -p -i -e 's/maxvolume = $ENV{CUR_VAL}/maxvolume = 0.10/g' $HOME/.livewire.py
-        pgrep -f "python $HOME/.livewire.py"|xargs sudo kill -9
-        sudo python $HOME/.livewire.py  --silent &
+        perl -p -i -e 's/maxvolume = $ENV{CUR_VAL}/maxvolume = 0.10/g' /home/pi/.livewire.py
+        pgrep -f "python /home/pi/.livewire.py"|xargs sudo kill -9
+        sudo python /home/pi/.livewire.py  --silent &
 }
 
 
