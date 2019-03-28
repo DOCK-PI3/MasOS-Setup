@@ -52,6 +52,7 @@ function gui_esthemes() {
 		'DOCK-PI3 Perinquen'
 		'DOCK-PI3 PlataFina'
 		'Moriggy es-next-pixel-Legacy'
+		'Moriggy es-next-pixel-Wheel'
 		'Moriggy hypernostalgic'
         'Moriggy MasOS'
 		'Moriggy maximus-v3'
