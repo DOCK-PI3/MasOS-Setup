@@ -36,10 +36,11 @@ function main_menu() {
             5 "PC Reparar permisos en MasOS" \
             6 "PC EmulationStation-dev idioma español para Ubuntu 16.04.5" \
 			7 "PC Actualizar MasOS-Setup script" \
-			300  "------------- DEV BETAS Raspberry pi y PC -----------------" \
+			300  "------------- DEV BETAS Raspberry RPI y PC -----------------" \
 			8 "IDIOMA español para emulationstation-dev instalaciones desde 0" \
 			9 "BETA Instalar iconos Originales de EmulationStation" \
 			10 "BETA EXTRAS PARA PC o RPI EmulationStation" \
+			11 "BETA RPI Instalar musica de fondo EmulationStation" \
 			2>&1 > /dev/tty)
 
         case "$choice" in
@@ -57,6 +58,7 @@ function main_menu() {
 			8) idioma_spanish_all ;;
 			9) esicons_origi ;;
 			10) extras_all_auto ;;
+			11) Instalar_BGMUSICA ;;
 			*)  break ;;
         esac
     done
@@ -249,6 +251,29 @@ function extras_all_auto() {
 	fi
 		fi
 # ---------------------------- #
+}
+
+function Instalar_BGMUSICA() {                                          #
+dialog --infobox "... Nuevo Script instalador musica de fondo para emulationstation ..." 30 55 ; sleep 3
+sudo killall emulationstation
+sudo killall emulationstation-dev
+sudo sh -c 'echo "deb [trusted=yes] https://repo.fury.io/rydra/ /" > /etc/apt/sources.list.d/es-bgm.list'
+sudo apt update
+sudo apt install -y python-pygame python-es-bgm
+echo -e "\n\n\n   Descargando algo de musica para usted.\n\n\n"
+sleep 3
+sudo mkdir /home/pi/MasOS/roms/music
+cd /home/pi/MasOS/roms/ && wget http://eazyhax.com/downloads/music.zip -O /home/pi/MasOS/roms/music.zip
+unzip -o music.zip && rm music.zip
+   sudo cat > /etc/bgmconfig.ini <<_EOF_
+[default]
+startdelay = 0
+musicdir = /home/pi/MasOS/roms/music
+restart = True
+startsong =
+_EOF_
+sudo chown -R pi:pi /home/pi/MasOS/roms/music
+sudo reboot
 }
 
 main_menu
