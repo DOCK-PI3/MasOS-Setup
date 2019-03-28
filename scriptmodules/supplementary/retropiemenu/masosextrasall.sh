@@ -272,7 +272,7 @@ sudo apt install -y python-pygame python-es-bgm
 # restart = True
 # startsong =
 # _EOF_
-sudo chown -R pi:pi /home/pi/RetroPie/roms/music
+sudo chown -R pi:pi /home/pi/RetroPie/roms/
 echo -e "\n\n\n   Descargando algo de musica para usted.\n\n\n"
 cd /home/pi/RetroPie/roms/ && wget http://eazyhax.com/downloads/music.zip -O /home/pi/RetroPie/roms/music.zip
 unzip -o music.zip && rm music.zip
