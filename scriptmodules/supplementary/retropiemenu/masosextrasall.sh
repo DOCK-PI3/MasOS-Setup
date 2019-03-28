@@ -255,7 +255,7 @@ function extras_all_auto() {
 
 function Instalar_BGMUSICA() {                                          #
 dialog --infobox "... Nuevo Script instalador musica de fondo para emulationstation ..." 30 55 ; sleep 3
-# sudo killall emulationstation
+sudo killall emulationstation
 # sudo killall emulationstation-dev
 sudo sh -c 'echo "deb [trusted=yes] https://repo.fury.io/rydra/ /" > /etc/apt/sources.list.d/es-bgm.list'
 sudo apt update
@@ -272,10 +272,13 @@ sudo apt install -y python-pygame python-es-bgm
 # restart = True
 # startsong =
 # _EOF_
+echo -e "\n\n\n   Descargando algo de musica para usted.\n\n\n"
+cd /home/pi/RetroPie/roms/ && wget http://eazyhax.com/downloads/music.zip -O /home/pi/RetroPie/roms/music.zip
+unzip -o music.zip && rm music.zip
 echo -e "\n\n\n   El directorio por defecto donde van los .mp3 es /home/pi/RetroPie/roms/music \n\n\n.Meta sus mp3 y reinicie el sistema.\n\n\n"
 sleep 7
 sudo chown -R pi:pi /home/pi/RetroPie/roms/music
-# sudo reboot
+sudo reboot
 }
 
 main_menu
