@@ -3,10 +3,10 @@
 infobox= ""
 infobox="${infobox}___________________________________________________________________________\n\n"
 infobox="${infobox}Instalador Musica de fondo para ES\n\n"
-infobox="${infobox} ...29-03-2019...Version del script: FASE BETA \n\n"
+infobox="${infobox} ...29-03-2019...Version del script: 1.0 FASE BETA \n\n"
 infobox="${infobox}Install Backgroud Music for emulationstation\n\n"
 infobox="${infobox}-Scrip instalador creado por mabedeep para MasOS\n By MasOS Team"
-infobox="${infobox}NOTA: En la proxima actualizacion se añadira opcion de activar y detener la musica"
+infobox="${infobox}NOTA: En la proxima actualizacion se añadira opcion para descargar paquete opcional de musica y el paquete por defecto"
 infobox="${infobox}___________________________________________________________________________\n\n"
 
 dialog --backtitle "MasOS Toolkit" \
