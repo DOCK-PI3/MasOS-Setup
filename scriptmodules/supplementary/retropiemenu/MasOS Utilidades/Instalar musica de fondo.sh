@@ -3,19 +3,11 @@
 infobox= ""
 infobox="${infobox}___________________________________________________________________________\n\n"
 infobox="${infobox}Install Backgroud Music\n\n"
-infobox="${infobox}This script will install and setup backgroud music for you.\n"
-infobox="${infobox}    NOTE: Your system will reboot after removal or Install of Background Music\n"
-infobox="${infobox}You can change out the default background music by accessing the 'music' directory in your roms directory.\n"
-infobox="${infobox}Once installed you can adjust the volume to your liking with this script as well.\n"
-infobox="${infobox}I will also add a 'Background Music Toggle' script to your default 'MasOS' menu so you can shut it off or start it any time.\n\n"
-infobox="${infobox}This script was written with MUCH retro love for my fellow Retro-Gamers\n"
-infobox="${infobox}I really hope it helps you make your retro rig exactly how you want it.\n"
-infobox="${infobox}-Forrest aka Eazy Hax on Youtube\n"
 infobox="${infobox}-Editado por mabedeep para MasOS\n"
 infobox="${infobox}___________________________________________________________________________\n\n"
 
-dialog --backtitle "Eazy Hax MasOS Toolkit" \
---title "Eazy Hax MasOS Toolkit" \
+dialog --backtitle "MasOS Toolkit" \
+--title "Install Backgroud Music" \
 --msgbox "${infobox}" 23 80
 
 function main_menu() {
@@ -26,170 +18,55 @@ function main_menu() {
             --ok-label OK --cancel-label Exit \
             --menu "What action would you like to perform?" 25 75 20 \
             1 "Instalar MasOS Background Music" \
-            2 "Establecer volumen en musica de fondo - Solo despues de ser instalado" \
-            3 "Eliminar musica de fondo" \
+			2 "Configurar Ruta Default para MasOS BGM" \
             2>&1 > /dev/tty)
 
         case "$choice" in
-            1) install_bgm  ;;
-            2) vol_menu  ;;
-            3) remove_bgm  ;;
+            1) Instalar_BGMUSICA  ;;
+			2) rutadefault_BGM  ;;
             *)  break ;;
         esac
     done
 }
 
-function vol_menu() {
-    local choice
-
-    while true; do
-        choice=$(dialog --backtitle "$BACKTITLE" --title " MAIN MENU " \
-            --ok-label OK --cancel-label Exit \
-            --menu "Puede elegir el nivel de volumen uno tras otro hasta que este satisfecho con su configuracion." 25 75 20 \
-            1 "Establecer el volumen de la musica de fondo en 100%" \
-            2 "Establecer el volumen de la musica de fondo en 90%" \
-            3 "Establecer el volumen de la musica de fondo en 80%" \
-            4 "Establecer el volumen de la musica de fondo en 70%" \
-            5 "Establecer el volumen de la musica de fondo en 60%" \
-            6 "Establecer el volumen de la musica de fondo en 50%" \
-            7 "Establecer el volumen de la musica de fondo en 40%" \
-            8 "Establecer el volumen de la musica de fondo en 30%" \
-            9 "Establecer el volumen de la musica de fondo en 20%" \
-            10 "Establecer el volumen de la musica de fondo en 10%" \
-            2>&1 > /dev/tty)
-
-        case "$choice" in
-            1) 100_v  ;;
-            2) 90_v  ;;
-            3) 80_v  ;;
-            4) 70_v  ;;
-            5) 60_v  ;;
-            6) 50_v  ;;
-            7) 40_v  ;;
-            8) 30_v  ;;
-            9) 20_v  ;;
-            10) 10_v  ;;
-            *)  break ;;
-        esac
-    done
+function Instalar_BGMUSICA() {                                          #
+dialog --infobox "... Nuevo Script instalador musica de fondo para ES bgm..." 30 55 ; sleep 3
+sudo killall emulationstation
+# sudo killall emulationstation-dev
+sudo sh -c 'echo "deb [trusted=yes] https://repo.fury.io/rydra/ /" > /etc/apt/sources.list.d/es-bgm.list'
+sudo apt update
+sudo apt install -y python-pygame python-es-bgm
+echo -e "\n\n\n   Descargando algo de musica para usted.\n\n\n"
+sleep 3
+sudo mkdir /home/pi/MasOS/roms/music
+sudo chown -R pi:pi /home/pi/MasOS/roms/music
+cd /home/pi/MasOS/roms/ && wget http://eazyhax.com/downloads/music.zip -O /home/pi/MasOS/roms/music.zip
+unzip -o music.zip && rm music.zip
+   sudo cat > /etc/bgmconfig.ini <<_EOF_
+[default]
+startdelay = 0
+musicdir = /home/pi/MasOS/roms/music
+restart = True
+startsong =
+_EOF_
+echo -e "\n\n\n   El directorio por defecto donde introducir los .mp3 es /home/pi/MasOS/roms/music \n\n\n.Meta sus mp3 y reinicie el sistema.\n\n\nReiniciando en 7s"
+sleep 7
+sudo chown -R pi:pi /home/pi/MasOS/roms/music
+sudo reboot
 }
 
-function install_bgm() {
-        sudo grep livewire /etc/rc.local > /dev/null 2>&1
-        if [ $? -eq 0 ] ; then
-        echo -e "\n\n\n         Parece que la musica de fondo ya esta instalada. Saliendo......\n\n\n"
-        sleep 5
-        exit
-        fi
-        PKG=python-pygame
-        PKG_OK=$(dpkg-query -W --showformat='${Status}\n' $PKG|grep "install ok installed")
-        if [ "" == "$PKG_OK" ]; then
-                echo -e "\n\n\n     No $PKG installed. Setting up $PKG.\n\n\n"
-                sleep 3
-                sudo apt-get update; sudo apt-get install -y $PKG
-        else
-        echo -e "\n\n\n    $PKG seems to be installed...moving on with the Livewire background music install"
-        sleep 3
-        fi
-        wget https://raw.githubusercontent.com/Shakz76/Eazy-Hax-RetroPie-Toolkit/master/cfg/Toggle%20Background%20Music.sh -O /home/pi/RetroPie/retropiemenu/Toggle\ Background\ Music.sh
-        cd /home/pi/ && cp MasOS-Setup/scriptmodules/extras/.livewire.py -O /home/pi/.livewire.py
-        sudo perl -i.bak -pe '$_ = qq[(sudo python /home/pi/.livewire.py) &\n$_] if $_ eq qq[exit 0\n]'  /etc/rc.local
-        if [ ! -d "/home/pi/MasOS/roms/music" ]; then
-                echo -e "\n\n\n    Music directory is missing. Downloading some starter music for you.\n\n\n"
-                sleep 3
-                cd /home/pi/MasOS/roms/
-                wget http://eazyhax.com/downloads/music.zip -O /home/pi/MasOS/roms/music.zip
-                unzip -o music.zip  && rm music.zip
-        fi
-        vol_menu
+function rutadefault_BGM() {                                          #
+dialog --infobox "... Ruta por default musica de fondo para ES bgm ..." 30 55 ; sleep 3
+   sudo cat > /etc/bgmconfig.ini <<_EOF_
+[default]
+startdelay = 0
+musicdir = /home/pi/MasOS/roms/music
+restart = True
+startsong =
+_EOF_
+echo -e "\n\n\n   El directorio por defecto donde introducir los .mp3 es \n/home/pi/MasOS/roms/music \n\n\n.Despues de meter sus mp3 reinicie el sistema. \n\n\n\n\n\nReiniciando en 7s"
+sleep 7
+sudo reboot
 }
-
-function remove_bgm() {
-	pgrep -f "python /home/pi/.livewire.py"|xargs sudo kill -9
-	rm -f /home/pi/RetroPie/retropiemenu/Toggle\ Background\ Music.sh
-	rm /home/pi/.livewire.py
-	if [ -e /home/pi/.DisableMusic ]; then
-		rm /home/pi/.DisableMusic
-	fi
-	rm -r  /home/pi/MasOS/roms/music/
-	sudo sed -i '/livewire/d' /etc/rc.local
-	echo -e "\n\n\n         Background Music has been removed from your system.\n\n\n"
-	sleep 5
-}
-
-
-
-function 100_v() {
-        CUR_VAL=`grep "maxvolume =" /home/pi/.livewire.py|awk '{print $3}'`
-        export CUR_VAL
-        perl -p -i -e 's/maxvolume = $ENV{CUR_VAL}/maxvolume = 1.0/g' /home/pi/.livewire.py
-        pgrep -f "python /home/pi/.livewire.py"|xargs sudo kill -9
-        sudo python /home/pi/.livewire.py  --silent &
-}
-function 90_v() {
-        CUR_VAL=`grep "maxvolume =" /home/pi/.livewire.py|awk '{print $3}'`
-        export CUR_VAL
-        perl -p -i -e 's/maxvolume = $ENV{CUR_VAL}/maxvolume = 0.90/g' /home/pi/.livewire.py
-        pgrep -f "python /home/pi/.livewire.py"|xargs sudo kill -9
-        sudo python /home/pi/.livewire.py  --silent &
-}
-function 80_v() {
-        CUR_VAL=`grep "maxvolume =" /home/pi/.livewire.py|awk '{print $3}'`
-        export CUR_VAL
-        perl -p -i -e 's/maxvolume = $ENV{CUR_VAL}/maxvolume = 0.80/g' /home/pi/.livewire.py
-        pgrep -f "python /home/pi/.livewire.py"|xargs sudo kill -9
-        sudo python /home/pi/.livewire.py  --silent &
-}
-function 70_v() {
-        CUR_VAL=`grep "maxvolume =" /home/pi/.livewire.py|awk '{print $3}'`
-        export CUR_VAL
-        perl -p -i -e 's/maxvolume = $ENV{CUR_VAL}/maxvolume = 70.0/g' /home/pi/.livewire.py
-        pgrep -f "python /home/pi/.livewire.py"|xargs sudo kill -9
-        sudo python /home/pi/.livewire.py  --silent &
-}
-function 60_v() {
-        CUR_VAL=`grep "maxvolume =" /home/pi/.livewire.py|awk '{print $3}'`
-        export CUR_VAL
-        perl -p -i -e 's/maxvolume = $ENV{CUR_VAL}/maxvolume = 60.0/g' /home/pi/.livewire.py
-        pgrep -f "python /home/pi/.livewire.py"|xargs sudo kill -9
-        sudo python /home/pi/.livewire.py  --silent &
-}
-function 50_v() {
-        CUR_VAL=`grep "maxvolume =" /home/pi/.livewire.py|awk '{print $3}'`
-        export CUR_VAL
-        perl -p -i -e 's/maxvolume = $ENV{CUR_VAL}/maxvolume = 0.50/g' /home/pi/.livewire.py
-        pgrep -f "python /home/pi/.livewire.py"|xargs sudo kill -9
-        sudo python /home/pi/.livewire.py  --silent &
-}
-function 40_v() {
-        CUR_VAL=`grep "maxvolume =" /home/pi/.livewire.py|awk '{print $3}'`
-        export CUR_VAL
-        perl -p -i -e 's/maxvolume = $ENV{CUR_VAL}/maxvolume = 0.40/g' /home/pi/.livewire.py
-        pgrep -f "python /home/pi/.livewire.py"|xargs sudo kill -9
-        sudo python /home/pi/.livewire.py  --silent &
-}
-function 30_v() {
-        CUR_VAL=`grep "maxvolume =" /home/pi/.livewire.py|awk '{print $3}'`
-        export CUR_VAL
-        perl -p -i -e 's/maxvolume = $ENV{CUR_VAL}/maxvolume = 0.30/g' /home/pi/.livewire.py
-        pgrep -f "python /home/pi/.livewire.py"|xargs sudo kill -9
-        sudo python /home/pi/.livewire.py  --silent &
-}
-function 20_v() {
-        CUR_VAL=`grep "maxvolume =" /home/pi/.livewire.py|awk '{print $3}'`
-        export CUR_VAL
-        perl -p -i -e 's/maxvolume = $ENV{CUR_VAL}/maxvolume = 0.20/g' /home/pi/.livewire.py
-        pgrep -f "python /home/pi/.livewire.py"|xargs sudo kill -9
-        sudo python /home/pi/.livewire.py  --silent &
-}
-function 10_v() {
-        CUR_VAL=`grep "maxvolume =" /home/pi/.livewire.py|awk '{print $3}'`
-        export CUR_VAL
-        perl -p -i -e 's/maxvolume = $ENV{CUR_VAL}/maxvolume = 0.10/g' /home/pi/.livewire.py
-        pgrep -f "python /home/pi/.livewire.py"|xargs sudo kill -9
-        sudo python /home/pi/.livewire.py  --silent &
-}
-
 
 main_menu
-
