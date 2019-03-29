@@ -2,12 +2,15 @@
 
 infobox= ""
 infobox="${infobox}___________________________________________________________________________\n\n"
-infobox="${infobox}Install Backgroud Music\n\n"
-infobox="${infobox}-Editado por mabedeep para MasOS\n"
+infobox="${infobox}Instalador Musica de fondo para ES\n\n"
+infobox="${infobox} ...29-03-2019...Version del script: FASE BETA \n\n"
+infobox="${infobox}Install Backgroud Music for emulationstation\n\n"
+infobox="${infobox}-Scrip instalador creado por mabedeep para MasOS\n By MasOS Team"
+infobox="${infobox}NOTA: En la proxima actualizacion se añadira opcion de activar y detener la musica"
 infobox="${infobox}___________________________________________________________________________\n\n"
 
 dialog --backtitle "MasOS Toolkit" \
---title "Install Backgroud Music" \
+--title "Instalador Musica de fondo para ES" \
 --msgbox "${infobox}" 23 80
 
 function main_menu() {
@@ -16,9 +19,9 @@ function main_menu() {
     while true; do
         choice=$(dialog --backtitle "$BACKTITLE" --title " MAIN MENU " \
             --ok-label OK --cancel-label Exit \
-            --menu "What action would you like to perform?" 25 75 20 \
+            --menu "Que accion le gustaria realizar?" 25 75 20 \
             1 "Instalar MasOS Background Music" \
-			2 "Configurar Ruta Default para MasOS BGM" \
+			2 "Config Ruta Default MasOS BGM, opcional solo si falla la inicial " \
             2>&1 > /dev/tty)
 
         case "$choice" in
@@ -42,6 +45,7 @@ sudo mkdir /home/pi/MasOS/roms/music
 sudo chown -R pi:pi /home/pi/MasOS/roms/music
 cd /home/pi/MasOS/roms/ && wget http://eazyhax.com/downloads/music.zip -O /home/pi/MasOS/roms/music.zip
 unzip -o music.zip && rm music.zip
+sudo chown -R pi:pi /etc/bgmconfig.ini
    sudo cat > /etc/bgmconfig.ini <<_EOF_
 [default]
 startdelay = 0
@@ -56,7 +60,7 @@ sudo reboot
 }
 
 function rutadefault_BGM() {                                          #
-dialog --infobox "... Ruta por default musica de fondo para ES bgm ..." 30 55 ; sleep 3
+dialog --infobox "... MasOS Ruta por default musica de fondo para ES bgm ..." 30 55 ; sleep 3
 sudo chown -R pi:pi /etc/bgmconfig.ini
    sudo cat > /etc/bgmconfig.ini <<_EOF_
 [default]
