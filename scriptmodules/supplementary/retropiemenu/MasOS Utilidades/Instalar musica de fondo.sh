@@ -57,6 +57,7 @@ sudo reboot
 
 function rutadefault_BGM() {                                          #
 dialog --infobox "... Ruta por default musica de fondo para ES bgm ..." 30 55 ; sleep 3
+sudo chown -R pi:pi /etc/bgmconfig.ini
    sudo cat > /etc/bgmconfig.ini <<_EOF_
 [default]
 startdelay = 0
