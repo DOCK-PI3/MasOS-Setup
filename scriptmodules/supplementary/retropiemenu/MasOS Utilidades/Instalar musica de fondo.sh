@@ -90,17 +90,14 @@ function off_on_bgm() {
 #########################################################################
 # Limpiar directorio de musica #
 function limpiar_mp3Dir() {
-			echo -e "\n\n\n   Este script solo elimina los ficheros en formato .mp3 !....\n\n\n"
+			echo -e "\n\n\n   Este script elimina el directorio completo y lo crea nuevo !....\n\n\n"
 		sleep 2
-        if [[ -f /home/pi/MasOS/roms/music/*.mp3 ]]; then
 			sudo chown -R pi:pi /home/pi/MasOS/roms/music
-			sudo rm -R /home/pi/MasOS/roms/music/*.mp3
-			echo -e "\n\n\n   Se eliminaron todos sus MP3.....\n\n\n"
+			sudo rm -R /home/pi/MasOS/roms/music
+			sudo mkdir /home/pi/MasOS/roms/music
+			sudo chown -R pi:pi /home/pi/MasOS/roms/music
+			echo -e "\n\n\n   Se eliminaron todos sus ficheros de /music.....\n\n\n"
 		sleep 2
-    else
-			echo -e "\n\n\n   El directorio de music esta vacio....\n\n\n"
-		sleep 2
-	fi
 # ---------------------------- #
 }
 
