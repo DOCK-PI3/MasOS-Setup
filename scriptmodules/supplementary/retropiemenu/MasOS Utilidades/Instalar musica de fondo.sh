@@ -3,11 +3,11 @@
 infobox= ""
 infobox="${infobox}___________________________________________________________________________\n\n"
 infobox="${infobox}Instalador Herramienta Musica de fondo para ES , BGM MasOS\n\n"
-infobox="${infobox}30-03-2019...Version del script: 2.0 FASE RC1 \n\n"
+infobox="${infobox}30-03-2019...Version del script: 3.0a \n\n"
 infobox="${infobox}Install BGM MasOS Backgroud Music Tool for emulationstation\n\n"
 infobox="${infobox}-Scrip instalador creado por mabedeep para MasOS 4.X.X\n By MasOS Team\n\n"
 infobox="${infobox}NOTA: Agregadas las dos ultimas opciones para descargar \npaquete opcional de musica y el paquete por defecto. \n\n\n\n"
-infobox="${infobox}Si falla alguna opcion de la 3 a la 5 avisenos por telegram! Salu2\n\n"
+infobox="${infobox}Script 100% funcional. Si falla alguna opcion avisenos por telegram! Salu2\n\n"
 infobox="${infobox}___________________________________________________________________________\n\n"
 
 dialog --backtitle "MasOS BGM Toolkit" \
