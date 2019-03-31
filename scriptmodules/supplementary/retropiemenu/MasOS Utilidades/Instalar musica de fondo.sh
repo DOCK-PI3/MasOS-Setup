@@ -107,7 +107,7 @@ function limpiar_mp3Dir() {
 #########################################################################
 # Descargar pack dock-pi3 bgm #
 function dockpi3_bgmPack() {
-			echo -e "\n\n\n   Descargando pack personal dock-pi3.  ,.....Espere!.....\n\n\nTamaño en disco: 141 mb\n\n\nCanciones: 39 ficheros\n\n\nCategoria: ARCADES\n\n\nFormato: .mp3"
+			echo -e "\n\n\n   Descargando pack personal Arcade dock-pi3.  ,.....Espere!.....\n\n\nTamaño en disco: 141 mb\n\n\nCanciones: 39 ficheros\n\n\nCategoria: ARCADES\n\n\nFormato: .mp3"
 			sleep 5
 			cd && wget https://archive.org/download/BGMDOCKPI3COLLECTIONS/BGM_DOCK-PI3_COLLECTIONS.zip -O /home/pi/BGM_DOCK-PI3_COLLECTIONS.zip
 			sudo chown -R pi:pi /home/pi/MasOS/roms/music
