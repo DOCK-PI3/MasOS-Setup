@@ -137,10 +137,11 @@ function default_bgmPack() {
 #########################################################################
 # Detector de cores ,emuladores y ports , bgm #
 function detector_cores() {
-			echo -e "\n\n\n   Reaparando/Actualizando el detector BGM MasOS.....Espere!.....\n\n\n"
+			echo -e "\n\n\n  Actualizando el detector BGM MasOS.....Espere!.....\n\n\n"
 			sleep 3
 			sudo chown -R pi:pi /usr/lib/python2.7/dist-packages/bgm/Application.py
-		  sudo cp -R pi:pi /usr/lib/python2.7/dist-packages/bgm/Application.py /usr/lib/python2.7/dist-packages/bgm/Application_back.py
+		  sudo cp -R /usr/lib/python2.7/dist-packages/bgm/Application.py /usr/lib/python2.7/dist-packages/bgm/Application_back.py
+		 sudo rm /usr/lib/python2.7/dist-packages/bgm/Application.py
 		sudo cat > /usr/lib/python2.7/dist-packages/bgm/Application.py <<_EOF_
 import random
 import os
