@@ -31,12 +31,14 @@ function main_menu() {
 			1 "Instalar Bezels" \
 			2 "Vídeos de Carga de Roms" \
 			3 "Overclock (SÓLO) Raspberry pi" \
+			4 "Arranque silencioso" \
 			2>&1 > /dev/tty)
 
         case "$choice" in
 			1) bezels  ;;
 			2) launching_videos  ;;
 			3) overclock  ;;
+			4) silencio  ;;
 			*)  break ;;
         esac
     done
@@ -63,6 +65,14 @@ function launching_videos() {
 function overclock() {
 
 	sudo ~/RetroPie/scripts/overclock.sh
+	
+}
+
+# Funcion para arranque silencioso	#
+
+function silencio() {
+
+	sudo ~/RetroPie/scripts/sym.sh
 	
 }
 
