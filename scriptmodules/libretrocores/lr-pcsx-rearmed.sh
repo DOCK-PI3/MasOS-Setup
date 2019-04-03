@@ -16,7 +16,7 @@ rp_module_licence="GPL2 https://raw.githubusercontent.com/libretro/pcsx_rearmed/
 rp_module_section="main"
 
 function depends_lr-pcsx-rearmed() {
-    local depends=(libpng12-dev)
+    local depends=(libpng-dev)
     isPlatform "x11" && depends+=(libx11-dev)
     getDepends "${depends[@]}"
 }
@@ -26,14 +26,17 @@ function sources_lr-pcsx-rearmed() {
 }
 
 function build_lr-pcsx-rearmed() {
-    if isPlatform "neon"; then
-        ./configure --platform=libretro --enable-neon
+    local platform
+    if isPlatform "rpi2" || isPlatform "rpi3"; then
+        platform="$__platform"
     else
-        ./configure --platform=libretro --disable-neon
+        isPlatform "arm" && platform+="armv"
+        isPlatform "neon" && platform+="neon"
     fi
-    make clean
-    make
-    md_ret_require="$md_build/libretro.so"
+    [[ -z "$platform" ]] && platform="unix"
+    make -f Makefile.libretro clean
+    make -f Makefile.libretro platform="$platform"
+    md_ret_require="$md_build/pcsx_rearmed_libretro.so"
 }
 
 function install_lr-pcsx-rearmed() {
@@ -41,7 +44,7 @@ function install_lr-pcsx-rearmed() {
         'AUTHORS'
         'ChangeLog.df'
         'COPYING'
-        'libretro.so'
+        'pcsx_rearmed_libretro.so'
         'NEWS'
         'README.md'
         'readme.txt'
@@ -52,6 +55,6 @@ function configure_lr-pcsx-rearmed() {
     mkRomDir "psx"
     ensureSystemretroconfig "psx"
 
-    addEmulator 1 "$md_id" "psx" "$md_inst/libretro.so"
+    addEmulator 1 "$md_id" "psx" "$md_inst/pcsx_rearmed_libretro.so"
     addSystem "psx"
 }

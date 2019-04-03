@@ -30,7 +30,7 @@ function _update_hook_lr-mupen64plus() {
 }
 
 function depends_lr-mupen64plus() {
-    local depends=(flex bison libpng12-dev)
+    local depends=(flex bison libpng-dev)
     isPlatform "x11" && depends+=(libglew-dev libglu1-mesa-dev)
     isPlatform "x86" && depends+=(nasm)
     isPlatform "rpi" && depends+=(libraspberrypi-dev)
@@ -39,8 +39,6 @@ function depends_lr-mupen64plus() {
 
 function sources_lr-mupen64plus() {
     gitPullOrClone "$md_build" https://github.com/libretro/mupen64plus-libretro.git
-    # needed until https://github.com/libretro/mupen64plus-libretro/pull/39 is accepted
-    isPlatform "rpi" && applyPatch "$md_data/01_new_lib_names.diff"
 }
 
 function build_lr-mupen64plus() {
