@@ -3,7 +3,7 @@
 infobox= ""
 infobox="${infobox}___________________________________________________________________________\n\n"
 infobox="${infobox}Instalador Herramienta Musica de fondo para ES , BGM MasOS\n\n"
-infobox="${infobox}30-03-2019...Version del script: 3.0a \n"
+infobox="${infobox}05-04-2019...Version del script: 4.0a \n"
 infobox="${infobox}Reproductor usado python-es-bgm ,creado por Rydra https://github.com/Rydra/bgm-for-es \n"
 infobox="${infobox}Install BGM MasOS Backgroud Music Tool for emulationstation\n\n"
 infobox="${infobox}-Scrip instalador creado por mabedeep para MasOS 4.X.X\n By MasOS Team\n\n"
@@ -140,9 +140,9 @@ function default_bgmPack() {
 function detector_cores() {
 			echo -e "\n\n\n  Actualizando el detector BGM MasOS.....Espere!.....\n\n\n"
 			sleep 3
-			sudo chown -R pi:pi /usr/lib/python2.7/dist-packages/bgm/Application.py
+			  sudo service bgm stop
+			sudo chown -R pi:pi /usr/lib/python2.7/dist-packages/bgm/
 		  sudo cp -R /usr/lib/python2.7/dist-packages/bgm/Application.py /usr/lib/python2.7/dist-packages/bgm/Application_back.py
-		 sudo rm /usr/lib/python2.7/dist-packages/bgm/Application.py
 		sudo cat > /usr/lib/python2.7/dist-packages/bgm/Application.py <<_EOF_
 import random
 import os
@@ -235,10 +235,10 @@ class Application:
 
         self.emulatornames = ["retroarch", "ags", "advmame", "amiberry", "coolcv", "uae4all2", "uae4arm", "capricerpi", "linapple", "hatari", "stella",
                               "atari800", "xroar", "vice", "dolphin", "daphne", "gearboy", "kat5200", "reicast", "pifba", "osmose", "gpsp", "jzintv",
-                              "basiliskll", "mame", "mame4all", "minivmac", "drastic", "dgen", "openmsx", "mupen64plus", "gngeo", "dosbox", "dosbox-sdl2",
+                              "solarus_run", "basiliskll", "mame", "mame4all", "minivmac", "drastic", "dgen", "openmsx", "mupen64plus", "gngeo", "dosbox", "dosbox-sdl2",
                               "zelda_roth_se", "ppsspp", "simcoupe", "np2", "pcsx2", "oricutron", "scummvm", "snes9x", "pisnes", "frotz", "fbzx", "fuse", "fs-uae", "gemrb",
                               "zsxd", "zsdx", "cgenesis", "zdoom", "pcsx", "pokemini", "px68k", "quasi88", "eduke32", "lincity", "love", "kodi", "alephone", "micropolis",
-                              "openbor", "openttd", "rpix86", "sdltrs", "ti99sim", "uae4all", "opentyrian", "cannonball", "tyrquake", "quake3", "ioquake3", "residualvm",
+                              "openbor", "openttd", "rpix86", "sdltrs", "ti99sim", "uae4all", "opentyrian", "cannonball", "tyrquake", "quake3", "ioquake3.arm", "residualvm",
                               "xrick", "sdlpop", "xm7", "zesarux", "uqm", "stratagus", "wolf4sdl", "ports", "chromium", "gamemaker", "MalditaCastilla", "retropie", "solarus"]
 
         self.transitionTable = {
@@ -323,9 +323,10 @@ class Application:
             self.executeState()
 
 _EOF_
-				  # sudo chown -R pi:pi /usr/lib/python2.7/dist-packages/bgm
-				echo -e "\n\n\n   Detector actualizado correctamente!.....\n\n\nRecuerde reiniciar el sistema.!\n\n\n"
-			sleep 3
+				  
+echo -e "\n\n\n   Detector actualizado correctamente!.....\n\n\nReiniciando el sistema.!\n\n\n"
+		sleep 3
+sudo reboot
 # ---------------------------- #
 }
 
