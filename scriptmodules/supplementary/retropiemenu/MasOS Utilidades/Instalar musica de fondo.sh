@@ -66,7 +66,7 @@ _EOF_
 echo -e "\n\n\n   El directorio por defecto donde introducir los .mp3 es /home/pi/MasOS/roms/music \n\n\n.Meta sus mp3 y reinicie el sistema para empezar a escuchar su musica.\n\n\nReiniciando en 7s"
 sleep 7
 sudo chown -R pi:pi /home/pi/MasOS/roms/music
-sudo rm -R /home/pi/RetroPie/roms/music
+sudo rm -R /home/pi/RetroPie/roms
 sudo reboot
 }
 
@@ -236,10 +236,10 @@ class Application:
         self.emulatornames = ["retroarch", "ags", "advmame", "amiberry", "coolcv", "uae4all2", "uae4arm", "capricerpi", "linapple", "hatari", "stella",
                               "atari800", "xroar", "vice", "dolphin", "daphne", "gearboy", "kat5200", "reicast", "pifba", "osmose", "gpsp", "jzintv",
                               "basiliskll", "mame", "mame4all", "minivmac", "drastic", "dgen", "openmsx", "mupen64plus", "gngeo", "dosbox", "dosbox-sdl2",
-                              "ppsspp", "simcoupe", "np2", "pcsx2", "oricutron", "scummvm", "snes9x", "pisnes", "frotz", "fbzx", "fuse", "fs-uae", "gemrb",
-                              "cgenesis", "zdoom", "pcsx", "pokemini", "px68k", "quasi88", "eduke32", "lincity", "love", "kodi", "alephone", "micropolis",
-                              "openbor", "openttd", "rpix86", "sdltrs", "ti99sim", "uae4all", "opentyrian", "cannonball", "tyrquake", "ioquake3", "residualvm",
-                              "xrick", "sdlpop", "xm7", "zesarux", "uqm", "stratagus", "wolf4sdl", "ports", "chromium", "gamemaker", "retropie", "solarus"]
+                              "zelda_roth_se", "ppsspp", "simcoupe", "np2", "pcsx2", "oricutron", "scummvm", "snes9x", "pisnes", "frotz", "fbzx", "fuse", "fs-uae", "gemrb",
+                              "zsxd", "zsdx", "cgenesis", "zdoom", "pcsx", "pokemini", "px68k", "quasi88", "eduke32", "lincity", "love", "kodi", "alephone", "micropolis",
+                              "openbor", "openttd", "rpix86", "sdltrs", "ti99sim", "uae4all", "opentyrian", "cannonball", "tyrquake", "quake3", "ioquake3", "residualvm",
+                              "xrick", "sdlpop", "xm7", "zesarux", "uqm", "stratagus", "wolf4sdl", "ports", "chromium", "gamemaker", "MalditaCastilla", "retropie", "solarus"]
 
         self.transitionTable = {
             State.paused: [
