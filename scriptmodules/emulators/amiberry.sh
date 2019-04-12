@@ -17,7 +17,7 @@ rp_module_section="opt"
 rp_module_flags="!x86"
 
 function depends_amiberry() {
-    local depends=(libpng12-dev libmpeg2-4-dev zlib1g-dev)
+    local depends=(libpng-dev libmpeg2-4-dev zlib1g-dev)
     if ! isPlatform "rpi" || isPlatform "kms" || isPlatform "vero4k"; then
         depends+=(libsdl2-dev libsdl2-image-dev libsdl2-ttf-dev)
     fi
@@ -32,6 +32,7 @@ function depends_amiberry() {
 
 function sources_amiberry() {
     gitPullOrClone "$md_build" https://github.com/midwan/amiberry/
+    applyPatch "$md_data/01_remove_cflags.diff"
 }
 
 function build_amiberry() {
@@ -97,8 +98,8 @@ function configure_amiberry() {
     # whdload auto-booter user config - copy default configuration
     copyDefaultConfig "$md_inst/whdboot-dist/hostprefs.conf" "$config_dir/whdboot/hostprefs.conf"
 
-    # copy game-data, save-data folders and boot-data.zip
-    cp -R "$md_inst/whdboot-dist/"{game-data,save-data,boot-data.zip} "$config_dir/whdboot/"
+    # copy game-data, save-data folders, boot-data.zip and WHDLoad
+    cp -R "$md_inst/whdboot-dist/"{game-data,save-data,boot-data.zip,WHDLoad} "$config_dir/whdboot/"
 
     chown -R $user:$user "$config_dir/whdboot"
 }

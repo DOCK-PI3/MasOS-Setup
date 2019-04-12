@@ -1,15 +1,15 @@
 #!/bin/bash
-
-# This file is part of The MasOS Project
+# This file is part of The RetroPie Project
 #
-# The MasOS Project es legal, esta contruido bajo raspbian que es de codigo abierto, en este nuevo
-# sistema trabajan unos pocos desarroladores independientes de diversas partes del planeta.
+# The RetroPie Project is the legal property of its developers, whose names are
+# too numerous to list here. Please refer to the COPYRIGHT.md file distributed with this source.
 #
-# MasOS El sistema operativo exclusivo para la comunidad MyArcadeSpain ... de ahí su nombre.!
+# See the LICENSE.md file at the top-level directory of this distribution and
+# at https://raw.githubusercontent.com/RetroPie/RetroPie-Setup/master/LICENSE.md
 #
 
 ## @file helpers.sh
-## @brief MasOS helpers library
+## @brief RetroPie helpers library
 ## @copyright GPLv3
 
 ## @fn printMsgs()
@@ -27,6 +27,7 @@ function printMsgs() {
         [[ "$type" == "console" ]] && echo -e "$msg"
         [[ "$type" == "heading" ]] && echo -e "\n= = = = = = = = = = = = = = = = = = = = =\n$msg\n= = = = = = = = = = = = = = = = = = = = =\n"
     done
+    return 0
 }
 
 ## @fn printHeading()
@@ -203,14 +204,24 @@ function getDepends() {
     for required in $@; do
 
         # workaround for different package names on osmc / xbian
+        if [[ "$required" == "libraspberrypi-bin" ]]; then
+            isPlatform "osmc" && required="rbp-userland-osmc"
+            isPlatform "xbian" && required="xbian-package-firmware"
+        fi
         if [[ "$required" == "libraspberrypi-dev" ]]; then
             isPlatform "osmc" && required="rbp-userland-dev-osmc"
             isPlatform "xbian" && required="xbian-package-firmware"
         fi
 
-        # map libpng12-dev to libpng-dev for Ubuntu 16.10+
+        # map libpng12-dev to libpng-dev for Stretch+
         if [[ "$required" == "libpng12-dev" ]] && compareVersions "$__os_debian_ver" ge 9;  then
             required="libpng-dev"
+            printMsgs "console" "RetroPie module references libpng12-dev and should be changed to libpng-dev"
+        fi
+
+        # map libpng-dev to libpng12-dev for Jessie
+        if [[ "$required" == "libpng-dev" ]] && compareVersions "$__os_debian_ver" lt 9; then
+            required="libpng12-dev"
         fi
 
         if [[ "$md_mode" == "install" ]]; then
@@ -286,9 +297,9 @@ function getDepends() {
             fi
         done
         if [[ ${#failed[@]} -eq 0 ]]; then
-            printMsgs "console" "Completada la instalacion del paquete(s): ${packages[*]}."
+            printMsgs "console" "Successfully installed package(s): ${packages[*]}."
         else
-            md_ret_errors+=("Instalacion fallida(s): ${failed[*]}.")
+            md_ret_errors+=("Could not install package(s): ${failed[*]}.")
             return 1
         fi
     fi
@@ -311,7 +322,7 @@ function rpSwap() {
             local size=$((needed - memory))
             mkdir -p "$__swapdir/"
             if [[ $size -ge 0 ]]; then
-                echo "Agrega $size MB para swap adicional"
+                echo "Adding $size MB of additional swap"
                 fallocate -l ${size}M "$swapfile"
                 chmod 600 "$swapfile"
                 mkswap "$swapfile"
@@ -341,6 +352,7 @@ function gitPullOrClone() {
 
     if [[ -d "$dir/.git" ]]; then
         pushd "$dir" > /dev/null
+        runCmd git checkout "$branch"
         runCmd git pull
         runCmd git submodule update --init --recursive
         popd > /dev/null
@@ -350,13 +362,19 @@ function gitPullOrClone() {
             git+=" --depth 1"
         fi
         [[ "$branch" != "master" ]] && git+=" --branch $branch"
-        echo "$git \"$repo\" \"$dir\""
+        printMsgs "console" "$git \"$repo\" \"$dir\""
         runCmd $git "$repo" "$dir"
     fi
-    if [[ "$commit" ]]; then
-        echo "Winding back $repo->$branch to commit: #$commit"
-        runCmd git -C "$dir" checkout $commit
+
+    if [[ -n "$commit" ]]; then
+        printMsgs "console" "Winding back $repo->$branch to commit: #$commit"
+        git -C "$dir" branch -D "$commit" &>/dev/null
+        runCmd git -C "$dir" checkout -f "$commit" -b "$commit"
     fi
+
+    branch=$(runCmd git -C "$dir" rev-parse --abbrev-ref HEAD)
+    commit=$(runCmd git -C "$dir" rev-parse HEAD)
+    printMsgs "console" "HEAD is now in branch '$branch' at commit '$commit'"
 }
 
 # @fn setupDirectories()
@@ -368,6 +386,13 @@ function setupDirectories() {
     mkUserDir "$biosdir"
     mkUserDir "$configdir"
     mkUserDir "$configdir/all"
+
+    # some home folders for configs that modules rely on
+    mkUserDir "$home/.cache"
+    mkUserDir "$home/.config"
+    mkUserDir "$home/.local"
+    mkUserDir "$home/.local/share"
+
     # make sure we have inifuncs.sh in place and that it is up to date
     mkdir -p "$rootdir/lib"
     local helper_libs=(inifuncs.sh archivefuncs.sh)
@@ -380,7 +405,7 @@ function setupDirectories() {
     # create template for autoconf.cfg and make sure it is owned by $user
     local config="$configdir/all/autoconf.cfg"
     if [[ ! -f "$config" ]]; then
-        echo "# this file can be used to enable/disable MasOS autoconfiguration features" >"$config"
+        echo "# this file can be used to enable/disable retropie autoconfiguration features" >"$config"
     fi
     chown $user:$user "$config"
 }
@@ -793,7 +818,6 @@ function setESSystem() {
         "$function" "$@"
     done
 }
-
 ## @fn ensureSystemretroconfig()
 ## @param system system to create retroarch.cfg for
 ## @param shader set a default shader to use (deprecated)
@@ -801,32 +825,25 @@ function setESSystem() {
 function ensureSystemretroconfig() {
     local system="$1"
     local shader="$2"
-
     if [[ ! -d "$configdir/$system" ]]; then
         mkUserDir "$configdir/$system"
     fi
-
     local config="$(mktemp)"
     # add the initial comment regarding include order
     echo -e "# Settings made here will only override settings in the global retroarch.cfg if placed above the #include line\n" >"$config"
-
     # add the per system default settings
     iniConfig " = " '"' "$config"
     iniSet "input_remapping_directory" "$configdir/$system/"
-
     if [[ -n "$shader" ]]; then
         iniUnset "video_smooth" "false"
         iniSet "video_shader" "$emudir/retroarch/shader/$shader"
         iniUnset "video_shader_enable" "true"
     fi
-
     # include the main retroarch config
     echo -e "\n#include \"$configdir/all/retroarch.cfg\"" >>"$config"
-
     copyDefaultConfig "$config" "$configdir/$system/retroarch.cfg"
     rm "$config"
 }
-
 ## @fn setRetroArchCoreOption()
 ## @param option option to set
 ## @param value value to set
@@ -841,7 +858,6 @@ function setRetroArchCoreOption() {
     fi
     chown $user:$user "$configdir/all/retroarch-core-options.cfg"
 }
-
 ## @fn setConfigRoot()
 ## @param dir directory under $configdir to use
 ## @brief Sets module config root `$md_conf_root` to subfolder from `$configdir`
@@ -853,7 +869,6 @@ function setConfigRoot() {
     [[ -n "$dir" ]] && md_conf_root+="/$dir"
     mkUserDir "$md_conf_root"
 }
-
 ## @fn loadModuleConfig()
 ## @param params space separated list of key=value parameters
 ## @brief Load the settings for a module.
@@ -877,7 +892,6 @@ function loadModuleConfig() {
     local option
     local key
     local value
-
     for option in "${options[@]}"; do
         option=(${option/=/ })
         key="${option[0]}"
@@ -891,7 +905,6 @@ function loadModuleConfig() {
         fi
     done
 }
-
 ## @fn applyPatch()
 ## @param patch filename of patch to apply
 ## @brief Apply a patch if it has not already been applied to current folder.
@@ -901,15 +914,10 @@ function loadModuleConfig() {
 function applyPatch() {
     local patch="$1"
     local patch_applied="${patch##*/}.applied"
-
-    # patch is in stdin
-    if [[ ! -t 0 ]]; then
-        cat >"$patch"
-    fi
-
     if [[ ! -f "$patch_applied" ]]; then
         if patch -f -p1 <"$patch"; then
             touch "$patch_applied"
+            printMsgs "console" "Successfully applied patch: $patch"
         else
             md_ret_errors+=("$md_id patch $patch failed to apply")
             return 1
@@ -917,25 +925,21 @@ function applyPatch() {
     fi
     return 0
 }
-
 ## @fn downloadAndExtract()
 ## @param url url of archive
 ## @param dest destination folder for the archive
-## @param opts number of leading components from file to strip off or unzip params
+## @param optional additional parameters to pass to the decompression tool.
 ## @brief Download and extract an archive
-## @details Download and extract an archive, optionally stripping off a number
-## of directories - equivalent to the tar `--strip-components parameter`. For
-## zip files, the strip parameter can contain additional options to send to unzip
+## @details Download and extract an archive.
 ## @retval 0 on success
 function downloadAndExtract() {
     local url="$1"
     local dest="$2"
-    local opts="$3"
-
+    shift 2
+    local opts=("$@")
     local ext="${url##*.}"
     local cmd=(tar -xv)
     local is_tar=1
-
     local ret
     case "$ext" in
         gz|tgz)
@@ -952,23 +956,18 @@ function downloadAndExtract() {
             local tmp="$(mktemp -d)"
             local file="${url##*/}"
             runCmd wget -q -O"$tmp/$file" "$url"
-            runCmd unzip $opts -o "$tmp/$file" -d "$dest"
+            runCmd unzip "${opts[@]}" -o "$tmp/$file" -d "$dest"
             rm -rf "$tmp"
             ret=$?
     esac
-
     if [[ "$is_tar" -eq 1 ]]; then
         mkdir -p "$dest"
-        cmd+=(-C "$dest")
-        [[ -n "$opts" ]] && cmd+=(--strip-components "$opts")
-
+        cmd+=(-C "$dest" "${opts[@]}")
         runCmd "${cmd[@]}" < <(wget -q -O- "$url")
         ret=$?
     fi
-
     return $ret
 }
-
 ## @fn ensureFBMode()
 ## @param res_x width of mode
 ## @param res_y height of mode
@@ -979,11 +978,11 @@ function downloadAndExtract() {
 ## were not set to use the dispmanx SDL1 backend would just show in a small
 ## area of the screen.
 function ensureFBMode() {
+    [[ ! -f /etc/fb.modes ]] && return
     local res_x="$1"
     local res_y="$2"
     local res="${res_x}x${res_y}"
     sed -i --follow-symlinks "/$res mode/,/endmode/d" /etc/fb.modes
-
     cat >> /etc/fb.modes <<_EOF_
 # added by RetroPie-Setup - $res mode for emulators
 mode "$res"
@@ -992,7 +991,6 @@ mode "$res"
 endmode
 _EOF_
 }
-
 ## @fn joy2keyStart()
 ## @param left mapping for left
 ## @param right mapping for right
@@ -1009,27 +1007,22 @@ function joy2keyStart() {
     # don't start on SSH sessions
     # (check for bracket in output - ip/name in brackets over a SSH connection)
     [[ "$(who -m)" == *\(* ]] && return
-
     local params=("$@")
     if [[ "${#params[@]}" -eq 0 ]]; then
         params=(kcub1 kcuf1 kcuu1 kcud1 0x0a 0x20)
     fi
-
     # get the first joystick device (if not already set)
     [[ -c "$__joy2key_dev" ]] || __joy2key_dev="/dev/input/jsX"
-
     # if no joystick device, or joy2key is already running exit
     [[ -z "$__joy2key_dev" ]] || pgrep -f joy2key.py >/dev/null && return 1
-
     # if joy2key.py is installed run it with cursor keys for axis/dpad, and enter + space for buttons 0 and 1
     if "$scriptdir/scriptmodules/supplementary/runcommand/joy2key.py" "$__joy2key_dev" "${params[@]}" & 2>/dev/null; then
         __joy2key_pid=$!
+        sleep 1
         return 0
     fi
-
     return 1
 }
-
 ## @fn joy2keyStop()
 ## @brief Stop previously started joy2key.py process.
 function joy2keyStop() {
@@ -1038,7 +1031,6 @@ function joy2keyStop() {
         sleep 1
     fi
 }
-
 ## @fn getPlatformConfig()
 ## @param key key to look up
 ## @brief gets a config from a platforms.cfg ini
@@ -1058,7 +1050,6 @@ function getPlatformConfig() {
     [[ "$key" == "retropie_fullname" ]] && ini_value="RetroPie"
     echo "$ini_value"
 }
-
 ## @fn addSystem()
 ## @param system system to add
 ## @brief adds an emulator entry / system
@@ -1072,22 +1063,18 @@ function addSystem() {
         addSystem "$3"
         return
     fi
-
     local system="$1"
     local fullname="$2"
     local exts=($3)
-
     local platform="$system"
     local theme="$system"
     local cmd
     local path
-
     # check if we are removing the system
     if [[ "$md_mode" == "remove" ]]; then
         delSystem "$id" "$system"
         return
     fi
-
     # set system / platform / theme for configuration based on data in names field
     if [[ "$system" == "ports" ]]; then
         cmd="bash %ROM%"
@@ -1096,9 +1083,7 @@ function addSystem() {
         cmd="$rootdir/supplementary/runcommand/runcommand.sh 0 _SYS_ $system %ROM%"
         path="$romdir/$system"
     fi
-
     exts+=("$(getPlatformConfig "${system}_exts")")
-
     local temp
     temp="$(getPlatformConfig "${system}_theme")"
     if [[ -n "$temp" ]]; then
@@ -1106,24 +1091,19 @@ function addSystem() {
     else
         theme="$system"
     fi
-
     temp="$(getPlatformConfig "${system}_platform")"
     if [[ -n "$temp" ]]; then
         platform="$temp"
     else
         platform="$system"
     fi
-
     temp="$(getPlatformConfig "${system}_fullname")"
     [[ -n "$temp" ]] && fullname="$temp"
-
     exts="${exts[*]}"
     # add the extensions again as uppercase
     exts+=" ${exts^^}"
-
     setESSystem "$fullname" "$system" "$path" "$exts" "$cmd" "$platform" "$theme"
 }
-
 ## @fn delSystem()
 ## @param system system to delete
 ## @brief Deletes a system
@@ -1131,13 +1111,11 @@ function addSystem() {
 function delSystem() {
     local system="$1"
     local fullname="$(getPlatformConfig "${system}_fullname")"
-
     local function
     for function in $(compgen -A function _del_system_); do
         "$function" "$fullname" "$system"
     done
 }
-
 ## @fn addPort()
 ## @param id id of the module / command
 ## @param port name of the port
@@ -1146,8 +1124,6 @@ function delSystem() {
 ## @param game rom/game parameter (optional)
 ## @brief Adds a port to the emulationstation ports menu.
 ## @details Adds an emulators.cfg entry as with addSystem but also creates a launch script in `$datadir/ports/$name.sh`.
-##
-## Can optionally take a script via stdin to use instead of the default launch script.
 ##
 ## Can also optionally take a game parameter which can be used to create multiple launch
 ## scripts for different games using the same engine - eg for quake
@@ -1163,12 +1139,10 @@ function addPort() {
     local file="$romdir/ports/$3.sh"
     local cmd="$4"
     local game="$5"
-
     # move configurations from old ports location
     if [[ -d "$configdir/$port" ]]; then
         mv "$configdir/$port" "$md_conf_root/"
     fi
-
     # remove the ports launch script if in remove mode
     if [[ "$md_mode" == "remove" ]]; then
         rm -f "$file"
@@ -1179,25 +1153,16 @@ function addPort() {
         fi
         return
     fi
-
     mkUserDir "$romdir/ports"
-
-    if [[ -t 0 ]]; then
-        cat >"$file" << _EOF_
+    cat >"$file" << _EOF_
 #!/bin/bash
 "$rootdir/supplementary/runcommand/runcommand.sh" 0 _PORT_ "$port" "$game"
 _EOF_
-    else
-        cat >"$file"
-    fi
-
     chown $user:$user "$file"
     chmod +x "$file"
-
     [[ -n "$cmd" ]] && addEmulator 1 "$id" "$port" "$cmd"
     addSystem "ports"
 }
-
 ## @fn addEmulator()
 ## @param default 1 to make the emulator / command default for the system if no default already set
 ## @param id unique id of the module / command
@@ -1228,21 +1193,17 @@ function addEmulator() {
     local id="$2"
     local system="$3"
     local cmd="$4"
-
     # check if we are removing the system
     if [[ "$md_mode" == "remove" ]]; then
         delEmulator "$id" "$system"
         return
     fi
-
     # automatically add parameters for libretro modules
-    if [[ "$id" == lr-* && "$cmd" != "$emudir/retroarch/bin/retroarch"* ]]; then
+    if [[ "$id" == lr-* && "$cmd" =~ ^"$md_inst"[^[:space:]]*\.so ]]; then
         cmd="$emudir/retroarch/bin/retroarch -L $cmd --config $md_conf_root/$system/retroarch.cfg %ROM%"
     fi
-
     # create a config folder for the system / port
     mkUserDir "$md_conf_root/$system"
-
     # add the emulator to the $conf_dir/emulators.cfg if a commandline exists (not used for some ports)
     if [[ -n "$cmd" ]]; then
         iniConfig " = " '"' "$md_conf_root/$system/emulators.cfg"
@@ -1255,7 +1216,6 @@ function addEmulator() {
         chown $user:$user "$md_conf_root/$system/emulators.cfg"
     fi
 }
-
 ## @fn delEmulator()
 ## @param id id of emulator to delete
 ## @param system system to delete from
@@ -1266,7 +1226,6 @@ function addEmulator() {
 function delEmulator() {
     local id="$1"
     local system="$2"
-
     local config="$md_conf_root/$system/emulators.cfg"
     # remove from apps list for system
     if [[ -f "$config" && -n "$id" ]]; then
@@ -1279,7 +1238,6 @@ function delEmulator() {
         # if we no longer have any entries in the emulators.cfg file we can remove it
         grep -q "=" "$config" || rm -f "$config"
     fi
-
     # if we don't have an emulators.cfg we can remove the system from the frontends
     if [[ ! -f "$md_conf_root/$system/emulators.cfg" ]]; then
         local function
@@ -1288,17 +1246,14 @@ function delEmulator() {
         done
     fi
 }
-
 ## @fn patchVendorGraphics()
 ## @param filename file to patch
 ## @details replace declared dependencies of old vendor graphics libraries with new names
 ## Temporary compatibility workaround for legacy software to work on new Raspberry Pi firmwares.
 function patchVendorGraphics() {
     local filename="$1"
-
     # patchelf is not available on Raspbian Jessie
     compareVersions "$__os_debian_ver" lt 9 && return
-
     getDepends patchelf
     printMsgs "console" "Applying vendor graphics patch: $filename"
     patchelf --replace-needed libEGL.so libbrcmEGL.so \
@@ -1307,4 +1262,48 @@ function patchVendorGraphics() {
              --replace-needed libGLESv2.so libbrcmGLESv2.so \
              --replace-needed libOpenVG.so libbrcmOpenVG.so \
              --replace-needed libWFC.so libbrcmWFC.so "$filename"
+}
+## @fn dkmsManager()
+## @param mode dkms operation type
+## @module_name name of dkms module
+## @module_ver version of dkms module
+## Helper function to manage DKMS modules installed by RetroPie
+function dkmsManager() {
+    local mode="$1"
+    local module_name="$2"
+    local module_ver="$3"
+    local kernel="$(uname -r)"
+    local ver
+    case "$mode" in
+        install)
+            if dkms status | grep -q "^$module_name"; then
+                dkmsManager remove "$module_name" "$module_ver"
+            fi
+            if [[ "$__chroot" -eq 1 ]]; then
+                kernel="$(ls -1 /lib/modules | tail -n -1)"
+            fi
+            ln -sf "$md_inst" "/usr/src/${module_name}-${module_ver}"
+            dkms install --force -m "$module_name" -v "$module_ver" -k "$kernel"
+            if dkms status | grep -q "^$module_name"; then
+                md_ret_error+=("Failed to install $md_id")
+                return 1
+            fi
+            ;;
+        remove)
+            for ver in $(dkms status "$module_name" | cut -d"," -f2 | cut -d":" -f1); do
+                dkms remove -m "$module_name" -v "$ver" --all
+                rm -f "/usr/src/${module_name}-${ver}"
+            done
+            dkmsManager unload "$module_name" "$module_ver"
+            ;;
+        reload)
+            dkmsManager unload "$module_name" "$module_ver"
+            modprobe "$module_name"
+            ;;
+        unload)
+            if [[ -n "$(lsmod | grep ${module_name/-/_})" ]]; then
+                rmmod "$module_name"
+            fi
+            ;;
+    esac
 }
