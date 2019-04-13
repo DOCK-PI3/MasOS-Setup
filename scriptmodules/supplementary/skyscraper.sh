@@ -10,7 +10,7 @@
 #
 
 rp_module_id="skyscraper"
-rp_module_desc="Scraper for EmulationStation by Lars Muldjord"
+rp_module_desc="Scraper for EmulationStation by Lars Muldjord, ADAPTADO PARA MASOS X MASOS TEAM"
 rp_module_licence="GPLv3.0 https://raw.githubusercontent.com/muldjord/skyscraper/master/LICENSE"
 rp_module_section="exp"
 
@@ -19,7 +19,7 @@ function depends_skyscraper() {
 }
 
 function sources_skyscraper() {
-    gitPullOrClone "$md_build" "https://github.com/muldjord/skyscraper" "$(_latest_ver_skyscraper)"
+    gitPullOrClone "$md_build" "https://github.com/DOCK-PI3/skyscraper" "$(_latest_ver_skyscraper)"
 }
 
 function build_skyscraper() {
@@ -119,7 +119,7 @@ function _get_ver_skyscraper() {
 }
 
 function _latest_ver_skyscraper() {
-    wget -qO- https://api.github.com/repos/muldjord/skyscraper/releases/latest | grep -m 1 tag_name | cut -d\" -f4
+    wget -qO- https://api.github.com/repos/DOCK-PI3/skyscraper/releases/latest | grep -m 1 tag_name | cut -d\" -f4
 }
 
 # List any non-empty systems found in the ROM folder
