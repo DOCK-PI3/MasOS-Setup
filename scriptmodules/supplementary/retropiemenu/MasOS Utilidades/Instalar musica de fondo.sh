@@ -27,7 +27,8 @@ function main_menu() {
             3 "Limpiar de .MP3 el directorio music" \
 			4 "EXTRA BGM Descargar DOCK-PI3 ARCADE COLLECTIONS" \
 			5 "EXTRA BGM Descargar HEAZYHAX Default install" \
-			6 "BGM MasOS Detector de cores, emuladores y ports. ACTUALIZAR..." \
+			6 "EXTRA BGM Descargar DOCK-PI3 BSO COLLECTIONS" \
+			7 "BGM MasOS Detector de cores, emuladores y ports. ACTUALIZAR..." \
             2>&1 > /dev/tty)
 
         case "$choice" in
@@ -36,7 +37,8 @@ function main_menu() {
 			3) limpiar_mp3Dir  ;;
             4) dockpi3_bgmPack  ;;
 			5) default_bgmPack  ;;
-			6) detector_cores  ;;
+			6) dockpi3_bgmPackBSO  ;;
+			7) detector_cores  ;;
 			*)  break ;;
         esac
     done
@@ -117,6 +119,22 @@ function dockpi3_bgmPack() {
 			rm BGM_DOCK-PI3_COLLECTIONS.zip && rm -R /home/pi/BGM_DOCK-PI3_COLLECTIONS/
 			sudo chown -R pi:pi /home/pi/MasOS/roms/music
 		  echo -e "\n\n\n   El pack dock-pi3 se descargo correctamente!.....\n\n\nRecuerde reiniciar el sistema para empezar a escuchar la musica.!\n\n\n"
+		sleep 3
+# ---------------------------- #
+}
+
+#########################################################################
+# Descargar pack dock-pi3 bgm BSO #
+function dockpi3_bgmPackBSO() {
+			echo -e "\n\n\n   Descargando pack personal BSO dock-pi3.  ,.....Espere!.....\n\n\nTamaño en disco: 260 mb\n\n\nCanciones: 35 ficheros\n\n\nCategoria: Pelis BSO\n\n\nFormato: .mp3"
+			sleep 5
+			cd && wget https://archive.org/download/BGMDOCKPI3BSO/BGM_DOCK-PI3_BSO.zip -O /home/pi/BGM_DOCK-PI3_BSO.zip
+			sudo chown -R pi:pi /home/pi/MasOS/roms/music
+			unzip -o BGM_DOCK-PI3_BSO.zip && cp -R /home/pi/BGM_DOCK-PI3_BSO/*.mp3 /home/pi/MasOS/roms/music/
+			cd
+			rm BGM_DOCK-PI3_BSO.zip && rm -R /home/pi/BGM_DOCK-PI3_BSO/
+			sudo chown -R pi:pi /home/pi/MasOS/roms/music
+		  echo -e "\n\n\n   El pack dock-pi3 BSO se descargo correctamente!.....\n\n\nRecuerde reiniciar el sistema para empezar a escuchar la musica.!\n\n\n"
 		sleep 3
 # ---------------------------- #
 }
