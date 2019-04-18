@@ -5,7 +5,6 @@
 # The MasOS Project es legal, esta contruido bajo raspbian que es de codigo abierto, en este nuevo
 # sistema trabajan unos pocos desarroladores independientes de diversas partes del planeta.
 #
-# MasOS El sistema operativo exclusivo para la comunidad MyArcadeSpain ... de ahí su nombre.!
 #
 
 ## @file archivefuncs.sh

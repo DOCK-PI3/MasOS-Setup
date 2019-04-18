@@ -3,7 +3,7 @@
 infobox= ""
 infobox="${infobox}___________________________________________________________________________\n\n"
 infobox="${infobox}Instalador Herramienta Musica de fondo para ES , BGM MasOS\n\n"
-infobox="${infobox}05-04-2019...Version del script: 4.0a \n"
+infobox="${infobox}05-04-2019...Version del script: 4.8b \n"
 infobox="${infobox}Reproductor usado python-es-bgm ,creado por Rydra https://github.com/Rydra/bgm-for-es \n"
 infobox="${infobox}Install BGM MasOS Backgroud Music Tool for emulationstation\n\n"
 infobox="${infobox}-Scrip instalador creado por mabedeep para MasOS 4.X.X\n By MasOS Team\n\n"
