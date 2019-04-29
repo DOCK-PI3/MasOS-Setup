@@ -256,7 +256,7 @@ class Application:
                               "solarus_run", "basiliskll", "mame", "mame4all", "minivmac", "drastic", "dgen", "openmsx", "mupen64plus", "gngeo", "dosbox", "dosbox-sdl2",
                               "zelda_roth_se", "ppsspp", "simcoupe", "np2", "pcsx2", "oricutron", "scummvm", "snes9x", "pisnes", "frotz", "fbzx", "fuse", "fs-uae", "gemrb",
                               "zsxd", "zsdx", "cgenesis", "zdoom", "pcsx", "pokemini", "px68k", "quasi88", "eduke32", "lincity", "love", "kodi", "alephone", "micropolis",
-                              "openbor", "openttd", "rpix86", "sdltrs", "ti99sim", "uae4all", "opentyrian", "cannonball", "tyrquake", "quake3", "ioquake3.arm", "residualvm",
+                              "openbor", "OpenBOR", "openttd", "rpix86", "sdltrs", "ti99sim", "uae4all", "opentyrian", "cannonball", "tyrquake", "quake3", "ioquake3.arm", "residualvm",
                               "xrick", "sdlpop", "xm7", "zesarux", "uqm", "stratagus", "wolf4sdl", "ports", "chromium", "gamemaker", "MalditaCastilla", "retropie", "solarus"]
 
         self.transitionTable = {

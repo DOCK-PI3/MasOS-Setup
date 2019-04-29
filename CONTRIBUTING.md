@@ -27,7 +27,7 @@ Todas las personas que contribuyan con el proyecto van a ser agregadas aqui en u
 
 3)- MARTINYB
 
-4)-
+4)- JOSE
 
 5)-
 
