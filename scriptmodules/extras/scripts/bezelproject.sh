@@ -201,7 +201,7 @@ clear
 }
 
 function enable_bezel() {
-
+sudo chown -R pi:pi /opt/masos/
 clear
     while true; do
         choice=$(dialog --backtitle "$BACKTITLE" --title " MENU PRINCIPAL " \
