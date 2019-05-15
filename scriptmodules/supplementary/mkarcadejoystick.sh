@@ -16,8 +16,8 @@ rp_module_licence="GPL2 https://raw.githubusercontent.com/recalbox/mk_arcade_joy
 rp_module_section="driver"
 rp_module_flags="noinstclean !x86 !mali"
 
-function _version_mkarcadejoystick() {
-    echo "0.1.5"
+function _dkms_remove_mkarcadejoystick() {
+    dkms remove -m mk_arcade_joystick_rpi -v 0.1.5 --all
 }
 
 function depends_mkarcadejoystick() {
@@ -26,15 +26,31 @@ function depends_mkarcadejoystick() {
 
 function sources_mkarcadejoystick() {
     gitPullOrClone "$md_inst" https://github.com/recalbox/mk_arcade_joystick_rpi
-    sed -i "s/\$MKVERSION/$(_version_mkarcadejoystick)/" "$md_inst/dkms.conf"
+    sed -i "s/MKVERSION/0.1.5/" "$md_inst/dkms.conf"
 }
 
 function build_mkarcadejoystick() {
-    dkmsManager install mk_arcade_joystick_rpi "$(_version_mkarcadejoystick)"
+    ln -sf "$md_inst" "/usr/src/mk_arcade_joystick_rpi-0.1.5"
+    if dkms status | grep -q "^mk_arcade_joystick"; then
+        _dkms_remove_mkarcadejoystick
+    fi
+    local kernel
+    if [[ "$__chroot" -eq 1 ]]; then
+        kernel="$(ls -1 /lib/modules | tail -n -1)"
+    else
+        kernel="$(uname -r)"
+    fi
+    dkms install --force -m mk_arcade_joystick_rpi -v 0.1.5 -k "$kernel"
+    if dkms status | grep -q "^mk_arcade_joystick"; then
+        md_ret_error+=("Failed to install $md_id")
+        return 1
+    fi
 }
 
 function remove_mkarcadejoystick() {
-    dkmsManager remove mk_arcade_joystick_rpi "$(_version_mkarcadejoystick)"
+    [[ -n "$(lsmod | grep mk_arcade_joystick_rpi)" ]] && rmmod mk_arcade_joystick_rpi
+    _dkms_remove_mkarcadejoystick
+    rm -rf /usr/src/mk_arcade_joystick_rpi-0.1.5
     rm -f /etc/modprobe.d/mk_arcade_joystick_rpi.conf
     sed -i "/mk_arcade_joystick_rpi/d" /etc/modules
 }
@@ -50,5 +66,6 @@ function configure_mkarcadejoystick() {
         echo "options mk_arcade_joystick_rpi map=1" >/etc/modprobe.d/mk_arcade_joystick_rpi.conf
     fi
 
-    dkmsManager reload mk_arcade_joystick_rpi
-}
+    [[ -n "$(lsmod | grep mk_arcade_joystick_rpi)" ]] && rmmod mk_arcade_joystick_rpi
+    modprobe mk_arcade_joystick_rpi
+} 
