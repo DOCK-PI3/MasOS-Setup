@@ -3,7 +3,7 @@
 ## Solicitudes de soporte vs informes de errores
 
 Por favor use el github solo para informes de errores. Para ayuda / soporte en el uso de MasOS y los emuladores
- por favor use el correo masosgroup@gmail.com - o en nuestro grupo de telegram https://t.me/MasOsTeam puede obtener soporte
+ por favor use el correo masosgroup@gmail.com - o en nuestro grupo de telegram https://t.me/Retro_Arcade_MasOs_Team puede obtener soporte
  e informar de errores.
 
 
@@ -29,7 +29,9 @@ Todas las personas que contribuyan con el proyecto van a ser agregadas aqui en u
 
 4)- JOSE
 
-5)-
+5)-	PIERNODOYUNA
+
+6)- RICARDO TOGORES
 
 #################################### MUCHAS GRACIAS DE PARTE DE MASOS TEAM!
 ############################################################################
