@@ -171,7 +171,7 @@ function gui_fruitbox() {
             2 "Habilitar configuración del gamepad"
             3 "Habilitar exploración de la base de datos"
         )
-        local cmd=(dialog --backtitle "$__backtitle" --menu "Choose an option" 22 76 16)
+        local cmd=(dialog --backtitle "$__backtitle" --menu "Elija una opción" 22 76 16)
         local choice=$("${cmd[@]}" "${options[@]}" 2>&1 >/dev/tty)
         [[ -z "$choice" ]] && break
         case "$choice" in
