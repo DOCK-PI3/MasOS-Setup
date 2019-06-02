@@ -7,10 +7,6 @@
 # Run fruitbox ( ./fruitbox --cfg skins/WallJuke/fruitbox.cfg)
 #
 # This file is part of The RetroArena (TheRA)
-#
-# The RetroArena (TheRA) is the legal property of its developers, whose names are
-# too numerous to list here. Please refer to the COPYRIGHT.md file distributed with this source.
-#
 # See the LICENSE.md file at the top-level directory of this distribution and
 # at https://raw.githubusercontent.com/Retro-Arena/RetroArena-Setup/master/LICENSE.md
 #
@@ -18,45 +14,88 @@ rp_module_id="fruitbox"
 rp_module_desc="Fruitbox - A customizable MP3 Retro Jukebox. Read the Package Help for more information."
 rp_module_help="Copy your .mp3 files to '$romdir/jukebox' then launch Fruitbox from EmulationStation.\n\nTo configure a gamepad, launch 'Jukebox Config' in Settings, then 'Enable Gamepad Configuration'."
 rp_module_section="opt"
-rp_module_flags="!x86 !mali !kms"
 
 function depends_fruitbox() {
     getDepends libsm-dev libxcursor-dev libxi-dev libxinerama-dev libxrandr-dev libxpm-dev libvorbis-dev libtheora-dev
 }
 
 function sources_fruitbox() {
-    gitPullOrClone "$md_build/allegro5" "https://github.com/dos1/allegro5.git"
+    # gitPullOrClone "$md_build/allegro5" "https://github.com/dos1/allegro5.git"
     gitPullOrClone "$md_build/fruitbox" "https://github.com/DOCK-PI3/rpi-fruitbox.git"
-    downloadAndExtract "https://ftp.osuosl.org/pub/blfs/conglomeration/mpg123/mpg123-1.24.0.tar.bz2" "$md_build"
+    # downloadAndExtract "https://ftp.osuosl.org/pub/blfs/conglomeration/mpg123/mpg123-1.24.0.tar.bz2" "$md_build"
 }
 
 function build_fruitbox() {
     # Build mpg123
-    cd "$md_build/mpg123-1.24.0"
-    chmod +x configure
-    ./configure --with-cpu=arm_fpu --disable-shared
-    make -j4 && make install
-    cd ..
+    # cd "$md_build/mpg123-1.24.0"
+    # chmod +x configure
+    # ./configure --with-cpu=arm_fpu --disable-shared
+    # make -j4 && make install
+    # cd ..
     
     # Overwrite build files.
-    cp -vf "$md_data/CMakeLists.txt" "$md_build/allegro5/"
+    # cp -vf "$md_data/CMakeLists.txt" "$md_build/allegro5/"
     
     # Build Allegro5
-    cd "$md_build/allegro5"
-    mkdir build && cd build
-    cmake .. -DSHARED=off
-    make -j4 && make install
-    export PKG_CONFIG_PATH=/opt/masos/emulators/fruitbox/build/allegro5/build/lib/pkgconfig
-    ldconfig
-    cd ../..
+    # cd "$md_build/allegro5"
+    # mkdir build && cd build
+    # cmake .. -DSHARED=off
+    # make -j4 && make install
+    # export PKG_CONFIG_PATH=/opt/masos/emulators/fruitbox/build/allegro5/build/lib/pkgconfig
+    # ldconfig
+    # cd ../..
 
     # Build fruitbox
-    cd "$md_build/fruitbox/build"
-    make -j4
-    md_ret_require="$md_build/fruitbox/build/fruitbox"
+    # cd "$md_build/fruitbox/build"
+    # make -j4
+    # md_ret_require="$md_build/fruitbox/build/fruitbox"
+	cd && wget https://github.com/DOCK-PI3/rpi-fruitbox/raw/master/install.sh
+	chmod +x ./install.sh && source ./install.sh
+	# sudo chown -R pi:pi /opt/masos/
+	# cd && cp -R rpi-fruitbox-master/ /opt/masos/emulators/fruitbox
+	# sudo rm -R rpi-fruitbox-master/
 }
 
 function install_fruitbox() {
+	# cd && wget https://github.com/DOCK-PI3/rpi-fruitbox/raw/master/install.sh
+	# chmod +x ./install.sh && source ./install.sh
+	sudo chown -R pi:pi /opt/masos/
+	cd && cp -R rpi-fruitbox-master/ /opt/masos/emulators/fruitbox
+	sudo rm -R rpi-fruitbox-master/
+    # cp "$md_build/fruitbox/build/fruitbox" "$md_inst/"
+    # cp "$md_build/fruitbox/skins.txt" "$md_inst/"
+    # cp -R "$md_build/fruitbox/skins" "$md_inst/"
+    mkRomDir "jukebox"
+    cat > "$romdir/jukebox/+Start Fruitbox.sh" << _EOF_
+#!/bin/bash
+skin=WallJuke
+# if [[ -e "$home/.config/fruitbox" ]]; then
+# rm -rf "$home/.config/fruitbox"
+sudo /opt/masos/emulators/fruitbox/fruitbox --config-buttons
+#else
+sudo /opt/masos/emulators/fruitbox/fruitbox --cfg /opt/masos/emulators/fruitbox/skins/\$skin/fruitbox.cfg
+fi
+_EOF_
+    cat > "$romdir/jukebox/+Start Fruitbox_solo_teclado.sh" << _EOF_
+#!/bin/bash
+skin=WallJuke
+sudo /opt/masos/emulators/fruitbox/fruitbox --cfg /opt/masos/emulators/fruitbox/skins/\$skin/fruitbox.cfg
+_EOF_
+    chmod a+x "$romdir/jukebox/+Start Fruitbox.sh"
+    chown $user:$user "$romdir/jukebox/+Start Fruitbox.sh"
+	chmod a+x "$romdir/jukebox/+Start Fruitbox_solo_teclado.sh"
+    chown $user:$user "$romdir/jukebox/+Start Fruitbox_solo_teclado.sh"
+    addEmulator 1 "$md_id" "jukebox" "fruitbox %ROM%"
+    addSystem "jukebox"
+    touch "$home/.config/fruitbox"
+}
+
+function install_bin_fruitbox() {
+	cd && wget https://github.com/DOCK-PI3/rpi-fruitbox/raw/master/install.sh
+	chmod +x ./install.sh && source ./install.sh
+	sudo chown -R pi:pi /opt/masos/
+	cd && cp -R rpi-fruitbox-master/ /opt/masos/emulators/fruitbox
+	sudo rm -R rpi-fruitbox-master/
     cp "$md_build/fruitbox/build/fruitbox" "$md_inst/"
     cp "$md_build/fruitbox/skins.txt" "$md_inst/"
     cp -R "$md_build/fruitbox/skins" "$md_inst/"
@@ -64,35 +103,22 @@ function install_fruitbox() {
     cat > "$romdir/jukebox/+Start Fruitbox.sh" << _EOF_
 #!/bin/bash
 skin=WallJuke
-if [[ -e "$home/.config/fruitbox" ]]; then
-    rm -rf "$home/.config/fruitbox"
-    /opt/masos/emulators/fruitbox/fruitbox --config-buttons
-else
-    /opt/masos/emulators/fruitbox/fruitbox --cfg /opt/masos/emulators/fruitbox/skins/\$skin/fruitbox.cfg
+# if [[ -e "$home/.config/fruitbox" ]]; then
+# rm -rf "$home/.config/fruitbox"
+sudo /opt/masos/emulators/fruitbox/fruitbox --config-buttons
+#else
+sudo /opt/masos/emulators/fruitbox/fruitbox --cfg /opt/masos/emulators/fruitbox/skins/\$skin/fruitbox.cfg
 fi
 _EOF_
-    chmod a+x "$romdir/jukebox/+Start Fruitbox.sh"
-    chown $user:$user "$romdir/jukebox/+Start Fruitbox.sh"
-    addEmulator 1 "$md_id" "jukebox" "fruitbox %ROM%"
-    addSystem "jukebox"
-    touch "$home/.config/fruitbox"
-}
-
-function install_bin_fruitbox() {
-    downloadAndExtract "$__gitbins_url/fruitbox.tar.gz" "$md_inst" 1
-    mkRomDir "jukebox"
-    cat > "$romdir/jukebox/+Start Fruitbox.sh" << _EOF_
+    cat > "$romdir/jukebox/+Start Fruitbox_solo_teclado.sh" << _EOF_
 #!/bin/bash
 skin=WallJuke
-if [[ -e "$home/.config/fruitbox" ]]; then
-    rm -rf "$home/.config/fruitbox"
-    /opt/masos/emulators/fruitbox/fruitbox --config-buttons
-else
-    /opt/masos/emulators/fruitbox/fruitbox --cfg /opt/masos/emulators/fruitbox/skins/\$skin/fruitbox.cfg
-fi
+sudo /opt/masos/emulators/fruitbox/fruitbox --cfg /opt/masos/emulators/fruitbox/skins/\$skin/fruitbox.cfg
 _EOF_
     chmod a+x "$romdir/jukebox/+Start Fruitbox.sh"
     chown $user:$user "$romdir/jukebox/+Start Fruitbox.sh"
+	chmod a+x "$romdir/jukebox/+Start Fruitbox_solo_teclado.sh"
+    chown $user:$user "$romdir/jukebox/+Start Fruitbox_solo_teclado.sh"
     addEmulator 1 "$md_id" "jukebox" "fruitbox %ROM%"
     addSystem "jukebox"
     touch "$home/.config/fruitbox"
@@ -102,8 +128,9 @@ function remove_fruitbox() {
     delSystem jukebox
     rm -rf "$home/.config/fruitbox"
     rm -rf "$romdir/jukebox"
+	sudo rm -rf "/opt/masos/emulators/fruitbox"
 }
-
+# duplicar comandos sed para +Start Fruitbox_solo_teclado.sh
 function skin_fruitbox() {
     while true; do
         local cmd=(dialog --backtitle "$__backtitle" --menu "Choose a Fruitbox skin" 22 76 16)
