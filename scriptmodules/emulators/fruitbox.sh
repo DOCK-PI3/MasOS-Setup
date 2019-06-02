@@ -52,7 +52,7 @@ function build_fruitbox() {
 	cd && wget https://github.com/DOCK-PI3/rpi-fruitbox/raw/master/install.sh
 	chmod +x ./install.sh && source ./install.sh
 	# sudo chown -R pi:pi /opt/masos/
-	# cd && cp -R rpi-fruitbox-master/ /opt/masos/emulators/fruitbox
+	# cd && cp -R rpi-fruitbox-master/* /opt/masos/emulators/fruitbox
 	# sudo rm -R rpi-fruitbox-master/
 }
 
@@ -123,6 +123,7 @@ _EOF_
     addEmulator 1 "$md_id" "jukebox" "fruitbox %ROM%"
     addSystem "jukebox"
     touch "$home/.config/fruitbox"
+	sudo chown -R pi:pi /opt/masos/emulators/fruitbox
 }
 
 function remove_fruitbox() {
