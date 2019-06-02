@@ -60,7 +60,7 @@ function install_fruitbox() {
 	# cd && wget https://github.com/DOCK-PI3/rpi-fruitbox/raw/master/install.sh
 	# chmod +x ./install.sh && source ./install.sh
 	sudo chown -R pi:pi /opt/masos/
-	cd && cp -R rpi-fruitbox-master/ /opt/masos/emulators/fruitbox
+	cd && cp -R rpi-fruitbox-master/* /opt/masos/emulators/fruitbox
 	sudo rm -R rpi-fruitbox-master/
     # cp "$md_build/fruitbox/build/fruitbox" "$md_inst/"
     # cp "$md_build/fruitbox/skins.txt" "$md_inst/"
@@ -91,14 +91,15 @@ _EOF_
 }
 
 function install_bin_fruitbox() {
+md_id="/opt/masos/emulators/fruitbox"
 	cd && wget https://github.com/DOCK-PI3/rpi-fruitbox/raw/master/install.sh
 	chmod +x ./install.sh && source ./install.sh
 	sudo chown -R pi:pi /opt/masos/
-	cd && cp -R rpi-fruitbox-master/ /opt/masos/emulators/fruitbox
+	cd && cp -R rpi-fruitbox-master/* /opt/masos/emulators/fruitbox
 	sudo rm -R rpi-fruitbox-master/
-    cp "$md_build/fruitbox/build/fruitbox" "$md_inst/"
-    cp "$md_build/fruitbox/skins.txt" "$md_inst/"
-    cp -R "$md_build/fruitbox/skins" "$md_inst/"
+    # cp "$md_build/fruitbox/build/fruitbox" "$md_inst/"
+    # cp "$md_build/fruitbox/skins.txt" "$md_inst/"
+    # cp -R "$md_build/fruitbox/skins" "$md_inst/"
     mkRomDir "jukebox"
     cat > "$romdir/jukebox/+Start Fruitbox.sh" << _EOF_
 #!/bin/bash
