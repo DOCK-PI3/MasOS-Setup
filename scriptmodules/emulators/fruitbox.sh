@@ -20,16 +20,18 @@ function depends_fruitbox() {
 
 function sources_fruitbox() {
     # gitPullOrClone "$md_build/allegro5" "https://github.com/dos1/allegro5.git"
-    gitPullOrClone "$md_build/fruitbox" "https://github.com/DOCK-PI3/rpi-fruitbox.git"
+    # gitPullOrClone "$md_build/fruitbox" "https://github.com/DOCK-PI3/rpi-fruitbox.git"
+	# git clone --depth=1 https://github.com/DOCK-PI3/rpi-fruitbox.git
     # downloadAndExtract "https://ftp.osuosl.org/pub/blfs/conglomeration/mpg123/mpg123-1.24.0.tar.bz2" "$md_build"
+	cd && wget https://github.com/DOCK-PI3/rpi-fruitbox/raw/master/install.sh
 }
 
 function build_fruitbox() {
-	cd && wget https://github.com/DOCK-PI3/rpi-fruitbox/raw/master/install.sh
-	chmod +x ./install.sh && source ./install.sh
+	cd && chmod +x ./install.sh && source ./install.sh
 }
 
 function install_fruitbox() {
+md_id="/opt/masos/emulators/fruitbox"
 	sudo chown -R pi:pi /opt/masos/
 	cd && cp -R rpi-fruitbox-master/* /opt/masos/emulators/fruitbox
 	sudo rm -R rpi-fruitbox-master/
@@ -43,15 +45,22 @@ sudo /opt/masos/emulators/fruitbox/fruitbox --cfg /opt/masos/emulators/fruitbox/
 # sudo /opt/masos/emulators/fruitbox/fruitbox --config-buttons
 #fi
 _EOF_
+    cat > "$romdir/jukebox/+Start Fruitbox_mapear_gamepad.sh" << _EOF_
+#!/bin/bash
+skin=WallJuke
+sudo /opt/masos/emulators/fruitbox/fruitbox --config-buttons
+_EOF_
     cat > "$romdir/jukebox/+Start Fruitbox_solo_teclado.sh" << _EOF_
 #!/bin/bash
 skin=WallJuke
 sudo /opt/masos/emulators/fruitbox/fruitbox --cfg /opt/masos/emulators/fruitbox/skins/\$skin/fruitbox.cfg
 _EOF_
     chmod a+x "$romdir/jukebox/+Start Fruitbox.sh"
-    chown $user:$user "$romdir/jukebox/+Start Fruitbox.sh"
+    chown pi:pi "$romdir/jukebox/+Start Fruitbox.sh"
+    chmod a+x "$romdir/jukebox/+Start Fruitbox_mapear_gamepad.sh"
+    chown pi:pi "$romdir/jukebox/+Start Fruitbox_mapear_gamepad.sh"
 	chmod a+x "$romdir/jukebox/+Start Fruitbox_solo_teclado.sh"
-    chown $user:$user "$romdir/jukebox/+Start Fruitbox_solo_teclado.sh"
+    chown pi:pi "$romdir/jukebox/+Start Fruitbox_solo_teclado.sh"
     addEmulator 1 "$md_id" "jukebox" "fruitbox %ROM%"
     addSystem "jukebox"
     touch "$home/.config/fruitbox"
@@ -84,11 +93,11 @@ skin=WallJuke
 sudo /opt/masos/emulators/fruitbox/fruitbox --cfg /opt/masos/emulators/fruitbox/skins/\$skin/fruitbox.cfg
 _EOF_
     chmod a+x "$romdir/jukebox/+Start Fruitbox.sh"
-    chown $user:$user "$romdir/jukebox/+Start Fruitbox.sh"
+    chown pi:pi "$romdir/jukebox/+Start Fruitbox.sh"
     chmod a+x "$romdir/jukebox/+Start Fruitbox_mapear_gamepad.sh"
-    chown $user:$user "$romdir/jukebox/+Start Fruitbox_mapear_gamepad.sh"
+    chown pi:pi "$romdir/jukebox/+Start Fruitbox_mapear_gamepad.sh"
 	chmod a+x "$romdir/jukebox/+Start Fruitbox_solo_teclado.sh"
-    chown $user:$user "$romdir/jukebox/+Start Fruitbox_solo_teclado.sh"
+    chown pi:pi "$romdir/jukebox/+Start Fruitbox_solo_teclado.sh"
     addEmulator 1 "$md_id" "jukebox" "fruitbox %ROM%"
     addSystem "jukebox"
     touch "$home/.config/fruitbox"
@@ -156,7 +165,7 @@ function skin_fruitbox() {
 
 function gamepad_fruitbox() {
     touch "$home/.config/fruitbox"
-    printMsgs "dialog" "Gamepad Configuración Habilitada\n\nInicia Fruitbox desde EmulationStation +Start Fruitbox_solo_teclado para configurar tu gamepad.\n\nPresione OK para Salir."
+    printMsgs "dialog" "Gamepad Configuración Habilitada\n\nInicia Fruitbox desde EmulationStation +Start Fruitbox_mapear_gamepad para configurar tu gamepad.\n\nLuego puedes iniciar desde +Start Fruitbox para usar tu gamepad configurado\n\nPresione OK para Salir."
     exit 0
 }
 
