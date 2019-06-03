@@ -37,12 +37,12 @@ function install_fruitbox() {
     cat > "$romdir/jukebox/+Start Fruitbox.sh" << _EOF_
 #!/bin/bash
 skin=WallJuke
-# if [[ -e "$home/.config/fruitbox" ]]; then
-# rm -rf "$home/.config/fruitbox"
-sudo /opt/masos/emulators/fruitbox/fruitbox --config-buttons
+# if [[ -e "$home/fruitbox.btn" ]]; then
+# rm -rf "$home/fruitbox.btn"
+#sudo /opt/masos/emulators/fruitbox/fruitbox --config-buttons
 #else
-sudo /opt/masos/emulators/fruitbox/fruitbox --cfg /opt/masos/emulators/fruitbox/skins/\$skin/fruitbox.cfg
-fi
+sudo /opt/masos/emulators/fruitbox/fruitbox --cfg /opt/masos/emulators/fruitbox/skins/\$skin/fruitbox.cfg --button-map /home/pi/fruitbox.btn
+#fi
 _EOF_
     cat > "$romdir/jukebox/+Start Fruitbox_solo_teclado.sh" << _EOF_
 #!/bin/bash
@@ -69,11 +69,10 @@ md_id="/opt/masos/emulators/fruitbox"
     cat > "$romdir/jukebox/+Start Fruitbox.sh" << _EOF_
 #!/bin/bash
 skin=WallJuke
-# if [[ -e "$home/.config/fruitbox" ]]; then
-# rm -rf "$home/.config/fruitbox"
+if [[ -f /home/pi/fruitbox.btn ]]; then
+sudo /opt/masos/emulators/fruitbox/fruitbox --cfg /opt/masos/emulators/fruitbox/skins/\$skin/fruitbox.cfg --button-map /home/pi/fruitbox.btn
+else
 sudo /opt/masos/emulators/fruitbox/fruitbox --config-buttons
-#else
-sudo /opt/masos/emulators/fruitbox/fruitbox --cfg /opt/masos/emulators/fruitbox/skins/\$skin/fruitbox.cfg
 fi
 _EOF_
     cat > "$romdir/jukebox/+Start Fruitbox_solo_teclado.sh" << _EOF_
@@ -152,7 +151,7 @@ function skin_fruitbox() {
 
 function gamepad_fruitbox() {
     touch "$home/.config/fruitbox"
-    printMsgs "dialog" "Gamepad Configuración Habilitada\n\nInicia Fruitbox desde EmulationStation para configurar tu gamepad.\n\nPresione OK para Salir."
+    printMsgs "dialog" "Gamepad Configuración Habilitada\n\nInicia Fruitbox desde EmulationStation +Start Fruitbox_solo_teclado para configurar tu gamepad.\n\nPresione OK para Salir."
     exit 0
 }
 
