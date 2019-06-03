@@ -37,11 +37,10 @@ function install_fruitbox() {
     cat > "$romdir/jukebox/+Start Fruitbox.sh" << _EOF_
 #!/bin/bash
 skin=WallJuke
-# if [[ -e "$home/fruitbox.btn" ]]; then
-# rm -rf "$home/fruitbox.btn"
-#sudo /opt/masos/emulators/fruitbox/fruitbox --config-buttons
-#else
+# if [[ -f /home/pi/fruitbox.btn ]]; then
 sudo /opt/masos/emulators/fruitbox/fruitbox --cfg /opt/masos/emulators/fruitbox/skins/\$skin/fruitbox.cfg --button-map /home/pi/fruitbox.btn
+# else
+# sudo /opt/masos/emulators/fruitbox/fruitbox --config-buttons
 #fi
 _EOF_
     cat > "$romdir/jukebox/+Start Fruitbox_solo_teclado.sh" << _EOF_
@@ -69,11 +68,15 @@ md_id="/opt/masos/emulators/fruitbox"
     cat > "$romdir/jukebox/+Start Fruitbox.sh" << _EOF_
 #!/bin/bash
 skin=WallJuke
-if [[ -f /home/pi/fruitbox.btn ]]; then
+# if [[ -f /home/pi/fruitbox.btn ]]; then
 sudo /opt/masos/emulators/fruitbox/fruitbox --cfg /opt/masos/emulators/fruitbox/skins/\$skin/fruitbox.cfg --button-map /home/pi/fruitbox.btn
-else
+# else
+# fi
+_EOF_
+    cat > "$romdir/jukebox/+Start Fruitbox_mapear_gamepad.sh" << _EOF_
+#!/bin/bash
+skin=WallJuke
 sudo /opt/masos/emulators/fruitbox/fruitbox --config-buttons
-fi
 _EOF_
     cat > "$romdir/jukebox/+Start Fruitbox_solo_teclado.sh" << _EOF_
 #!/bin/bash
@@ -82,6 +85,8 @@ sudo /opt/masos/emulators/fruitbox/fruitbox --cfg /opt/masos/emulators/fruitbox/
 _EOF_
     chmod a+x "$romdir/jukebox/+Start Fruitbox.sh"
     chown $user:$user "$romdir/jukebox/+Start Fruitbox.sh"
+    chmod a+x "$romdir/jukebox/+Start Fruitbox_mapear_gamepad.sh"
+    chown $user:$user "$romdir/jukebox/+Start Fruitbox_mapear_gamepad.sh"
 	chmod a+x "$romdir/jukebox/+Start Fruitbox_solo_teclado.sh"
     chown $user:$user "$romdir/jukebox/+Start Fruitbox_solo_teclado.sh"
     addEmulator 1 "$md_id" "jukebox" "fruitbox %ROM%"
