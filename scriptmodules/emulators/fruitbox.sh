@@ -109,6 +109,7 @@ function remove_fruitbox() {
     rm -rf "$home/.config/fruitbox"
     rm -rf "$romdir/jukebox"
 	sudo rm -rf "/opt/masos/emulators/fruitbox"
+	sudo rm -rf "$home/fruitbox.btn"
 }
 # duplicar comandos sed para +Start Fruitbox_solo_teclado.sh
 function skin_fruitbox() {
