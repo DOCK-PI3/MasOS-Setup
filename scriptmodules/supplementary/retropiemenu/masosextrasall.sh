@@ -36,6 +36,7 @@ function main_menu() {
             5 "PC Reparar permisos en MasOS" \
             6 "PC EmulationStation-dev idioma español para Ubuntu 16.04.5" \
 			7 "PC Actualizar MasOS-Setup script" \
+			123 "PC MasOS NoPaswd - BETA" \
 			300  "------------- DEV BETAS Raspberry RPI y PC -----------------" \
 			8 "IDIOMA español para emulationstation-dev instalaciones desde 0" \
 			9 "BETA Instalar iconos Originales de EmulationStation" \
@@ -53,6 +54,7 @@ function main_menu() {
 			5) permisos_pc  ;;
 			6) pc_spanish  ;;
 			7) masossetup_updatePC ;;
+			123) masospc_nopaswd ;;
 			300) separador_menu  ;;
 			8) idioma_spanish_all ;;
 			9) esicons_origi ;;
@@ -62,32 +64,38 @@ function main_menu() {
     done
 }
 
-# #########################################################################
-# # funcion PC MasOS NoPaswd  ;-) #
-# function masospc_nopaswd() {                                          #
-# dialog --infobox "...PC MasOS NoPaswd: Para que no pida la contraseña...." 30 55 ; sleep 3
-# echo "Escriba su nombre de usuario:"
-# sudo cp /etc/sudoers /etc/sudoers.bakup
-# read NOMBRE
-# #ESCRIBIR LINEAS NUEVAS EN SUDOERS CON cat >> lo añade al final del fichero,respetando su contenido.
-# sudo cat >> /etc/sudoers <<_EOF_
-# #comando sin paswd
-# $NOMBRE ALL = NOPASSWD: /sbin/shutdown
-# $NOMBRE ALL = NOPASSWD: /sbin/reboot
-# $NOMBRE ALL = NOPASSWD: /sbin/poweroff
-# #scripts sin paswd
-# $NOMBRE ALL = NOPASSWD: /home/$NOMBRE/MasOS-Setup/masos_setup.sh
-# $NOMBRE ALL = NOPASSWD: /home/$NOMBRE/MasOS-Setup/masos_pkgs.sh
-# $NOMBRE ALL = NOPASSWD: /home/$NOMBRE/RetroPie/retropiemenu/masosextasall.sh
-# _EOF_
-# # if [ "$NOMBRE" = "" ]; then
-# # echo "No puedes dejarlo en blanco"
-# # else
-# # echo "Lo que escribió no se acepta"
-# # fi
-# dialog --infobox " Se actualizaron los registros en su sistema correctamente!...\n\nEn 5seg se reinicia el Equipo..espere por favor!" 60 75 ; sleep 5
-# #sudo reboot 
-# }
+#########################################################################
+# funcion PC MasOS NoPaswd  ;-) #
+function masospc_nopaswd() {                                          #
+dialog --infobox "...PC MasOS NoPaswd: Para que no pida la contraseña...." 30 55 ; sleep 3
+# sudo rm -rf /etc/sudoers.bakup
+sudo cp /etc/sudoers /etc/sudoers.bakup
+printMsgs "Escriba su nombre de usuario:"
+read NOMBRE
+N_USUARIO= "$NOMBRE"
+if [ "$N_USUARIO" = "pi" ]; then
+printMsgs "Esto no es para raspberry, no se puede usar con el nombre pi:" ; sleep 3
+elif [ "$NOMBRE" = "$N_USUARIO" ]; then
+#ESCRIBIR LINEAS NUEVAS EN SUDOERS CON cat >> lo añade al final del fichero,respetando su contenido.
+sudo chown -R $N_USUARIO:$N_USUARIO /etc/sudoers
+sudo cat >> /etc/sudoers <<_EOF_
+#comando sin paswd
+\$N_USUARIO ALL = NOPASSWD: /sbin/shutdown
+\$N_USUARIO ALL = NOPASSWD: /sbin/reboot
+\$N_USUARIO ALL = NOPASSWD: /sbin/poweroff
+#scripts sin paswd
+\$N_USUARIO ALL = NOPASSWD: /home/\$N_USUARIO/MasOS-Setup/masos_setup.sh
+\$N_USUARIO ALL = NOPASSWD: /home/\$N_USUARIO/MasOS-Setup/masos_pkgs.sh
+\$N_USUARIO ALL = NOPASSWD: /home/\$N_USUARIO/RetroPie/retropiemenu/masosextasall.sh
+_EOF_
+if [ "$NOMBRE" = "" ]; then
+printMsgs "No puedes dejarlo en blanco"
+else
+printMsgs "Lo que escribió no se acepta"
+fi
+dialog --infobox "$N_USUARIO Se actualizaron los registros en su sistema correctamente!...\n\nEn 5seg se reinicia el Equipo..espere por favor!" 60 75 ; sleep 5
+#sudo reboot 
+}
 
 
 function separador_menu() {                                          #
