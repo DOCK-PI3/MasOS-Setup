@@ -556,7 +556,7 @@ function gui_setup() {
         if [[ -f $home/.config/autostart/masos.desktop ]]; then
 		cd
 		sudo cp ~/MasOS-Setup/scriptmodules/extras/gamelist.xml /opt/masos/configs/all/emulationstation/gamelists/retropie/
-		sudo cp ~/MasOS-Setup/scriptmodules/extras/.livewire.py ~/
+		# sudo cp ~/MasOS-Setup/scriptmodules/extras/.livewire.py ~/
 		sudo cp -R ~/MasOS-Setup/scriptmodules/supplementary/retropiemenu/* ~/RetroPie/retropiemenu/
 		sudo cp -R ~/MasOS-Setup/scriptmodules/extras/scripts ~/RetroPie/
 		sudo chmod -R +x ~/RetroPie
