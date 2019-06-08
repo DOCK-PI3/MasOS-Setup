@@ -544,7 +544,7 @@ function gui_setup() {
 			if [[ -f /home/pi/RetroPie/retropiemenu/raspiconfig.rp ]]; then
 			cd
 			sudo cp /home/pi/MasOS-Setup/scriptmodules/extras/gamelist.xml /opt/masos/configs/all/emulationstation/gamelists/retropie/
-			sudo cp /home/pi/MasOS-Setup/scriptmodules/extras/.livewire.py /home/pi/
+			# sudo cp /home/pi/MasOS-Setup/scriptmodules/extras/.livewire.py /home/pi/
 			sudo cp -R /home/pi/MasOS-Setup/scriptmodules/supplementary/retropiemenu/* /home/pi/RetroPie/retropiemenu/
 			sudo cp -R /home/pi/MasOS-Setup/scriptmodules/extras/scripts /home/pi/RetroPie/
 			sudo chmod -R +x /home/pi/RetroPie
@@ -561,7 +561,7 @@ function gui_setup() {
 		sudo cp -R ~/MasOS-Setup/scriptmodules/extras/scripts ~/RetroPie/
 		sudo chmod -R +x ~/RetroPie
 		sudo chmod -R +x /opt/
-		sudo mkdir ~/MasOS/roms/music
+		# sudo mkdir ~/MasOS/roms/music
 		sudo chown -R $user:$user ~/MasOS
 			fi
 		fi
