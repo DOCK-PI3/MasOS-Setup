@@ -252,7 +252,7 @@ class Application:
         self.songQueue = self.getRandomQueue()
 
         self.emulatornames = ["retroarch", "ags", "advmame", "amiberry", "coolcv", "uae4all2", "uae4arm", "capricerpi", "linapple", "hatari", "stella", "n64", "dreamcast",
-                              "atari800", "xroar", "vice", "dolphin", "daphne", "gearboy", "kat5200", "reicast", "pifba", "osmose", "gpsp", "jzintv", "jukebox",
+                              "atari800", "xroar", "vice", "dolphin", "daphne", "gearboy", "kat5200", "reicast", "pifba", "osmose", "gpsp", "jzintv", "jukebox", "fruitbox", 
                               "solarus_run", "basiliskll", "mame", "mame4all", "minivmac", "drastic", "dgen", "openmsx", "mupen64plus", "gngeo", "dosbox", "dosbox-sdl2",
                               "zelda_roth_se", "ppsspp", "simcoupe", "np2", "pcsx2", "oricutron", "scummvm", "snes9x", "pisnes", "frotz", "fbzx", "fuse", "fs-uae", "gemrb",
                               "zsxd", "zsdx", "cgenesis", "zdoom", "pcsx", "pokemini", "px68k", "quasi88", "eduke32", "lincity", "love", "kodi", "alephone", "micropolis",
