@@ -3,7 +3,7 @@
 infobox= ""
 infobox="${infobox}___________________________________________________________________________\n\n"
 infobox="${infobox}Instalador Herramienta Musica de fondo para ES , BGM MasOS\n\n"
-infobox="${infobox}05-04-2019...Version del script: 4.8b \n"
+infobox="${infobox}14-06-2019...Version del script: 5.0a \n"
 infobox="${infobox}Reproductor usado python-es-bgm ,creado por Rydra https://github.com/Rydra/bgm-for-es \n"
 infobox="${infobox}Install BGM MasOS Backgroud Music Tool for emulationstation\n\n"
 infobox="${infobox}-Scrip instalador creado por mabedeep para MasOS 4.X.X\n By MasOS Team\n\n"
@@ -251,8 +251,8 @@ class Application:
 
         self.songQueue = self.getRandomQueue()
 
-        self.emulatornames = ["retroarch", "ags", "advmame", "amiberry", "coolcv", "uae4all2", "uae4arm", "capricerpi", "linapple", "hatari", "stella",
-                              "atari800", "xroar", "vice", "dolphin", "daphne", "gearboy", "kat5200", "reicast", "pifba", "osmose", "gpsp", "jzintv",
+        self.emulatornames = ["retroarch", "ags", "advmame", "amiberry", "coolcv", "uae4all2", "uae4arm", "capricerpi", "linapple", "hatari", "stella", "n64", "dreamcast",
+                              "atari800", "xroar", "vice", "dolphin", "daphne", "gearboy", "kat5200", "reicast", "pifba", "osmose", "gpsp", "jzintv", "jukebox",
                               "solarus_run", "basiliskll", "mame", "mame4all", "minivmac", "drastic", "dgen", "openmsx", "mupen64plus", "gngeo", "dosbox", "dosbox-sdl2",
                               "zelda_roth_se", "ppsspp", "simcoupe", "np2", "pcsx2", "oricutron", "scummvm", "snes9x", "pisnes", "frotz", "fbzx", "fuse", "fs-uae", "gemrb",
                               "zsxd", "zsdx", "cgenesis", "zdoom", "pcsx", "pokemini", "px68k", "quasi88", "eduke32", "lincity", "love", "kodi", "alephone", "micropolis",
