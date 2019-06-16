@@ -33,5 +33,7 @@ Todas las personas que contribuyan con el proyecto van a ser agregadas aqui en u
 
 6)- RICARDO TOGORES
 
+7)- BERNA SÁNCHEZ
+
 #################################### MUCHAS GRACIAS DE PARTE DE MASOS TEAM!
 ############################################################################
