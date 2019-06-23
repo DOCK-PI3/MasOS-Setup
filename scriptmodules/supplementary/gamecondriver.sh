@@ -10,14 +10,10 @@
 #
 
 rp_module_id="gamecondriver"
-rp_module_desc="Gamecon & db9 drivers"
+rp_module_desc="Gamecon & Db9 drivers GPIO drivers"
+rp_module_license="GPL2 https://raw.githubusercontent.com/marqs85/gamecon_gpio_rpi/master/gamecon_gpio_rpi-1.4/gamecon_gpio_rpi.c"
 rp_module_section="driver"
 rp_module_flags="!x86 !mali"
-
-function _update_hook_gamecondriver() {
-    # to show as installed in retropie-setup 4.x
-    hasPackage gamecon-gpio-rpi-dkms && mkdir -p "$md_inst"
-}
 
 function depends_gamecondriver() {
     # remove any old kernel headers for current kernel
@@ -28,33 +24,61 @@ function depends_gamecondriver() {
     getDepends dkms raspberrypi-kernel-headers
 }
 
+function _gamecon_version() {
+    echo "1.4"
+}
+
+function _db9_version() {
+    echo "1.2"
+}
 function install_bin_gamecondriver() {
-    local gamecon_ver="1.3"
-    local db9_ver="1.1"
-    local url="https://www.niksula.hut.fi/~mhiienka/Rpi"
+    # install both modules
+    declare -A modules=(
+        [gamecon_gpio_rpi]=$(_gamecon_version)
+        [db9_gpio_rpi]=$(_db9_version)
+    )
+    local github_url="https://github.com/marqs85"
 
-    # install gamecon
-    local package
-    for package in  gamecon-gpio-rpi-dkms_${gamecon_ver}_all.deb  db9-gpio-rpi-dkms_${db9_ver}_all.deb; do
-        wget -q -O"$package" "${url}/$package"
-        dpkg -i "$package"
+    _remove_gamecondriver_files
+
+    pushd "$md_inst"
+    for module_name in "${!modules[@]}"; do
+        local module_ver="${modules[$module_name]}"
+        gitPullOrClone "$module_name" "$github_url/$module_name"
+
+        pushd "$module_name"
+        dkmsManager remove "$module_name" 
+        ln -sfn "`pwd`/$module_name-$module_ver" /usr/src/"$module_name-$module_ver"
+        dkms install --force -m "$module_name" -v "$module_ver"
+        popd
+
+        # test if module installation is OK
+        if ! dkms status | grep -q "^$module_name"; then
+            md_ret_errors+=("$module_name driver installation FAILED")
+        fi
     done
+    popd
+}
 
-    # test if gamecon installation is OK
-    if [[ -z "$(modinfo -n gamecon_gpio_rpi | grep gamecon_gpio_rpi.ko)" ]]; then
-        md_ret_errors+=("Fallo la instalacion del driver Gamecon GPIO")
-    fi
+function _remove_gamecondriver_config()
+{
+    sed -i "/gamecon_gpio_rpi/d" /etc/modules
+    rm -f /etc/modprobe.d/gamecon.conf
+}
 
-    # test if db9 installation is OK
-    if [[ -z "$(modinfo -n db9_gpio_rpi | grep db9_gpio_rpi.ko)" ]]; then
-        md_ret_errors+=("Fallo la instalación del driver GPIO Db9")
-    fi
+function _remove_gamecondriver_files()
+{
+    dkmsManager remove gamecon_gpio_rpi
+    dkmsManager remove db9_gpio_rpi
+
+    # Remove older version of the driver, installed as Debian packages
+    hasPackage gamecon-gpio-rpi-dkms && aptRemove gamecon-gpio-rpi-dkms
+    hasPackage db9-gpio-rpi-dkms && aptRemove db9-gpio-rpi-dkms
 }
 
 function remove_gamecondriver() {
-    sed -i "/gamecon_gpio_rpi/d" /etc/modules
-    rm -f /etc/modprobe.d/gamecon.conf
-    aptRemove db9-gpio-rpi-dkms gamecon-gpio-rpi-dkms
+    _remove_gamecondriver_files
+    _remove_gamecondriver_config
 }
 
 function configure_gamecondriver() {
@@ -89,7 +113,7 @@ function dual_snes_gamecondriver() {
 
     iniConfig " = " "" "$configdir/all/retroarch.cfg"
 
-    if dialog --yesno "¿Te gustaria actualizar el mapeo de botones en $configdir/all/retroarch.cfg para 2 controladores SNES?" 22 76 >/dev/tty; then
+    if dialog --yesno "Would you like to update button mappings in $configdir/all/retroarch.cfg for 2 SNES controllers?" 22 76 >/dev/tty; then
         if [[ "$GPIOREV" == 1 ]]; then
             iniSet "input_player1_joypad_index" "0"
             iniSet "input_player2_joypad_index" "1"
@@ -130,9 +154,9 @@ __________\n\
          |          ### Board gpio revision $gpio_rev detected ###\n\
     + *  |\n\
     * *  |\n\
-    1 -  |          El driver ahora esta configurado para usar lo siguiente\n\
-    2 *  |          Configuracion para 2 controladores SNES:\n\
-    * *  |          (compatible con el adaptador MasOS GPIO)\n\
+    1 -  |          The driver is now set to use the following\n\
+    2 *  |          configuration for 2 SNES controllers:\n\
+    * *  |          (compatible with RetroPie GPIO adapter)\n\
     * *  |\n\
     * *  |          + = power\n\
     * *  |          - = ground\n\
@@ -149,9 +173,9 @@ function gui_gamecondriver() {
     local default
 
     local options=(
-        1 "Configurar para dos mandos SNES"
-        2 "Leer la documentacion del driver Gamecon GPIO"
-        3 "Leer la documentacion del driver Db9 GPIO"
+        1 "Configure for two SNES controllers"
+        2 "Read Gamecon GPIO driver documentation"
+        3 "Read Db9 GPIO driver documentation"
     )
     while true; do
         local cmd=(dialog --backtitle "$__backtitle" --default-item "$default" --menu "Choose an option." 22 86 16)
@@ -160,14 +184,14 @@ function gui_gamecondriver() {
         if [[ -n "$choice" ]]; then
             case "$choice" in
                 1)
-                    dialog --defaultno --yesno "El driver Gamecon es compatible con la placa adaptadora MasOS GPIO para 2 mandos SNES. ¿Quieres configurar gamecon para 2 mandos SNES?"  22 76 >/dev/tty || continue
+                    dialog --defaultno --yesno "Gamecon driver supports RetroPie GPIO adapter board for 2 SNES controllers. Do you want to configure gamecon for 2 SNES controllers?"  22 76 >/dev/tty || continue
                     dual_snes_gamecondriver
                     ;;
                 2)
-                    dialog --msgbox "$(gzip -dc /usr/share/doc/gamecon_gpio_rpi/README.gz)" 22 76 >/dev/tty
+                    dialog --msgbox "$(cat "$md_inst/gamecon_gpio_rpi/gamecon_gpio_rpi-$(_gamecon_version)/README")" 22 80 >/dev/tty
                     ;;
                 3)
-                    dialog --msgbox "$(gzip -dc /usr/share/doc/db9_gpio_rpi/README.gz)" 22 76 >/dev/tty
+                    dialog --msgbox "$(cat "$md_inst/db9_gpio_rpi/db9_gpio_rpi-$(_db9_version)/README")" 22 80 >/dev/tty
                     ;;
             esac
         else
