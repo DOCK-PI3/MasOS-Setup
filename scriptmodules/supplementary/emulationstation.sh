@@ -225,11 +225,14 @@ if [[ $? -eq 139 ]]; then
 fi
 tput cnorm
 _EOF_
-    chmod +x /usr/bin/emulationstation
-
+    sudo cp -R /home/pi/MasOS-Setup/scriptmodules/extras/es_idioma/* /opt/masos/supplementary/emulationstation/
+	chmod +x /usr/bin/emulationstation
+# idioma nex bin
     if isPlatform "x11"; then
         mkdir -p /usr/local/share/{icons,applications}
         cp "$scriptdir/scriptmodules/$md_type/emulationstation/masOS.svg" "/usr/local/share/icons/"
+		# idioma nex bin
+			sudo cp -R /home/pi/MasOS-Setup/scriptmodules/extras/es_idiomaPC/* /opt/masos/supplementary/emulationstation/
         cat > /usr/local/share/applications/masos.desktop << _EOF_
 [Desktop Entry]
 Type=Application
