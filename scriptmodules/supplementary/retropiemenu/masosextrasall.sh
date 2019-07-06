@@ -62,34 +62,6 @@ function main_menu() {
     done
 }
 
-# #########################################################################
-# # funcion PC MasOS NoPaswd  ;-) #
-# function masospc_nopaswd() {                                          #
-# dialog --infobox "...PC MasOS NoPaswd: Para que no pida la contraseña...." 30 55 ; sleep 3
-# echo "Escriba su nombre de usuario:"
-# sudo cp /etc/sudoers /etc/sudoers.bakup
-# read NOMBRE
-# #ESCRIBIR LINEAS NUEVAS EN SUDOERS CON cat >> lo añade al final del fichero,respetando su contenido.
-# sudo cat >> /etc/sudoers <<_EOF_
-# #comando sin paswd
-# $NOMBRE ALL = NOPASSWD: /sbin/shutdown
-# $NOMBRE ALL = NOPASSWD: /sbin/reboot
-# $NOMBRE ALL = NOPASSWD: /sbin/poweroff
-# #scripts sin paswd
-# $NOMBRE ALL = NOPASSWD: /home/$NOMBRE/MasOS-Setup/masos_setup.sh
-# $NOMBRE ALL = NOPASSWD: /home/$NOMBRE/MasOS-Setup/masos_pkgs.sh
-# $NOMBRE ALL = NOPASSWD: /home/$NOMBRE/RetroPie/retropiemenu/masosextasall.sh
-# _EOF_
-# # if [ "$NOMBRE" = "" ]; then
-# # echo "No puedes dejarlo en blanco"
-# # else
-# # echo "Lo que escribió no se acepta"
-# # fi
-# dialog --infobox " Se actualizaron los registros en su sistema correctamente!...\n\nEn 5seg se reinicia el Equipo..espere por favor!" 60 75 ; sleep 5
-# #sudo reboot 
-# }
-
-
 function separador_menu() {                                          #
 dialog --infobox "... Separador para el menu, sin funcion ..." 30 55 ; sleep 3
 }
@@ -109,7 +81,6 @@ cd
 	sudo chmod -R +x /home/pi/MasOS-Setup/
 cd
 sudo cp /home/pi/MasOS-Setup/scriptmodules/extras/gamelist.xml /opt/masos/configs/all/emulationstation/gamelists/retropie/
-sudo cp /home/pi/MasOS-Setup/scriptmodules/extras/.livewire.py /home/pi/
 sudo cp -R /home/pi/MasOS-Setup/scriptmodules/supplementary/retropiemenu/* /home/pi/RetroPie/retropiemenu/
 sudo cp -R /home/pi/MasOS-Setup/scriptmodules/extras/scripts /home/pi/RetroPie/
 sudo chmod -R +x /home/pi/RetroPie
@@ -130,7 +101,6 @@ cd
 	sudo chmod -R +x ~/MasOS-Setup/
 cd
 sudo cp ~/MasOS-Setup/scriptmodules/extras/gamelist.xml /opt/masos/configs/all/emulationstation/gamelists/retropie/
-sudo cp ~/MasOS-Setup/scriptmodules/extras/.livewire.py ~/
 sudo cp -R ~/MasOS-Setup/scriptmodules/supplementary/retropiemenu/* ~/RetroPie/retropiemenu/
 sudo cp -R ~/MasOS-Setup/scriptmodules/extras/scripts ~/RetroPie/
 sudo chmod -R +x ~/RetroPie
@@ -147,7 +117,6 @@ function masosmenu_extras() {                                          #
 dialog --infobox " MasOS opciones Extras en rpi para el menu de ES..." 30 55 ; sleep 5
 cd
 sudo cp /home/pi/MasOS-Setup/scriptmodules/extras/gamelist.xml /opt/masos/configs/all/emulationstation/gamelists/retropie/
-sudo cp /home/pi/MasOS-Setup/scriptmodules/extras/.livewire.py /home/pi/
 sudo cp -R /home/pi/MasOS-Setup/scriptmodules/supplementary/retropiemenu/* /home/pi/RetroPie/retropiemenu/
 # sudo cp -R /home/pi/MasOS-Setup/scriptmodules/supplementary/retropiemenu/icons /home/pi/RetroPie/retropiemenu
 sudo cp -R /home/pi/MasOS-Setup/scriptmodules/extras/scripts /home/pi/RetroPie/
@@ -166,7 +135,6 @@ function masosmenu_extrasPC() {                                          #
 dialog --infobox " PC MasOS opciones Extras para el menu de ES..." 30 55 ; sleep 5
 cd
 sudo cp ~/MasOS-Setup/scriptmodules/extras/gamelist.xml /opt/masos/configs/all/emulationstation/gamelists/retropie/
-sudo cp ~/MasOS-Setup/scriptmodules/extras/.livewire.py ~/
 sudo cp -R ~/MasOS-Setup/scriptmodules/supplementary/retropiemenu/* ~/RetroPie/retropiemenu/
 sudo cp -R ~/MasOS-Setup/scriptmodules/extras/scripts ~/RetroPie/
 sudo chmod -R +x ~/RetroPie
