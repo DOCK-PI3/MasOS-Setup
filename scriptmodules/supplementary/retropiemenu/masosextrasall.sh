@@ -191,7 +191,7 @@ function idioma_spanish_all() {                                          #######
 dialog --infobox " CMAKE Y MAKE instalar idioma español en emulationstation-dev. Recuerde ejecutar el script desde consola y con emulationstation inactivo.." 30 55 ; sleep 5
 cd && git clone --recursive https://github.com/DOCK-PI3/EmulationStation.git
 cd EmulationStation && mkdir src && cd src
-cmake .. && make
+cmake .. && make -j2
 sudo cp -R ~/EmulationStation/locale/ /opt/masos/supplementary/emulationstation-dev/
 sudo cp -R ~/EmulationStation/resources/ /opt/masos/supplementary/emulationstation-dev/
 sudo cp ~/EmulationStation/emulationstation /opt/masos/supplementary/emulationstation-dev/
