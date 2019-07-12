@@ -57,4 +57,5 @@ function configure_lr-flycast() {
     # segfaults on the rpi without redirecting stdin from </dev/null
     addEmulator 0 "$md_id" "dreamcast" "$md_inst/flycast_libretro.so </dev/null"
     addSystem "dreamcast"
+	addSystem "naomi"
 }
