@@ -48,6 +48,7 @@ function configure_lr-flycast() {
     mkRomDir "dreamcast"
 	mkRomDir "naomi"
     ensureSystemretroconfig "dreamcast"
+	ensureSystemretroconfig "naomi"
 
     mkUserDir "$biosdir/dc"
 
@@ -56,8 +57,8 @@ function configure_lr-flycast() {
     iniSet "video_shared_context" "true"
 
     # segfaults on the rpi without redirecting stdin from </dev/null
-    addEmulator 0 "$md_id" "dreamcast" "$md_inst/flycast_libretro.so </dev/null"
+    addEmulator 1 "$md_id" "dreamcast" "$md_inst/flycast_libretro.so </dev/null"
     addSystem "dreamcast"
-	addEmulator 0 "$md_id" "naomi" "$md_inst/flycast_libretro.so </dev/null"
+	addEmulator 1 "$md_id" "naomi" "$md_inst/flycast_libretro.so </dev/null"
 	addSystem "naomi"
 }
