@@ -47,8 +47,10 @@ function install_lr-flycast() {
 function configure_lr-flycast() {
     mkRomDir "dreamcast"
 	mkRomDir "naomi"
+	mkRomDir "atomiswave"
     ensureSystemretroconfig "dreamcast"
 	ensureSystemretroconfig "naomi"
+	ensureSystemretroconfig "atomiswave"
 
     mkUserDir "$biosdir/dc"
 
@@ -61,4 +63,6 @@ function configure_lr-flycast() {
     addSystem "dreamcast"
 	addEmulator 1 "$md_id" "naomi" "$md_inst/flycast_libretro.so </dev/null"
 	addSystem "naomi"
+	addEmulator 1 "$md_id" "atomiswave" "$md_inst/flycast_libretro.so </dev/null"
+	addSystem "atomiswave"
 }
