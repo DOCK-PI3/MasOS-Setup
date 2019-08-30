@@ -11,7 +11,7 @@
 # at https://raw.githubusercontent.com/DOCK-PI3/MasOS-Setup/master/LICENSE.md
 rp_module_id="fruitbox"
 rp_module_desc="Fruitbox - Un jukebox MP3 rétro personnalisable. Lea la Ayuda del paquete para más información."
-rp_module_help="Copiar sus ficheros .mp3 en '$romdir/jukebox' a continuación, inicie Fruitbox desde EmulationStation.\n\nPara configurar un gamepad, inicie 'Configuración de Jukebox' en Configuración, luego 'Habilitar configuración de gamepad'.\n\nPara recibir ayuda de MasOS Team busque en youtube o telegran..salu2"
+rp_module_help="Solo funciona con el linux Kernel: 4.14.98-v7 o inferior.\n\nCopiar sus ficheros .mp3 en '$romdir/jukebox' a continuación, inicie Fruitbox desde EmulationStation.\n\nPara configurar un gamepad, inicie 'Configuración de Jukebox' en Configuración, luego 'Habilitar configuración de gamepad'.\n\nPara recibir ayuda de MasOS Team busque en youtube o telegran..salu2"
 rp_module_section="opt"
 
 function depends_fruitbox() {
