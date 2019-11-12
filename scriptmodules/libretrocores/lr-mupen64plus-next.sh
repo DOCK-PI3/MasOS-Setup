@@ -12,7 +12,7 @@
 rp_module_id="lr-mupen64plus-next"
 rp_module_desc="N64 emulator - Mupen64Plus + GLideN64 for libretro (next version)"
 rp_module_help="ROM Extensions: .z64 .n64 .v64\n\nCopy your N64 roms to $romdir/n64"
-rp_module_licence="GPL3 https://raw.githubusercontent.com/libretro/mupen64plus-libretro-nx/master/LICENSE"
+rp_module_licence="GPL2 https://raw.githubusercontent.com/libretro/mupen64plus-libretro-nx/GLideN64/LICENSE"
 rp_module_section="exp"
 rp_module_flags="!armv6"
 
@@ -20,18 +20,21 @@ function depends_lr-mupen64plus-next() {
     local depends=(flex bison libpng-dev)
     isPlatform "x11" && depends+=(libglew-dev libglu1-mesa-dev)
     isPlatform "x86" && depends+=(nasm)
-    isPlatform "rpi" && depends+=(libraspberrypi-dev)
+    isPlatform "videocore" && depends+=(libraspberrypi-dev)
+    isPlatform "mesa" && depends+=(libgles2-mesa-dev)
     getDepends "${depends[@]}"
 }
 
 function sources_lr-mupen64plus-next() {
-    gitPullOrClone "$md_build" https://github.com/libretro/mupen64plus-libretro-nx.git GLideN64
+    gitPullOrClone "$md_build" https://github.com/libretro/mupen64plus-libretro-nx.git develop
 }
 
 function build_lr-mupen64plus-next() {
     local params=()
-    if isPlatform "rpi"; then
+    if isPlatform "videocore"; then
         params+=(platform="$__platform")
+    elif isPlatform "mesa"; then
+        params+=(platform="$__platform-mesa")
     elif isPlatform "mali"; then
         params+=(platform="odroid")
     else
@@ -50,6 +53,7 @@ function build_lr-mupen64plus-next() {
 function install_lr-mupen64plus-next() {
     md_ret_files=(
         'mupen64plus_next_libretro.so'
+        'LICENSE'
         'README.md'
     )
 }

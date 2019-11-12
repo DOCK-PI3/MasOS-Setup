@@ -11,70 +11,35 @@
 
 rp_module_id="mkarcadejoystick"
 rp_module_desc="Raspberry Pi GPIO Joystick Driver"
-rp_module_help="Installs the GPIO driver from https://github.com/recalbox/mk_arcade_joystick_rpi"
+rp_module_help="Installs the GPIO driver from https://github.com/cmitu/mk_arcade_joystick_rpi"
 rp_module_licence="GPL2 https://raw.githubusercontent.com/recalbox/mk_arcade_joystick_rpi/master/LICENSE"
 rp_module_section="driver"
 rp_module_flags="noinstclean !x86 !mali"
 
 function _version_mkarcadejoystick() {
-    echo "0.1.5"
+    echo "0.1.7"
 }
-
-# function _dkms_remove_mkarcadejoystick() {
-    # dkms remove -m mk_arcade_joystick_rpi -v 0.1.5 --all
-# }
 
 function depends_mkarcadejoystick() {
     depends_gamecondriver
 }
 
 function sources_mkarcadejoystick() {
-    gitPullOrClone "$md_inst" https://github.com/recalbox/mk_arcade_joystick_rpi
-    sed -i "s/MKVERSION/0.1.5/" "$md_inst/dkms.conf"
+    gitPullOrClone "$md_inst" https://github.com/cmitu/mk_arcade_joystick_rpi retropie
+    pushd "$md_inst"
+    sed -i "s/\$MKVERSION/$(_version_mkarcadejoystick)/" "$md_inst/dkms.conf"
+    popd
 }
 
 function build_mkarcadejoystick() {
     dkmsManager install mk_arcade_joystick_rpi "$(_version_mkarcadejoystick)"
 }
 
-# function build_mkarcadejoystick() {
-    # ln -sf "$md_inst" "/usr/src/mk_arcade_joystick_rpi-0.1.5"
-    # if dkms status | grep -q "^mk_arcade_joystick"; then
-        # _dkms_remove_mkarcadejoystick
-    # fi
-    # local kernel
-    # if [[ "$__chroot" -eq 1 ]]; then
-        # kernel="$(ls -1 /lib/modules | tail -n -1)"
-    # else
-        # kernel="$(uname -r)"
-    # fi
-    # dkms install --force -m mk_arcade_joystick_rpi -v 0.1.5 -k "$kernel"
-    # if dkms status | grep -q "^mk_arcade_joystick"; then
-        # md_ret_error+=("Failed to install $md_id")
-        # return 1
-    # fi
-# }
-
 function remove_mkarcadejoystick() {
-    dkmsManager remove mk_arcade_joystick_rpi "$(_version_mkarcadejoystick)"
+    dkmsManager remove mk_arcade_joystick_rpi
     rm -f /etc/modprobe.d/mk_arcade_joystick_rpi.conf
     sed -i "/mk_arcade_joystick_rpi/d" /etc/modules
 }
-
-# function configure_mkarcadejoystick() {
-    # [[ "$md_mode" == "remove" ]] && return
-
-    # if ! grep -q "mk_arcade_joystick_rpi" /etc/modules; then
-        # addLineToFile "mk_arcade_joystick_rpi" /etc/modules
-    # fi
-
-    # if [[ ! -f /etc/modprobe.d/mk_arcade_joystick_rpi.conf ]]; then
-        # echo "options mk_arcade_joystick_rpi map=1" >/etc/modprobe.d/mk_arcade_joystick_rpi.conf
-    # fi
-
-    # [[ -n "$(lsmod | grep mk_arcade_joystick_rpi)" ]] && rmmod mk_arcade_joystick_rpi
-    # modprobe mk_arcade_joystick_rpi
-# } 
 
 function configure_mkarcadejoystick() {
     [[ "$md_mode" == "remove" ]] && return

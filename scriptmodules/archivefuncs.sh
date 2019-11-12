@@ -1,14 +1,16 @@
 #!/bin/bash
 
-# This file is part of The MasOS Project
+# This file is part of The RetroPie Project
 #
-# The MasOS Project es legal, esta contruido bajo raspbian que es de codigo abierto, en este nuevo
-# sistema trabajan unos pocos desarroladores independientes de diversas partes del planeta.
+# The RetroPie Project is the legal property of its developers, whose names are
+# too numerous to list here. Please refer to the COPYRIGHT.md file distributed with this source.
 #
+# See the LICENSE.md file at the top-level directory of this distribution and
+# at https://raw.githubusercontent.com/RetroPie/RetroPie-Setup/master/LICENSE.md
 #
 
 ## @file archivefuncs.sh
-## @brief MasOS archivefuncs library
+## @brief RetroPie archivefuncs library
 ## @copyright GPLv3
 
 readonly arch_dir="/tmp/retropie-archive"

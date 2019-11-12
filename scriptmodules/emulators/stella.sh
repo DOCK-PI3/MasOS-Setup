@@ -17,11 +17,11 @@ rp_module_section="opt"
 rp_module_flags=""
 
 function depends_stella() {
-    getDepends libsdl2-dev libpng12-dev zlib1g-dev xz-utils
+    getDepends libsdl2-dev libpng-dev zlib1g-dev xz-utils
 }
 
 function sources_stella() {
-    downloadAndExtract "$__archive_url/stella-5.0.2-src.tar.xz" "$md_build" --strip-components 1
+    gitPullOrClone "$md_build" "https://github.com/stella-emu/stella.git" 6.0.1
 }
 
 function build_stella() {
@@ -38,7 +38,6 @@ function install_stella() {
 function configure_stella() {
     mkRomDir "atari2600"
 
-    mkUserDir "$home/.config"
     moveConfigDir "$home/.config/stella" "$md_conf_root/atari2600/stella"
 
     addEmulator 1 "$md_id" "atari2600" "$md_inst/bin/stella -maxres 320x240 -fullscreen 1 -tia.fsfill 1 %ROM%"

@@ -79,4 +79,4 @@ index c615b75..5e089ee 100644
 +static void	IPF_CallBack_Drq ( struct CapsFdc *pc , Uint32 State )
  {
  	Uint8	Byte;
-	
+ 

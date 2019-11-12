@@ -35,7 +35,7 @@ function rps_retronet_loadconfig() {
         __netplayport="55435"
         __netplayhostip="192.168.0.1"
         __netplayhostip_cfile=""
-        __netplaynickname="MasOS_user"
+        __netplaynickname="RetroPie"
     fi
 }
 

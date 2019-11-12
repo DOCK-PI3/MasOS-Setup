@@ -10,7 +10,7 @@
 #
 
 rp_module_id="configedit"
-rp_module_desc="Editar configuraciones MasOS / RetroArch"
+rp_module_desc="Edit RetroPie/RetroArch configurations"
 rp_module_section="config"
 
 function _video_fullscreen_configedit() {
@@ -27,7 +27,7 @@ function _video_fullscreen_configedit() {
             if [[ -z "$res_x" && -z "$res_y" ]]; then
                 echo "unset"
             elif [[ "$res_x" == "0" && "$res_y" == "0" ]]; then
-                echo "Resolucion de salida de video"
+                echo "Video output resolution"
             else
                 echo "${res_x}x${res_y}"
             fi
@@ -51,13 +51,13 @@ function _video_fullscreen_configedit() {
                 ((i++))
             done
             options+=(
-                O "Resolucion de salida de video"
-                C "Personalizado"
+                O "Video output resolution"
+                C "Custom"
             )
-            [[ "$value" == "Resolucion de salida de video" ]] && default="O"
+            [[ "$value" == "Video output resolution" ]] && default="O"
             [[ "$value" == "unset" ]] && default="U"
             [[ -z "$default" ]] && default="C"
-            local cmd=(dialog --default-item "$default" --menu "Elija la resolucion de render de RetroArch" 22 76 16 )
+            local cmd=(dialog --default-item "$default" --menu "Choose RetroArch render resolution" 22 76 16 )
             local choice=$("${cmd[@]}" "${options[@]}" 2>&1 >/dev/tty)
             [[ -z "$choice" ]] && return
             local res
@@ -69,7 +69,7 @@ function _video_fullscreen_configedit() {
                 iniSet "video_fullscreen_y" "0"
             else
                 if [[ "$choice" == "C" ]]; then
-                    cmd=(dialog --backtitle "$__backtitle" --inputbox "Por favor ingresa la resolucion de render como WIDTHxHEIGHT" 10 60)
+                    cmd=(dialog --backtitle "$__backtitle" --inputbox "Please enter the render resolution as WIDTHxHEIGHT" 10 60)
                     res=$("${cmd[@]}" 2>&1 >/dev/tty)
                     [[ -z "$res" || ! "$res" =~ ^[0-9]+x[0-9]+$ ]] && return
                 else
@@ -138,7 +138,7 @@ function _joypad_index_configedit() {
                     [[ "$player" != "unset" ]] && value+=" ($joypad)"
                     options+=("$i" "$value")
                 done
-                local cmd=(dialog --backtitle "$__backtitle" --menu "Elige un jugador para ajustar" 22 76 16)
+                local cmd=(dialog --backtitle "$__backtitle" --menu "Choose a player to adjust" 22 76 16)
                 local choice=$("${cmd[@]}" "${options[@]}" 2>&1 >/dev/tty)
                 [[ -z "$choice" ]] && return
                 player="$choice"
@@ -148,7 +148,7 @@ function _joypad_index_configedit() {
                     options+=("$i" "$dev")
                     ((i++))
                 done
-                local cmd=(dialog --backtitle "$__backtitle" --menu "Elige un Gamepad" 22 76 16)
+                local cmd=(dialog --backtitle "$__backtitle" --menu "Choose a Gamepad" 22 76 16)
                 local choice=$("${cmd[@]}" "${options[@]}" 2>&1 >/dev/tty)
                 [[ -z "$choice" ]] && continue
                 case "$choice" in
@@ -169,7 +169,7 @@ function basic_configedit() {
 
     local ini_options=(
         'video_smooth true false'
-        'aspect_ratio_index _id_ 4:3 16:9 16:10 16:15 1:1 2:1 3:2 3:4 4:1 4:4 5:4 6:5 7:9 8:3 8:7 19:12 19:14 30:17 32:9 config square core custom'
+        'aspect_ratio_index _id_ 4:3 16:9 16:10 16:15 21:9 1:1 2:1 3:2 3:4 4:1 4:4 5:4 6:5 7:9 8:3 8:7 19:12 19:14 30:17 32:9 config square core custom'
         '_function_ _video_fullscreen_configedit'
         'video_shader_enable true false'
         "video_shader _file_ *.*p $rootdir/emulators/retroarch/shader"
@@ -190,26 +190,26 @@ function basic_configedit() {
         "Video Shader File"
         'Overlay Enable'
         'Overlay File'
-        'Elige el orden de joypad'
-        'Player 1 - usa un stick analógico como d-pad'
-        'Player 2 - usa un stick analógico como d-pad'
-        'Player 3 - usa un stick analógico como d-pad'
-        'Player 4 - usa un stick analógico como d-pad'
+        'Choose joypad order'
+        'Player 1 - use analogue stick as d-pad'
+        'Player 2 - use analogue stick as d-pad'
+        'Player 3 - use analogue stick as d-pad'
+        'Player 4 - use analogue stick as d-pad'
     )
 
     local ini_descs=(
-        'Suaviza la imagen con filtrado bilineal. Se debe desactivar si se utilizan shaders de píxeles.'
-        'Relacion de aspecto a usar (no configurado por defecto: usara el aspecto central si video_aspect_ratio_auto es verdadero)'
-        'Configure la resolucion para representar la salida del emulador en - para un mejor rendimiento en pantallas Full HD, elija una resolucion más baja y se ampliara en hardware'
-        'Cargar video_shader en el inicio. Otros shaders se pueden cargar mas tarde en tiempo de ejecucion.'
-        'Video shader usar (por defecto ninguno)'
-        'Cargar overlay de entrada en el inicio. Otros overlays se pueden cargar mas tarde en tiempo de ejecución.'
-        'Input overlay para usar (por defecto ninguno)'
-        'Seleccion manual del orden del joypad.'
-        'Permitir que los sticks analogicos se utilicen como d-pad - 0 = deshabilitado, 1 = stick izquierdo, 2 = stick derecho'
-        'Permitir que los sticks analogicos se utilicen como d-pad - 0 = deshabilitado, 1 = stick izquierdo, 2 = stick derecho'
-        'Permitir que los sticks analogicos se utilicen como d-pad - 0 = deshabilitado, 1 = stick izquierdo, 2 = stick derecho'
-        'Permitir que los sticks analogicos se utilicen como d-pad - 0 = deshabilitado, 1 = stick izquierdo, 2 = stick derecho'
+        'Smoothens picture with bilinear filtering. Should be disabled if using pixel shaders.'
+        'Aspect ratio to use (default unset - will use core aspect if video_aspect_ratio_auto is true)'
+        'Configure the resolution to render the emulator output at - for better performance on full HD displays choose a lower resolution and it will be upscaled in hardware'
+        'Load video_shader on startup. Other shaders can still be loaded later in runtime.'
+        'Video shader to use (default none)'
+        'Load input overlay on startup. Other overlays can still be loaded later in runtime.'
+        'Input overlay to use (default none)'
+        'Manual selection of joypad order'
+        'Allow analogue sticks to be used as a d-pad - 0 = disabled, 1 = left stick, 2 = right stick'
+        'Allow analogue sticks to be used as a d-pad - 0 = disabled, 1 = left stick, 2 = right stick'
+        'Allow analogue sticks to be used as a d-pad - 0 = disabled, 1 = left stick, 2 = right stick'
+        'Allow analogue sticks to be used as a d-pad - 0 = disabled, 1 = left stick, 2 = right stick'
     )
 
     iniFileEditor " = " '"' "$config"
@@ -225,7 +225,7 @@ function advanced_configedit() {
 
     local ini_options=(
         'video_smooth true false'
-        'aspect_ratio_index _id_ 4:3 16:9 16:10 16:15 1:1 2:1 3:2 3:4 4:1 4:4 5:4 6:5 7:9 8:3 8:7 19:12 19:14 30:17 32:9 config square core custom'
+        'aspect_ratio_index _id_ 4:3 16:9 16:10 16:15 21:9 1:1 2:1 3:2 3:4 4:1 4:4 5:4 6:5 7:9 8:3 8:7 19:12 19:14 30:17 32:9 config square core custom'
         'video_shader_enable true false'
         "video_shader _file_ *.*p $rootdir/emulators/retroarch/shader"
         'input_overlay_enable true false'
@@ -273,18 +273,18 @@ function advanced_configedit() {
     )
 
     local ini_descs=(
-        'Suaviza la imagen con filtrado bilineal. Se debe desactivar si se utilizan shaders de píxeles.'
-        'Aspect ratio para usar (por defecto no establecido - usara el core aspect si video_aspect_ratio_auto es verdadero)'
-        'Cargar video_shader en el inicio. Otros shaders se pueden cargar mas tarde en tiempo de ejecucion.'
-        'Video shader para usar (por defecto ninguno)'
-        'Cargar overlay en el inicio. Otros overlays se pueden cargar mas tarde en tiempo de ejecucion.'
-        'Input overlay para usar (por defecto ninguno)'
-        'Controlador de audio a usar (por defecto es alsathread)'
-        'Controlador de video a usar (por defecto es gl)'
-        'Menu driver para usar'
+        'Smoothens picture with bilinear filtering. Should be disabled if using pixel shaders.'
+        'Aspect ratio to use (default unset - will use core aspect if video_aspect_ratio_auto is true)'
+        'Load video_shader on startup. Other shaders can still be loaded later in runtime.'
+        'Video shader to use (default none)'
+        'Load input overlay on startup. Other overlays can still be loaded later in runtime.'
+        'Input overlay to use (default none)'
+        'Audio driver to use (default is alsathread)'
+        'Video driver to use (default is gl)'
+        'Menu driver to use'
         'Fullscreen x resolution. Resolution of 0 uses the resolution of the desktop. (defaults to 0 if unset)'
         'Fullscreen y resolution. Resolution of 0 uses the resolution of the desktop. (defaults to 0 if unset)'
-        'Establece cuántos milisegundos se demoran después de VSync antes de ejecutar el core. Puede reducir la latencia al costo de un mayor riesgo de parpadeo. El maximo es 15'
+        'Sets how many milliseconds to delay after VSync before running the core. Can reduce latency at cost of higher risk of stuttering. Maximum is 15'
         'Use threaded video driver. Using this might improve performance at possible cost of latency and more video stuttering.'
         'Forces rendering area to stay equal to content aspect ratio or as defined in video_aspect_ratio.'
         'Only scales video in integer steps. The base size depends on system-reported geometry and aspect ratio. If video_force_aspect is not set, X/Y will be integer scaled independently.'
@@ -302,22 +302,22 @@ function advanced_configedit() {
         'Scale of overlay. Float value 1.000000.'
         'Input joypad driver to use (default is udev)'
         'Game specific core options in retroarch-core-options.cfg, rather than for all games via that core.'
-        'Seleccion manual del orden del joypad'
-        'Seleccion manual del orden del joypad'
-        'Seleccion manual del orden del joypad'
-        'Seleccion manual del orden del joypad'
-        'Seleccion manual del orden del joypad'
-        'Seleccion manual del orden del joypad'
-        'Seleccion manual del orden del joypad'
-        'Seleccion manual del orden del joypad'
-        'Permitir que los sticks analogicos se utilicen como d-pad - 0 = deshabilitado, 1 = stick izquierdo, 2 = stick derecho'
-        'Permitir que los sticks analogicos se utilicen como d-pad - 0 = deshabilitado, 1 = stick izquierdo, 2 = stick derecho'
-        'Permitir que los sticks analogicos se utilicen como d-pad - 0 = deshabilitado, 1 = stick izquierdo, 2 = stick derecho'
-        'Permitir que los sticks analogicos se utilicen como d-pad - 0 = deshabilitado, 1 = stick izquierdo, 2 = stick derecho'
-        'Permitir que los sticks analogicos se utilicen como d-pad - 0 = deshabilitado, 1 = stick izquierdo, 2 = stick derecho'
-        'Permitir que los sticks analogicos se utilicen como d-pad - 0 = deshabilitado, 1 = stick izquierdo, 2 = stick derecho'
-        'Permitir que los sticks analogicos se utilicen como d-pad - 0 = deshabilitado, 1 = stick izquierdo, 2 = stick derecho'
-        'Permitir que los sticks analogicos se utilicen como d-pad - 0 = deshabilitado, 1 = stick izquierdo, 2 = stick derecho'
+        'Manual selection of joypad order'
+        'Manual selection of joypad order'
+        'Manual selection of joypad order'
+        'Manual selection of joypad order'
+        'Manual selection of joypad order'
+        'Manual selection of joypad order'
+        'Manual selection of joypad order'
+        'Manual selection of joypad order'
+        'Allow analogue sticks to be used as a d-pad - 0 = disabled, 1 = left stick, 2 = right stick'
+        'Allow analogue sticks to be used as a d-pad - 0 = disabled, 1 = left stick, 2 = right stick'
+        'Allow analogue sticks to be used as a d-pad - 0 = disabled, 1 = left stick, 2 = right stick'
+        'Allow analogue sticks to be used as a d-pad - 0 = disabled, 1 = left stick, 2 = right stick'
+        'Allow analogue sticks to be used as a d-pad - 0 = disabled, 1 = left stick, 2 = right stick'
+        'Allow analogue sticks to be used as a d-pad - 0 = disabled, 1 = left stick, 2 = right stick'
+        'Allow analogue sticks to be used as a d-pad - 0 = disabled, 1 = left stick, 2 = right stick'
+        'Allow analogue sticks to be used as a d-pad - 0 = disabled, 1 = left stick, 2 = right stick'
 
     )
 
@@ -328,7 +328,7 @@ function choose_config_configedit() {
     local path="$1"
     local include="$2"
     local exclude="$3"
-    local cmd=(dialog --backtitle "$__backtitle" --menu "¿Que configuracion te gustaria editar?" 22 76 16)
+    local cmd=(dialog --backtitle "$__backtitle" --menu "Which configuration would you like to edit" 22 76 16)
     local configs=()
     local options=()
     local config
@@ -347,7 +347,7 @@ function choose_config_configedit() {
 
 function basic_menu_configedit() {
     while true; do
-        local cmd=(dialog --backtitle "$__backtitle" --menu "¿Qué plataforma quieres ajustar?" 22 76 16)
+        local cmd=(dialog --backtitle "$__backtitle" --menu "Which platform do you want to adjust" 22 76 16)
         local configs=()
         local options=()
         local config
@@ -359,9 +359,9 @@ function basic_menu_configedit() {
             dir=${config%/*}
             dir=${dir//$configdir\//}
             if [[ "$dir" == "all" ]]; then
-                desc="Configurar las opciones por defecto para todos los emuladores libretro."
+                desc="Configure default options for all libretro emulators"
             else
-                desc="Configurar opciones adicionales para $dir"
+                desc="Configure additional options for $dir"
             fi
             options+=("$i" "$desc")
             ((i++))
@@ -377,13 +377,13 @@ function basic_menu_configedit() {
 
 function advanced_menu_configedit() {
     while true; do
-        local cmd=(dialog --backtitle "$__backtitle" --menu "Elija una opcion" 22 76 16)
+        local cmd=(dialog --backtitle "$__backtitle" --menu "Choose an option" 22 76 16)
         local options=(
-            1 "Configurar opciones de Libretro"
-            2 "Editar manualmente las configuraciones de RetroArch."
-            3 "Editar manualmente configuraciones globales"
-            4 "Editar manualmente configuraciones no RetroArch"
-            5 "Editar manualmente todas las configuraciones"
+            1 "Configure Libretro options"
+            2 "Manually edit RetroArch configurations"
+            3 "Manually edit global configs"
+            4 "Manually edit non RetroArch configurations"
+            5 "Manually edit all configurations"
         )
         local choice=$("${cmd[@]}" "${options[@]}" 2>&1 >/dev/tty)
         local file="-"
@@ -420,10 +420,10 @@ function advanced_menu_configedit() {
 
 function gui_configedit() {
     while true; do
-        local cmd=(dialog --backtitle "$__backtitle" --menu "Elija una opcion" 22 76 16)
+        local cmd=(dialog --backtitle "$__backtitle" --menu "Choose an option" 22 76 16)
         local options=(
-            1 "Configurar las opciones basicas del emulador libretro"
-            2 "Configuracion Avanzada"
+            1 "Configure basic libretro emulator options"
+            2 "Advanced Configuration"
         )
         local choice=$("${cmd[@]}" "${options[@]}" 2>&1 >/dev/tty)
         local file="-"

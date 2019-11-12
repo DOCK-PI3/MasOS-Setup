@@ -17,7 +17,7 @@ rp_module_section="opt"
 rp_module_flags=""
 
 function depends_vice() {
-    local depends=(libsdl2-dev libmpg123-dev libpng12-dev zlib1g-dev libasound2-dev libvorbis-dev libflac-dev libpcap-dev automake checkinstall bison flex subversion libjpeg-dev portaudio19-dev texinfo xa65)
+    local depends=(libsdl2-dev libmpg123-dev libpng-dev zlib1g-dev libasound2-dev libvorbis-dev libflac-dev libpcap-dev automake bison flex subversion libjpeg-dev portaudio19-dev texinfo xa65)
     isPlatform "x11" && depends+=(libpulse-dev)
     getDepends "${depends[@]}"
 }
@@ -27,7 +27,7 @@ function sources_vice() {
 }
 
 function build_vice() {
-    local params=(--enable-sdlui2 --without-arts --without-oss --enable-ethernet --enable-x64)
+    local params=(--enable-sdlui2 --without-oss --enable-ethernet --enable-x64)
     ! isPlatform "x11" && params+=(--disable-catweasel --without-pulse)
     ./autogen.sh
     ./configure --prefix="$md_inst" "${params[@]}"
@@ -83,8 +83,9 @@ _EOF_
 
     [[ "$md_mode" == "remove" ]] && return
 
-    # copy any existing configs from ~/.vice and symlink the config folder to $md_conf_root/c64/
+    # copy configs and symlink the old and new config folders to $md_conf_root/c64/
     moveConfigDir "$home/.vice" "$md_conf_root/c64"
+    moveConfigDir "$home/.config/vice" "$md_conf_root/c64"
 
     local config="$(mktemp)"
     echo "[C64]" > "$config"
@@ -99,7 +100,9 @@ _EOF_
         iniSet "SDLWindowHeight" "272"
         isPlatform "rpi1" && iniSet "SoundSampleRate" "22050"
         iniSet "SidEngine" "0"
-    else
+    fi
+
+    if isPlatform "x11" || isPlatform "kms"; then
         iniSet "VICIIFullscreen" "1"
     fi
 
@@ -115,5 +118,4 @@ _EOF_
         iniSet "SDLWindowWidth" "384"
         iniSet "SDLWindowHeight" "272"
     fi
-
 }

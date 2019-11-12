@@ -10,7 +10,7 @@
 #
 
 rp_module_id="runcommand"
-rp_module_desc="El 'runcommand' script de lanzamiento: necesario para lanzar los emuladores desde la interfaz"
+rp_module_desc="The 'runcommand' launch script - needed for launching the emulators from the frontend"
 rp_module_section="core"
 
 function _update_hook_runcommand() {
@@ -20,7 +20,8 @@ function _update_hook_runcommand() {
 
 function depends_runcommand() {
     local depends=()
-    isPlatform "rpi" && depends+=(fbi)
+    isPlatform "rpi" && depends+=(libraspberrypi-bin)
+    isPlatform "rpi" || isPlatform "kms" && depends+=(fbi fbset)
     isPlatform "x11" && depends+=(feh)
     getDepends "${depends[@]}"
 }
@@ -49,10 +50,10 @@ function install_bin_runcommand() {
 }
 
 function governor_runcommand() {
-    cmd=(dialog --backtitle "$__backtitle" --cancel-label "Back" --menu "Configurar CPU Governor al iniciar el comando" 22 86 16)
+    cmd=(dialog --backtitle "$__backtitle" --cancel-label "Back" --menu "Configure CPU Governor on command launch" 22 86 16)
     local governors
     local governor
-    local options=("1" "Predeterminado (no cambiar)")
+    local options=("1" "Default (don't change)")
     local i=2
     if [[ -f /sys/devices/system/cpu/cpu0/cpufreq/scaling_available_governors ]]; then
         for governor in $(</sys/devices/system/cpu/cpu0/cpufreq/scaling_available_governors); do
@@ -86,29 +87,29 @@ function gui_runcommand() {
             'image_delay=2' \
         )"
 
-        cmd=(dialog --backtitle "$__backtitle" --cancel-label "Exit" --default-item "$default" --menu "Elija una opcion." 22 86 16)
+        cmd=(dialog --backtitle "$__backtitle" --cancel-label "Exit" --default-item "$default" --menu "Choose an option." 22 86 16)
         options=()
 
         if [[ "$disable_menu" -eq 0 ]]; then
-            options+=(1 "Menu de inicio (actualmente: Habilitado)")
+            options+=(1 "Launch menu (currently: Enabled)")
         else
-            options+=(1 "Menu de inicio (actualmente: Deshabilitado)")
+            options+=(1 "Launch menu (currently: Disabled)")
         fi
 
         if [[ "$use_art" -eq 1 ]]; then
-            options+=(2 "Menu de lanzamiento de arte (actualmente: Habilitado)")
+            options+=(2 "Launch menu art (currently: Enabled)")
         else
-            options+=(2 "Menu de lanzamiento de arte (actualmente: Deshabilitado)")
+            options+=(2 "Launch menu art (currently: Disabled)")
         fi
 
         if [[ "$disable_joystick" -eq 0 ]]; then
-            options+=(3 "Menu de inicio de control de joystick (actualmente: Habilitado)")
+            options+=(3 "Launch menu joystick control (currently: Enabled)")
         else
-            options+=(3 "Menu de inicio de control de joystick (actualmente: Deshabilitado)")
+            options+=(3 "Launch menu joystick control (currently: Disabled)")
         fi
 
-        options+=(4 "Retraso de la imagen de lanzamiento en segundos (actualmente $image_delay)")
-        options+=(5 "Configuracion CPU")
+        options+=(4 "Launch image delay in seconds (currently $image_delay)")
+        options+=(5 "CPU configuration")
 
         local choice=$("${cmd[@]}" "${options[@]}" 2>&1 >/dev/tty)
         [[ -z "$choice" ]] && break
@@ -124,7 +125,7 @@ function gui_runcommand() {
                 iniSet "disable_joystick" "$((disable_joystick ^ 1))"
                 ;;
             4)
-                cmd=(dialog --backtitle "$__backtitle" --inputbox "Por favor ingrese el retraso en segundos" 10 60 "$image_delay")
+                cmd=(dialog --backtitle "$__backtitle" --inputbox "Please enter the delay in seconds" 10 60 "$image_delay")
                 choice=$("${cmd[@]}" 2>&1 >/dev/tty)
                 iniSet "image_delay" "$choice"
                 ;;

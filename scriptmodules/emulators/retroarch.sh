@@ -10,7 +10,7 @@
 #
 
 rp_module_id="retroarch"
-rp_module_desc="RetroArch_1.7.7 - frontend to the libretro emulator cores - required by all lr-* emulators"
+rp_module_desc="RetroArch - frontend to the libretro emulator cores - required by all lr-* emulators"
 rp_module_licence="GPL3 https://raw.githubusercontent.com/libretro/RetroArch/master/COPYING"
 rp_module_section="core"
 
@@ -40,14 +40,14 @@ function depends_retroarch() {
 }
 
 function sources_retroarch() {
-    gitPullOrClone "$md_build" https://github.com/libretro/RetroArch.git v1.7.7
+    gitPullOrClone "$md_build" https://github.com/libretro/RetroArch.git v1.7.6
     applyPatch "$md_data/01_hotkey_hack.diff"
     applyPatch "$md_data/02_disable_search.diff"
     applyPatch "$md_data/03_disable_udev_sort.diff"
 }
 
 function build_retroarch() {
-    local params=(--disable-sdl --enable-sdl2 --enable-udev --enable-alsa --disable-oss --disable-al --disable-jack --disable-qt)
+    local params=(--disable-sdl --enable-sdl2 --disable-oss --disable-al --disable-jack --disable-qt)
     if ! isPlatform "x11"; then
         params+=(--disable-pulse)
         ! isPlatform "mesa" && params+=(--disable-x11)
@@ -55,7 +55,7 @@ function build_retroarch() {
     if compareVersions "$__os_debian_ver" lt 9; then
         params+=(--disable-ffmpeg)
     fi
-    isPlatform "gles" && params+=(--enable-opengles --disable-opengl1 --disable-opengl_core)
+    isPlatform "gles" && params+=(--enable-opengles)
     # Temporarily block dispmanx support for fkms until upstream support is fixed
     isPlatform "dispmanx" && ! isPlatform "kms" && params+=(--enable-dispmanx)
     isPlatform "rpi" && isPlatform "mesa" && params+=(--disable-videocore)

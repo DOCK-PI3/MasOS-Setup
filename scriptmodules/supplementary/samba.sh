@@ -10,11 +10,11 @@
 #
 
 rp_module_id="samba"
-rp_module_desc="Configura Samba ROM Shares"
+rp_module_desc="Configure Samba ROM Shares"
 rp_module_section="config"
 
 function depends_samba() {
-    getDepends samba
+    DEBIAN_FRONTEND=noninteractive getDepends samba
 }
 
 function remove_share_samba() {
@@ -41,45 +41,35 @@ _EOF_
 }
 
 function restart_samba() {
-    service samba restart
+    service samba restart || service smbd restart
 }
-
-# new samba shares by mabedeep: agregando rutas directas de ES y ovelays
-masosemulationstation="/etc/emulationstation"
-retroarch="/opt/masos/configs/all/retroarch"
-#fin -----------------------------------------------------------
 
 function install_shares_samba() {
     cp /etc/samba/smb.conf /etc/samba/smb.conf.bak
     add_share_samba "roms" "$romdir"
-    add_share_samba "bios" "$home/MasOS/BIOS"
+    add_share_samba "bios" "$home/RetroPie/BIOS"
     add_share_samba "configs" "$configdir"
     add_share_samba "splashscreens" "$datadir/splashscreens"
-	add_share_samba "emulationstation" "$masosemulationstation"
-	add_share_samba "retroarch" "$retroarch" 
-# Agregar permisos para usuario pi en directorios nuevos
-	sudo chown -R $user:$user /etc/emulationstation
-	sudo chown -R $user:$user /opt/masos/configs/all/retroarch
     restart_samba
 }
 
-
 function remove_shares_samba() {
     local name
-    for name in roms bios configs splashscreens emulationstation retroarch; do
+    for name in roms bios configs splashscreens; do
         remove_share_samba "$name"
     done
+    restart_samba
 }
 
 function gui_samba() {
     while true; do
-        local cmd=(dialog --backtitle "$__backtitle" --menu "Elija una opcion" 22 76 16)
+        local cmd=(dialog --backtitle "$__backtitle" --menu "Choose an option" 22 76 16)
         local options=(
-            1 "Instalar MasOS Samba shares"
-            2 "Eliminar MasOS Samba shares"
-            3 "Edicion manual /etc/samba/smb.conf"
-            4 "Reiniciar Samba service"
-            5 "Eliminar Samba + configuration"
+            1 "Install RetroPie Samba shares"
+            2 "Remove RetroPie Samba shares"
+            3 "Manually edit /etc/samba/smb.conf"
+            4 "Restart Samba service"
+            5 "Remove Samba + configuration"
         )
         local choice=$("${cmd[@]}" "${options[@]}" 2>&1 >/dev/tty)
         if [[ -n "$choice" ]]; then
@@ -87,11 +77,11 @@ function gui_samba() {
                 1)
                     rp_callModule "$md_id" depends
                     rp_callModule "$md_id" install_shares
-                    printMsgs "dialog" "Instala y activa samba shares"
+                    printMsgs "dialog" "Installed and enabled shares"
                     ;;
                 2)
                     rp_callModule "$md_id" remove_shares
-                    printMsgs "dialog" "Eliminar samba shares"
+                    printMsgs "dialog" "Removed shares"
                     ;;
                 3)
                     editFile /etc/samba/smb.conf
@@ -101,7 +91,7 @@ function gui_samba() {
                     ;;
                 5)
                     rp_callModule "$md_id" depends remove
-                    printMsgs "dialog" "Eliminar Samba service"
+                    printMsgs "dialog" "Removed Samba service"
                     ;;
             esac
         else

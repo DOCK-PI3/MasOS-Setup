@@ -7,7 +7,7 @@
 # at https://raw.githubusercontent.com/RetroPie/RetroPie-Setup/master/LICENSE.md
 #
 rp_module_id="golang"
-rp_module_desc="Instalacion binaria de golang"
+rp_module_desc="Golang binary install"
 rp_module_section=""
 rp_module_flags="noinstclean"
 

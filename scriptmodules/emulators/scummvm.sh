@@ -17,7 +17,11 @@ rp_module_section="opt"
 rp_module_flags=""
 
 function depends_scummvm() {
-    local depends=(libmpeg2-4-dev libogg-dev libvorbis-dev libflac-dev libmad0-dev libpng12-dev libtheora-dev libfaad-dev libfluidsynth-dev libfreetype6-dev zlib1g-dev libjpeg-dev)
+    local depends=(
+        libmpeg2-4-dev libogg-dev libvorbis-dev libflac-dev libmad0-dev libpng-dev
+        libtheora-dev libfaad-dev libfluidsynth-dev libfreetype6-dev zlib1g-dev
+        libjpeg-dev libasound2-dev libcurl4-openssl-dev
+    )
     if isPlatform "vero4k"; then
         depends+=(vero3-userland-dev-osmc)
     fi
@@ -30,33 +34,21 @@ function depends_scummvm() {
 }
 
 function sources_scummvm() {
-    gitPullOrClone "$md_build" https://github.com/scummvm/scummvm.git "branch-2-0"
+    gitPullOrClone "$md_build" https://github.com/scummvm/scummvm.git v2.1.0
     if isPlatform "rpi"; then
-        applyPatch rpi_enable_scalers.diff <<\_EOF_
-diff --git a/configure b/configure
-index 31dbf5a..58e9563 100755
---- a/configure
-+++ b/configure
-@@ -2651,10 +2651,6 @@ if test -n "$_host"; then
- 			append_var LDFLAGS "-L$RPI_ROOT/opt/vc/lib"
- 			# This is so optional OpenGL ES includes are found.
- 			append_var CXXFLAGS "-I$RPI_ROOT/opt/vc/include"
--			_savegame_timestamp=no
--			_eventrec=no
--			_build_scalers=no
--			_build_hq_scalers=no
- 			# We prefer SDL2 on the Raspberry Pi: acceleration now depends on it
- 			# since SDL2 manages dispmanx/GLES2 very well internally.
- 			# SDL1 is bit-rotten on this platform.
-_EOF_
+        applyPatch "$md_data/01_rpi_enable_scalers.diff"
     fi
 }
 
 function build_scummvm() {
-    local params=(--enable-all-engines --enable-vkeybd --enable-release --disable-debug --enable-keymapper --disable-eventrecorder --prefix="$md_inst")
+    local params=(
+        --enable-release --enable-vkeybd --enable-keymapper
+        --disable-debug --disable-eventrecorder --prefix="$md_inst"
+    )
     isPlatform "rpi" && params+=(--host=raspberrypi)
     isPlatform "vero4k" && params+=(--opengl-mode=gles2)
-    # stop scummvm using arm-linux-gnueabihf-g++ which is v4.6 on wheezy and doesn't like rpi2 cpu flags
+    # stop scummvm using arm-linux-gnueabihf-g++ which is v4.6 on
+    # wheezy and doesn't like rpi2 cpu flags
     if isPlatform "rpi"; then
         CC="gcc" CXX="g++" ./configure "${params[@]}"
     else
@@ -78,9 +70,7 @@ function configure_scummvm() {
     mkRomDir "scummvm"
 
     local dir
-    mkUserDir "$home/.local"
-    for dir in .config .local/share .cache; do
-        mkUserDir "$home/$dir"
+    for dir in .config .local/share; do
         moveConfigDir "$home/$dir/scummvm" "$md_conf_root/scummvm"
     done
 

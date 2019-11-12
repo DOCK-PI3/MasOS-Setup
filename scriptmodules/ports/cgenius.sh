@@ -19,7 +19,7 @@ function depends_cgenius() {
 }
 
 function sources_cgenius() {
-    gitPullOrClone "$md_build" https://github.com/gerstrong/Commander-Genius.git v2.3.1
+    gitPullOrClone "$md_build" https://gitlab.com/Dringgstein/Commander-Genius.git v2.3.6
 
     # use -O2 on older GCC due to segmentation fault when compiling with -O3
     if compareVersions $__gcc_version lt 6.0.0; then
@@ -28,7 +28,7 @@ function sources_cgenius() {
 }
 
 function build_cgenius() {
-    cmake -DUSE_SDL2=yes -DCMAKE_INSTALL_PREFIX="$md_inst"
+    cmake -DUSE_SDL2=yes -DCMAKE_INSTALL_PREFIX="$md_inst" -DNOTYPESAVE=on
     make
     md_ret_require="$md_build/src/CGeniusExe"
 }

@@ -28,7 +28,7 @@ function depends_fs-uae() {
             ;;
         Debian)
             if [[ "$md_mode" == "install" ]]; then
-                echo "deb http://download.opensuse.org/repositories/home:/FrodeSolheim:/stable/Debian_8.0/ /" > /etc/apt/sources.list.d/fsuae-stable.list
+                echo "deb http://download.opensuse.org/repositories/home:/FrodeSolheim:/stable/Debian_9.0/ /" > /etc/apt/sources.list.d/fsuae-stable.list
             else
                 rm -f /etc/apt/sources.list.d/fsuae-stable.list
             fi
@@ -70,6 +70,6 @@ function configure_fs-uae() {
     copyDefaultConfig "$config" "$md_conf_root/amiga/fs-uae/Default.fs-uae"
     rm "$config"
 
-    addEmulator 1 "$md_id" "amiga" "bash $md_inst/bin/fs-uae.sh %ROM%"
+    addEmulator 1 "$md_id" "amiga" "CON:bash $md_inst/bin/fs-uae.sh %ROM%"
     addSystem "amiga"
 }

@@ -16,7 +16,7 @@ rp_module_section="exp"
 
 # abuse-lib & abuse-sfx will pull in the older abuse package which only works under X
 function depends_abuse() {
-    getDepends libsdl2-dev libsdl2-mixer-dev abuse-lib abuse-sfx
+    getDepends cmake libsdl2-dev libsdl2-mixer-dev abuse-lib abuse-sfx
 }
 
 function sources_abuse() {
@@ -38,5 +38,5 @@ function install_abuse() {
 function configure_abuse() {
     mkRomDir "ports"
     moveConfigDir "$home/.abuse" "$md_conf_root/abuse"
-    addPort "$md_id" "abuse" "Abuse" "pushd $md_inst; $md_inst/abuse; popd"
+    addPort "$md_id" "abuse" "Abuse" "pushd $md_inst; $md_inst/abuse -datadir /usr/share/games/abuse/; popd"
 }

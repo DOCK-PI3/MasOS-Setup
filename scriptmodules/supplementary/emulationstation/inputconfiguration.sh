@@ -1,12 +1,12 @@
 #!/usr/bin/env bash
 
-# This file is part of The MasOS  Project
+# This file is part of The RetroPie Project
 #
-# The MasOS Project is the legal property of its developers, whose names are
+# The RetroPie Project is the legal property of its developers, whose names are
 # too numerous to list here. Please refer to the COPYRIGHT.md file distributed with this source.
 #
 # See the LICENSE.md file at the top-level directory of this distribution and
-# at https://raw.githubusercontent.com/DOCK-PI3/MasOS-Setup/master/LICENSE.md
+# at https://raw.githubusercontent.com/RetroPie/RetroPie-Setup/master/LICENSE.md
 #
 
 ## @file scriptmodules/supplementary/emulationstation/inputconfiguration.sh
@@ -208,7 +208,7 @@ function sdl1_map() {
 user=$(id -un)
 home="$(eval echo ~$user)"
 
-rootdir="/opt/masos"
+rootdir="/opt/retropie"
 configdir="$rootdir/configs"
 
 source "$rootdir/lib/inifuncs.sh"

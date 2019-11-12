@@ -19,8 +19,11 @@ function get_pkg_ver_sdl1() {
     local basever
     local revision
 
-    if compareVersions "$__os_release" ge 9; then
+    if compareVersions "$__os_debian_ver" eq 9; then
         basever="1.2.15+dfsg1"
+        revision="4"
+    elif compareVersions "$__os_debian_ver" eq 10; then
+        basever="1.2.15+dfsg2"
         revision="4"
     else
         basever="1.2.15"
@@ -59,7 +62,7 @@ function sources_sdl1() {
 function build_sdl1() {
     cd libsdl1.2-$(get_pkg_ver_sdl1 base)
     dpkg-buildpackage
-    local dest="$__tmpdir/archives/$__os_codename/$__platform"
+    local dest="$__tmpdir/archives/$__binary_path"
     mkdir -p "$dest"
     cp ../*.deb "$dest/"
 }
@@ -84,6 +87,6 @@ function install_bin_sdl1() {
 }
 
 function remove_sdl1() {
-    apt-get remove -y --force-yes libsdl1.2-dev
+    apt-get remove -y --allow-change-held-packages libsdl1.2-dev libsdl1.2debian
     apt-get autoremove -y
 }

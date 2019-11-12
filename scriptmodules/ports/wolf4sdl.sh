@@ -13,10 +13,10 @@ rp_module_id="wolf4sdl"
 rp_module_desc="Wolf4SDL - port of Wolfenstein 3D / Spear of Destiny engine"
 rp_module_licence="NONCOM https://raw.githubusercontent.com/mozzwald/wolf4sdl/master/license-mame.txt"
 rp_module_section="opt"
-rp_module_flags="dispmanx !mali !kms"
+rp_module_flags="dispmanx !mali"
 
 function depends_wolf4sdl() {
-    getDepends libsdl1.2-dev libsdl-mixer1.2-dev
+    getDepends libsdl1.2-dev libsdl-mixer1.2-dev rename
 }
 
 function sources_wolf4sdl() {
@@ -109,10 +109,13 @@ function configure_wolf4sdl() {
         game_data_wolf4sdl
         cat > "$md_inst/bin/wolf4sdl.sh" << _EOF_
 #!/bin/bash
+
 function get_md5sum() {
     local file="\$1"
+
     [[ -n "\$file" ]] && md5sum "\$file" 2>/dev/null | cut -d" " -f1
 }
+
 function launch_wolf4sdl() {
     local wad_file="\$1"
     declare -A game_checksums=(
@@ -130,6 +133,7 @@ function launch_wolf4sdl() {
             echo "Error: \$wad_file (md5: \$(get_md5sum \$wad_file)) is not a supported version"
         fi
 }
+
 launch_wolf4sdl "\$1"
 _EOF_
         chmod +x "$md_inst/bin/wolf4sdl.sh"

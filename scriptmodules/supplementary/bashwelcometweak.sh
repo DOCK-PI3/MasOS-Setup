@@ -18,6 +18,15 @@ function install_bashwelcometweak() {
     cat >> "$home/.bashrc" <<\_EOF_
 # RETROPIE PROFILE START
 
+function getIPAddress() {
+    local ip_route
+    ip_route=$(ip -4 route get 8.8.8.8 2>/dev/null)
+    if [[ -z "$ip_route" ]]; then
+        ip_route=$(ip -6 route get 2001:4860:4860::8888 2>/dev/null)
+    fi
+    [[ -n "$ip_route" ]] && grep -oP "src \K[^\s]+" <<< "$ip_route"
+}
+
 function retropie_welcome() {
     local upSeconds="$(/usr/bin/cut -d. -f1 /proc/uptime)"
     local secs=$((upSeconds%60))
@@ -71,17 +80,17 @@ function retropie_welcome() {
     local bfgwht="${bld}$(tput setaf 7)"
 
     local logo=(
-        "${fgred}**********************************************"
-        "${fgred}**                                          **"
-        "${fgred}**   ${bfgwht}**   **                 ****   ****    ${fgred}**"
-		"${fgred}**   ${bfgwht}**   **                **  ** **   *   ${fgred}**"
-        "${fgred}**   ${bfgwht}*** ***  ****    ****  **  ** **       ${fgred}**"
-        "${fgred}**   ${bfgwht}** * **      *  *      **  **  ****    ${fgred}**"
-        "${fgred}**   ${bfgwht}**   **  ****    ****  **  **     **   ${fgred}**"
-        "${fgred}**   ${bfgwht}**   ** *    *       * **  ** *   **   ${fgred}**"
-        "${fgred}**   ${bfgwht}**   **  **** *  ****   ****   ****    ${fgred}**"
-        "${fgred}**                                          **"
-        "${fgred}**********************************************"
+        "${fgred}   .***.   "
+        "${fgred}   ***${bfgwht}*${fgred}*   "
+        "${fgred}   \`***'   "
+        "${bfgwht}    |*|    "
+        "${bfgwht}    |*|    "
+        "${bfgred}  ..${bfgwht}|*|${bfgred}..  "
+        "${bfgred}.*** ${bfgwht}*${bfgred} ***."
+        "${bfgred}*******${fggrn}@@${bfgred}**"
+        "${fgred}\`*${bfgred}****${bfgylw}@@${bfgred}*${fgred}*'"
+        "${fgred} \`*******'${fgrst} "
+        "${fgred}   \`\"\"\"'${fgrst}   "
         )
 
     local out
@@ -102,25 +111,25 @@ function retropie_welcome() {
                 out+="${fgwht}${df_out[1]}"
                 ;;
             5)
-                out+="${bfgred}Tiempo de actividad.: ${UPTIME}"
+                out+="${fgred}Uptime.............: ${UPTIME}"
                 ;;
             6)
-                out+="${bfgred}Memoria.............: $(grep MemFree /proc/meminfo | awk {'print $2'})kB (Free) / $(grep MemTotal /proc/meminfo | awk {'print $2'})kB (Total)"
+                out+="${fgred}Memory.............: $(grep MemFree /proc/meminfo | awk {'print $2'})kB (Free) / $(grep MemTotal /proc/meminfo | awk {'print $2'})kB (Total)"
                 ;;
             7)
-                out+="${bfgred}Procesos Corriendo..: $(ps ax | wc -l | tr -d " ")"
+                out+="${fgred}Running Processes..: $(ps ax | wc -l | tr -d " ")"
                 ;;
             8)
-                out+="${bfgred}Dirección IP........: $(ip route get 8.8.8.8 2>/dev/null | awk '{print $NF; exit}')"
+                out+="${fgred}IP Address.........: $(getIPAddress)"
                 ;;
             9)
-                out+="${bfgred}Temperatura.........: CPU: $cpuTempC°C/$cpuTempF°F GPU: $gpuTempC°C/$gpuTempF°F"
+                out+="Temperature........: CPU: $cpuTempC°C/$cpuTempF°F GPU: $gpuTempC°C/$gpuTempF°F"
                 ;;
             10)
-                out+="${fgwht}Proyecto MasOS, http://masos.dx.am"
+                out+="${fgwht}The RetroPie Project, https://retropie.org.uk"
                 ;;
         esac
-        out+="\n"
+        out+="${rst}\n"
     done
     echo -e "\n$out"
 }

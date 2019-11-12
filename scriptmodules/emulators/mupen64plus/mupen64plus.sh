@@ -16,12 +16,13 @@ RES="$3"
 RSP_PLUGIN="$4"
 [[ -n "$RES" ]] && RES="--resolution $RES"
 [[ -z "$RSP_PLUGIN" ]] && RSP_PLUGIN="mupen64plus-rsp-hle"
+WINDOW_MODE="--fullscreen $RES"
 
-rootdir="/opt/masos"
+rootdir="/opt/retropie"
 configdir="$rootdir/configs"
 config="$configdir/n64/mupen64plus.cfg"
 inputconfig="$configdir/n64/InputAutoCfg.ini"
-datadir="$HOME/MasOS"
+datadir="$HOME/RetroPie"
 romdir="$datadir/roms"
 
 source "$rootdir/lib/inifuncs.sh"
@@ -175,7 +176,6 @@ function testCompatibility() {
     local blacklist=(
         naboo
         body
-        infernal
     )
 
     # these games do not run with gles2n64
@@ -197,6 +197,7 @@ function testCompatibility() {
         rogue
         squadron
         gauntlet
+        infernal
     )
 
     # these games have massive glitches if legacy blending is enabled
@@ -206,6 +207,7 @@ function testCompatibility() {
         donkey
         zelda
         bomberman
+        infernal
     )
 
     local GLideN64NativeResolution_blacklist=(
@@ -225,6 +227,7 @@ function testCompatibility() {
         starcraft
         rogue
         squadron
+        infernal
     )
 
     for game in "${blacklist[@]}"; do
@@ -251,14 +254,6 @@ function testCompatibility() {
                 config_version=$(<"$configdir/n64/GLideN64_config_version.ini")
             fi
             iniSet "configVersion" "$config_version"
-            # Size of texture cache in megabytes. Good value is VRAM*3/4
-            iniSet "CacheSize" "50"
-            # Enable FPS Counter. Fixes zelda depth issue
-            iniSet "ShowFPS " "True"
-            iniSet "fontSize" "14"
-            iniSet "fontColor" "1F1F1F"
-            # Enable FBEmulation if necessary
-            iniSet "EnableFBEmulation" "True"
             # Set native resolution factor of 1
             iniSet "UseNativeResolutionFactor" "1"
             for game in "${GLideN64NativeResolution_blacklist[@]}"; do
@@ -437,10 +432,13 @@ getAutoConf mupen64plus_compatibility_check && testCompatibility
 getAutoConf mupen64plus_texture_packs && useTexturePacks
 
 if [[ "$(sed -n '/^Hardware/s/^.*: \(.*\)/\1/p' < /proc/cpuinfo)" == BCM* ]]; then
+    WINDOW_MODE="--windowed $RES"
+    SDL_VIDEO_RPI_SCALE_MODE=1
     # If a raspberry pi is used lower resolution to 320x240 and enable SDL dispmanx scaling mode 1
-    SDL_VIDEO_RPI_SCALE_MODE=1 "$rootdir/emulators/mupen64plus/bin/mupen64plus" --noosd --windowed $RES --rsp ${RSP_PLUGIN}.so --gfx ${VIDEO_PLUGIN}.so --audio ${AUDIO_PLUGIN}.so --configdir "$configdir/n64" --datadir "$configdir/n64" "$ROM"
 elif [[ -e /opt/vero3/lib/libMali.so  ]]; then
-    SDL_AUDIODRIVER=alsa "$rootdir/emulators/mupen64plus/bin/mupen64plus" --noosd --fullscreen --rsp ${RSP_PLUGIN}.so --gfx ${VIDEO_PLUGIN}.so --audio mupen64plus-audio-sdl.so --configdir "$configdir/n64" --datadir "$configdir/n64" "$ROM"
+    SDL_AUDIODRIVER=alsa
 else
-    SDL_AUDIODRIVER=pulse "$rootdir/emulators/mupen64plus/bin/mupen64plus" --noosd --fullscreen --rsp ${RSP_PLUGIN}.so --gfx ${VIDEO_PLUGIN}.so --audio mupen64plus-audio-sdl.so --configdir "$configdir/n64" --datadir "$configdir/n64" "$ROM"
+    SDL_AUDIODRIVER=pulse
 fi
+
+SDL_AUDIODRIVER=${SDL_AUDIODRIVER} SDL_VIDEO_RPI_SCALE_MODE=${SDL_VIDEO_RPI_SCALE_MODE} "$rootdir/emulators/mupen64plus/bin/mupen64plus" --noosd ${WINDOW_MODE} --rsp ${RSP_PLUGIN}.so --gfx ${VIDEO_PLUGIN}.so --audio ${AUDIO_PLUGIN}.so --configdir "$configdir/n64" --datadir "$configdir/n64" "$ROM"

@@ -20,7 +20,7 @@ function depends_wikidocs() {
 
 function sources_wikidocs() {
     gitPullOrClone "$md_build" https://github.com/RetroPie/RetroPie-Docs.git
-    gitPullOrClone "$md_build/docs" https://github.com/DOCK-PI3/MasOS-Setup.wiki.git
+    gitPullOrClone "$md_build/docs" https://github.com/RetroPie/retropie-setup.wiki.git
 
     cp -v "docs/Home.md" "docs/index.md"
     cp -R "$md_build/"{images,stylesheets} "docs/"

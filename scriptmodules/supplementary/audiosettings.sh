@@ -24,10 +24,10 @@ function gui_audiosettings() {
     local cmd=(dialog --backtitle "$__backtitle" --menu "Set audio output." 22 86 16)
     local options=(
         1 "Auto"
-        2 "Auriculares - 3.5mm jack"
+        2 "Headphones - 3.5mm jack"
         3 "HDMI"
-        4 "Mezclador - ajustar el volumen de salida"
-        R "Restablecer a los predeterminados"
+        4 "Mixer - adjust output volume"
+        R "Reset to default"
     )
     choice=$("${cmd[@]}" "${options[@]}" 2>&1 >/dev/tty)
     if [[ -n "$choice" ]]; then
@@ -35,17 +35,17 @@ function gui_audiosettings() {
             1)
                 amixer cset numid=3 0
                 alsactl store
-                printMsgs "dialog" "Establecer la salida de audio en auto"
+                printMsgs "dialog" "Set audio output to auto"
                 ;;
             2)
                 amixer cset numid=3 1
                 alsactl store
-                printMsgs "dialog" "Establecer la salida de audio en Auriculares / 3.5mm jack"
+                printMsgs "dialog" "Set audio output to headphones / 3.5mm jack"
                 ;;
             3)
                 amixer cset numid=3 2
                 alsactl store
-                printMsgs "dialog" "Establecer la salida de audio en HDMI"
+                printMsgs "dialog" "Set audio output to HDMI"
                 ;;
             4)
                 alsamixer >/dev/tty </dev/tty
@@ -54,7 +54,7 @@ function gui_audiosettings() {
             R)
                 /etc/init.d/alsa-utils reset
                 alsactl store
-                printMsgs "dialog" "Los ajustes de audio se restablecen a los valores predeterminados"
+                printMsgs "dialog" "Audio settings reset to defaults"
                 ;;
         esac
     fi

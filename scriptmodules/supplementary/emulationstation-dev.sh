@@ -10,7 +10,7 @@
 #
 
 rp_module_id="emulationstation-dev"
-rp_module_desc="EmulationStation (ultima version de desarrollo) - Frontend utilizado por MasOS y RetroPie para lanzar emuladores"
+rp_module_desc="EmulationStation (latest development version) - Frontend used by RetroPie for launching emulators"
 rp_module_licence="MIT https://raw.githubusercontent.com/RetroPie/EmulationStation/master/LICENSE.md"
 rp_module_section="exp"
 rp_module_flags="frontend"
@@ -45,8 +45,6 @@ function build_emulationstation-dev() {
 
 function install_emulationstation-dev() {
     install_emulationstation
-    md_ret_files+=(resources)
-	md_ret_files+=(locale)
 }
 
 function configure_emulationstation-dev() {

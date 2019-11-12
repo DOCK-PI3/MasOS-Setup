@@ -10,11 +10,15 @@
 #
 
 rp_module_id="xpad"
-rp_module_desc="Actualizar Xpad Linux Kernel driver"
-rp_module_help="Este es el ultimo driver de Xpad de https://github.com/paroj/xpad\n\nEl driver ha sido parcheado para permitir que los disparadores se asignen a los botones de cualquier controlador y esto se ha habilitado de forma predeterminada.\n\nEste fix soluciona el mapeado de los mandos en EmulationStation.\n\nSi no desea este comportamiento anterior, edite /etc/modprobe.d/xpad.conf y configure triggers_to_buttons = 0"
+rp_module_desc="Updated Xpad Linux Kernel driver"
+rp_module_help="This is the latest Xpad driver from https://github.com/paroj/xpad\n\nThe driver has been patched to allow the triggers to map to buttons for any controller and this has been enabled by default.\n\nThis fixes mapping the triggers in Emulation Station.\n\nIf you want the previous trigger behaviour please edit /etc/modprobe.d/xpad.conf and set triggers_to_buttons=0"
 rp_module_licence="GPL2 https://www.kernel.org/pub/linux/kernel/COPYING"
 rp_module_section="driver"
 rp_module_flags="noinstclean !mali"
+
+function _version_xpad() {
+    echo "0.4"
+}
 
 function depends_xpad() {
     local depends=(dkms)
@@ -28,61 +32,23 @@ function sources_xpad() {
     gitPullOrClone "$md_inst" https://github.com/paroj/xpad.git
     cd "$md_inst"
     # LED support (as disabled currently in packaged RPI kernel) and allow forcing MAP_TRIGGERS_TO_BUTTONS
-    applyPatch "retropie.diff" <<\_EOF_
-diff --git a/xpad.c b/xpad.c
-index e0de997..eba3a5c 100644
---- a/xpad.c
-+++ b/xpad.c
-@@ -86,6 +86,8 @@
- 
- #define XPAD_PKT_LEN 64
- 
-+#define CONFIG_JOYSTICK_XPAD_LEDS 1
-+
- /*
-  * xbox d-pads should map to buttons, as is required for DDR pads
-  * but we map them to axes when possible to simplify things
-@@ -1779,12 +1781,13 @@ static int xpad_probe(struct usb_interface *intf, const struct usb_device_id *id
- 
- 		if (dpad_to_buttons)
- 			xpad->mapping |= MAP_DPAD_TO_BUTTONS;
--		if (triggers_to_buttons)
--			xpad->mapping |= MAP_TRIGGERS_TO_BUTTONS;
- 		if (sticks_to_null)
- 			xpad->mapping |= MAP_STICKS_TO_NULL;
- 	}
- 
-+	if (triggers_to_buttons)
-+		xpad->mapping |= MAP_TRIGGERS_TO_BUTTONS;
-+
- 	if (xpad->xtype == XTYPE_XBOXONE &&
- 	    intf->cur_altsetting->desc.bInterfaceNumber != 0) {
- 		/*
-_EOF_
+    applyPatch "$md_data/01_enable_leds_and_trigmapping.diff"
 }
 
 function build_xpad() {
-    ln -sf "$md_inst" "/usr/src/xpad-0.4"
-    if dkms status | grep -q "^xpad"; then
-        dkms remove -m xpad -v 0.4 --all
-    fi
-    local kernel
-    if [[ "$__chroot" -eq 1 ]]; then
-        kernel="$(ls -1 /lib/modules | tail -n -1)"
-    else
-        kernel="$(uname -r)"
-    fi
-    dkms install --force -m xpad -v 0.4 -k "$kernel"
+    dkmsManager install xpad "$(_version_xpad)"
 }
 
 function remove_xpad() {
-    dkms remove -m xpad -v 0.4 --all
-    rm -rf /usr/src/xpad-0.4
+    dkmsManager remove xpad "$(_version_xpad)"
     rm -f /etc/modprobe.d/xpad.conf
 }
 
 function configure_xpad() {
+    [[ "$md_mode" == "remove" ]] && return
+
     if [[ ! -f /etc/modprobe.d/xpad.conf ]]; then
         echo "options xpad triggers_to_buttons=1" >/etc/modprobe.d/xpad.conf
     fi
+    dkmsManager reload xpad "$(_version_xpad)"
 }

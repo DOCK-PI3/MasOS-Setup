@@ -11,8 +11,11 @@
 
 AUDIO="$1"
 ROM="$2"
-rootdir="/opt/masos"
+XRES="$3"
+YRES="$4"
+rootdir="/opt/retropie"
 configdir="$rootdir/configs"
+biosdir="$HOME/RetroPie/BIOS/dc"
 
 source "$rootdir/lib/inifuncs.sh"
 
@@ -33,7 +36,7 @@ function mapInput() {
         for ev_device in /dev/input/event*; do
             ev_device_num=${ev_device/\/dev\/input\/event/}
             if [[ -d "/sys/class/input/event${ev_device_num}/device/js${js_device_num}" ]]; then
-                file[$ev_device_num]=$(grep --exclude=*.bak -rl "$configdir/dreamcast/mappings/" -e "= $(</sys/class/input/event${ev_device_num}/device/name)")
+                file[$ev_device_num]=$(grep --exclude=*.bak -rl -m 1 "$configdir/dreamcast/mappings/" -e "= $(</sys/class/input/event${ev_device_num}/device/name)" | tail -n 1)
                 if [[ -f "${file[$ev_device_num]}" ]]; then
                     #file[$ev_device_num]="${file[$ev_device_num]##*/}"
                     ev_devices[$ev_device_num]=$(</sys/class/input/event${ev_device_num}/device/name)
@@ -72,17 +75,18 @@ function mapInput() {
     echo "$params"
 }
 
-if [[ ! -f "$HOME/MasOS/BIOS/dc/dc_boot.bin" ]]; then
+if [[ ! -f "$biosdir/dc_boot.bin" ]]; then
     dialog --no-cancel --pause "You need to copy the Dreamcast BIOS files (dc_boot.bin and dc_flash.bin) to the folder $biosdir to boot the Dreamcast emulator." 22 76 15
     exit 1
 fi
 
 params=(-config config:homedir=$HOME -config x11:fullscreen=1)
+[[ -n "$XRES" ]] && params+=(-config x11:width=$XRES -config x11:height=$YRES)
 getAutoConf reicast_input && params+=($(mapInput))
 [[ -n "$AUDIO" ]] && params+=(-config audio:backend=$AUDIO -config audio:disable=0)
 [[ -n "$ROM" ]] && params+=(-config config:image="$ROM")
 if [[ "$AUDIO" == "oss" ]]; then
-    aoss "$rootdir/emulators/reicast/bin/reicast" "${params[@]}" >/dev/null
+    aoss "$rootdir/emulators/reicast/bin/reicast" "${params[@]}"
 else
-    "$rootdir/emulators/reicast/bin/reicast" "${params[@]}" >/dev/null
+    "$rootdir/emulators/reicast/bin/reicast" "${params[@]}"
 fi
