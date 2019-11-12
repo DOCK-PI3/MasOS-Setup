@@ -1,12 +1,12 @@
 #!/usr/bin/env bash
 
-# This file is part of The RetroPie Project
+# This file is part of The EmulOS Project
 #
-# The RetroPie Project is the legal property of its developers, whose names are
+# The EmulOS Project is the legal property of its developers, whose names are
 # too numerous to list here. Please refer to the COPYRIGHT.md file distributed with this source.
 #
 # See the LICENSE.md file at the top-level directory of this distribution and
-# at https://raw.githubusercontent.com/RetroPie/RetroPie-Setup/master/LICENSE.md
+# at https://raw.githubusercontent.com/EmulOS/EmulOS-Setup/master/LICENSE.md
 #
 
 rp_module_id="esthemes"
@@ -25,11 +25,11 @@ function install_theme_esthemes() {
     local theme="$1"
     local repo="$2"
     if [[ -z "$repo" ]]; then
-        repo="RetroPie"
+        repo="EmulOS"
     fi
     if [[ -z "$theme" ]]; then
         theme="carbon"
-        repo="RetroPie"
+        repo="EmulOS"
     fi
     mkdir -p "/etc/emulationstation/themes"
     gitPullOrClone "/etc/emulationstation/themes/$theme" "https://github.com/$repo/es-theme-$theme.git"
@@ -44,17 +44,17 @@ function uninstall_theme_esthemes() {
 
 function gui_esthemes() {
     local themes=(
-        'RetroPie carbon'
-        'RetroPie carbon-centered'
-        'RetroPie carbon-nometa'
-        'RetroPie simple'
-        'RetroPie simple-dark'
-        'RetroPie clean-look'
-        'RetroPie color-pi'
-        'RetroPie nbba'
-        'RetroPie simplified-static-canela'
-        'RetroPie turtle-pi'
-        'RetroPie zoid'
+        'EmulOS carbon'
+        'EmulOS carbon-centered'
+        'EmulOS carbon-nometa'
+        'EmulOS simple'
+        'EmulOS simple-dark'
+        'EmulOS clean-look'
+        'EmulOS color-pi'
+        'EmulOS nbba'
+        'EmulOS simplified-static-canela'
+        'EmulOS turtle-pi'
+        'EmulOS zoid'
         'ehettervik pixel'
         'ehettervik pixel-metadata'
         'ehettervik pixel-tft'

@@ -1,17 +1,17 @@
 #!/usr/bin/env bash
 
-# This file is part of The RetroPie Project
+# This file is part of The EmulOS Project
 #
-# The RetroPie Project is the legal property of its developers, whose names are
+# The EmulOS Project is the legal property of its developers, whose names are
 # too numerous to list here. Please refer to the COPYRIGHT.md file distributed with this source.
 #
 # See the LICENSE.md file at the top-level directory of this distribution and
-# at https://raw.githubusercontent.com/RetroPie/RetroPie-Setup/master/LICENSE.md
+# at https://raw.githubusercontent.com/EmulOS/EmulOS-Setup/master/LICENSE.md
 #
 
 rp_module_id="emulationstation"
-rp_module_desc="EmulationStation - Frontend used by RetroPie for launching emulators"
-rp_module_licence="MIT https://raw.githubusercontent.com/RetroPie/EmulationStation/master/LICENSE.md"
+rp_module_desc="EmulationStation - Frontend used by EmulOS for launching emulators"
+rp_module_licence="MIT https://raw.githubusercontent.com/EmulOS/EmulationStation/master/LICENSE.md"
 rp_module_section="core"
 rp_module_flags="frontend"
 
@@ -136,7 +136,7 @@ function depends_emulationstation() {
 function sources_emulationstation() {
     local repo="$1"
     local branch="$2"
-    [[ -z "$repo" ]] && repo="https://github.com/RetroPie/EmulationStation"
+    [[ -z "$repo" ]] && repo="https://github.com/EmulOS/EmulationStation"
     if [[ -z "$branch" ]]; then
         if compareVersions "$__os_debian_ver" gt 8; then
             branch="stable"
@@ -226,7 +226,7 @@ clear
 tput civis
 "$md_inst/emulationstation.sh" "\$@"
 if [[ \$? -eq 139 ]]; then
-    dialog --cr-wrap --no-collapse --msgbox "Emulation Station crashed!\n\nIf this is your first boot of RetroPie - make sure you are using the correct image for your system.\n\\nCheck your rom file/folder permissions and if running on a Raspberry Pi, make sure your gpu_split is set high enough and/or switch back to using carbon theme.\n\nFor more help please use the RetroPie forum." 20 60 >/dev/tty
+    dialog --cr-wrap --no-collapse --msgbox "Emulation Station crashed!\n\nIf this is your first boot of EmulOS - make sure you are using the correct image for your system.\n\\nCheck your rom file/folder permissions and if running on a Raspberry Pi, make sure your gpu_split is set high enough and/or switch back to using carbon theme.\n\nFor more help please use the EmulOS forum." 20 60 >/dev/tty
 fi
 tput cnorm
 _EOF_
@@ -242,9 +242,9 @@ Exec=gnome-terminal --full-screen --hide-menubar -e emulationstation
 Hidden=false
 NoDisplay=false
 X-GNOME-Autostart-enabled=true
-Name[de_DE]=RetroPie
+Name[de_DE]=EmulOS
 Name=rpie
-Comment[de_DE]=RetroPie
+Comment[de_DE]=EmulOS
 Comment=retropie
 Icon=/usr/local/share/icons/retropie.svg
 Categories=Game

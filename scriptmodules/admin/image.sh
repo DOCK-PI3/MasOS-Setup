@@ -1,16 +1,16 @@
 #!/usr/bin/env bash
 
-# This file is part of The RetroPie Project
+# This file is part of The EmulOS Project
 #
-# The RetroPie Project is the legal property of its developers, whose names are
+# The EmulOS Project is the legal property of its developers, whose names are
 # too numerous to list here. Please refer to the COPYRIGHT.md file distributed with this source.
 #
 # See the LICENSE.md file at the top-level directory of this distribution and
-# at https://raw.githubusercontent.com/RetroPie/RetroPie-Setup/master/LICENSE.md
+# at https://raw.githubusercontent.com/EmulOS/EmulOS-Setup/master/LICENSE.md
 #
 
 rp_module_id="image"
-rp_module_desc="Create/Manage RetroPie images"
+rp_module_desc="Create/Manage EmulOS images"
 rp_module_section=""
 rp_module_flags="!arm"
 
@@ -114,8 +114,8 @@ function install_rp_image() {
 cd
 sudo apt-get update
 sudo apt-get -y install git dialog xmlstarlet joystick
-git clone https://github.com/RetroPie/RetroPie-Setup.git
-cd RetroPie-Setup
+git clone https://github.com/EmulOS/EmulOS-Setup.git
+cd EmulOS-Setup
 modules=(
     'raspbiantools apt_upgrade'
     'setup basic_install'

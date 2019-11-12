@@ -1,16 +1,16 @@
 #!/usr/bin/env bash
 
-# This file is part of The RetroPie Project
+# This file is part of The EmulOS Project
 #
-# The RetroPie Project is the legal property of its developers, whose names are
+# The EmulOS Project is the legal property of its developers, whose names are
 # too numerous to list here. Please refer to the COPYRIGHT.md file distributed with this source.
 #
 # See the LICENSE.md file at the top-level directory of this distribution and
-# at https://raw.githubusercontent.com/RetroPie/RetroPie-Setup/master/LICENSE.md
+# at https://raw.githubusercontent.com/EmulOS/EmulOS-Setup/master/LICENSE.md
 #
 
 rp_module_id="retropiemenu"
-rp_module_desc="RetroPie configuration menu for EmulationStation"
+rp_module_desc="EmulOS configuration menu for EmulationStation"
 rp_module_section="core"
 
 function _update_hook_retropiemenu() {
@@ -34,7 +34,7 @@ function configure_retropiemenu()
 {
     [[ "$md_mode" == "remove" ]] && return
 
-    local rpdir="$home/RetroPie/retropiemenu"
+    local rpdir="$home/EmulOS/retropiemenu"
     mkdir -p "$rpdir"
     cp -Rv "$md_data/icons" "$rpdir/"
     chown -R $user:$user "$rpdir"
@@ -67,7 +67,7 @@ function configure_retropiemenu()
         'Raspi-Config'
         'Retroarch'
         'RetroArch Net Play'
-        'RetroPie Setup'
+        'EmulOS Setup'
         'Run Command Configuration'
         'Show IP'
         'Splash Screens'
@@ -78,19 +78,19 @@ function configure_retropiemenu()
         'Configure audio settings. Choose default of auto, 3.5mm jack, or HDMI. Mixer controls, and apply default settings.'
         'Register and connect to bluetooth devices. Unregister and remove devices, and display registered and connected devices.'
         'Change common RetroArch options, and manually edit RetroArch configs, global configs, and non-RetroArch configs.'
-        'Install, uninstall, or update EmulationStation themes. Most themes can be previewed at https://github.com/retropie/ RetroPie-Setup/wiki/themes.'
+        'Install, uninstall, or update EmulationStation themes. Most themes can be previewed at https://github.com/retropie/ EmulOS-Setup/wiki/themes.'
         'Basic ascii file manager for linux allowing you to browse, copy, delete, and move files.'
         'Change user password, boot options, internationalization, camera, add your pi to Rastrack, overclock, overscan, memory split, SSH and more.'
         'Launches the RetroArch GUI so you can change RetroArch options. Note: Changes will not be saved unless you have enabled the "Save Configuration On Exit" option.'
         'Set up RetroArch Netplay options, choose host or client, port, host IP, delay frames, and your nickname.'
-        'Install RetroPie from binary or source, install experimental packages, additional drivers, edit samba shares, custom scraper, as well as other RetroPie-related configurations.'
+        'Install EmulOS from binary or source, install experimental packages, additional drivers, edit samba shares, custom scraper, as well as other EmulOS-related configurations.'
         'Change what appears on the runcommand screen. Enable or disable the menu, enable or disable box art, and change CPU configuration.'
         'Displays your current IP address, as well as other information provided by the command, "ip addr show."'
-        'Enable or disable the splashscreen on RetroPie boot. Choose a splashscreen, download new splashscreens, and return splashscreen to default.'
+        'Enable or disable the splashscreen on EmulOS boot. Choose a splashscreen, download new splashscreens, and return splashscreen to default.'
         'Connect to or disconnect from a wifi network and configure wifi settings.'
     )
 
-    setESSystem "RetroPie" "retropie" "$rpdir" ".rp .sh" "sudo $scriptdir/retropie_packages.sh retropiemenu launch %ROM% </dev/tty >/dev/tty" "" "retropie"
+    setESSystem "EmulOS" "retropie" "$rpdir" ".rp .sh" "sudo $scriptdir/retropie_packages.sh retropiemenu launch %ROM% </dev/tty >/dev/tty" "" "retropie"
 
     local file
     local name
@@ -109,19 +109,19 @@ function configure_retropiemenu()
         file="${files[i]}"
         name="${names[i]}"
         desc="${descs[i]}"
-        image="$home/RetroPie/retropiemenu/icons/${files[i]}.png"
+        image="$home/EmulOS/retropiemenu/icons/${files[i]}.png"
 
         touch "$rpdir/$file.rp"
 
         local function
         for function in $(compgen -A function _add_rom_); do
-            "$function" "retropie" "RetroPie" "$file.rp" "$name" "$desc" "$image"
+            "$function" "retropie" "EmulOS" "$file.rp" "$name" "$desc" "$image"
         done
     done
 }
 
 function remove_retropiemenu() {
-    rm -rf "$home/RetroPie/retropiemenu"
+    rm -rf "$home/EmulOS/retropiemenu"
     rm -rf "$home/.emulationstation/gamelists/retropie"
     delSystem retropie
 }
@@ -163,7 +163,7 @@ function launch_retropiemenu() {
             fi
             ;;
         *.sh)
-            cd "$home/RetroPie/retropiemenu"
+            cd "$home/EmulOS/retropiemenu"
             sudo -u "$user" bash "$command"
             ;;
     esac

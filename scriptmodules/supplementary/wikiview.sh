@@ -1,16 +1,16 @@
 #!/usr/bin/env bash
 
-# This file is part of The RetroPie Project
+# This file is part of The EmulOS Project
 #
-# The RetroPie Project is the legal property of its developers, whose names are
+# The EmulOS Project is the legal property of its developers, whose names are
 # too numerous to list here. Please refer to the COPYRIGHT.md file distributed with this source.
 #
 # See the LICENSE.md file at the top-level directory of this distribution and
-# at https://raw.githubusercontent.com/RetroPie/RetroPie-Setup/master/LICENSE.md
+# at https://raw.githubusercontent.com/EmulOS/EmulOS-Setup/master/LICENSE.md
 #
 
 rp_module_id="wikiview"
-rp_module_desc="RetroPie-Setup Wiki Viewer"
+rp_module_desc="EmulOS-Setup Wiki Viewer"
 rp_module_section="config"
 
 function depends_wikiview() {
@@ -39,25 +39,25 @@ function choose_wikipage_wikiview() {
 }
 
 function gui_wikiview() {
-    local wikidir="$rootdir/RetroPie-Setup.wiki"
+    local wikidir="$rootdir/EmulOS-Setup.wiki"
     while true; do
-        local cmd=(dialog --backtitle "$__backtitle" --menu "RetroPie-Setup Wiki Viewer" 22 76 16)
+        local cmd=(dialog --backtitle "$__backtitle" --menu "EmulOS-Setup Wiki Viewer" 22 76 16)
         local options=()
         if [[ -d "$wikidir" ]]; then
             options=(
-                1 "Update RetroPie-Setup Wiki"
+                1 "Update EmulOS-Setup Wiki"
                 2 "View Wiki Pages"
-                3 "Remove RetroPie-Setup Wiki"
+                3 "Remove EmulOS-Setup Wiki"
             )
         else
-            options+=("1" "Download RetroPie-Setup Wiki")
+            options+=("1" "Download EmulOS-Setup Wiki")
         fi
         local choice=$("${cmd[@]}" "${options[@]}" 2>&1 >/dev/tty)
         local file="-"
         if [[ -n "$choice" ]]; then
             case "$choice" in
                 1)
-                    gitPullOrClone "$wikidir" "https://github.com/RetroPie/RetroPie-Setup.wiki.git"
+                    gitPullOrClone "$wikidir" "https://github.com/EmulOS/EmulOS-Setup.wiki.git"
                     ;;
                 2)
                     while [[ -n  "$file" ]]; do

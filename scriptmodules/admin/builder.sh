@@ -1,12 +1,12 @@
 #!/usr/bin/env bash
 
-# This file is part of The RetroPie Project
+# This file is part of The EmulOS Project
 #
-# The RetroPie Project is the legal property of its developers, whose names are
+# The EmulOS Project is the legal property of its developers, whose names are
 # too numerous to list here. Please refer to the COPYRIGHT.md file distributed with this source.
 #
 # See the LICENSE.md file at the top-level directory of this distribution and
-# at https://raw.githubusercontent.com/RetroPie/RetroPie-Setup/master/LICENSE.md
+# at https://raw.githubusercontent.com/EmulOS/EmulOS-Setup/master/LICENSE.md
 #
 
 rp_module_id="builder"
@@ -88,8 +88,8 @@ function chroot_build_builder() {
         fi
 
         [[ ! -d "$md_build/$dist" ]] && rp_callModule image create_chroot "$dist" "$md_build/$dist"
-        if [[ ! -d "$md_build/$dist/home/pi/RetroPie-Setup" ]]; then
-            sudo -u $user git clone "$home/RetroPie-Setup" "$md_build/$dist/home/pi/RetroPie-Setup"
+        if [[ ! -d "$md_build/$dist/home/pi/EmulOS-Setup" ]]; then
+            sudo -u $user git clone "$home/EmulOS-Setup" "$md_build/$dist/home/pi/EmulOS-Setup"
             cat > "$md_build/$dist/home/pi/install.sh" <<_EOF_
 #!/bin/bash
 cd
@@ -102,7 +102,7 @@ fi
 _EOF_
             rp_callModule image chroot "$md_build/$dist" bash /home/pi/install.sh
         else
-            sudo -u $user git -C "$md_build/$dist/home/pi/RetroPie-Setup" pull
+            sudo -u $user git -C "$md_build/$dist/home/pi/EmulOS-Setup" pull
         fi
 
         for sys in rpi1 rpi2 rpi4; do
@@ -111,9 +111,9 @@ _EOF_
                 PATH="/usr/lib/distcc:$PATH" \
                 MAKEFLAGS="-j4 PATH=/usr/lib/distcc:$PATH" \
                 __platform="$sys" \
-                /home/pi/RetroPie-Setup/retropie_packages.sh builder "$@"
+                /home/pi/EmulOS-Setup/retropie_packages.sh builder "$@"
         done
 
-        rsync -av "$md_build/$dist/home/pi/RetroPie-Setup/tmp/archives/" "$home/RetroPie-Setup/tmp/archives/"
+        rsync -av "$md_build/$dist/home/pi/EmulOS-Setup/tmp/archives/" "$home/EmulOS-Setup/tmp/archives/"
     done
 }

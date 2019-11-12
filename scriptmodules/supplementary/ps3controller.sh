@@ -1,17 +1,17 @@
 #!/usr/bin/env bash
 
-# This file is part of The RetroPie Project
+# This file is part of The EmulOS Project
 #
-# The RetroPie Project is the legal property of its developers, whose names are
+# The EmulOS Project is the legal property of its developers, whose names are
 # too numerous to list here. Please refer to the COPYRIGHT.md file distributed with this source.
 #
 # See the LICENSE.md file at the top-level directory of this distribution and
-# at https://raw.githubusercontent.com/RetroPie/RetroPie-Setup/master/LICENSE.md
+# at https://raw.githubusercontent.com/EmulOS/EmulOS-Setup/master/LICENSE.md
 #
 
 rp_module_id="ps3controller"
 rp_module_desc="PS3 controller driver and pair via sixad"
-rp_module_licence="GPL2 https://raw.githubusercontent.com/RetroPie/sixad/master/COPYING"
+rp_module_licence="GPL2 https://raw.githubusercontent.com/EmulOS/sixad/master/COPYING"
 rp_module_section="driver"
 
 function depends_ps3controller() {
@@ -24,7 +24,7 @@ function sources_ps3controller() {
     local branch="$1"
     [[ "$branch" == "gasia-only" ]] && branch="master"
 
-    gitPullOrClone "$md_build/sixad" https://github.com/RetroPie/sixad.git $branch
+    gitPullOrClone "$md_build/sixad" https://github.com/EmulOS/sixad.git $branch
 }
 
 function build_ps3controller() {

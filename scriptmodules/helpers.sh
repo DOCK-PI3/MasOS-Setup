@@ -1,16 +1,16 @@
 #!/bin/bash
 
-# This file is part of The RetroPie Project
+# This file is part of The EmulOS Project
 #
-# The RetroPie Project is the legal property of its developers, whose names are
+# The EmulOS Project is the legal property of its developers, whose names are
 # too numerous to list here. Please refer to the COPYRIGHT.md file distributed with this source.
 #
 # See the LICENSE.md file at the top-level directory of this distribution and
-# at https://raw.githubusercontent.com/RetroPie/RetroPie-Setup/master/LICENSE.md
+# at https://raw.githubusercontent.com/EmulOS/EmulOS-Setup/master/LICENSE.md
 #
 
 ## @file helpers.sh
-## @brief RetroPie helpers library
+## @brief EmulOS helpers library
 ## @copyright GPLv3
 
 ## @fn printMsgs()
@@ -222,7 +222,7 @@ function getDepends() {
         # map libpng12-dev to libpng-dev for Stretch+
         if [[ "$required" == "libpng12-dev" ]] && compareVersions "$__os_debian_ver" ge 9;  then
             required="libpng-dev"
-            printMsgs "console" "RetroPie module references libpng12-dev and should be changed to libpng-dev"
+            printMsgs "console" "EmulOS module references libpng12-dev and should be changed to libpng-dev"
         fi
 
         # map libpng-dev to libpng12-dev for Jessie
@@ -837,7 +837,7 @@ function setESSystem() {
 ## @fn ensureSystemretroconfig()
 ## @param system system to create retroarch.cfg for
 ## @param shader set a default shader to use (deprecated)
-## @brief Creates a default retroarch.cfg for specified system in `/opt/retropie/configs/$system/retroarch.cfg`.
+## @brief Creates a default retroarch.cfg for specified system in `/opt/masos/configs/$system/retroarch.cfg`.
 function ensureSystemretroconfig() {
     local system="$1"
     local shader="$2"
@@ -1020,7 +1020,7 @@ function ensureFBMode() {
     sed -i --follow-symlinks "/$res mode/,/endmode/d" /etc/fb.modes
 
     cat >> /etc/fb.modes <<_EOF_
-# added by RetroPie-Setup - $res mode for emulators
+# added by EmulOS-Setup - $res mode for emulators
 mode "$res"
     geometry $res_x $res_y $res_x $res_y 16
     timings 0 0 0 0 0 0 0
@@ -1090,8 +1090,8 @@ function getPlatformConfig() {
         iniGet "$key"
         [[ -n "$ini_value" ]] && break
     done
-    # workaround for RetroPie platform
-    [[ "$key" == "retropie_fullname" ]] && ini_value="RetroPie"
+    # workaround for EmulOS platform
+    [[ "$key" == "retropie_fullname" ]] && ini_value="EmulOS"
     echo "$ini_value"
 }
 
@@ -1343,7 +1343,7 @@ function patchVendorGraphics() {
 ## @param mode dkms operation type
 ## @module_name name of dkms module
 ## @module_ver version of dkms module
-## Helper function to manage DKMS modules installed by RetroPie
+## Helper function to manage DKMS modules installed by EmulOS
 function dkmsManager() {
     local mode="$1"
     local module_name="$2"

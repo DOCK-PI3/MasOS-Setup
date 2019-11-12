@@ -1,16 +1,16 @@
 #!/usr/bin/env bash
 
-# This file is part of The RetroPie Project
+# This file is part of The EmulOS Project
 #
-# The RetroPie Project is the legal property of its developers, whose names are
+# The EmulOS Project is the legal property of its developers, whose names are
 # too numerous to list here. Please refer to the COPYRIGHT.md file distributed with this source.
 #
 # See the LICENSE.md file at the top-level directory of this distribution and
-# at https://raw.githubusercontent.com/RetroPie/RetroPie-Setup/master/LICENSE.md
+# at https://raw.githubusercontent.com/EmulOS/EmulOS-Setup/master/LICENSE.md
 #
 
 rp_module_id="setup"
-rp_module_desc="GUI based setup for RetroPie"
+rp_module_desc="GUI based setup for EmulOS"
 rp_module_section=""
 
 function _setup_gzip_log() {
@@ -34,7 +34,7 @@ function rps_logInit() {
 
 function rps_logStart() {
     echo -e "Log started at: $(date -d @$time_start)\n"
-    echo "RetroPie-Setup version: $__version ($(git -C "$scriptdir" log -1 --pretty=format:%h))"
+    echo "EmulOS-Setup version: $__version ($(git -C "$scriptdir" log -1 --pretty=format:%h))"
     echo "System: $__os_desc - $(uname -a)"
 }
 
@@ -69,11 +69,11 @@ function depends_setup() {
     fi
 
     if isPlatform "rpi" && isPlatform "mesa" && ! isPlatform "rpi4"; then
-        printMsgs "dialog" "WARNING: You have the experimental desktop GL driver enabled. This is NOT supported by RetroPie, and Emulation Station as well as emulators may fail to launch.\n\nPlease disable the experimental desktop GL driver from the raspi-config 'Advanced Options' menu."
+        printMsgs "dialog" "WARNING: You have the experimental desktop GL driver enabled. This is NOT supported by EmulOS, and Emulation Station as well as emulators may fail to launch.\n\nPlease disable the experimental desktop GL driver from the raspi-config 'Advanced Options' menu."
     fi
 
     if [[ "$__os_debian_ver" -eq 8 ]]; then
-        printMsgs "dialog" "Raspbian/Debian Jessie and versions of Ubuntu below 16.04 are no longer supported.\n\nPlease install RetroPie 4.4 or newer from a fresh image which is based on Raspbian Stretch (or if running Ubuntu, upgrade your OS)."
+        printMsgs "dialog" "Raspbian/Debian Jessie and versions of Ubuntu below 16.04 are no longer supported.\n\nPlease install EmulOS 4.4 or newer from a fresh image which is based on Raspbian Stretch (or if running Ubuntu, upgrade your OS)."
     fi
 
     # make sure user has the correct group permissions
@@ -81,7 +81,7 @@ function depends_setup() {
         local group
         for group in input video; do
             if ! hasFlag "$(groups $user)" "$group"; then
-                dialog --yesno "Your user '$user' is not a member of the system group '$group'.\n\nThis is needed for RetroPie to function correctly. May I add '$user' to group '$group'?\n\nYou will need to restart for these changes to take effect." 22 76 2>&1 >/dev/tty && usermod -a -G "$group" "$user"
+                dialog --yesno "Your user '$user' is not a member of the system group '$group'.\n\nThis is needed for EmulOS to function correctly. May I add '$user' to group '$group'?\n\nYou will need to restart for these changes to take effect." 22 76 2>&1 >/dev/tty && usermod -a -G "$group" "$user"
             fi
         done
     fi
@@ -94,10 +94,10 @@ function updatescript_setup()
 {
     clear
     chown -R $user:$user "$scriptdir"
-    printHeading "Fetching latest version of the RetroPie Setup Script."
+    printHeading "Fetching latest version of the EmulOS Setup Script."
     pushd "$scriptdir" >/dev/null
     if [[ ! -d ".git" ]]; then
-        printMsgs "dialog" "Cannot find directory '.git'. Please clone the RetroPie Setup script via 'git clone https://github.com/RetroPie/RetroPie-Setup.git'"
+        printMsgs "dialog" "Cannot find directory '.git'. Please clone the EmulOS Setup script via 'git clone https://github.com/EmulOS/EmulOS-Setup.git'"
         popd >/dev/null
         return 1
     fi
@@ -109,7 +109,7 @@ function updatescript_setup()
     fi
     popd >/dev/null
 
-    printMsgs "dialog" "Fetched the latest version of the RetroPie Setup script."
+    printMsgs "dialog" "Fetched the latest version of the EmulOS Setup script."
     return 0
 }
 
@@ -134,7 +134,7 @@ function post_update_setup() {
     } &> >(_setup_gzip_log "$logfilename")
     rps_printInfo "$logfilename"
 
-    printMsgs "dialog" "NOTICE: The RetroPie-Setup script and pre-made RetroPie SD card images are available to download for free from https://retropie.org.uk.\n\nThe pre-built RetroPie image includes software that has non commercial licences. Selling RetroPie images or including RetroPie with your commercial product is not allowed.\n\nNo copyrighted games are included with RetroPie.\n\nIf you have been sold this software, you can let us know about it by emailing retropieproject@gmail.com."
+    printMsgs "dialog" "NOTICE: The EmulOS-Setup script and pre-made EmulOS SD card images are available to download for free from https://retropie.org.uk.\n\nThe pre-built EmulOS image includes software that has non commercial licences. Selling EmulOS images or including EmulOS with your commercial product is not allowed.\n\nNo copyrighted games are included with EmulOS.\n\nIf you have been sold this software, you can let us know about it by emailing retropieproject@gmail.com."
 
     # return to set return function
     "${return_func[@]}"
@@ -221,7 +221,7 @@ function package_setup() {
                 ;;
             X)
                 local text="Are you sure you want to remove $md_id?"
-                [[ "${__mod_section[$idx]}" == "core" ]] && text+="\n\nWARNING - core packages are needed for RetroPie to function!"
+                [[ "${__mod_section[$idx]}" == "core" ]] && text+="\n\nWARNING - core packages are needed for EmulOS to function!"
                 dialog --defaultno --yesno "$text" 22 76 2>&1 >/dev/tty || continue
                 rps_logInit
                 {
@@ -322,7 +322,7 @@ function section_gui_setup() {
 
             X)
                 local text="Are you sure you want to remove all $section packages?"
-                [[ "$section" == "core" ]] && text+="\n\nWARNING - core packages are needed for RetroPie to function!"
+                [[ "$section" == "core" ]] && text+="\n\nWARNING - core packages are needed for EmulOS to function!"
                 dialog --defaultno --yesno "$text" 22 76 2>&1 >/dev/tty || continue
                 rps_logInit
                 {
@@ -467,23 +467,23 @@ function packages_gui_setup() {
 
 function uninstall_setup()
 {
-    dialog --defaultno --yesno "Are you sure you want to uninstall RetroPie?" 22 76 2>&1 >/dev/tty || return 0
-    dialog --defaultno --yesno "Are you REALLY sure you want to uninstall RetroPie?\n\n$rootdir will be removed - this includes configuration files for all RetroPie components." 22 76 2>&1 >/dev/tty || return 0
+    dialog --defaultno --yesno "Are you sure you want to uninstall EmulOS?" 22 76 2>&1 >/dev/tty || return 0
+    dialog --defaultno --yesno "Are you REALLY sure you want to uninstall EmulOS?\n\n$rootdir will be removed - this includes configuration files for all EmulOS components." 22 76 2>&1 >/dev/tty || return 0
     clear
-    printHeading "Uninstalling RetroPie"
+    printHeading "Uninstalling EmulOS"
     for idx in "${__mod_idx[@]}"; do
         rp_isInstalled "$idx" && rp_callModule $idx remove
     done
     rm -rfv "$rootdir"
     dialog --defaultno --yesno "Do you want to remove all the files from $datadir - this includes all your installed ROMs, BIOS files and custom splashscreens." 22 76 2>&1 >/dev/tty && rm -rfv "$datadir"
-    if dialog --defaultno --yesno "Do you want to remove all the system packages that RetroPie depends on? \n\nWARNING: this will remove packages like SDL even if they were installed before you installed RetroPie - it will also remove any package configurations - such as those in /etc/samba for Samba.\n\nIf unsure choose No (selected by default)." 22 76 2>&1 >/dev/tty; then
+    if dialog --defaultno --yesno "Do you want to remove all the system packages that EmulOS depends on? \n\nWARNING: this will remove packages like SDL even if they were installed before you installed EmulOS - it will also remove any package configurations - such as those in /etc/samba for Samba.\n\nIf unsure choose No (selected by default)." 22 76 2>&1 >/dev/tty; then
         clear
         # remove all dependencies
         for idx in "${__mod_idx[@]}"; do
             rp_isInstalled "$idx" && rp_callModule "$idx" depends remove
         done
     fi
-    printMsgs "dialog" "RetroPie has been uninstalled."
+    printMsgs "dialog" "EmulOS has been uninstalled."
 }
 
 function reboot_setup()
@@ -500,23 +500,23 @@ function gui_setup() {
     while true; do
         local commit=$(git -C "$scriptdir" log -1 --pretty=format:"%cr (%h)")
 
-        cmd=(dialog --backtitle "$__backtitle" --title "RetroPie-Setup Script" --cancel-label "Exit" --item-help --help-button --default-item "$default" --menu "Version: $__version (running on $__os_desc)\nLast Commit: $commit" 22 76 16)
+        cmd=(dialog --backtitle "$__backtitle" --title "EmulOS-Setup Script" --cancel-label "Exit" --item-help --help-button --default-item "$default" --menu "Version: $__version (running on $__os_desc)\nLast Commit: $commit" 22 76 16)
         options=(
-            I "Basic install" "I This will install all packages from Core and Main which gives a basic RetroPie install. Further packages can then be installed later from the Optional and Experimental sections. If binaries are available they will be used, alternatively packages will be built from source - which will take longer."
+            I "Basic install" "I This will install all packages from Core and Main which gives a basic EmulOS install. Further packages can then be installed later from the Optional and Experimental sections. If binaries are available they will be used, alternatively packages will be built from source - which will take longer."
 
-            U "Update" "U Updates RetroPie-Setup and all currently installed packages. Will also allow to update OS packages. If binaries are available they will be used, otherwise packages will be built from source."
+            U "Update" "U Updates EmulOS-Setup and all currently installed packages. Will also allow to update OS packages. If binaries are available they will be used, otherwise packages will be built from source."
 
             P "Manage packages"
-            "P Install/Remove and Configure the various components of RetroPie, including emulators, ports, and controller drivers."
+            "P Install/Remove and Configure the various components of EmulOS, including emulators, ports, and controller drivers."
 
             C "Configuration / tools"
             "C Configuration and Tools. Any packages you have installed that have additional configuration options will also appear here."
 
-            S "Update RetroPie-Setup script"
-            "S Update this RetroPie-Setup script. This will update this main management script only, but will not update any software packages. To update packages use the 'Update' option from the main menu, which will also update the RetroPie-Setup script."
+            S "Update EmulOS-Setup script"
+            "S Update this EmulOS-Setup script. This will update this main management script only, but will not update any software packages. To update packages use the 'Update' option from the main menu, which will also update the EmulOS-Setup script."
 
-            X "Uninstall RetroPie"
-            "X Uninstall RetroPie completely."
+            X "Uninstall EmulOS"
+            "X Uninstall EmulOS completely."
 
             R "Perform reboot"
             "R Reboot your machine."
@@ -559,7 +559,7 @@ function gui_setup() {
                 config_gui_setup
                 ;;
             S)
-                dialog --defaultno --yesno "Are you sure you want to update the RetroPie-Setup script ?" 22 76 2>&1 >/dev/tty || continue
+                dialog --defaultno --yesno "Are you sure you want to update the EmulOS-Setup script ?" 22 76 2>&1 >/dev/tty || continue
                 if updatescript_setup; then
                     joy2keyStop
                     exec "$scriptdir/retropie_packages.sh" setup post_update gui_setup

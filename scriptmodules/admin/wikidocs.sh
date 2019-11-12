@@ -1,12 +1,12 @@
 #!/usr/bin/env bash
 
-# This file is part of The RetroPie Project
+# This file is part of The EmulOS Project
 #
-# The RetroPie Project is the legal property of its developers, whose names are
+# The EmulOS Project is the legal property of its developers, whose names are
 # too numerous to list here. Please refer to the COPYRIGHT.md file distributed with this source.
 #
 # See the LICENSE.md file at the top-level directory of this distribution and
-# at https://raw.githubusercontent.com/RetroPie/RetroPie-Setup/master/LICENSE.md
+# at https://raw.githubusercontent.com/EmulOS/EmulOS-Setup/master/LICENSE.md
 #
 
 rp_module_id="wikidocs"
@@ -19,8 +19,8 @@ function depends_wikidocs() {
 }
 
 function sources_wikidocs() {
-    gitPullOrClone "$md_build" https://github.com/RetroPie/RetroPie-Docs.git
-    gitPullOrClone "$md_build/docs" https://github.com/RetroPie/retropie-setup.wiki.git
+    gitPullOrClone "$md_build" https://github.com/EmulOS/EmulOS-Docs.git
+    gitPullOrClone "$md_build/docs" https://github.com/EmulOS/retropie-setup.wiki.git
 
     cp -v "docs/Home.md" "docs/index.md"
     cp -R "$md_build/"{images,stylesheets} "docs/"

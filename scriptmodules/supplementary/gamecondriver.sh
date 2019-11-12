@@ -1,12 +1,12 @@
 #!/usr/bin/env bash
 
-# This file is part of The RetroPie Project
+# This file is part of The EmulOS Project
 #
-# The RetroPie Project is the legal property of its developers, whose names are
+# The EmulOS Project is the legal property of its developers, whose names are
 # too numerous to list here. Please refer to the COPYRIGHT.md file distributed with this source.
 #
 # See the LICENSE.md file at the top-level directory of this distribution and
-# at https://raw.githubusercontent.com/RetroPie/RetroPie-Setup/master/LICENSE.md
+# at https://raw.githubusercontent.com/EmulOS/EmulOS-Setup/master/LICENSE.md
 #
 
 rp_module_id="gamecondriver"
@@ -156,7 +156,7 @@ __________\n\
     * *  |\n\
     1 -  |          The driver is now set to use the following\n\
     2 *  |          configuration for 2 SNES controllers:\n\
-    * *  |          (compatible with RetroPie GPIO adapter)\n\
+    * *  |          (compatible with EmulOS GPIO adapter)\n\
     * *  |\n\
     * *  |          + = power\n\
     * *  |          - = ground\n\
@@ -184,7 +184,7 @@ function gui_gamecondriver() {
         if [[ -n "$choice" ]]; then
             case "$choice" in
                 1)
-                    dialog --defaultno --yesno "Gamecon driver supports RetroPie GPIO adapter board for 2 SNES controllers. Do you want to configure gamecon for 2 SNES controllers?"  22 76 >/dev/tty || continue
+                    dialog --defaultno --yesno "Gamecon driver supports EmulOS GPIO adapter board for 2 SNES controllers. Do you want to configure gamecon for 2 SNES controllers?"  22 76 >/dev/tty || continue
                     dual_snes_gamecondriver
                     ;;
                 2)

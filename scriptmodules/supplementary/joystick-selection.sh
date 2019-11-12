@@ -10,7 +10,7 @@ function depends_joystick-selection() {
 }
 
 function sources_joystick-selection() {
-    gitPullOrClone "$md_build" "https://github.com/meleu/RetroPie-joystick-selection.git"
+    gitPullOrClone "$md_build" "https://github.com/meleu/EmulOS-joystick-selection.git"
 }
 
 function build_joystick-selection() {

@@ -6,7 +6,7 @@
 # too numerous to list here. Please refer to the COPYRIGHT.md file distributed with this source.
 # 
 # See the LICENSE.md file at the top-level directory of this distribution and 
-# at https://raw.githubusercontent.com/RetroPie/RetroPie-Setup/master/LICENSE.md
+# at https://raw.githubusercontent.com/EmulOS/EmulOS-Setup/master/LICENSE.md
 #
 
 rp_module_id="gamemaker"

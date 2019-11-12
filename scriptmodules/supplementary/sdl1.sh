@@ -1,12 +1,12 @@
 #!/usr/bin/env bash
 
-# This file is part of The RetroPie Project
+# This file is part of The EmulOS Project
 #
-# The RetroPie Project is the legal property of its developers, whose names are
+# The EmulOS Project is the legal property of its developers, whose names are
 # too numerous to list here. Please refer to the COPYRIGHT.md file distributed with this source.
 #
 # See the LICENSE.md file at the top-level directory of this distribution and
-# at https://raw.githubusercontent.com/RetroPie/RetroPie-Setup/master/LICENSE.md
+# at https://raw.githubusercontent.com/EmulOS/EmulOS-Setup/master/LICENSE.md
 #
 
 rp_module_id="sdl1"
@@ -51,12 +51,12 @@ function sources_sdl1() {
     dpkg-source -x libsdl1.2_$(get_pkg_ver_sdl1 source).dsc
 
     cd libsdl1.2-$(get_pkg_ver_sdl1 base)
-    # add fixes from https://github.com/RetroPie/sdl1/compare/master...rpi
-    wget https://github.com/RetroPie/sdl1/compare/master...rpi.diff -O debian/patches/rpi.diff
+    # add fixes from https://github.com/EmulOS/sdl1/compare/master...rpi
+    wget https://github.com/EmulOS/sdl1/compare/master...rpi.diff -O debian/patches/rpi.diff
     echo "rpi.diff" >>debian/patches/series
     # force building without tslib on Jessie (as Raspbian Jessie has tslib, but Debian Jessie doesn't and we want cross compatibility
     sed -i "s/--enable-video-caca/--enable-video-caca --disable-input-tslib/" debian/rules
-    DEBEMAIL="Jools Wills <buzz@exotica.org.uk>" dch -v $(get_pkg_ver_sdl1) "Added rpi fixes and dispmanx support from https://github.com/RetroPie/sdl1/compare/master...rpi"
+    DEBEMAIL="Jools Wills <buzz@exotica.org.uk>" dch -v $(get_pkg_ver_sdl1) "Added rpi fixes and dispmanx support from https://github.com/EmulOS/sdl1/compare/master...rpi"
 }
 
 function build_sdl1() {

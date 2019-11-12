@@ -1,17 +1,17 @@
 #!/usr/bin/env bash
 
-# This file is part of The RetroPie Project
+# This file is part of The EmulOS Project
 #
-# The RetroPie Project is the legal property of its developers, whose names are
+# The EmulOS Project is the legal property of its developers, whose names are
 # too numerous to list here. Please refer to the COPYRIGHT.md file distributed with this source.
 #
 # See the LICENSE.md file at the top-level directory of this distribution and
-# at https://raw.githubusercontent.com/RetroPie/RetroPie-Setup/master/LICENSE.md
+# at https://raw.githubusercontent.com/EmulOS/EmulOS-Setup/master/LICENSE.md
 #
 
 rp_module_id="sixaxis"
-rp_module_desc="Helper service to install & configure the latest drivers for official and third-party DualShock controllers (ps3controller replacement)\n\nNote: For Shanwan/GASIA third-party controllers, enable third-party support in the configuration options.\n\nTo pair controllers, use the RetroPie Bluetooth menu, choose 'Register and Connect...', then follow the on-screen instructions."
-rp_module_licence="GPL2 https://raw.githubusercontent.com/RetroPie/sixaxis/master/COPYING"
+rp_module_desc="Helper service to install & configure the latest drivers for official and third-party DualShock controllers (ps3controller replacement)\n\nNote: For Shanwan/GASIA third-party controllers, enable third-party support in the configuration options.\n\nTo pair controllers, use the EmulOS Bluetooth menu, choose 'Register and Connect...', then follow the on-screen instructions."
+rp_module_licence="GPL2 https://raw.githubusercontent.com/EmulOS/sixaxis/master/COPYING"
 rp_module_section="driver"
 
 function depends_sixaxis() {
@@ -21,7 +21,7 @@ function depends_sixaxis() {
 }
 
 function sources_sixaxis() {
-    gitPullOrClone "$md_build/sixaxis" https://github.com/RetroPie/sixaxis.git
+    gitPullOrClone "$md_build/sixaxis" https://github.com/EmulOS/sixaxis.git
 }
 
 function build_sixaxis() {
